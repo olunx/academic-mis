@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.gdpu.vo">
+	<class name="Classes" table="t_classes">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<many-to-one name="institute" column="insId" cascade="save-update" />
+		<set name="students" cascade="all" lazy="false" order-by="id asc">
+			<key column="clsId" />
+			<one-to-many class="Student" />
+		</set>
+		<property name="remark" />
+		
+	</class>
+</hibernate-mapping>

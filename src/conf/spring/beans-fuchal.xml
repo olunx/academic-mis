@@ -15,4 +15,29 @@
 	<bean name="adminService" class="cn.gdpu.service.impl.AdminServiceImpl" scope="prototype">
 		<property name="baseDao" ref="adminDaoImpl" />
 	</bean>
+	
+	<!-- student bean -->
+	<bean name="studentDaoImpl" class="cn.gdpu.dao.impl.StudentDaoImpl"	scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="studentService" class="cn.gdpu.service.impl.StudentServiceImpl"	scope="prototype">
+		<property name="baseDao" ref="studentDaoImpl" />
+	</bean>
+
+	<!-- institute bean -->
+	<bean name="instituteDaoImpl" class="cn.gdpu.dao.impl.InstituteDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="instituteService" class="cn.gdpu.service.impl.InstituteServiceImpl" scope="prototype">
+		<property name="baseDao" ref="instituteDaoImpl" />
+	</bean>
+	
+	<!-- classes bean -->
+	<bean name="classesDaoImpl" class="cn.gdpu.dao.impl.ClassesDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="classesService" class="cn.gdpu.service.impl.ClassesServiceImpl" scope="prototype">
+		<property name="baseDao" ref="classesDaoImpl" />
+	</bean>
+
 </beans>

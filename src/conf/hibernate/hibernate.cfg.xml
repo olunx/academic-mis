@@ -11,5 +11,8 @@
 		<property name="connection.characterEncoding">UTF-8</property>
 		
 		<mapping resource="cn/gdpu/vo/Admin.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Institute.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Classes.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Student.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
