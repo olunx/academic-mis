@@ -1,13 +1,15 @@
-package cn.gdpu.vo;
+package cn.gdpu.dto;
 
-public class Student {
+
+public class StudentDto {
 	private int id;
 	private String username;
 	private String password;
+	private String rpassword;
 	private String realName;
 	private int sex;
 	private int age;
-	private Classes classes;
+	private int classes;
 	private int schoolYear;
 	private String avatar;
 	private String remark;
@@ -30,6 +32,12 @@ public class Student {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getRpassword() {
+		return rpassword;
+	}
+	public void setRpassword(String rpassword) {
+		this.rpassword = rpassword;
+	}
 	public String getRealName() {
 		return realName;
 	}
@@ -48,10 +56,10 @@ public class Student {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public Classes getClasses() {
+	public int getClasses() {
 		return classes;
 	}
-	public void setClasses(Classes classes) {
+	public void setClasses(int classes) {
 		this.classes = classes;
 	}
 	public int getSchoolYear() {

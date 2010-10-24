@@ -12,8 +12,10 @@ import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.gdpu.dto.StudentDto;
 import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.InstituteService;
+import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
@@ -24,6 +26,9 @@ public class StudentAction extends BaseAction {
 
 	private InstituteService<Institute, Integer> instituteService;
 	private ClassesService<Classes, Integer> classesService;
+	private StudentService<Student, Integer> studentService;
+	private StudentDto stuDto;
+	private Student student;
 
 	public void prepare() throws Exception {
 		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
@@ -50,9 +55,42 @@ public class StudentAction extends BaseAction {
 		}
 	}
 	
+	public String goLogin(){
+		return "goLogin";
+	}
+	
 	@Override
 	public String add() {
-		// TODO Auto-generated method stub
+		if(stuDto.getUsername() != null && !stuDto.getUsername().equals("") 
+				&& stuDto.getPassword() != null && !stuDto.getPassword().equals("") 
+				&& stuDto.getRpassword() != null && !stuDto.getRpassword().equals("")
+				&& stuDto.getPassword().equals(stuDto.getRpassword())){
+			
+			Student oldStu = studentService.getStudentByUsername(stuDto.getUsername());
+			if(oldStu == null){
+				Classes classes = classesService.getEntity(Classes.class, stuDto.getClasses());
+				System.out.println("classes : " + classes.getName());
+				student = new Student();
+				student.setUsername(stuDto.getUsername());
+				student.setPassword(stuDto.getPassword());
+				student.setRealName(stuDto.getRealName());
+				student.setSex(stuDto.getSex());
+				student.setAge(stuDto.getAge());
+				student.setSchoolYear(stuDto.getSchoolYear());
+				student.setAvatar(student.getAvatar());
+				student.setRemark(stuDto.getRemark());
+				student.setClasses(classes);
+				System.out.println("sfsdfsdfsdf");
+				studentService.addEntity(student);
+				Log.init(getClass()).info("添加学生用户成功: " + student);
+				return "viewPage";
+			}else{
+				this.addFieldError("stuDto.username", "该用户已存在");
+				if (hasFieldErrors()) {
+					return super.goAdd();
+				}
+			}
+		}
 		return super.add();
 	}
 
@@ -131,5 +169,29 @@ public class StudentAction extends BaseAction {
 
 	public void setClassesService(ClassesService<Classes, Integer> classesService) {
 		this.classesService = classesService;
+	}
+
+	public StudentService<Student, Integer> getStudentService() {
+		return studentService;
+	}
+
+	public void setStudentService(StudentService<Student, Integer> studentService) {
+		this.studentService = studentService;
+	}
+
+	public StudentDto getStuDto() {
+		return stuDto;
+	}
+
+	public void setStuDto(StudentDto stuDto) {
+		this.stuDto = stuDto;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 }

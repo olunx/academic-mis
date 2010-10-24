@@ -2,6 +2,10 @@
 
 import java.io.Serializable;
 
-public interface StudentService<T, ID extends Serializable> extends BaseService<T, ID> {
+import cn.gdpu.vo.Student;
 
+
+public interface StudentService<T, ID extends Serializable> extends BaseService<T, ID> {
+	public abstract Student getStudentByUsernameAndPassword(String username, String password);
+	public abstract Student getStudentByUsername(String username);
 }
