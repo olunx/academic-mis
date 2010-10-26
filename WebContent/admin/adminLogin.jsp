@@ -3,6 +3,13 @@
 	String path = request.getContextPath();
 %>
 <title>网站管理员登陆</title>
+<!-- JQuery库 -->
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
+<script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
+
 <style type="text/css">
 <!--
 body {
@@ -14,7 +21,9 @@ body {
 }
 -->
 </style>
+
 <script language="JavaScript">
+	
 function correctPNG()
 {
     var arVersion = navigator.appVersion.split("MSIE");
@@ -45,8 +54,17 @@ function correctPNG()
     }    
 }
 window.attachEvent("onload", correctPNG);
-</script>
 
+$(document).ready(function(){
+	
+	$('#kaptchaImage').click(
+			function() {
+				$(this).hide().attr('src',
+						'<%=path %>/kaptcha.jpg?' + Math.floor(Math.random() * 100))
+						.fadeIn();
+	});  
+});
+</script>
 
 <link href="<%=path %>/content/images/admin/skin.css" rel="stylesheet" type="text/css">
 <body>
@@ -120,8 +138,9 @@ window.attachEvent("onload", correctPNG);
                           </tr>
                           <tr>
                             <td width="13%" height="35" ><span class="login_txt">验证码：</span></td>
-                            <td height="35" colspan="2" class="top_hui_text"><input class=wenbenkuang name=verifycode type=text value="" maxLength=4 size=10>
-                              </td>
+                            <td height="35" colspan="2" class="top_hui_text"><input class=wenbenkuang name="kaptcha" type=text value="" maxLength=4 size=10>
+                           		<img src="<%=path %>/kaptcha.jpg" height="25" width="80" id="kaptchaImage"/><small><font color="red">点击图片刷新</font></small>
+							</td>
                           </tr>
                           <tr>
                             <td height="35" >&nbsp;</td>

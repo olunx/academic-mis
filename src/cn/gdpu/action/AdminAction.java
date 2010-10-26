@@ -1,12 +1,16 @@
 package cn.gdpu.action;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+
 import cn.gdpu.service.AdminService;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Admin;
 
 
 @SuppressWarnings("serial")
-public class AdminAction extends BaseAction {
+public class AdminAction extends BaseAction implements ServletRequestAware{
 	
 	private AdminService<Admin, Integer> adminService;
 	private Admin admin;
@@ -18,6 +22,9 @@ public class AdminAction extends BaseAction {
 	private String name;
 	private PageBean pageBean;
 	private int page;
+	private HttpServletRequest hsrequest;
+	
+	
 	
 	
 	public String goLogin(){
@@ -25,6 +32,14 @@ public class AdminAction extends BaseAction {
 	}
 	
 	public String login(){
+		String kaptchaExpected = (String)hsrequest.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+		String kaptchaReceived = hsrequest.getParameter("kaptcha");
+		if (kaptchaReceived == null || !kaptchaReceived.equalsIgnoreCase(kaptchaExpected)){
+			this.addFieldError("kaptcha", "验证码错误");
+			if (hasFieldErrors()) {
+				return "gologin";
+			}
+		}
 		if(username != null && password != null){
 			Admin admin = adminService.getAdminByUsernameAndPassword(username, password);
 			if(admin != null){
@@ -211,5 +226,10 @@ public class AdminAction extends BaseAction {
 	public void setOldpassword(String oldpassword) {
 		this.oldpassword = oldpassword;
 	}
-	
+
+	@Override
+	public void setServletRequest(HttpServletRequest hsrequest) {
+		this.hsrequest = hsrequest;		
+	}
+
 }
