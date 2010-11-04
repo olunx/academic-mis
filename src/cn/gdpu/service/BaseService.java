@@ -37,7 +37,14 @@ public interface BaseService<T,ID extends Serializable> {
          * @param entity:删除持久化的对象  
          * @return 无返回值 
          * */  
-	public abstract void deleteEntity(final Class<T> entityClass,final ID id);   
+	public abstract void deleteEntity(final Class<T> entityClass,final ID id);
+	
+	/**
+	 * 批量删除实体
+	 * @param entityClass
+	 * @param ids
+	 */
+	public abstract void deleteManyEntity(final Class<T> entityClass,final ID[] ids); 
         
         /**  
          * 查找实体类  
@@ -55,7 +62,15 @@ public interface BaseService<T,ID extends Serializable> {
          * @param conditionMap:Map<ID,T> 
          * @return List<T>  
          * */  
-	public abstract List<T> getAllEntity(final Class<T> entityClass);   
+	public abstract List<T> getAllEntity(final Class<T> entityClass);
+	
+	/**
+	 * 根据hql查询实体
+	 * @param entityClass
+	 * @param hql
+	 * @return
+	 */
+	public abstract List<T> getEntity(final Class<T> entityClass,String hql);
 	
 		/**
 		 * 分页
@@ -64,4 +79,31 @@ public interface BaseService<T,ID extends Serializable> {
 		 * @return
 		 */
 	public abstract PageBean queryForPage(final Class<T> entityClass, final int pageSize, final int currentPage);
+
+	/**
+	 * 根据hql语句来查询数据并分页
+	 * @param hql
+	 * @param pageSize
+	 * @param currentPage
+	 * @return
+	 */
+	public abstract PageBean queryForPage(final String hql, final int pageSize, final int currentPage);
+	
+	/**
+	 * 根据一个List来分页
+	 * @param list
+	 * @param pageSize
+	 * @param currentPage
+	 * @return
+	 */
+	public abstract PageBean queryForPage(final List<T> list, final int pageSize, final int currentPage);
+	
+	/**
+	 * 根据hql语句来查询数据并取一段数据
+	 * @param hql
+	 * @param offset
+	 * @param length
+	 * @return
+	 */
+	public abstract List<T> queryForLimit(final String hql, final int offset, final int length);
 }  

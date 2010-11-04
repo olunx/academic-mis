@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>学生用户注册</title>
+<title>学生用户管理</title>
 
 <%
 	String path = request.getContextPath();
@@ -14,5 +14,8 @@
 </head>
 <body>
 	学生注册成功,欢迎您${student.realName}<br />
+	<a href="<%=path %>/group/goAddGroup">创建小组</a><br/>
+	<a href="<%=path %>/group/listGroup">查看我加入的小组</a>
+	<a href="<%=path %>/group/listAllGroup">查看所有的小组</a>
 </body>
 </html>

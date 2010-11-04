@@ -14,5 +14,6 @@
 		<mapping resource="cn/gdpu/vo/Institute.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/Classes.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/Student.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Group.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

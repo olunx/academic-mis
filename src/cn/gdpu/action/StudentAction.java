@@ -17,6 +17,7 @@ import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.InstituteService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
+import cn.gdpu.util.Md5;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
 import cn.gdpu.vo.Student;
@@ -56,7 +57,22 @@ public class StudentAction extends BaseAction {
 	}
 	
 	public String goLogin(){
-		return "goLogin";
+		return "gologin";
+	}
+	
+	public String login(){
+		if(stuDto.getUsername() != null && !stuDto.getUsername().equals("") 
+				&& stuDto.getPassword() != null && !stuDto.getPassword().equals("")){
+			student = studentService.getStudentByUsernameAndPassword(stuDto.getUsername(), Md5.getMD5(stuDto.getPassword().getBytes()));
+			if(student != null){
+				getSession().put("student", student);
+				Log.init(getClass()).info("学生用户登陆成功：" + student.getRealName());
+				return VIEW_PAGE;
+			}else{
+				return "gologin";
+			}
+		}
+		return "gologin";
 	}
 	
 	@Override
@@ -72,7 +88,7 @@ public class StudentAction extends BaseAction {
 				System.out.println("classes : " + classes.getName());
 				student = new Student();
 				student.setUsername(stuDto.getUsername());
-				student.setPassword(stuDto.getPassword());
+				student.setPassword(Md5.getMD5(stuDto.getPassword().getBytes()));
 				student.setRealName(stuDto.getRealName());
 				student.setSex(stuDto.getSex());
 				student.setAge(stuDto.getAge());
@@ -82,6 +98,7 @@ public class StudentAction extends BaseAction {
 				student.setClasses(classes);
 				System.out.println("sfsdfsdfsdf");
 				studentService.addEntity(student);
+				getSession().put("student", student);
 				Log.init(getClass()).info("添加学生用户成功: " + student);
 				return "viewPage";
 			}else{

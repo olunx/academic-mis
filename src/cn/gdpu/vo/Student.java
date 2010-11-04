@@ -1,5 +1,7 @@
 package cn.gdpu.vo;
 
+import java.util.Set;
+
 public class Student {
 	private int id;
 	private String username;
@@ -11,6 +13,7 @@ public class Student {
 	private int schoolYear;
 	private String avatar;
 	private String remark;
+	private Set<Group> groups;
 	
 	public int getId() {
 		return id;
@@ -71,6 +74,12 @@ public class Student {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public Set<Group> getGroups() {
+		return groups;
+	}
+	public void setGroups(Set<Group> groups) {
+		this.groups = groups;
 	}
 	
 }

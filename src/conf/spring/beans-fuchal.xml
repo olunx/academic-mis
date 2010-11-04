@@ -39,5 +39,14 @@
 	<bean name="classesService" class="cn.gdpu.service.impl.ClassesServiceImpl" scope="prototype">
 		<property name="baseDao" ref="classesDaoImpl" />
 	</bean>
+	
+	<!-- group bean -->
+	<bean name="groupDaoImpl" class="cn.gdpu.dao.impl.GroupDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="groupService" class="cn.gdpu.service.impl.GroupServiceImpl" scope="prototype">
+		<property name="baseDao" ref="groupDaoImpl" />
+	</bean>
+	
 
 </beans>

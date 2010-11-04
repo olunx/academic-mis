@@ -13,6 +13,9 @@
 		<property name="schoolYear" />
 		<property name="avatar" />
 		<property name="remark" />
-		
+		<set name="groups" cascade="all" table="t_group_student" lazy="true">
+			<key column="stuId" />
+			<many-to-many class="Group" column="groupId" />
+		</set>
 	</class>
 </hibernate-mapping>
