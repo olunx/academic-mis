@@ -15,7 +15,9 @@
 <body>
 	学生注册成功,欢迎您${student.realName}<br />
 	<a href="<%=path %>/group/goAddGroup">创建小组</a><br/>
-	<a href="<%=path %>/group/listGroup">查看我加入的小组</a>
+	<a href="<%=path %>/group/listGroup">查看我加入的小组</a><br/>
+	<a href="<%=path %>/group/listMeGroup">查看我创建的小组</a><br/>
+	<a href="<%=path %>/group/listApplyGroup">查看我申请的小组</a><br/>
 	<a href="<%=path %>/group/listAllGroup">查看所有的小组</a>
 </body>
 </html>

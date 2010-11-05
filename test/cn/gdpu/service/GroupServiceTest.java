@@ -1,6 +1,7 @@
 package cn.gdpu.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.BeforeClass;
@@ -41,5 +42,11 @@ public class GroupServiceTest{
 		members.add(student);
 		group.setMembers(members);
 		groupService.addEntity(group);
+	}
+	@Test
+	public void query(){
+		Student student = studentService.getAllEntity(Student.class).get(0);
+		List<Group> list = groupService.getEntity(Group.class, "from Group g where '" + student.getId() + "' = some elements(g.members)");
+		System.out.println("list size = " + list.size());
 	}
 }

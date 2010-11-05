@@ -9,7 +9,11 @@
 	<short-name>fn</short-name>
 	<uri>http://gdpu.cn/functions</uri>
 
-
+	<function>
+		<name>isMyGroup</name>
+		<function-class>cn.gdpu.action.GroupAction</function-class>
+		<function-signature>boolean isMyGroup(cn.gdpu.vo.Group,cn.gdpu.vo.Student)</function-signature>
+	</function>
 	<function>
 		<name>formatDate</name>
 		<function-class>cn.gdpu.util.Functions</function-class>

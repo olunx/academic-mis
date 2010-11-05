@@ -2,6 +2,7 @@ package cn.gdpu.action;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import cn.gdpu.service.GroupService;
@@ -19,6 +20,7 @@ public class GroupAction extends BaseAction{
 	private Group group;
 	private PageBean pageBean;
 	private int page;
+	private int id;
 
 	@Override
 	public String add() {
@@ -66,29 +68,118 @@ public class GroupAction extends BaseAction{
 	public String list() {
 		Student student = (Student) this.getSession().get("student");
 		if(student != null){
-			student = studentService.getEntity(Student.class, student.getId());
-			if(student == null) return ERROR;
-			Set<Group> groups = student.getGroups();
-			if (student != null) {
-				this.pageBean = this.groupService.queryForPage(new ArrayList<Group>(groups), 10, page);
-				if (pageBean.getList().isEmpty())
-					pageBean.setList(null);
-			}
+			this.pageBean = this.groupService.queryForPage("from Group g where '" + student.getId() + "' = some elements(g.members)", 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+			getRequest().put("listType", "list");
 			return super.list();
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 查看该全部的小组
+	 */
+	public String listAll() {
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			this.pageBean = this.groupService.queryForPage("from Group ", 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+			getRequest().put("listType", "listall");
+			return "listall";
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 查看该用户创建的小组
+	 */
+	public String listMe() {
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			this.pageBean = this.groupService.queryForPage("from Group g where g.captain.id = '" + student.getId() + "'", 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+			getRequest().put("listType", "listme");
+			return "listme";
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 查看正在审核的小组
+	 */
+	public String listApply() {
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			this.pageBean = this.groupService.queryForPage("from Group g where '" + student.getId() + "' = some elements(g.applicants)", 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+			getRequest().put("listType", "listme");
+			return "listapply";
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 检查是否我的群组
+	 * @param group
+	 * @param student
+	 * @return
+	 */
+	public static Boolean isMyGroup(Group group, Student student) {
+		System.out.println("group " + group.getName());
+		System.out.println("student " + student.getRealName());
+		if (student != null && group != null){
+			//判断小组成员里是否存在该student
+			for (Student stu : group.getMembers()) {
+				if(stu.getId() == student.getId()) return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * 申请加入群组
+	 * @return
+	 */
+	public String apply(){
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			group = groupService.getEntity(Group.class, id);
+			if(group == null) return ERROR;
+			Set<Student> applicants = group.getApplicants();
+			if(applicants == null) applicants = new HashSet<Student>();
+			for (Student stu : applicants) {
+				if(stu.getId() == student.getId()) return ERROR;
+			}
+			applicants.add(student);
+			group.setApplicants(applicants);
+			groupService.updateEntity(group);
+			return "check";
+		}
+		return ERROR;
+	}
+	@Override
+	public String modify() {
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			// TODO Auto-generated method stub
+			return super.modify();
 		}
 		return ERROR;
 	}
 
 	@Override
-	public String modify() {
-		// TODO Auto-generated method stub
-		return super.modify();
-	}
-
-	@Override
 	public String view() {
-		// TODO Auto-generated method stub
-		return super.view();
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			group = groupService.getEntity(Group.class, id);
+			if(group == null) return ERROR;
+			return super.view();
+		}
+		return ERROR;
+		
 	}
 
 	//getter and setter
@@ -130,6 +221,14 @@ public class GroupAction extends BaseAction{
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 

@@ -8,6 +8,7 @@ public class Group {
 	private String intro;
 	private Student captain;
 	private Set<Student> members;
+	private Set<Student> applicants;
 	
 	public int getId() {
 		return id;
@@ -38,5 +39,11 @@ public class Group {
 	}
 	public void setMembers(Set<Student> members) {
 		this.members = members;
+	}
+	public Set<Student> getApplicants() {
+		return applicants;
+	}
+	public void setApplicants(Set<Student> applicants) {
+		this.applicants = applicants;
 	}
 }

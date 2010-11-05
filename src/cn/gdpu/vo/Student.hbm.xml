@@ -17,5 +17,9 @@
 			<key column="stuId" />
 			<many-to-many class="Group" column="groupId" />
 		</set>
+		<set name="groupApplys" cascade="all" table="t_group_apply" lazy="true">
+			<key column="stuId" />
+			<many-to-many class="Group" column="groupId" />
+		</set>
 	</class>
 </hibernate-mapping>

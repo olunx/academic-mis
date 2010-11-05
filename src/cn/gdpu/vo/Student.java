@@ -14,6 +14,7 @@ public class Student {
 	private String avatar;
 	private String remark;
 	private Set<Group> groups;
+	private Set<Group> groupApplys;
 	
 	public int getId() {
 		return id;
@@ -80,6 +81,12 @@ public class Student {
 	}
 	public void setGroups(Set<Group> groups) {
 		this.groups = groups;
+	}
+	public Set<Group> getGroupApplys() {
+		return groupApplys;
+	}
+	public void setGroupApplys(Set<Group> groupApplys) {
+		this.groupApplys = groupApplys;
 	}
 	
 }
