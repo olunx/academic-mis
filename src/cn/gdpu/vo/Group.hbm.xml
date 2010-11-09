@@ -8,14 +8,14 @@
 		</id>
 		<property name="name" />
 		<property name="intro" />
-		<one-to-one name="captain" constrained="true" />
+		<many-to-one name="captain" column="creatorId" />
 		<set name="members" table="t_group_student" lazy="false">
 			<key column="groupId" />
 			<many-to-many class="Student" column="stuId"/>
 		</set>
-		<set name="applicants" table="t_group_apply" lazy="false">
+		<set name="groupApplys" cascade="save-update" lazy="false" order-by="id asc">
 			<key column="groupId" />
-			<many-to-many class="Student" column="stuId"/>
+			<one-to-many class="GroupApply" />
 		</set>
 	</class>
 </hibernate-mapping>

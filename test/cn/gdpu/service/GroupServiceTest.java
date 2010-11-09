@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Group;
+import cn.gdpu.vo.GroupApply;
 import cn.gdpu.vo.Student;
 
 
@@ -18,6 +19,7 @@ import cn.gdpu.vo.Student;
 public class GroupServiceTest{
 	private static GroupService<Group, Integer> groupService;
 	private static StudentService<Student, Integer> studentService;
+	private static GroupApplyService<GroupApply, Integer> groupApplyService;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
@@ -25,6 +27,7 @@ public class GroupServiceTest{
 			System.out.println("ctx: " + ctx);
 			groupService = (GroupService<Group, Integer>) ctx.getBean("groupService");
 			studentService = (StudentService<Student, Integer>) ctx.getBean("studentService");
+			groupApplyService = (GroupApplyService<GroupApply, Integer>) ctx.getBean("groupApplyService");
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,5 +51,9 @@ public class GroupServiceTest{
 		Student student = studentService.getAllEntity(Student.class).get(0);
 		List<Group> list = groupService.getEntity(Group.class, "from Group g where '" + student.getId() + "' = some elements(g.members)");
 		System.out.println("list size = " + list.size());
+	}
+	@Test
+	public void apply(){
+		
 	}
 }

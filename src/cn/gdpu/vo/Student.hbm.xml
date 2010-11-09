@@ -17,9 +17,9 @@
 			<key column="stuId" />
 			<many-to-many class="Group" column="groupId" />
 		</set>
-		<set name="groupApplys" cascade="all" table="t_group_apply" lazy="true">
-			<key column="stuId" />
-			<many-to-many class="Group" column="groupId" />
+		<set name="groupApplys" cascade="all" order-by="id asc">
+			<key column="studentId" />
+			<one-to-many class="GroupApply" />
 		</set>
 	</class>
 </hibernate-mapping>

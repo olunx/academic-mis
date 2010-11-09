@@ -32,6 +32,7 @@
 					<th>小组简介</th>
 					<th>小组队长</th>
 					<th>小组成员</th>
+					<th>申请人数</th>
 				</tr>
 				<c:forEach items="${pageBean.list}" var="group">
 					<tr>
@@ -39,6 +40,7 @@
 						<td>${fn:substring(fn:replace(group.intro,"<","&lt;"),0,20)}...</td>
 						<td>${group.captain.realName}</td>
 						<td>${fn:length(group.members)}</td>
+						<td>${my:groupApplyCount(group)}</td>
 					</tr>
 				</c:forEach>
 			</table>

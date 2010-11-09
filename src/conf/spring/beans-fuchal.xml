@@ -48,5 +48,14 @@
 		<property name="baseDao" ref="groupDaoImpl" />
 	</bean>
 	
+	<!-- groupApply bean -->
+	<bean name="groupApplyDaoImpl" class="cn.gdpu.dao.impl.GroupApplyDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="groupApplyService" class="cn.gdpu.service.impl.GroupApplyServiceImpl" scope="prototype">
+		<property name="baseDao" ref="groupApplyDaoImpl" />
+	</bean>
+
+	
 
 </beans>

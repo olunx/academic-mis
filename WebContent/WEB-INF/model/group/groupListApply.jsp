@@ -33,12 +33,12 @@
 					<th>小组队长</th>
 					<th>小组成员</th>
 				</tr>
-				<c:forEach items="${pageBean.list}" var="group">
+				<c:forEach items="${pageBean.list}" var="groupApply">
 					<tr>
-						<td><a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${group.id }">${group.name}</a></td>
-						<td>${fn:substring(fn:replace(group.intro,"<","&lt;"),0,20)}...</td>
-						<td>${group.captain.realName}</td>
-						<td>${fn:length(group.members)}</td>
+						<td><a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${groupApply.id }">${groupApply.group.name}</a></td>
+						<td>${fn:substring(fn:replace(groupApply.group.intro,"<","&lt;"),0,20)}...</td>
+						<td>${groupApply.group.captain.realName}</td>
+						<td>${fn:length(groupApply.group.members)}</td>
 					</tr>
 				</c:forEach>
 			</table>
