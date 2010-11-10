@@ -1,5 +1,6 @@
 package cn.gdpu.action;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -144,8 +145,6 @@ public class GroupAction extends BaseAction{
 	 * @return
 	 */
 	public static Boolean isMyGroup(Group group, Student student) {
-		System.out.println("group " + group.getName());
-		System.out.println("student " + student.getRealName());
 		if (student != null && group != null){
 			//判断小组成员里是否存在该student
 			for (Student stu : group.getMembers()) {
@@ -154,6 +153,22 @@ public class GroupAction extends BaseAction{
 		}
 		return false;
 	}
+	/**
+	 * 自定义标签my:isMyApplyGroup函数,检查是否已经申请加入该群组
+	 * @param group
+	 * @param student
+	 * @return
+	 */
+	public static Boolean isMyApplyGroup(Group group, Student student) {
+		if (student != null && group != null){
+			//判断小组成员里是否存在该student
+			for (GroupApply ga : group.getGroupApplys()) {
+				if(ga.getStudent().getId() == student.getId()) return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * 申请加入群组
 	 * @return
@@ -173,7 +188,8 @@ public class GroupAction extends BaseAction{
 			groupApply.setStudent(student);
 			groupApply.setStatus(1);
 			groupApply.setApplyTime(new Date());
-			groupApply.setRecord(new Date() + " : " + student.getRealName() + " 申请加入 " + group.getName());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			groupApply.setRecord(sdf.format(new Date()) + " : " + student.getRealName() + " 申请加入 " + group.getName());
 			applicants.add(groupApply);
 			group.setGroupApplys(applicants);
 			groupService.updateEntity(group);
@@ -198,6 +214,64 @@ public class GroupAction extends BaseAction{
 			group = groupService.getEntity(Group.class, id);
 			if(group == null) return ERROR;
 			return super.view();
+		}
+		return ERROR;
+		
+	}
+	
+	/**
+	 * 通过审核
+	 * @return
+	 */
+	public String pass() {
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			GroupApply groupApply = groupApplyService.getEntity(GroupApply.class, id);
+			if(groupApply == null) return ERROR;
+			group = groupService.getEntity(Group.class, groupApply.getGroup().getId());
+			if(group == null) return ERROR;
+			Student captain = group.getCaptain();
+			if(captain.getId() != student.getId()) return ERROR; //当前操作用户不是该小组的管理者，没有权限操作
+			Set<Student> members = group.getMembers();
+			if(members == null) members = new HashSet<Student>();
+			for(Student stu : members){
+				if(stu.getId() == groupApply.getStudent().getId()) return ERROR; //该用户已经加入小组
+			}
+			members.add(groupApply.getStudent());
+			group.setMembers(members);
+			groupApply.setStatus(2); //1==申请 2==通过 3==拒绝
+			groupApply.setPassTime(new Date());
+			groupApply.setOperator(student);
+			SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			groupApply.setRecord(groupApply.getRecord() + "; " + sdf.format(new Date()) + " : " + student.getRealName() + "同意你加入小组 " + groupApply.getGroup().getName());
+			groupApplyService.updateEntity(groupApply);
+			groupService.updateEntity(group);
+			return "audit";
+		}
+		return ERROR;
+		
+	}
+	/**
+	 * 拒绝审核
+	 * @return
+	 */
+	public String refuse() {
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			GroupApply groupApply = groupApplyService.getEntity(GroupApply.class, id);
+			if(groupApply == null) return ERROR;
+			group = groupService.getEntity(Group.class, groupApply.getGroup().getId());
+			if(group == null) return ERROR;
+			Student captain = group.getCaptain();
+			if(captain.getId() != student.getId()) return ERROR; //当前操作用户不是该小组的管理者，没有权限操作
+			groupApply.setStatus(3); //1==申请 2==通过 3==拒绝
+			groupApply.setPassTime(new Date());
+			groupApply.setOperator(student);
+			SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			groupApply.setRecord(groupApply.getRecord() + "; " + sdf.format(new Date()) + " : " + student.getRealName() + "拒绝你加入小组 " + groupApply.getGroup().getName());
+			groupApplyService.updateEntity(groupApply);
+			groupService.updateEntity(group);
+			return "audit";
 		}
 		return ERROR;
 		

@@ -20,7 +20,7 @@
 <title>管理学生小组</title>
 </head>
 <body>
-	<h2>正在审核的群组</h2>
+	<h2>我的群组审核情况</h2>
 	<c:choose>
 		<c:when test="${pageBean.list == null}">
 						没有数据！
@@ -32,6 +32,8 @@
 					<th>小组简介</th>
 					<th>小组队长</th>
 					<th>小组成员</th>
+					<th>状态</th>
+					<th>记录</th>
 				</tr>
 				<c:forEach items="${pageBean.list}" var="groupApply">
 					<tr>
@@ -39,6 +41,8 @@
 						<td>${fn:substring(fn:replace(groupApply.group.intro,"<","&lt;"),0,20)}...</td>
 						<td>${groupApply.group.captain.realName}</td>
 						<td>${fn:length(groupApply.group.members)}</td>
+						<td>${groupApply.status == 2 ? '通过' : groupApply.status == 3 ? '拒绝' : '审核中' }</td>
+						<td>${groupApply.record}</td>
 					</tr>
 				</c:forEach>
 			</table>

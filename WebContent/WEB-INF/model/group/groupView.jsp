@@ -25,13 +25,15 @@
 							<th>性别</th>
 							<th>审核</th>
 						</tr>
-						<c:forEach items="${group.groupApplys}" var="groupApply">
-							<tr>
-								<td>${groupApply.student.realName}</td>
-								<td>${groupApply.student.classes.name}${groupApply.student.schoolYear}</td>
-								<td>${groupApply.student.age == 0 ? '女' : '男'}</td>
-								<td><a href="<%=path %>/group/passGroup?id=${groupApply}">通过</a>|<a href="<%=path %>/group/refuseGroup?id=${groupApply}">拒绝</a></td>
-							</tr>
+						<c:forEach items="${group.groupApplys}" var="groupApply" >
+							<c:if test="${groupApply.status == 1}">
+								<tr>
+									<td>${groupApply.student.realName}</td>
+									<td>${groupApply.student.classes.name}${groupApply.student.schoolYear}</td>
+									<td>${groupApply.student.age == 0 ? '女' : '男'}</td>
+									<td><a href="<%=path %>/group/passGroup?id=${groupApply.id}">通过</a>|<a href="<%=path %>/group/refuseGroup?id=${groupApply.id}">拒绝</a></td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</table>
 			
@@ -41,6 +43,7 @@
 			 <br/>
 	 	</c:when>
 	 	<c:when test="${my:isMyGroup(group,student)}"><a href="<%=path%>/group/quitGroup?id=${group.id}">退出</a></c:when>
+	 	<c:when test="${my:isMyApplyGroup(group,student)}"><a href="<%=path %>/group/listApplyGroup"><font color="Blue">你已经申请加入该小组了,请等待审核</font></a></c:when>
 	 	<c:otherwise><a href="<%=path%>/group/applyGroup?id=${group.id}">申请加入</a></c:otherwise>
 	 </c:choose>
 	 <br/>
