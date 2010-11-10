@@ -56,6 +56,14 @@
 		<property name="baseDao" ref="groupApplyDaoImpl" />
 	</bean>
 
+	<!-- Assistant bean -->
+	<bean name="assistantDaoImpl" class="cn.gdpu.dao.impl.AssistantDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="assistantService" class="cn.gdpu.service.impl.AssistantServiceImpl" scope="prototype">
+		<property name="baseDao" ref="assistantDaoImpl" />
+	</bean>
+
 	
 
 </beans>

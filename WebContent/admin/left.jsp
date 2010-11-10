@@ -192,7 +192,9 @@ H1 a {
         </table>
         <ul class="MM">
 		  <li><a href="<%=path %>/admin/goAddAdmin" target="main">添加管理员</a></li>
-          <li><a href="<%=path %>/admin/listAdmin" target="main">列出管理员</a></li>
+          <li><a href="<%=path %>/admin/listAdmin" target="main">查看管理员</a></li>
+          <li><a href="<%=path %>/assistant/goAddAssistant" target="main">添加助理</a></li>
+          <li><a href="<%=path %>/assistant/listAssistant" target="main">查看助理</a></li>
         </ul>
       </div>
         <h1 class="type"><a href="javascript:void(0)">其它参数管理</a></h1>

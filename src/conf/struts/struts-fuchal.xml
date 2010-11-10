@@ -66,4 +66,22 @@
 		<action name="*Group" class="cn.gdpu.action.GroupAction" method="{1}">
 		</action>
 	</package>
+	
+	<!-- assistant管理 -->
+	<package name="assistant" extends="struts-default" namespace="/assistant">
+		<default-action-ref name="goLoginAssistant"	/>
+		<global-results>
+			<result name="list" type="redirect">listAssistant?page=${page}</result>
+			<result name="index">/WEB-INF/model/assistant/assistantList.jsp</result>
+			<result name="gologin">/index.html</result>
+			<result name="logout">/goods/listGoods</result>
+			<result name="viewPage">/assistant/assistantIndex.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/assistant/assistantModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/assistant/assistantAdd.jsp</result>
+		</global-results>
+		<action name="goLoginAssistant" class="cn.gdpu.action.AssistantAction" method="goLogin">
+		</action>
+		<action name="*Assistant" class="cn.gdpu.action.AssistantAction" method="{1}">
+		</action>
+	</package>
 </struts>    
