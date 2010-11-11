@@ -3,7 +3,6 @@ package cn.gdpu.action;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -83,12 +82,26 @@ public class StudentAction extends BaseAction {
 				&& stuDto.getPassword().equals(stuDto.getRpassword())){
 			
 			Student oldStu = studentService.getStudentByUsername(stuDto.getUsername());
-			if(oldStu == null){
+			if(oldStu != null){
+				this.addFieldError("stuDto.username", "该用户名已存在");
+				if (hasFieldErrors()) {
+					return super.goAdd();
+				}
+			}
+			Student noStu = studentService.getStudentByStuNo(stuDto.getStuNo());
+			if(noStu != null){
+				this.addFieldError("stuDto.stuNo", "该学号已存在");
+				if (hasFieldErrors()) {
+					return super.goAdd();
+				}
+			}
+			if(oldStu == null && noStu == null){
 				Classes classes = classesService.getEntity(Classes.class, stuDto.getClasses());
 				System.out.println("classes : " + classes.getName());
 				student = new Student();
 				student.setUsername(stuDto.getUsername());
 				student.setPassword(Md5.getMD5(stuDto.getPassword().getBytes()));
+				student.setStuNo(stuDto.getStuNo());
 				student.setRealName(stuDto.getRealName());
 				student.setSex(stuDto.getSex());
 				student.setAge(stuDto.getAge());
@@ -102,7 +115,7 @@ public class StudentAction extends BaseAction {
 				Log.init(getClass()).info("添加学生用户成功: " + student);
 				return "viewPage";
 			}else{
-				this.addFieldError("stuDto.username", "该用户已存在");
+				this.addFieldError("stuDto.username", "该学生已存在");
 				if (hasFieldErrors()) {
 					return super.goAdd();
 				}

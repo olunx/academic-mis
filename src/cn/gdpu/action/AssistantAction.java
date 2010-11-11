@@ -4,6 +4,7 @@ package cn.gdpu.action;
 
 import cn.gdpu.dto.AssistantDto;
 import cn.gdpu.service.AssistantService;
+import cn.gdpu.util.Md5;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Assistant;
@@ -36,7 +37,7 @@ public class AssistantAction extends BaseAction{
 					if(asDto.getPassword().trim().equals(asDto.getRpassword().trim())){
 						Assistant ass = new Assistant();
 						ass.setUsername(asDto.getUsername());
-						ass.setPassword(asDto.getPassword());
+						ass.setPassword(Md5.getMD5(asDto.getPassword().getBytes()));
 						ass.setRealName(asDto.getRealName());
 						assistantService.addEntity(ass);
 						return super.add();
@@ -103,7 +104,7 @@ public class AssistantAction extends BaseAction{
 					&& asDto.getRpassword() != null && !asDto.getRpassword().trim().equals("") && asDto.getRealName() != null && !asDto.getRealName().trim().equals("")){
 				if(asDto.getPassword().trim().equals(asDto.getRpassword().trim())){
 					assistant = assistantService.getEntity(Assistant.class, id);
-					assistant.setPassword(asDto.getPassword());
+					assistant.setPassword(Md5.getMD5(asDto.getPassword().getBytes()));
 					assistant.setRealName(asDto.getRealName());
 					assistantService.updateEntity(assistant);
 					return super.modify();

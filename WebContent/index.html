@@ -5,11 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Hello,World!<a href="student/goAddStudent">用户注册</a>
-	<form action="student/loginStudent" method="POST">
-		账号：<input type="text" name="stuDto.username"><br/>
-		密码：<input type="password" name="stuDto.password"><br/>
-		<input type="submit" value=" 登陆"> 
+	<form action="login" method="POST">
+		账号<input type="text" name="loginDto.username">
+		密码<input type="password" name="loginDto.password">
+		<select name="loginDto.loginType" size="1">
+			<option value="0" selected="selected">学生</option>
+			<option value="1">助理</option>
+		</select>
+		<input type="submit" value="登陆"> <a href="student/goAddStudent">学生注册</a>
 	</form>
 </body>
 </html>

@@ -31,10 +31,10 @@
         <td valign="top">&nbsp;</td>
       </tr>
       <tr>
-        <td colspan="2" valign="top"><span class="left_bt">感谢您使用  二手资料交易  网站管理系统程序</span><br>
+        <td colspan="2" valign="top"><span class="left_bt">感谢您使用  学生学术活动管理系统 程序</span><br>
               <br>
             <span class="left_txt">&nbsp;<img src="<%=path %>/content/images/admin/ts.gif" width="16" height="16"> 提示：<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您现在使用的是由 广州大学城广东药学院3栋618宿舍 开发的一套用于二手交易的门户型网站的专业系统！如果您有任何疑问请点左下解的</span><span class="left_ts">在线客服</span><span class="left_txt">进行咨询！<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您现在使用的是由 广州大学城-广东药学院-医药信息工程学院-医药软件07-陈福全 开发的一套用于 学生学术活动管理 的信息系统平台！如果您有任何疑问请点左下解的</span><span class="left_ts">在线客服</span><span class="left_txt">进行咨询！<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;七大栏目完美整合，一站通使用方式，功能强大，操作简单，后台操作易如反掌，只需会打字，会上网，就会管理网站！<br>
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此程序是您建立地区级商家信息门户的首选方案！　 <br>
 </span></td>
@@ -238,7 +238,7 @@
                           </TR>
                           <TR>
                             <TD bgcolor="#FAFBFC">&nbsp;</TD>
-                            <TD bgcolor="#FAFBFC" class="left_txt"><span class="left_ts">1、</span>本程序由www.865171.cn全新改造(QQ:215288671) </TD>
+                            <TD bgcolor="#FAFBFC" class="left_txt"><span class="left_ts">1、</span>本程序由fuchal设计，qq:76212057 </TD>
                             <TD bgcolor="#FAFBFC" class="left_txt">&nbsp;</TD>
                           </TR>
                           <TR>
@@ -253,7 +253,7 @@
                           </TR>
                           <TR>
                             <TD bgcolor="#FAFBFC">&nbsp;</TD>
-                            <TD bgcolor="#FAFBFC" class="left_txt"><span class="left_ts">4、</span>程序使用，技术支持请联系www.865171.cn。</TD>
+                            <TD bgcolor="#FAFBFC" class="left_txt"><span class="left_ts">4、</span>程序使用，技术支持请联系fuchal</TD>
                             <TD bgcolor="#FAFBFC" class="left_txt">&nbsp;</TD>
                           </TR>
                           <TR>
@@ -275,7 +275,7 @@
             <td height="102" valign="top"><label></label>
               <label>
               <textarea name="textarea" cols="100%" rows="8" class="left_txt">
-              广州大学城广东药学院生活区三栋618的二手物品交易管理后台
+              广州大学城-广东药学院-医药信息工程学院-医药软件07-陈福全 开发的  学生学术活动管理系统后台
               </textarea>
               </label></td>
           </tr>

@@ -16,6 +16,17 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Integer, Studen
 			return null;
 		}
 	}
+	
+	@Override
+	public Student getStudentByStuNo(String stuNo) {
+		String hql ="from Student s where s.stuNo = '" + stuNo + "'";
+		List<Student> students = getBaseDao().queryByHql(Student.class, hql);
+		if(students != null && students.size()!= 0){
+			return students.get(0);
+		}else{
+			return null;
+		}
+	}
 
 	@Override
 	public Student getStudentByUsernameAndPassword(String username,	String password) {

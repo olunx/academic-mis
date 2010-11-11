@@ -5,6 +5,7 @@ import java.util.Set;
 public class Student {
 	private int id;
 	private String username;
+	private String stuNo;
 	private String password;
 	private String realName;
 	private int sex;
@@ -27,6 +28,12 @@ public class Student {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public String getStuNo() {
+		return stuNo;
+	}
+	public void setStuNo(String stuNo) {
+		this.stuNo = stuNo;
 	}
 	public String getPassword() {
 		return password;

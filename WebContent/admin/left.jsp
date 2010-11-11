@@ -170,7 +170,7 @@ H1 a {
         </ul>
       </div>
     </div>
-      <h1 class="type"><a href="javascript:void(0)">交换物品管理</a></h1>
+      <h1 class="type"><a href="javascript:void(0)">学术活动管理</a></h1>
       <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -178,8 +178,8 @@ H1 a {
           </tr>
         </table>
         <ul class="MM">
-          <li><a href="<%=path %>/goods/listGoods?isAdmin=1" target="main">查看物品</a></li>
-          <li><a href="<%=path %>/goodstype/listGoodsType" target="main">物品类型</a></li>
+          <li><a href="<%=path %>/activitytype/listActivityType" target="main">查看学术活动类型</a></li>
+          <li><a href="<%=path %>/activitytype/goAddActivityType" target="main">添加学术活动类型</a></li>
           <li><a href="<%=path %>/goodstype/goAddGoodsType" target="main">新建类型</a></li>
         </ul>
       </div>

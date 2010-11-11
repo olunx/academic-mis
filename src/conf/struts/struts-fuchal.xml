@@ -4,9 +4,19 @@
 	"http://struts.apache.org/dtds/struts-2.1.dtd" >
 <struts>
 	
-	<!-- 后台登陆 -->
+	<!-- index -->
 	<package name="index" extends="struts-default" namespace="/">
 		<default-action-ref name="index"/>
+		
+		<action name="index" class="cn.gdpu.action.IndexAction" method="index">
+			<result name="success" type="redirect">/index.html</result>
+		</action>
+		<action name="login" class="cn.gdpu.action.IndexAction" method="login">
+			<result name="stulogin">/WEB-INF/model/student/studentView.jsp</result>
+			<result name="asslogin">/WEB-INF/model/assistant/assistantView.jsp</result>
+			<result name="gologin">/index.html</result>
+			<result name="error">/index.html</result>
+		</action>
 		<action name="admin" class="cn.gdpu.action.AdminAction" method="goLogin">
 			<result name="gologin">/admin/adminLogin.jsp</result>
 		</action>
