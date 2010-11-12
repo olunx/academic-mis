@@ -16,6 +16,7 @@ public class Student {
 	private String remark;
 	private Set<Group> groups;
 	private Set<GroupApply> groupApplys;
+	private Set<ActivityApply> activityApplys;
 	
 	public int getId() {
 		return id;
@@ -94,6 +95,12 @@ public class Student {
 	}
 	public void setGroupApplys(Set<GroupApply> groupApplys) {
 		this.groupApplys = groupApplys;
+	}
+	public Set<ActivityApply> getActivityApplys() {
+		return activityApplys;
+	}
+	public void setActivityApplys(Set<ActivityApply> activityApplys) {
+		this.activityApplys = activityApplys;
 	}
 	
 }

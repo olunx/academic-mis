@@ -22,5 +22,9 @@
 			<key column="studentId" />
 			<one-to-many class="GroupApply" />
 		</set>
+		<set name="activityApplys" cascade="all" order-by="id asc">
+			<key column="studentId" />
+			<one-to-many class="ActivityApply" />
+		</set>
 	</class>
 </hibernate-mapping>
