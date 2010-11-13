@@ -9,7 +9,7 @@
 		<property name="name" />
 		<one-to-one name="activityApply" property-ref="opus" />
 		<property name="intro" />
-		<many-to-one name="intructor" column="teacherId" />
+		<many-to-one name="instructor" column="teacherId" />
 		<set name="comments" cascade="all" lazy="false" order-by="id asc">
 			<key column="opusId" />
 			<one-to-many class="Comment" />

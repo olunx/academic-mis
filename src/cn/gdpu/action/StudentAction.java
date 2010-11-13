@@ -97,7 +97,6 @@ public class StudentAction extends BaseAction {
 			}
 			if(oldStu == null && noStu == null){
 				Classes classes = classesService.getEntity(Classes.class, stuDto.getClasses());
-				System.out.println("classes : " + classes.getName());
 				student = new Student();
 				student.setUsername(stuDto.getUsername());
 				student.setPassword(Md5.getMD5(stuDto.getPassword().getBytes()));
@@ -109,7 +108,6 @@ public class StudentAction extends BaseAction {
 				student.setAvatar(student.getAvatar());
 				student.setRemark(stuDto.getRemark());
 				student.setClasses(classes);
-				System.out.println("sfsdfsdfsdf");
 				studentService.addEntity(student);
 				getSession().put("student", student);
 				Log.init(getClass()).info("添加学生用户成功: " + student);
@@ -121,7 +119,7 @@ public class StudentAction extends BaseAction {
 				}
 			}
 		}
-		return super.add();
+		return ERROR;
 	}
 
 	@Override

@@ -7,8 +7,8 @@ public class ActivityApply {
 	private int id;
 	private Activity activity;
 	private Group group;
-	private Date applyTime;
-	private Date endTime;
+	private Date applytime;
+	private Date endtime;
 	private Assistant operator;
 	private String record;
 	private Set<Student> applicants;
@@ -33,17 +33,17 @@ public class ActivityApply {
 	public void setGroup(Group group) {
 		this.group = group;
 	}
-	public Date getApplyTime() {
-		return applyTime;
+	public Date getApplytime() {
+		return applytime;
 	}
-	public void setApplyTime(Date applyTime) {
-		this.applyTime = applyTime;
+	public void setApplytime(Date applytime) {
+		this.applytime = applytime;
 	}
-	public Date getEndTime() {
-		return endTime;
+	public Date getEndtime() {
+		return endtime;
 	}
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
 	}
 	public Assistant getOperator() {
 		return operator;

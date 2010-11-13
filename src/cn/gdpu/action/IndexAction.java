@@ -3,14 +3,17 @@ package cn.gdpu.action;
 import cn.gdpu.dto.LoginDto;
 import cn.gdpu.service.AssistantService;
 import cn.gdpu.service.StudentService;
+import cn.gdpu.service.TeacherService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
 import cn.gdpu.vo.Assistant;
 import cn.gdpu.vo.Student;
+import cn.gdpu.vo.Teacher;
 
 public class IndexAction extends BaseAction {
 	private StudentService<Student, Integer> studentService;
 	private AssistantService<Assistant, Integer> assistantService;
+	private TeacherService<Teacher, Integer> teacherService;
 	private LoginDto loginDto;
 	
 	public String index(){
@@ -34,8 +37,23 @@ public class IndexAction extends BaseAction {
 			return "gologin";
 			
 		}
-		//管理员助理登陆
+		//教师登陆
 		if(loginDto.getLoginType() == 1){      
+			if(loginDto.getUsername() != null && !loginDto.getUsername().equals("") 
+					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
+				Teacher teacher = teacherService.getTeacherByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
+				if(teacher!= null){
+					getSession().put("teacher", teacher);
+					Log.init(getClass()).info("教师登陆成功：" + teacher.getRealName());
+					return "tchlogin";
+				}else{
+					return "gologin";
+				}
+			}
+			return "gologin";
+		}
+		//管理员助理登陆
+		if(loginDto.getLoginType() == 2){      
 			if(loginDto.getUsername() != null && !loginDto.getUsername().equals("") 
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Assistant assistant = assistantService.getAssistantByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
@@ -69,6 +87,14 @@ public class IndexAction extends BaseAction {
 	public void setAssistantService(
 			AssistantService<Assistant, Integer> assistantService) {
 		this.assistantService = assistantService;
+	}
+
+	public TeacherService<Teacher, Integer> getTeacherService() {
+		return teacherService;
+	}
+
+	public void setTeacherService(TeacherService<Teacher, Integer> teacherService) {
+		this.teacherService = teacherService;
 	}
 
 	public LoginDto getLoginDto() {

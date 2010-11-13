@@ -14,6 +14,7 @@
 		<action name="login" class="cn.gdpu.action.IndexAction" method="login">
 			<result name="stulogin">/WEB-INF/model/student/studentView.jsp</result>
 			<result name="asslogin">/WEB-INF/model/assistant/assistantView.jsp</result>
+			<result name="tchlogin">/WEB-INF/model/teacher/teacherView.jsp</result>
 			<result name="gologin">/index.html</result>
 			<result name="error">/index.html</result>
 		</action>
@@ -56,6 +57,22 @@
 		</action>
 	</package>
 	
+	<!-- teacher管理 -->
+	<package name="teacher" extends="struts-default" namespace="/teacher">
+		<default-action-ref name="goLoginTeacher"	/>
+		<global-results>
+			<result name="gologin">/index.html</result>
+			<result name="logout">index.html</result>
+			<result name="viewPage">/WEB-INF/model/teacher/teacherView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/teacher/teacherModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/teacher/teacherAdd.jsp</result>
+		</global-results>
+		<action name="goLoginTeacher" class="cn.gdpu.action.TeacherAction" method="goLogin">
+		</action>
+		<action name="*Teacher" class="cn.gdpu.action.TeacherAction" method="{1}">
+		</action>
+	</package>
+	
 	<!-- group管理 -->
 	<package name="group" extends="struts-default" namespace="/group">
 		<default-action-ref name="listGroup"	/>
@@ -92,6 +109,20 @@
 		<action name="goLoginAssistant" class="cn.gdpu.action.AssistantAction" method="goLogin">
 		</action>
 		<action name="*Assistant" class="cn.gdpu.action.AssistantAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- activityType管理 -->
+	<package name="activityType" extends="struts-default" namespace="/activityType">
+		<default-action-ref name="listActivityType"	/>
+		<global-results>
+			<result name="list" type="redirect">listActivityType?page=${page}</result>
+			<result name="index">/WEB-INF/model/activityType/activityTypeList.jsp</result>
+			<result name="viewPage">/activityType/activityTypeIndex.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/activityType/activityTypeModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/activityType/activityTypeAdd.jsp</result>
+		</global-results>
+		<action name="*ActivityType" class="cn.gdpu.action.ActivityTypeAction" method="{1}">
 		</action>
 	</package>
 </struts>    

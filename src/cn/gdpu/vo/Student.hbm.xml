@@ -10,6 +10,8 @@
 		<property name="stuNo" unique="true" not-null="true"/>
 		<property name="password" not-null="true"/>
 		<property name="realName" not-null="true"/>
+		<property name="sex" />
+		<property name="age" />
 		<many-to-one name="classes" column="clsId" cascade="save-update" not-null="true"/>
 		<property name="schoolYear" not-null="true"/>
 		<property name="avatar" />

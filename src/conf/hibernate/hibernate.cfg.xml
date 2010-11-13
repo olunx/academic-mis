@@ -17,5 +17,13 @@
 		<mapping resource="cn/gdpu/vo/Group.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/GroupApply.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/Assistant.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Activity.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/ActivityType.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/ActivityApply.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/ActivityResult.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Comment.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Opus.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Outlay.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Teacher.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

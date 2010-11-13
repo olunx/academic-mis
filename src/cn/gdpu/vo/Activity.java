@@ -14,7 +14,7 @@ public class Activity {
 	private Date deadtime;
 	private Date endtime;
 	private Set<ActivityApply> activityApplys;
-	private OutLay outlay;
+	private Outlay outlay;
 	
 	public int getId() {
 		return id;
@@ -70,10 +70,10 @@ public class Activity {
 	public void setActivityApplys(Set<ActivityApply> activityApplys) {
 		this.activityApplys = activityApplys;
 	}
-	public OutLay getOutlay() {
+	public Outlay getOutlay() {
 		return outlay;
 	}
-	public void setOutlay(OutLay outlay) {
+	public void setOutlay(Outlay outlay) {
 		this.outlay = outlay;
 	}
 }

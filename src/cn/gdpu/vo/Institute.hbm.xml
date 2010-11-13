@@ -11,6 +11,10 @@
 			<key column="insId" />
 			<one-to-many class="Classes" />
 		</set>
+		<set name="teachers" cascade="all" lazy="false" order-by="id asc">
+			<key column="insId" />
+			<one-to-many class="Teacher" />
+		</set>
 		<property name="remark" />
 		
 	</class>

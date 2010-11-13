@@ -1,6 +1,6 @@
 package cn.gdpu.vo;
 
-public class OutLay {
+public class Outlay {
 	private int id;
 	private int cost;
 	private String record;

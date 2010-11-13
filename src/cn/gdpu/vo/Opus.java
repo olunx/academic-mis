@@ -8,7 +8,7 @@ public class Opus {
 	private String name;
 	private ActivityApply activityApply;
 	private String intro;
-	private Teacher instructors;
+	private Teacher instructor;
 	private Set<Comment> comments;
 	
 	public int getId() {
@@ -35,11 +35,11 @@ public class Opus {
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
-	public Teacher getInstructors() {
-		return instructors;
+	public Teacher getInstructor() {
+		return instructor;
 	}
-	public void setInstructors(Teacher instructors) {
-		this.instructors = instructors;
+	public void setInstructor(Teacher instructor) {
+		this.instructor = instructor;
 	}
 	public Set<Comment> getComments() {
 		return comments;

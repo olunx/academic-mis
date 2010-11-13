@@ -24,6 +24,14 @@
 		<property name="baseDao" ref="studentDaoImpl" />
 	</bean>
 
+	<!-- teacher bean -->
+	<bean name="teacherDaoImpl" class="cn.gdpu.dao.impl.TeacherDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="teacherService" class="cn.gdpu.service.impl.TeacherServiceImpl" scope="prototype">
+		<property name="baseDao" ref="teacherDaoImpl" />
+	</bean>
+
 	<!-- institute bean -->
 	<bean name="instituteDaoImpl" class="cn.gdpu.dao.impl.InstituteDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -62,6 +70,22 @@
 	</bean>
 	<bean name="assistantService" class="cn.gdpu.service.impl.AssistantServiceImpl" scope="prototype">
 		<property name="baseDao" ref="assistantDaoImpl" />
+	</bean>
+
+	<!-- activityType bean -->
+	<bean name="activityTypeDaoImpl" class="cn.gdpu.dao.impl.ActivityTypeDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="activityTypeService" class="cn.gdpu.service.impl.ActivityTypeServiceImpl" scope="prototype">
+		<property name="baseDao" ref="activityTypeDaoImpl" />
+	</bean>
+
+	<!-- activity bean -->
+	<bean name="activityDaoImpl" class="cn.gdpu.dao.impl.ActivityDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="activityService" class="cn.gdpu.service.impl.ActivityServiceImpl" scope="prototype">
+		<property name="baseDao" ref="activityDaoImpl" />
 	</bean>
 
 	

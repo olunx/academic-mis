@@ -6,7 +6,7 @@ public class Institute {
 	private int id;
 	private String name;
 	private Set<Classes> classes;
-	
+	private Set<Institute> teachers;
 	private String remark;
 	
 	public int getId() {
@@ -26,6 +26,12 @@ public class Institute {
 	}
 	public void setClasses(Set<Classes> classes) {
 		this.classes = classes;
+	}
+	public Set<Institute> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(Set<Institute> teachers) {
+		this.teachers = teachers;
 	}
 	public String getRemark() {
 		return remark;

@@ -7,6 +7,9 @@ public class ActivityType {
 	private int id;
 	private String name;
 	private String intro;
+	/**
+	 * 1院级，2校级，3省级，4全国，5国际
+	 */
 	private int level;
 	private Set<Activity> activitys;
 	

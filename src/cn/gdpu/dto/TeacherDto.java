@@ -1,20 +1,18 @@
-package cn.gdpu.vo;
+package cn.gdpu.dto;
 
-import java.util.Set;
 
-public class Teacher {
+public class TeacherDto {
 	private int id;
 	private String username;
 	private String tnum;
 	private String password;
+	private String rpassword;
 	private String realName;
 	private int sex;
 	private int age;
-	private Institute institute;
+	private int institute;
 	private String avatar;
 	private String remark;
-	private Set<Opus> opuses;
-	private Set<Comment> comments;
 	
 	public int getId() {
 		return id;
@@ -40,6 +38,12 @@ public class Teacher {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getRpassword() {
+		return rpassword;
+	}
+	public void setRpassword(String rpassword) {
+		this.rpassword = rpassword;
+	}
 	public String getRealName() {
 		return realName;
 	}
@@ -58,10 +62,10 @@ public class Teacher {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public Institute getInstitute() {
+	public int getInstitute() {
 		return institute;
 	}
-	public void setInstitute(Institute institute) {
+	public void setInstitute(int institute) {
 		this.institute = institute;
 	}
 	public String getAvatar() {
@@ -75,17 +79,5 @@ public class Teacher {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-	public Set<Opus> getOpuses() {
-		return opuses;
-	}
-	public void setOpuses(Set<Opus> opuses) {
-		this.opuses = opuses;
-	}
-	public Set<Comment> getComments() {
-		return comments;
-	}
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
 	}
 }
