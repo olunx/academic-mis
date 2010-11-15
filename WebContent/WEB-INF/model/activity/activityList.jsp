@@ -17,10 +17,10 @@
 		list("#group_more_list", "#wall");
 	});
 </script>
-<title>管理学生小组</title>
+<title>管理学术活动</title>
 </head>
 <body>
-	<h2>我加入的群组</h2>
+	<h2>全部学术活动</h2>
 	<c:choose>
 		<c:when test="${pageBean.list == null}">
 						没有数据！
@@ -28,17 +28,21 @@
 		<c:otherwise>
 			<table class="table">
 				<tr>
-					<th>小组名称</th>
-					<th>小组简介</th>
-					<th>小组队长</th>
-					<th>小组成员</th>
+					<th>活动名称</th>
+					<th>活动内容</th>
+					<th>所属类型</th>
+					<th>届次</th>
+					<th>发布人</th>
+					<th>创建时间</th>
 				</tr>
-				<c:forEach items="${pageBean.list}" var="group">
+				<c:forEach items="${pageBean.list}" var="activity">
 					<tr>
-						<td><a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${group.id }">${group.name}</a></td>
-						<td>${fn:substring(fn:replace(group.intro,"<","&lt;"),0,20)}...</td>
-						<td>${group.captain.realName}</td>
-						<td>${fn:length(group.members)}</td>
+						<td><a onclick="ajaxload(this);return false;" href="<%=path%>/activity/viewActivity?id=${activity.id }">${activity.name}</a></td>
+						<td>${fn:substring(fn:replace(activity.intro,"<","&lt;"),0,20)}...</td>
+						<td>${activity.activityType.name}</td>
+						<td>第${activity.session}届</td>
+						<td>${activity.publisher.permission == 1? '系统管理员' : '管理员助理'}:${activity.publisher.realName}</td>
+						<td>${activity.time}</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -51,14 +55,14 @@
 						<a><span>上一页</span></a>
 					</c:when>
 					<c:otherwise>
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listGroup?page=1"><span>首页</span></a>
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listGroup?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/activity/listActivity?page=1"><span>首页</span></a>
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/activity/listActivity?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listGroup?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listGroup?page=${pageBean.totalPage}"><span>尾页</span></a>
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/activity/listActivity?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/activity/listActivity?page=${pageBean.totalPage}"><span>尾页</span></a>
 					</c:when>
 					<c:otherwise>
 						<a><span>下一页</span></a>

@@ -1,12 +1,12 @@
 package cn.gdpu.dto;
 
-import java.util.Date;
 
 
 public class ActivityDto {
 	private int id;
 	private String name;
 	private int session;
+	private String intro;
 	private int activityType;
 	private String airtime;
 	private String deadtime;
@@ -29,6 +29,12 @@ public class ActivityDto {
 	public void setSession(int session) {
 		this.session = session;
 	}
+	public String getIntro() {
+		return intro;
+	}
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
 	public int getActivityType() {
 		return activityType;
 	}
@@ -47,4 +53,5 @@ public class ActivityDto {
 	public void setDeadtime(String deadtime) {
 		this.deadtime = deadtime;
 	}
+	
 }

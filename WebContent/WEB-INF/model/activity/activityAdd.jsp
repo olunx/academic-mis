@@ -11,6 +11,9 @@
 	String path = request.getContextPath();
 %>
 
+<!-- JQuery库 -->
+<script type="text/javascript" src="../content/js/calendar/WdatePicker.js"></script> 
+
 </head>
 <body>
 	创建学术活动页面<br />
@@ -23,9 +26,9 @@
 						<c:forEach items="${ats}" var="atype" ><option value="${atype.id}">${atype.name}</option></c:forEach>
 					</select>
 				</div>
-		活动内容：<br/><textarea name="activity.intro" rows="10" cols="60" ></textarea><br/>
-		活动报名开始时间: <input type="text" name="acDto.airtime" /><br/>
-		活动报名截止时间: <input type="text" name="acDto.deadtime" /><br/>
+		活动简介：<br/><textarea name="acDto.intro" rows="10" cols="60" ></textarea><br/>
+		活动报名开始时间: <input type="text" class="Wdate" name="acDto.airtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
+		-截止时间: <input type="text" class="Wdate" name="acDto.deadtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/><br/>
 		<input type="submit" value="创建">
 	</form>
 </body>

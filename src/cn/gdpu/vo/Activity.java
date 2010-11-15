@@ -8,6 +8,7 @@ public class Activity {
 	private int id;
 	private String name;
 	private int session;
+	private String intro;
 	private ActivityType activityType;
 	private Set<ActivityResult> activityResults;
 	private Date airtime;
@@ -34,6 +35,12 @@ public class Activity {
 	}
 	public void setSession(int session) {
 		this.session = session;
+	}
+	public String getIntro() {
+		return intro;
+	}
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 	public ActivityType getActivityType() {
 		return activityType;
@@ -83,4 +90,5 @@ public class Activity {
 	public void setOutlay(Outlay outlay) {
 		this.outlay = outlay;
 	}
+	
 }

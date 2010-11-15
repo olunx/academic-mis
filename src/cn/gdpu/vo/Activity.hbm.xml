@@ -6,8 +6,9 @@
 		<id name="id" column="id">
 			<generator class="native" />
 		</id>
-		<property name="name" />
-		<property name="session" />
+		<property name="name" not-null="true"/>
+		<property name="session" not-null="true"/>
+		<property name="intro" />
 		<many-to-one name="activityType" column="atId" />
 		<set name="activityResults" cascade="all" lazy="false" order-by="id asc">
 			<key column="activityId" />
@@ -21,7 +22,6 @@
 			<key column="activityId" />
 			<one-to-many class="ActivityApply" />
 		</set>
-		
 		<many-to-one name="outlay" column="outlayId" />
 	</class>
 </hibernate-mapping>

@@ -7,17 +7,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>管理小组页面</title>
+<title>学术活动页面</title>
 </head>
 <body>
-	小组显示页面<br/>
-	小组名称：${group.name }<br/>
-	小组介绍: ${group.intro }<br/><br/>
+	学术活动显示页面<br/>
+	活动名称：${activity.name }<br/>
+	活动届次：${activity.session }<br/>
+	活动类型：${activity.activityType.name}<br/>
+	活动简介: ${activity.intro }<br/><br/>
 	 <c:choose>
-	 	<c:when test="${group.captain.id == student.id}">
+	 	<c:when test="${manager != null}">
 	 		<c:choose>
-			 	<c:when test="${my:groupApplyCount(group) != 0}">
-			 		<font color="red">有${my:groupApplyCount(group)}个学生申请加入该小组</font><br/>
+			 	<c:when test="${my:activityApplyCount(activity) != 0}">
+			 		<font color="red">有${my:activityApplyCount(activity)}个学生申请加入该小组</font><br/>
 			 		<table class="table">
 						<tr>
 							<th>学生名称</th>
@@ -25,13 +27,13 @@
 							<th>性别</th>
 							<th>审核</th>
 						</tr>
-						<c:forEach items="${group.groupApplys}" var="groupApply" >
-							<c:if test="${groupApply.status == 1}">
+						<c:forEach items="${activity.activityApplys}" var="activityApply" >
+							<c:if test="${activityApply.status == 1}">
 								<tr>
-									<td>${groupApply.student.realName}</td>
-									<td>${groupApply.student.classes.name}${groupApply.student.schoolYear}</td>
-									<td>${groupApply.student.age == 0 ? '女' : '男'}</td>
-									<td><a href="<%=path %>/group/passGroup?id=${groupApply.id}">通过</a>|<a href="<%=path %>/group/refuseGroup?id=${groupApply.id}">拒绝</a></td>
+									<td>${activityApply.student.realName}</td>
+									<td>${activityApply.student.classes.name}${activityApply.student.schoolYear}</td>
+									<td>${activityApply.student.age == 0 ? '女' : '男'}</td>
+									<td><a href="<%=path %>/activity/passGroup?id=${activityApply.id}">通过</a>|<a href="<%=path %>/activity/refuseGroup?id=${activityApply.id}">拒绝</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -42,9 +44,9 @@
 			 </c:choose>
 			 <br/>
 	 	</c:when>
-	 	<c:when test="${my:isMyGroup(group,student)}"><a href="<%=path%>/group/quitGroup?id=${group.id}">退出</a></c:when>
-	 	<c:when test="${my:isMyApplyGroup(group,student)}"><a href="<%=path %>/group/listApplyGroup"><font color="Blue">你已经申请加入该小组了,请等待审核</font></a></c:when>
-	 	<c:otherwise><a href="<%=path%>/group/applyGroup?id=${group.id}">申请加入</a></c:otherwise>
+	 	<c:when test="${my:isMyGroup(activity,student)}"><a href="<%=path%>/activity/quitGroup?id=${activity.id}">退出</a></c:when>
+	 	<c:when test="${my:isMyApplyGroup(activity,student)}"><a href="<%=path %>/activity/listApplyGroup"><font color="Blue">你已经申请加入该小组了,请等待审核</font></a></c:when>
+	 	<c:otherwise><a href="<%=path%>/activity/applyGroup?id=${activity.id}">申请加入</a></c:otherwise>
 	 </c:choose>
 	 <br/>
 	 
