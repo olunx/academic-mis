@@ -73,7 +73,7 @@ public class TeacherAction extends BaseAction {
 				teacherService.addEntity(teacher);
 				getSession().put("teacher", teacher);
 				Log.init(getClass()).info("添加教师用户成功: " + teacher.getRealName());
-				return "viewPage";
+				return "indexPage";
 			}else{
 				this.addFieldError("teaDto.username", "该教师已存在");
 				if (hasFieldErrors()) {

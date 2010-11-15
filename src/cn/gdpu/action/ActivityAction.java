@@ -1,32 +1,42 @@
 package cn.gdpu.action;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+import cn.gdpu.dto.ActivityDto;
+import cn.gdpu.service.ActivityService;
 import cn.gdpu.service.ActivityTypeService;
 import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.Activity;
 import cn.gdpu.vo.ActivityType;
-import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Manager;
 
-public class ActivityTypeAction extends BaseAction {
+public class ActivityAction extends BaseAction {
 	
+	private ActivityService<Activity, Integer> activityService;
 	private ActivityTypeService<ActivityType, Integer> activityTypeService;
-	private ActivityType activityType;
-	private ActivityType atDto;
+	private Activity activity;
+	private ActivityDto acDto;
 	private PageBean pageBean;
 	private int page;
+	
+	public void prepare() throws Exception {
+		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
+		String action=  httpRequest.getServletPath().split("/")[1];
+		String[] uri=action.split("\\.");
+		if(uri[0].equals("add")){
+			List<ActivityType> ats = activityTypeService.getAllEntity(ActivityType.class);
+			getRequest().put("ats", ats);
+		}
+	}
 	
 	@Override
 	public String add() {
 		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
-		if(admin != null){
-			if(atDto.getName() == null) return ERROR;
-			activityType = activityTypeService.getActivityTypeByName(atDto.getName());
-			if(activityType != null) return ERROR;
-			ActivityType at = new ActivityType();
-			at.setName(atDto.getName());
-			at.setLevel(atDto.getLevel());
-			at.setIntro(atDto.getIntro());
-			activityTypeService.addEntity(at);
+		if(manager != null){
 			return super.add();
 		}
 		return ERROR;
@@ -47,8 +57,9 @@ public class ActivityTypeAction extends BaseAction {
 	@Override
 	public String goAdd() {
 		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
-		if(admin != null){
+		if(manager != null){
+			List<ActivityType> ats = activityTypeService.getAllEntity(ActivityType.class);
+			getRequest().put("ats", ats);
 			return super.goAdd();
 		}
 		return ERROR;
@@ -63,9 +74,8 @@ public class ActivityTypeAction extends BaseAction {
 	@Override
 	public String list() {
 		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
-		if(admin != null){
-			this.pageBean = this.activityTypeService.queryForPage(ActivityType.class, 10, page);
+		if(manager != null){
+			this.pageBean = this.activityService.queryForPage(Activity.class, 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 
@@ -89,6 +99,16 @@ public class ActivityTypeAction extends BaseAction {
 
 	
 	//getter and setter
+
+	public ActivityService<Activity, Integer> getActivityService() {
+		return activityService;
+	}
+
+	public void setActivityService(
+			ActivityService<Activity, Integer> activityService) {
+		this.activityService = activityService;
+	}
+
 	public ActivityTypeService<ActivityType, Integer> getActivityTypeService() {
 		return activityTypeService;
 	}
@@ -98,20 +118,20 @@ public class ActivityTypeAction extends BaseAction {
 		this.activityTypeService = activityTypeService;
 	}
 
-	public ActivityType getActivityType() {
-		return activityType;
+	public Activity getActivity() {
+		return activity;
 	}
 
-	public void setActivityType(ActivityType activityType) {
-		this.activityType = activityType;
+	public void setActivity(Activity activity) {
+		this.activity = activity;
 	}
 
-	public ActivityType getAtDto() {
-		return atDto;
+	public ActivityDto getAcDto() {
+		return acDto;
 	}
 
-	public void setAtDto(ActivityType atDto) {
-		this.atDto = atDto;
+	public void setAcDto(ActivityDto acDto) {
+		this.acDto = acDto;
 	}
 
 	public PageBean getPageBean() {

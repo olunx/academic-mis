@@ -58,7 +58,7 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Assistant assistant = assistantService.getAssistantByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(assistant != null){
-					getSession().put("assistant", assistant);
+					getSession().put("manager", assistant);
 					Log.init(getClass()).info("管理员助理登陆成功：" + assistant.getRealName());
 					return "asslogin";
 				}else{

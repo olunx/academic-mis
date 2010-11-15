@@ -33,6 +33,7 @@ public class StudentServiceTest{
 		Student student = new Student();
 		student.setUsername("user");
 		student.setPassword("user");
+		student.setStuNo("0000");
 		student.setRealName("user");
 		student.setClasses(cls);
 		student.setSchoolYear(2007);

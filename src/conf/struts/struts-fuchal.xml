@@ -31,7 +31,8 @@
 			<result name="index">/WEB-INF/model/admin/adminList.jsp</result>
 			<result name="gologin">/admin/adminLogin.jsp</result>
 			<result name="logout">/goods/listGoods</result>
-			<result name="viewPage">/admin/adminIndex.jsp</result>
+			<result name="indexPage">/admin/adminIndex.jsp</result>
+			<result name="viewPage">/WEB-INF/model/admin/adminView.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/admin/adminModify.jsp</result>
 			<result name="addPage">/WEB-INF/model/admin/adminAdd.jsp</result>
 		</global-results>
@@ -47,7 +48,8 @@
 		<global-results>
 			<result name="gologin">/index.html</result>
 			<result name="logout">index.html</result>
-			<result name="viewPage">/WEB-INF/model/student/studentView.jsp</result>
+			<result name="indexPage">/WEB-INF/model/student/studentIndex.jsp</result>
+			<result name="viewPage">/WEB-INF/model/student/studentIndex.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/student/studentModify.jsp</result>
 			<result name="addPage">/WEB-INF/model/student/studentAdd.jsp</result>
 		</global-results>
@@ -63,6 +65,7 @@
 		<global-results>
 			<result name="gologin">/index.html</result>
 			<result name="logout">index.html</result>
+			<result name="indexPage">/WEB-INF/model/teacher/teacherIndex.jsp</result>
 			<result name="viewPage">/WEB-INF/model/teacher/teacherView.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/teacher/teacherModify.jsp</result>
 			<result name="addPage">/WEB-INF/model/teacher/teacherAdd.jsp</result>

@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import cn.gdpu.service.AdminService;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Admin;
+import cn.gdpu.vo.Manager;
 
 
 @SuppressWarnings("serial")
@@ -43,8 +44,8 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 		if(username != null && password != null){
 			Admin admin = adminService.getAdminByUsernameAndPassword(username, password);
 			if(admin != null){
-				getSession().put("admin", admin);
-				return VIEW_PAGE;
+				getSession().put("manager", admin);
+				return "indexPage";
 			}else{
 				return "gologin";
 			}
@@ -53,7 +54,8 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 		}
 	}
 	public String logout(){
-		Admin admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			getSession().remove("admin");
 			return "logout";
@@ -64,7 +66,8 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String add() {
-		admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			if(username != null && !username.trim().equals("") && password != null && !password.trim().equals("") 
 					&& repassword != null && !repassword.trim().equals("") && name != null && !name.trim().equals("")){
@@ -85,7 +88,8 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String delete() {
-		admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			adminService.deleteEntity(Admin.class, id);
 			return super.delete();
@@ -101,28 +105,43 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String goAdd() {
-		return super.goAdd();
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null){
+			return super.goAdd();
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String goModify() {
-		admin = adminService.getEntity(Admin.class, id);
-		return super.goModify();
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null){
+			return super.goModify();
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String list() {
-		this.pageBean = this.adminService.queryForPage(Admin.class, 10, page);
-		if (pageBean.getList().isEmpty())
-			pageBean.setList(null);
-
-		return super.list();
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null){
+			this.pageBean = this.adminService.queryForPage(Admin.class, 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+	
+			return super.list();
+		}
+		return ERROR;
 	
 	}
 
 	@Override
 	public String modify() {
-		admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			if(password != null && !password.trim().equals("") 
 					&& repassword != null && !repassword.trim().equals("") && name != null && !name.trim().equals("")){
@@ -141,8 +160,13 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String view() {
-		// TODO Auto-generated method stub
-		return super.view();
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null){
+			adminService.getEntity(Admin.class, id);
+			return super.view();
+		}
+		return ERROR;
 	}
 	
 	//setter and getter

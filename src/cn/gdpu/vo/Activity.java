@@ -12,7 +12,8 @@ public class Activity {
 	private Set<ActivityResult> activityResults;
 	private Date airtime;
 	private Date deadtime;
-	private Date endtime;
+	private Manager publisher;
+	private Date time;
 	private Set<ActivityApply> activityApplys;
 	private Outlay outlay;
 	
@@ -58,11 +59,17 @@ public class Activity {
 	public void setDeadtime(Date deadtime) {
 		this.deadtime = deadtime;
 	}
-	public Date getEndtime() {
-		return endtime;
+	public Manager getPublisher() {
+		return publisher;
 	}
-	public void setEndtime(Date endtime) {
-		this.endtime = endtime;
+	public void setPublisher(Manager publisher) {
+		this.publisher = publisher;
+	}
+	public Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
 	}
 	public Set<ActivityApply> getActivityApplys() {
 		return activityApplys;

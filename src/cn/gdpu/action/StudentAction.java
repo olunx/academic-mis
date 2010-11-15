@@ -111,7 +111,7 @@ public class StudentAction extends BaseAction {
 				studentService.addEntity(student);
 				getSession().put("student", student);
 				Log.init(getClass()).info("添加学生用户成功: " + student);
-				return "viewPage";
+				return "indexPage";
 			}else{
 				this.addFieldError("stuDto.username", "该学生已存在");
 				if (hasFieldErrors()) {

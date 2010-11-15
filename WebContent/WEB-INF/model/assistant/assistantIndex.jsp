@@ -8,6 +8,8 @@
 <title>管理页面</title>
 </head>
 <body>
-	管理页面
+	欢迎您 ${manager.realName } 进入助理管理页面<br/>
+	<a href="<%=path %>/activity/goAddActivity">添加学术活动</a><br/>
+	
 </body>
 </html>

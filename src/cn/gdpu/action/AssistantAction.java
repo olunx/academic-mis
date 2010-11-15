@@ -8,6 +8,7 @@ import cn.gdpu.util.Md5;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Assistant;
+import cn.gdpu.vo.Manager;
 
 
 @SuppressWarnings("serial")
@@ -29,7 +30,8 @@ public class AssistantAction extends BaseAction{
 	
 	@Override
 	public String add() {
-		Admin admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			if(asDto.getUsername() != null && !asDto.getUsername().trim().equals("") && asDto.getPassword() != null && !asDto.getPassword().trim().equals("") 
 					&& asDto.getRpassword() != null && !asDto.getRpassword().trim().equals("") && asDto.getRealName() != null && !asDto.getRealName().trim().equals("")){
@@ -39,6 +41,8 @@ public class AssistantAction extends BaseAction{
 						ass.setUsername(asDto.getUsername());
 						ass.setPassword(Md5.getMD5(asDto.getPassword().getBytes()));
 						ass.setRealName(asDto.getRealName());
+						ass.setPermission(2);
+						ass.setRemark("管理员助理");
 						assistantService.addEntity(ass);
 						return super.add();
 					}
@@ -50,7 +54,8 @@ public class AssistantAction extends BaseAction{
 
 	@Override
 	public String delete() {
-		Admin admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			assistantService.deleteEntity(Assistant.class, id);
 			return super.delete();
@@ -66,7 +71,8 @@ public class AssistantAction extends BaseAction{
 
 	@Override
 	public String goAdd() {
-		Admin admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			return super.goAdd();
 		}
@@ -75,7 +81,8 @@ public class AssistantAction extends BaseAction{
 
 	@Override
 	public String goModify() {
-		Admin admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			assistant = assistantService.getEntity(Assistant.class, id);
 			return super.goModify();
@@ -85,7 +92,8 @@ public class AssistantAction extends BaseAction{
 
 	@Override
 	public String list() {
-		Admin admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			this.pageBean = this.assistantService.queryForPage(Assistant.class, 10, page);
 			if (pageBean.getList().isEmpty())
@@ -98,7 +106,8 @@ public class AssistantAction extends BaseAction{
 
 	@Override
 	public String modify() {
-		Admin admin = (Admin) getSession().get("admin");
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null){
 			if(asDto.getPassword() != null && !asDto.getPassword().trim().equals("") 
 					&& asDto.getRpassword() != null && !asDto.getRpassword().trim().equals("") && asDto.getRealName() != null && !asDto.getRealName().trim().equals("")){

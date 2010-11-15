@@ -31,7 +31,7 @@
 		用户账号：<input type="text" name="stuDto.username" /><br/>
 		用户密码：<input type="password" name="stuDto.password" /><br/>
 		确认密码：<input type="password" name="stuDto.rpassword" /><br/>
-		学号：<input type="text" name="stuDto.stuNO" /><br/>
+		学号：<input type="text" name="stuDto.stuNo" /><br/>
 		真实姓名：<input type="text" name="stuDto.realName" /><br/>
 		用户性别：<input type="radio" name="stuDto.sex" value="1" checked="checked">男<input type="radio" name="stuDto.sex" value="0">女<br/>
 		用户年龄：<input type="text" name="stuDto.age" /><br/>

@@ -30,6 +30,7 @@ public class AdminServiceTest{
 		admin.setUsername("admin");
 		admin.setPassword("admin");
 		admin.setRealName("admin");
+		admin.setPermission(1);
 		admin.setRemark("系统管理员");
 		adminService.addEntity(admin);
 	}
