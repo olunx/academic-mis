@@ -16,6 +16,10 @@
 		<property name="schoolYear" not-null="true"/>
 		<property name="avatar" />
 		<property name="remark" />
+		<set name="myGroups" lazy="false" order-by="id asc">
+			<key column="creatorId" />
+			<one-to-many class="Group" />
+		</set>
 		<set name="groups" cascade="all" table="t_group_student" lazy="true">
 			<key column="stuId" />
 			<many-to-many class="Group" column="groupId" />

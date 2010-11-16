@@ -8,6 +8,7 @@ public class ActivityDto {
 	private int session;
 	private String intro;
 	private int activityType;
+	private int applyCount;
 	private String airtime;
 	private String deadtime;
 	
@@ -40,6 +41,12 @@ public class ActivityDto {
 	}
 	public void setActivityType(int activityType) {
 		this.activityType = activityType;
+	}
+	public int getApplyCount() {
+		return applyCount;
+	}
+	public void setApplyCount(int applyCount) {
+		this.applyCount = applyCount;
 	}
 	public String getAirtime() {
 		return airtime;

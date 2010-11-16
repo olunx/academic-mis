@@ -1,17 +1,17 @@
 package cn.gdpu.vo;
 
 import java.util.Date;
-import java.util.Set;
 
 public class ActivityApply {
 	private int id;
 	private Activity activity;
-	private Group group;
 	private Date applytime;
 	private Date endtime;
 	private Assistant operator;
 	private String record;
-	private Set<Student> applicants;
+	/**
+	 * 1为申请，2为通过，3为拒绝
+	 */
 	private int status;
 	private Opus opus;
 	
@@ -26,12 +26,6 @@ public class ActivityApply {
 	}
 	public void setActivity(Activity activity) {
 		this.activity = activity;
-	}
-	public Group getGroup() {
-		return group;
-	}
-	public void setGroup(Group group) {
-		this.group = group;
 	}
 	public Date getApplytime() {
 		return applytime;
@@ -56,12 +50,6 @@ public class ActivityApply {
 	}
 	public void setRecord(String record) {
 		this.record = record;
-	}
-	public Set<Student> getApplicants() {
-		return applicants;
-	}
-	public void setApplicants(Set<Student> applicants) {
-		this.applicants = applicants;
 	}
 	public int getStatus() {
 		return status;

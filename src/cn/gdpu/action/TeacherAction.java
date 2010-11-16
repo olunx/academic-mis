@@ -72,6 +72,8 @@ public class TeacherAction extends BaseAction {
 				teacher.setInstitute(institute);
 				teacherService.addEntity(teacher);
 				getSession().put("teacher", teacher);
+				if(getSession().get("manager") != null) getSession().put("manager", null);
+				if(getSession().get("student") != null) getSession().put("student", null);
 				Log.init(getClass()).info("添加教师用户成功: " + teacher.getRealName());
 				return "indexPage";
 			}else{

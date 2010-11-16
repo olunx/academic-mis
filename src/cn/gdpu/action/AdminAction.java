@@ -45,6 +45,8 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 			Admin admin = adminService.getAdminByUsernameAndPassword(username, password);
 			if(admin != null){
 				getSession().put("manager", admin);
+				if(getSession().get("student") != null) getSession().put("student", null);
+				if(getSession().get("teacher") != null) getSession().put("teacher", null);
 				return "indexPage";
 			}else{
 				return "gologin";

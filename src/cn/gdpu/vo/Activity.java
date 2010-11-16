@@ -10,6 +10,7 @@ public class Activity {
 	private int session;
 	private String intro;
 	private ActivityType activityType;
+	private int applyCount;
 	private Set<ActivityResult> activityResults;
 	private Date airtime;
 	private Date deadtime;
@@ -47,6 +48,12 @@ public class Activity {
 	}
 	public void setActivityType(ActivityType activityType) {
 		this.activityType = activityType;
+	}
+	public int getApplyCount() {
+		return applyCount;
+	}
+	public void setApplyCount(int applyCount) {
+		this.applyCount = applyCount;
 	}
 	public Set<ActivityResult> getActivityResults() {
 		return activityResults;

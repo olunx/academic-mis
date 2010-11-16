@@ -28,6 +28,8 @@ public class IndexAction extends BaseAction {
 				Student student = studentService.getStudentByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(student != null){
 					getSession().put("student", student);
+					if(getSession().get("manager") != null) getSession().put("manager", null);
+					if(getSession().get("teacher") != null) getSession().put("teacher", null);
 					Log.init(getClass()).info("学生用户登陆成功：" + student.getRealName());
 					return "stulogin";
 				}else{
@@ -44,6 +46,8 @@ public class IndexAction extends BaseAction {
 				Teacher teacher = teacherService.getTeacherByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(teacher!= null){
 					getSession().put("teacher", teacher);
+					if(getSession().get("manager") != null) getSession().put("manager", null);
+					if(getSession().get("student") != null) getSession().put("student", null);
 					Log.init(getClass()).info("教师登陆成功：" + teacher.getRealName());
 					return "tchlogin";
 				}else{
@@ -59,6 +63,8 @@ public class IndexAction extends BaseAction {
 				Assistant assistant = assistantService.getAssistantByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(assistant != null){
 					getSession().put("manager", assistant);
+					if(getSession().get("student") != null) getSession().put("student", null);
+					if(getSession().get("teacher") != null) getSession().put("teacher", null);
 					Log.init(getClass()).info("管理员助理登陆成功：" + assistant.getRealName());
 					return "asslogin";
 				}else{

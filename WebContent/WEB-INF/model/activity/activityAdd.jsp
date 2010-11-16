@@ -12,7 +12,7 @@
 %>
 
 <!-- JQuery库 -->
-<script type="text/javascript" src="../content/js/calendar/WdatePicker.js"></script> 
+<script type="text/javascript" src="<%=path %>/content/js/calendar/WdatePicker.js"></script> 
 
 </head>
 <body>
@@ -26,8 +26,11 @@
 						<c:forEach items="${ats}" var="atype" ><option value="${atype.id}">${atype.name}</option></c:forEach>
 					</select>
 				</div>
+		报名方式: <input type="radio" name="" value="1" />个人参赛
+					<input type="radio" name="" value="2" checked="checked" />团队参赛-限
+					<input type="text" name="acDto.applyCount" value="0" style="width:15px">人<br/>
 		活动简介：<br/><textarea name="acDto.intro" rows="10" cols="60" ></textarea><br/>
-		活动报名开始时间: <input type="text" class="Wdate" name="acDto.airtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
+		报名开始时间: <input type="text" class="Wdate" name="acDto.airtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
 		-截止时间: <input type="text" class="Wdate" name="acDto.deadtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/><br/>
 		<input type="submit" value="创建">
 	</form>

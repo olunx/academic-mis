@@ -9,21 +9,45 @@
 	<short-name>fn</short-name>
 	<uri>http://gdpu.cn/functions</uri>
 
+	<!-- 小组函数 -->
 	<function>
 		<name>isMyGroup</name>
 		<function-class>cn.gdpu.action.GroupAction</function-class>
 		<function-signature>boolean isMyGroup(cn.gdpu.vo.Group,cn.gdpu.vo.Student)</function-signature>
 	</function>
+	
 	<function>
 		<name>isMyApplyGroup</name>
 		<function-class>cn.gdpu.action.GroupAction</function-class>
 		<function-signature>boolean isMyApplyGroup(cn.gdpu.vo.Group,cn.gdpu.vo.Student)</function-signature>
 	</function>
+	
 	<function>
 		<name>groupApplyCount</name>
 		<function-class>cn.gdpu.action.GroupAction</function-class>
 		<function-signature>Integer groupApplyCount(cn.gdpu.vo.Group)</function-signature>
 	</function>
+	
+	<!-- 活动函数 -->
+	<function>
+		<name>isMyActivity</name>
+		<function-class>cn.gdpu.action.ActivityAction</function-class>
+		<function-signature>Integer isMyActivity(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	<function>
+		<name>isMyApplyActivity</name>
+		<function-class>cn.gdpu.action.ActivityAction</function-class>
+		<function-signature>cn.gdpu.vo.Group isMyApplyActivity(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	<function>
+		<name>activityApplyCount</name>
+		<function-class>cn.gdpu.action.ActivityAction</function-class>
+		<function-signature>Integer activityApplyCount(cn.gdpu.vo.Activity)</function-signature>
+	</function>
+	
+	<!-- 时间格式函数 -->
 	<function>
 		<name>formatDate</name>
 		<function-class>cn.gdpu.util.Functions</function-class>

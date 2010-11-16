@@ -14,6 +14,7 @@ public class Student {
 	private int schoolYear;
 	private String avatar;
 	private String remark;
+	private Set<Group> myGroups;
 	private Set<Group> groups;
 	private Set<GroupApply> groupApplys;
 	private Set<ActivityApply> activityApplys;
@@ -83,6 +84,12 @@ public class Student {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public Set<Group> getMyGroups() {
+		return myGroups;
+	}
+	public void setMyGroups(Set<Group> myGroups) {
+		this.myGroups = myGroups;
 	}
 	public Set<Group> getGroups() {
 		return groups;

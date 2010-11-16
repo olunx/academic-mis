@@ -55,25 +55,6 @@ public class StudentAction extends BaseAction {
 		}
 	}
 	
-	public String goLogin(){
-		return "gologin";
-	}
-	
-	public String login(){
-		if(stuDto.getUsername() != null && !stuDto.getUsername().equals("") 
-				&& stuDto.getPassword() != null && !stuDto.getPassword().equals("")){
-			student = studentService.getStudentByUsernameAndPassword(stuDto.getUsername(), Md5.getMD5(stuDto.getPassword().getBytes()));
-			if(student != null){
-				getSession().put("student", student);
-				Log.init(getClass()).info("学生用户登陆成功：" + student.getRealName());
-				return VIEW_PAGE;
-			}else{
-				return "gologin";
-			}
-		}
-		return "gologin";
-	}
-	
 	@Override
 	public String add() {
 		if(stuDto.getUsername() != null && !stuDto.getUsername().equals("") 
@@ -110,6 +91,8 @@ public class StudentAction extends BaseAction {
 				student.setClasses(classes);
 				studentService.addEntity(student);
 				getSession().put("student", student);
+				if(getSession().get("manager") != null) getSession().put("manager", null);
+				if(getSession().get("teacher") != null) getSession().put("teacher", null);
 				Log.init(getClass()).info("添加学生用户成功: " + student);
 				return "indexPage";
 			}else{

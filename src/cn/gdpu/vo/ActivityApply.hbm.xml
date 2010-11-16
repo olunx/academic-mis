@@ -7,17 +7,27 @@
 			<generator class="native" />
 		</id>
 		<many-to-one name="activity" column="activityId" />
-		<many-to-one name="group" column="groupId" />
 		<property name="applytime" />
 		<property name="endtime" />
 		<many-to-one name="operator" column="assistantId" />
 		<property name="record" />
-		<set name="applicants" lazy="false" order-by="id asc">
-			<key column="aaId" />
-			<one-to-many class="Student" />
-		</set>
 		<property name="status" />
 		<many-to-one name="opus" column="opusId" unique="true"/>
 		
+		<!-- TeamApply -->
+		<joined-subclass name="TeamApply" table="t_teamapply">
+			<key column="id" />
+			<many-to-one name="group" column="groupId" />
+			<set name="applicants" lazy="false" order-by="id asc">
+				<key column="ataId" />
+			<one-to-many class="Student" />
+		</set>
+		</joined-subclass>
+		
+		<!-- SingleApply -->
+		<joined-subclass name="SingleApply" table="t_singleapply">
+			<key column="id" />
+			<many-to-one name="student" column="studentId" />
+		</joined-subclass>
 	</class>
 </hibernate-mapping>

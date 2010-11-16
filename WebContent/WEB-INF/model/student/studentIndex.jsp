@@ -18,6 +18,8 @@
 	<a href="<%=path %>/group/listGroup">查看我加入的小组</a><br/>
 	<a href="<%=path %>/group/listMeGroup">查看我创建的小组</a><br/>
 	<a href="<%=path %>/group/listApplyGroup">查看我申请的小组</a><br/>
-	<a href="<%=path %>/group/listAllGroup">查看所有的小组</a>
+	<a href="<%=path %>/group/listAllGroup">查看所有的小组</a><br/>
+	<a href="<%=path %>/activity/listActivity">查看所有的学术活动</a><br/>
+	<a href="<%=path %>/activity/listApplyActivity">查看我报名审核的学术活动</a><br/>
 </body>
 </html>

@@ -88,6 +88,12 @@
 		<property name="baseDao" ref="activityDaoImpl" />
 	</bean>
 
-	
+	<!-- activityApply -->
+	<bean name="activityApplyDaoImpl" class="cn.gdpu.dao.impl.ActivityApplyDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="activityApplyService" class="cn.gdpu.service.impl.ActivityApplyServiceImpl" scope="prototype">
+		<property name="baseDao" ref="activityApplyDaoImpl" />
+	</bean>
 
 </beans>
