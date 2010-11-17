@@ -35,7 +35,7 @@
 	<c:choose>
 		<c:when test="${activity.applyCount == 1}">
 			${activity.name } 该活动为参赛方式为个人参赛，你确定报名参赛？<br/>
-			<a href="<%=path %>/activity/applyActivity?id=${activity.id } && applytpe=1">是</a>
+			<a href="<%=path %>/activity/applyActivity?id=${activity.id } && applytype=1">是</a>
 			-- <a href="<%=path %>/activity/listActivity">否</a>
 			<br/>
 		</c:when>

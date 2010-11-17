@@ -70,6 +70,7 @@
 	 	</c:when>
 	 	<c:when test="${student != null}">
 	 		<c:choose>
+	 			<c:when test="${my:isActivityApplyTime(activity)}">该活动的报名时间为[${activity.airtime} - ${activity.deadtime}}],现在不是报名时间！或者报名已经结束了</c:when>
 		 		<c:when test="${activity.applyCount == 1 && my:isMyActivity(activity,student) == 1}">
 			 		你已经完成该活动的报名了，<a href="<%=path%>/activity/quitActivity?id=${activity.id}">退出</a>
 			 	</c:when>

@@ -30,21 +30,33 @@
 				<tr>
 					<th>活动名称</th>
 					<th>活动内容</th>
-					<th>所属类型</th>
 					<th>届次</th>
+					<th>所属类型</th>
 					<th>报名方式</th>
 					<th>发布人</th>
 					<th>创建时间</th>
+					<c:if test="${manager != null }">
+					<th>报名情况</th>
+					</c:if>
 				</tr>
 				<c:forEach items="${pageBean.list}" var="activity">
 					<tr>
 						<td><a onclick="ajaxload(this);return false;" href="<%=path%>/activity/viewActivity?id=${activity.id }">${activity.name}</a></td>
 						<td>${fn:substring(fn:replace(activity.intro,"<","&lt;"),0,20)}...</td>
-						<td>${activity.activityType.name}</td>
 						<td>第${activity.session}届</td>
+						<td>${activity.activityType.name}</td>
 						<td>${activity.applyCount == 1 ? '单人报名' : '团队报名'},限${activity.applyCount }人</td>
 						<td>${activity.publisher.permission == 1? '系统管理员' : '管理员助理'}:${activity.publisher.realName}</td>
 						<td>${activity.time}</td>
+						<c:if test="${manager != null }">
+						<th>
+							<c:choose>
+								<c:when test="${my:activityApplyCount(activity) != 0}">
+									<font color="red" >当前有${my:activityApplyCount(activity)}个报名</font>
+								</c:when>
+								<c:otherwise>暂时没有报名</c:otherwise>
+							</c:choose>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</table>

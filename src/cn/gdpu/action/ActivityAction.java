@@ -204,6 +204,9 @@ public class ActivityAction extends BaseAction {
 		if(student != null){
 			if(applytype == 1){
 				activity = activityService.getEntity(Activity.class, id);
+				Date toDay = new Date();
+				//检查是否不在报名时间内
+				if(toDay.getTime() < activity.getAirtime().getTime() || toDay.getTime() > activity.getDeadtime().getTime()) return "timeout";
 				Set<ActivityApply> activityApplys = activity.getActivityApplys();
 				if(activityApplys == null ) activityApplys = new HashSet<ActivityApply>();
 				for (ActivityApply aa : activityApplys) {
@@ -215,14 +218,18 @@ public class ActivityAction extends BaseAction {
 				sa.setStudent(student);
 				sa.setStatus(1);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				sa.setApplytime(new Date());
-				sa.setRecord(sdf.format(new Date()) + " : " + student.getRealName() + " 报名 " + activity.getName());
+				sa.setApplytime(toDay);
+				sa.setRecord(sdf.format(toDay) + " : " + student.getRealName() + " 报名 " + activity.getName());
 				activityApplys.add(sa);
 				activity.setActivityApplys(activityApplys);
 				activityService.updateEntity(activity);
+				Log.init(getClass()).info(sdf.format(toDay) + " : " + student.getRealName() + " 报名 " + activity.getName());
 				return "check";
 			}else{
 				activity = activityService.getEntity(Activity.class, apDto.getActivity());
+				Date toDay = new Date();
+				//检查是否不在报名时间内
+				if(toDay.getTime() < activity.getAirtime().getTime() || toDay.getTime() > activity.getDeadtime().getTime()) return "timeout";
 				Group group = groupService.getEntity(Group.class, apDto.getGroup());
 				Set<ActivityApply> activityApplys = activity.getActivityApplys();
 				if(activityApplys == null ) activityApplys = new HashSet<ActivityApply>();
@@ -241,11 +248,12 @@ public class ActivityAction extends BaseAction {
 				ta.setApplicants(applicants);
 				ta.setStatus(1);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				ta.setApplytime(new Date());
-				ta.setRecord(sdf.format(new Date()) + " : " + student.getRealName() + "代表小组:" + group.getName() + " 报名 " + activity.getName());
+				ta.setApplytime(toDay);
+				ta.setRecord(sdf.format(toDay) + " : " + student.getRealName() + "代表小组:" + group.getName() + " 报名 " + activity.getName());
 				activityApplys.add(ta);
 				activity.setActivityApplys(activityApplys);
 				activityService.updateEntity(activity);
+				Log.init(getClass()).info(sdf.format(toDay) + " : " + student.getRealName() + "代表小组:" + group.getName() + " 报名 " + activity.getName());
 				return "check";
 			}
 		}
@@ -253,13 +261,12 @@ public class ActivityAction extends BaseAction {
 	}
 	
 	/**
-	 * 查看正在审核申请的活动-个人参赛
+	 * 查看正在审核申请的活动
 	 */
 	public String listApply() {
 		Student student = (Student) this.getSession().get("student");
 		if(student != null){
 			this.pageBean = this.activityApplyService.queryForPage("from ActivityApply aa where (aa.student.id = '" + student.getId() + "') or ('" + student.getId() + "' = some elements(aa.applicants))", 10, page);
-			//this.pageBean = this.activityApplyService.queryForPage("from SingleApply sa where sa.student = '" + student.getId() + "'", 10, page);
 			
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
@@ -270,16 +277,41 @@ public class ActivityAction extends BaseAction {
 	}
 	
 	/**
-	 * 查看正在审核申请的活动-团队参赛
+	 * 管理人员通过报名审核
 	 */
-	public String listsApply() {
-		Student student = (Student) this.getSession().get("student");
-		if(student != null){
-			this.pageBean = this.activityApplyService.queryForPage("from TeamApply ta where '" + student.getId() + "' = some elements(ta.applicants)", 10, page);
-			if (pageBean.getList().isEmpty())
-				pageBean.setList(null);
-			getRequest().put("listType", "listteamapply");
-			return "listapply";
+	public String passApply(){
+		Manager manager = (Manager) getSession().get("manager");
+		if(manager != null){
+			ActivityApply aa = activityApplyService.getEntity(ActivityApply.class, id);
+			if(aa == null) return ERROR;
+			aa.setStatus(2);	//1==申请 2==通过 3==拒绝
+			aa.setOperator(manager);
+			aa.setEndtime(new Date());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			aa.setRecord(aa.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
+			activityApplyService.updateEntity(aa);
+			Log.init(getClass()).info(sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
+			return "audit";
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 管理人员拒绝报名审核
+	 */
+	public String refuseApply(){
+		Manager manager = (Manager) getSession().get("manager");
+		if(manager != null){
+			ActivityApply aa = activityApplyService.getEntity(ActivityApply.class, id);
+			if(aa == null) return ERROR;
+			aa.setStatus(3);	//1==申请 2==通过 3==拒绝
+			aa.setOperator(manager);
+			aa.setEndtime(new Date());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			aa.setRecord(aa.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
+			activityApplyService.updateEntity(aa);
+			Log.init(getClass()).info(sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
+			return "audit";
 		}
 		return ERROR;
 	}
@@ -348,6 +380,19 @@ public class ActivityAction extends BaseAction {
 			}
 		}
 		return null;
+	}
+	/**
+	 * 自定义标签my:isActivityApplyTime函数,检查现在是否为该活动报名时间
+	 * @param activity
+	 * @return true = 在报名时间内 ， false = 不在报名时间内
+	 */
+	public static boolean isActivityApplyTime(Activity activity) {
+		Date toDay = new Date();
+		//检查是否不在报名时间内
+		if(toDay.getTime() < activity.getAirtime().getTime() || toDay.getTime() > activity.getDeadtime().getTime()) 
+			return true;
+		else
+			return false;
 	}
 
 	

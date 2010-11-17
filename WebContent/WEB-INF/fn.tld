@@ -47,6 +47,12 @@
 		<function-signature>Integer activityApplyCount(cn.gdpu.vo.Activity)</function-signature>
 	</function>
 	
+	<function>
+		<name>isActivityApplyTime</name>
+		<function-class>cn.gdpu.action.ActivityAction</function-class>
+		<function-signature>boolean isActivityApplyTime(cn.gdpu.vo.Activity)</function-signature>
+	</function>
+	
 	<!-- 时间格式函数 -->
 	<function>
 		<name>formatDate</name>

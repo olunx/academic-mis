@@ -7,7 +7,7 @@ public class ActivityApply {
 	private Activity activity;
 	private Date applytime;
 	private Date endtime;
-	private Assistant operator;
+	private Manager operator;
 	private String record;
 	/**
 	 * 1为申请，2为通过，3为拒绝
@@ -39,10 +39,10 @@ public class ActivityApply {
 	public void setEndtime(Date endtime) {
 		this.endtime = endtime;
 	}
-	public Assistant getOperator() {
+	public Manager getOperator() {
 		return operator;
 	}
-	public void setOperator(Assistant operator) {
+	public void setOperator(Manager operator) {
 		this.operator = operator;
 	}
 	public String getRecord() {

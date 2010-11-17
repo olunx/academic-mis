@@ -3,7 +3,6 @@ package cn.gdpu.action;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import cn.gdpu.service.GroupApplyService;
@@ -246,6 +245,7 @@ public class GroupAction extends BaseAction{
 			groupApply.setRecord(groupApply.getRecord() + "; " + sdf.format(new Date()) + " : " + student.getRealName() + "同意你加入小组 " + groupApply.getGroup().getName());
 			groupApplyService.updateEntity(groupApply);
 			groupService.updateEntity(group);
+			Log.init(getClass()).info(sdf.format(new Date()) + " : " + student.getRealName() + "同意 " + groupApply.getStudent().getRealName() + " 加入小组 " + groupApply.getGroup().getName());
 			return "audit";
 		}
 		return ERROR;

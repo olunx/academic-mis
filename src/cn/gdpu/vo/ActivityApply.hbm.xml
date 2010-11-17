@@ -9,7 +9,7 @@
 		<many-to-one name="activity" column="activityId" />
 		<property name="applytime" />
 		<property name="endtime" />
-		<many-to-one name="operator" column="assistantId" />
+		<many-to-one name="operator" column="managerId" />
 		<property name="record" />
 		<property name="status" />
 		<many-to-one name="opus" column="opusId" unique="true"/>
