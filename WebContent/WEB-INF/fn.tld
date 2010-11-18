@@ -12,51 +12,58 @@
 	<!-- 小组函数 -->
 	<function>
 		<name>isMyGroup</name>
-		<function-class>cn.gdpu.action.GroupAction</function-class>
+		<function-class>cn.gdpu.jstl.GroupFunctions</function-class>
 		<function-signature>boolean isMyGroup(cn.gdpu.vo.Group,cn.gdpu.vo.Student)</function-signature>
 	</function>
 	
 	<function>
 		<name>isMyApplyGroup</name>
-		<function-class>cn.gdpu.action.GroupAction</function-class>
+		<function-class>cn.gdpu.jstl.GroupFunctions</function-class>
 		<function-signature>boolean isMyApplyGroup(cn.gdpu.vo.Group,cn.gdpu.vo.Student)</function-signature>
 	</function>
 	
 	<function>
 		<name>groupApplyCount</name>
-		<function-class>cn.gdpu.action.GroupAction</function-class>
+		<function-class>cn.gdpu.jstl.GroupFunctions</function-class>
 		<function-signature>Integer groupApplyCount(cn.gdpu.vo.Group)</function-signature>
 	</function>
 	
 	<!-- 活动函数 -->
 	<function>
 		<name>isMyActivity</name>
-		<function-class>cn.gdpu.action.ActivityAction</function-class>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
 		<function-signature>Integer isMyActivity(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
 	</function>
 	
 	<function>
-		<name>isMyApplyActivity</name>
-		<function-class>cn.gdpu.action.ActivityAction</function-class>
-		<function-signature>cn.gdpu.vo.Group isMyApplyActivity(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
+		<name>isSingleApplyDone</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>boolean isSingleApplyDone(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
 	</function>
 	
 	<function>
+		<name>isTeamApplyDone</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>cn.gdpu.vo.Group isTeamApplyDone(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	
+	<function>
 		<name>activityApplyCount</name>
-		<function-class>cn.gdpu.action.ActivityAction</function-class>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
 		<function-signature>Integer activityApplyCount(cn.gdpu.vo.Activity)</function-signature>
 	</function>
 	
 	<function>
 		<name>isActivityApplyTime</name>
-		<function-class>cn.gdpu.action.ActivityAction</function-class>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
 		<function-signature>boolean isActivityApplyTime(cn.gdpu.vo.Activity)</function-signature>
 	</function>
 	
 	<!-- 时间格式函数 -->
 	<function>
 		<name>formatDate</name>
-		<function-class>cn.gdpu.util.Functions</function-class>
+		<function-class>cn.gdpu.jstl.Functions</function-class>
 		<function-signature>String formatDate(java.util.Date)</function-signature>
 	</function>
 </taglib>

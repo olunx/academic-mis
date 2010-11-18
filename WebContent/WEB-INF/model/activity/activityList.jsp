@@ -36,6 +36,7 @@
 					<th>发布人</th>
 					<th>创建时间</th>
 					<c:if test="${manager != null }">
+					<th>要求作品</th>
 					<th>报名情况</th>
 					</c:if>
 				</tr>
@@ -48,6 +49,7 @@
 						<td>${activity.applyCount == 1 ? '单人报名' : '团队报名'},限${activity.applyCount }人</td>
 						<td>${activity.publisher.permission == 1? '系统管理员' : '管理员助理'}:${activity.publisher.realName}</td>
 						<td>${activity.time}</td>
+						<th>${activity.opusNeed == 1  ? '要求作品' : '无需作品'}</th>
 						<c:if test="${manager != null }">
 						<th>
 							<c:choose>

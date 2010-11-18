@@ -70,14 +70,17 @@
 	 	</c:when>
 	 	<c:when test="${student != null}">
 	 		<c:choose>
-	 			<c:when test="${my:isActivityApplyTime(activity)}">该活动的报名时间为[${activity.airtime} - ${activity.deadtime}}],现在不是报名时间！或者报名已经结束了</c:when>
-		 		<c:when test="${activity.applyCount == 1 && my:isMyActivity(activity,student) == 1}">
+	 			<c:when test="${activity.applyCount == 1 && my:isMyActivity(activity,student) == 1}">
 			 		你已经完成该活动的报名了，<a href="<%=path%>/activity/quitActivity?id=${activity.id}">退出</a>
 			 	</c:when>
+			 	<c:when test="${activity.applyCount == 1 && my:isSingleApplyDone(activity,student)}"><a href="<%=path %>/activity/listApplyActivity"><font color="Blue">你已经申请该活动的报名了,请等待审核</font></a></c:when>
 		 		<c:when test="${activity.applyCount != 1 && my:isMyActivity(activity,student) == 2}">你创建的小组已经完成该活动的报名了，<a href="<%=path%>/activity/quitActivity?id=${activity.id}">退出</a></c:when>
 			 	<c:when test="${activity.applyCount != 1 && my:isMyActivity(activity,student) == 3}">你所在的小组已经完成该活动的报名了</c:when>
-			 	<c:when test="${activity.applyCount != 1 && my:isMyApplyActivity(activity,student) != null}"><a href="<%=path %>/activity/listApplyActivity"><font color="Blue">你所在的小组${my:isMyApplyActivity(activity,student).name}已经申请加入该小组了,请等待审核</font></a></c:when>
-			 	<c:otherwise><a href="<%=path%>/activity/goApplyActivity?id=${activity.id}">申请加入</a></c:otherwise>
+			 	<c:when test="${activity.applyCount != 1 && my:isTeamApplyDone(activity,student) != null}"><a href="<%=path %>/activity/listApplyActivity"><font color="Blue">你所在的小组${my:isTeamApplyDone(activity,student).name}已经申请该活动的报名了,请等待审核</font></a></c:when>
+			 	<c:when test="${my:isActivityApplyTime(activity)}">该活动的报名时间为[${activity.airtime} - ${activity.deadtime}],现在不是报名时间！或者报名已经结束了</c:when>
+			 	<c:otherwise>
+			 		<a href="<%=path%>/activity/goApplyActivity?id=${activity.id}">申请加入</a>
+			 	</c:otherwise>
 		 	</c:choose>
 	 	</c:when>
 	 	

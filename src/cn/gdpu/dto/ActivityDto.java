@@ -9,6 +9,7 @@ public class ActivityDto {
 	private String intro;
 	private int activityType;
 	private int applyCount;
+	private int opusNeed;
 	private String airtime;
 	private String deadtime;
 	
@@ -48,6 +49,12 @@ public class ActivityDto {
 	public void setApplyCount(int applyCount) {
 		this.applyCount = applyCount;
 	}
+	public int getOpusNeed() {
+		return opusNeed;
+	}
+	public void setOpusNeed(int opusNeed) {
+		this.opusNeed = opusNeed;
+	}
 	public String getAirtime() {
 		return airtime;
 	}
@@ -60,5 +67,4 @@ public class ActivityDto {
 	public void setDeadtime(String deadtime) {
 		this.deadtime = deadtime;
 	}
-	
 }

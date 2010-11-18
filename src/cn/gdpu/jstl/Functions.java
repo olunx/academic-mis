@@ -1,9 +1,8 @@
-package cn.gdpu.util;
+package cn.gdpu.jstl;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 public class Functions {
 	public static String formatDate(Date date) {
 		Calendar cal = Calendar.getInstance();

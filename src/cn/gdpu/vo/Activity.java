@@ -11,6 +11,10 @@ public class Activity {
 	private String intro;
 	private ActivityType activityType;
 	private int applyCount;
+	/**
+	 * 0=不用交作品，1=作品必要
+	 */
+	private int opusNeed;
 	private Set<ActivityResult> activityResults;
 	private Date airtime;
 	private Date deadtime;
@@ -54,6 +58,12 @@ public class Activity {
 	}
 	public void setApplyCount(int applyCount) {
 		this.applyCount = applyCount;
+	}
+	public int getOpusNeed() {
+		return opusNeed;
+	}
+	public void setOpusNeed(int opusNeed) {
+		this.opusNeed = opusNeed;
 	}
 	public Set<ActivityResult> getActivityResults() {
 		return activityResults;

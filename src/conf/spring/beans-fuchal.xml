@@ -95,5 +95,14 @@
 	<bean name="activityApplyService" class="cn.gdpu.service.impl.ActivityApplyServiceImpl" scope="prototype">
 		<property name="baseDao" ref="activityApplyDaoImpl" />
 	</bean>
+	
+	<!-- opusDao -->
+	<bean name="opusDaoImpl" class="cn.gdpu.dao.impl.OpusDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="opusService" class="cn.gdpu.service.impl.OpusServiceImpl" scope="prototype">
+		<property name="baseDao" ref="opusDaoImpl" />
+	</bean>
+	
 
 </beans>

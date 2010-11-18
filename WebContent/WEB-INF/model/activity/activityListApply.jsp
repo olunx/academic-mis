@@ -30,6 +30,7 @@
 				<tr>
 					<th>活动名称</th>
 					<th>参赛方式</th>
+					<th>作品</th>
 					<th>状态</th>
 					<th>记录</th>
 				</tr>
@@ -37,6 +38,17 @@
 					<tr>
 						<td><a onclick="ajaxload(this);return false;" href="<%=path%>/activity/viewActivity?id=${activityApply.activity.id }">${activityApply.activity.name}</a></td>
 						<td>${activityApply.activity.applyCount == 1 ? '个人参赛' : '团队参赛'}</td>
+						<th>
+							<c:choose>
+								<c:when test="${activityApply.activity.opusNeed == 1 && activityApply.opus == null}">
+									<a href="<%=path %>/opus/goAddOpus?id=${activityApply.id}"><font color="red">创建作品</font></a>
+								</c:when>	
+								<c:when test="${activityApply.activity.opusNeed == 1 && activityApply.opus != null}">
+									<a href="<%=path %>/opus/goModifyOpus?id=${activityApply.id}">修改作品</a>
+								</c:when>
+								<c:otherwise>该活动无需作品</c:otherwise>
+							</c:choose>
+						</th>
 						<td>${activityApply.status == 2 ? '通过' : activityApply.status == 3 ? '拒绝' : '审核中' }</td>
 						<td>${activityApply.record}</td>
 					</tr>

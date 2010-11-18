@@ -12,7 +12,8 @@
 		<many-to-one name="operator" column="managerId" />
 		<property name="record" />
 		<property name="status" />
-		<many-to-one name="opus" column="opusId" unique="true"/>
+		<one-to-one name="opus" cascade="save-update" class="Opus" property-ref="activityApply" />
+	    
 		
 		<!-- TeamApply -->
 		<joined-subclass name="TeamApply" table="t_teamapply">
