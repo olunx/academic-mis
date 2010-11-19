@@ -1,18 +1,25 @@
 package cn.gdpu.action;
 
 import cn.gdpu.dto.OpusDto;
+import cn.gdpu.jstl.OpusFunctions;
 import cn.gdpu.service.ActivityApplyService;
 import cn.gdpu.service.OpusService;
+import cn.gdpu.service.SingleApplyService;
 import cn.gdpu.service.TeacherService;
+import cn.gdpu.service.TeamApplyService;
 import cn.gdpu.util.Log;
 import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.Opus;
+import cn.gdpu.vo.SingleApply;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Teacher;
+import cn.gdpu.vo.TeamApply;
 
 public class OpusAction extends BaseAction {
 	private OpusService<Opus, Integer> opusService;
 	private ActivityApplyService<ActivityApply, Integer> activityApplyService;
+	private SingleApplyService<SingleApply, Integer> singleApplyService;
+	private TeamApplyService<TeamApply, Integer> teamApplyService;
 	private TeacherService<Teacher, Integer> teacherService;
 	private Opus opus;
 	private OpusDto opusDto;
@@ -62,8 +69,11 @@ public class OpusAction extends BaseAction {
 
 	@Override
 	public String goModify() {
-		// TODO Auto-generated method stub
-		return super.goModify();
+		opus = opusService.getEntity(Opus.class, id);
+		if(opus != null){
+			return super.goModify();
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -74,14 +84,45 @@ public class OpusAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		// TODO Auto-generated method stub
-		return super.modify();
+		Student student = (Student) getSession().get("student");
+		if(student != null && id != 0){
+			opus = opusService.getEntity(Opus.class, id);
+			//查看权限
+			ActivityApply aa;
+			if(opus.getActivityApply().getActivity().getApplyCount() == 1){
+				aa = singleApplyService.getEntity(SingleApply.class, opus.getActivityApply().getId());
+			}else{
+				aa = teamApplyService.getEntity(TeamApply.class, opus.getActivityApply().getId());
+			}
+			if(aa == null) return ERROR;
+			if(!OpusFunctions.isMyOpus(aa, student)) return ERROR;
+			opus.setName(opusDto.getName());
+			opus.setIntro(opusDto.getIntro());
+			if(opusDto.getInstructor() != null && !opusDto.getInstructor().equals("")){
+				Teacher teacher = teacherService.getTeacherByTnum(opusDto.getInstructor());
+				if(teacher != null) opus.setInstructor(teacher);
+			}
+			opusService.updateEntity(opus);
+			Log.init(getClass()).info(student.getRealName() + " 学生给 " + aa.getActivity().getName() + " 活动修改了作品: " + opus.getName());
+			return "add";
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String view() {
-		// TODO Auto-generated method stub
-		return super.view();
+		opus = opusService.getEntity(Opus.class, id);
+		if(opus != null){
+			if(opus.getActivityApply().getActivity().getApplyCount() == 1){
+				 SingleApply sa = singleApplyService.getEntity(SingleApply.class, opus.getActivityApply().getId());
+				getRequest().put("activityApply", sa);
+			}else{
+				TeamApply ta = teamApplyService.getEntity(TeamApply.class, opus.getActivityApply().getId());
+				getRequest().put("activityApply", ta);
+			}
+			return super.view();
+		}
+		return ERROR;
 	}
 
 	
@@ -102,6 +143,24 @@ public class OpusAction extends BaseAction {
 	public void setActivityApplyService(
 			ActivityApplyService<ActivityApply, Integer> activityApplyService) {
 		this.activityApplyService = activityApplyService;
+	}
+
+	public SingleApplyService<SingleApply, Integer> getSingleApplyService() {
+		return singleApplyService;
+	}
+
+	public void setSingleApplyService(
+			SingleApplyService<SingleApply, Integer> singleApplyService) {
+		this.singleApplyService = singleApplyService;
+	}
+
+	public TeamApplyService<TeamApply, Integer> getTeamApplyService() {
+		return teamApplyService;
+	}
+
+	public void setTeamApplyService(
+			TeamApplyService<TeamApply, Integer> teamApplyService) {
+		this.teamApplyService = teamApplyService;
 	}
 
 	public TeacherService<Teacher, Integer> getTeacherService() {

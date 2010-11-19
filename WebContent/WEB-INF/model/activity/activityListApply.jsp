@@ -44,7 +44,7 @@
 									<a href="<%=path %>/opus/goAddOpus?id=${activityApply.id}"><font color="red">创建作品</font></a>
 								</c:when>	
 								<c:when test="${activityApply.activity.opusNeed == 1 && activityApply.opus != null}">
-									<a href="<%=path %>/opus/goModifyOpus?id=${activityApply.id}">修改作品</a>
+									<a href="<%=path %>/opus/viewOpus?id=${activityApply.opus.id}">查看作品</a>
 								</c:when>
 								<c:otherwise>该活动无需作品</c:otherwise>
 							</c:choose>

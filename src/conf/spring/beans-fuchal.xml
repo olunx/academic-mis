@@ -88,12 +88,28 @@
 		<property name="baseDao" ref="activityDaoImpl" />
 	</bean>
 
-	<!-- activityApply -->
+	<!-- activityApply bean -->
 	<bean name="activityApplyDaoImpl" class="cn.gdpu.dao.impl.ActivityApplyDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean name="activityApplyService" class="cn.gdpu.service.impl.ActivityApplyServiceImpl" scope="prototype">
 		<property name="baseDao" ref="activityApplyDaoImpl" />
+	</bean>
+	
+	<!-- singleApply bean -->
+	<bean name="singleApplyDaoImpl" class="cn.gdpu.dao.impl.SingleApplyDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="singleApplyService" class="cn.gdpu.service.impl.SingleApplyServiceImpl" scope="prototype">
+		<property name="baseDao" ref="singleApplyDaoImpl" />
+	</bean>
+	
+	<!-- teamApply bean -->
+	<bean name="teamApplyDaoImpl" class="cn.gdpu.dao.impl.TeamApplyDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="teamApplyService" class="cn.gdpu.service.impl.TeamApplyServiceImpl" scope="prototype">
+		<property name="baseDao" ref="teamApplyDaoImpl" />
 	</bean>
 	
 	<!-- opusDao -->

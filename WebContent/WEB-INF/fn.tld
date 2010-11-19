@@ -60,6 +60,14 @@
 		<function-signature>boolean isActivityApplyTime(cn.gdpu.vo.Activity)</function-signature>
 	</function>
 	
+	<!-- opus 作品函数 -->
+	<function>
+		<name>isMyOpus</name>
+		<function-class>cn.gdpu.jstl.OpusFunctions</function-class>
+		<function-signature>boolean isMyOpus(cn.gdpu.vo.ActivityApply,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	
 	<!-- 时间格式函数 -->
 	<function>
 		<name>formatDate</name>
