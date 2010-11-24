@@ -130,7 +130,7 @@
 			<result name="addPage">/WEB-INF/model/activity/activityAdd.jsp</result>
 			<result name="applyPage">/WEB-INF/model/activity/activityApply.jsp</result>
 			<result name="check" type="redirect">listApplyActivity?page=${page}</result>
-			<result name="audit" type="redirect">viewActivity?id=${activity.id}</result>
+			<result name="audit" type="redirect">viewActivity?id=${activityApply.activity.id}</result>
 			<result name="listapply">/WEB-INF/model/activity/activityListApply.jsp</result>
 		</global-results>
 		<action name="*Activity" class="cn.gdpu.action.ActivityAction" method="{1}">

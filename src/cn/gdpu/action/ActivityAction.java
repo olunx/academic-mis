@@ -41,6 +41,7 @@ public class ActivityAction extends BaseAction {
 	private StudentService<Student, Integer> studentService;
 	private GroupService<Group, Integer> groupService;
 	private Activity activity;
+	private ActivityApply activityApply;
 	private ActivityDto acDto;
 	private ApplyDto apDto;
 	private PageBean pageBean;
@@ -282,16 +283,15 @@ public class ActivityAction extends BaseAction {
 	public String passApply(){
 		Manager manager = (Manager) getSession().get("manager");
 		if(manager != null){
-			ActivityApply aa = activityApplyService.getEntity(ActivityApply.class, id);
-			if(aa == null) return ERROR;
-			aa.setStatus(2);	//1==申请 2==通过 3==拒绝
-			aa.setOperator(manager);
-			aa.setEndtime(new Date());
+			activityApply = activityApplyService.getEntity(ActivityApply.class, id);
+			if(activityApply == null) return ERROR;
+			activityApply.setStatus(2);	//1==申请 2==通过 3==拒绝
+			activityApply.setOperator(manager);
+			activityApply.setEndtime(new Date());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			aa.setRecord(aa.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
-			activityApplyService.updateEntity(aa);
+			activityApply.setRecord(activityApply.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
+			activityApplyService.updateEntity(activityApply);
 			Log.init(getClass()).info(sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
-			getRequest().put("id", aa.getActivity().getId());
 			return "audit";
 		}
 		return ERROR;
@@ -310,9 +310,9 @@ public class ActivityAction extends BaseAction {
 			aa.setEndtime(new Date());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			aa.setRecord(aa.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
+			getRequest().put("activityId", aa.getActivity().getId());
 			activityApplyService.updateEntity(aa);
 			Log.init(getClass()).info(sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
-			getRequest().put("id", aa.getActivity().getId());
 			return "audit";
 		}
 		return ERROR;
@@ -372,6 +372,14 @@ public class ActivityAction extends BaseAction {
 
 	public void setActivity(Activity activity) {
 		this.activity = activity;
+	}
+
+	public ActivityApply getActivityApply() {
+		return activityApply;
+	}
+
+	public void setActivityApply(ActivityApply activityApply) {
+		this.activityApply = activityApply;
 	}
 
 	public ActivityDto getAcDto() {

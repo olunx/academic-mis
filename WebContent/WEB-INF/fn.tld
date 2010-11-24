@@ -55,6 +55,12 @@
 	</function>
 	
 	<function>
+		<name>activityApplyDoneCount</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>Integer activityApplyDoneCount(cn.gdpu.vo.Activity)</function-signature>
+	</function>
+	
+	<function>
 		<name>isActivityApplyTime</name>
 		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
 		<function-signature>boolean isActivityApplyTime(cn.gdpu.vo.Activity)</function-signature>

@@ -11,6 +11,18 @@ import cn.gdpu.vo.TeamApply;
 
 public class ActivityFunctions {
 	/**
+	 * 自定义标签my:activityApplyDoneCount函数 ,检查已经成功报名了活动的小组数
+	 * @param gas
+	 * @return
+	 */
+	public static int activityApplyDoneCount(Activity activity){
+		int count =0;
+		for(ActivityApply aa : activity.getActivityApplys()){
+			if(aa.getStatus() == 2) count++;
+		}
+		return count;
+	}
+	/**
 	 * 自定义标签my:activityApplyCount函数 ,检查报名活动的小组数
 	 * @param gas
 	 * @return

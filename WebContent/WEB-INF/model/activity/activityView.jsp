@@ -17,6 +17,56 @@
 	活动类型：${activity.activityType.name}<br/>
 	报名方式：${activity.applyCount == 1 ? '个人报名参赛' : '团队报名参赛'}<br/>
 	活动简介: ${activity.intro }<br/><br/>
+	
+	<div>
+	<h3>已经成功报名参加该活动人员</h3>
+	<c:choose>
+		<c:when test="${my:activityApplyDoneCount(activity) != 0 && activity.applyCount == 1}">
+ 		<table class="table">
+			<tr>
+				<th>申请人</th>
+				<th>审核</th>
+			</tr>
+			<c:forEach items="${activity.activityApplys}" var="activityApply" >
+				<c:if test="${activityApply.status == 2}">
+					<tr>
+						<td><a href="<%=path %>/student/viewStudent?id=${activityApply.student.id}">${activityApply.student.realName}</a></td>
+						<td><a href="<%=path %>/activity/passApplyActivity?id=${activityApply.id}">通过</a>|<a href="<%=path %>/activity/refuseApplyActivity?id=${activityApply.id}">拒绝</a></td>
+					</tr>
+				</c:if>
+			</c:forEach>
+		</table>
+	
+		</c:when>
+	 	<c:when test="${my:activityApplyDoneCount(activity) != 0 && activity.applyCount != 1}">
+	 		<table class="table">
+				<tr>
+					<th>小组名称</th>
+					<th>报名人数</th>
+					<th>报名成员</th>
+					<th>审核</th>
+				</tr>
+				<c:forEach items="${activity.activityApplys}" var="activityApply" >
+					<c:if test="${activityApply.status == 2}">
+						<tr>
+							<td><a href="<%=path %>/group/viewGroup?id=${activityApply.group.id}">${activityApply.group.name}</a></td>
+							<td>${fn:length(activityApply.applicants)}</td>
+							<td>
+								<c:forEach items="${activityApply.applicants}" var="student" >
+									<a href="<%=path %>/student/viewStudent?id=${student.id}">${student.realName}</a>|
+								</c:forEach>
+							</td>
+							<td><a href="<%=path %>/activity/passApplyActivity?id=${activityApply.id}">通过</a>|<a href="<%=path %>/activity/refuseApplyActivity?id=${activityApply.id}">拒绝</a></td>
+						</tr>
+					</c:if>
+				</c:forEach>
+			</table>
+		</c:when>
+	 	<c:otherwise>该活动暂时没有报名</c:otherwise>
+	 </c:choose>
+	 <br/><br/><br/>
+	 </div>
+	
 	 <c:choose>
 	 	<c:when test="${manager != null }">
 	 		<c:choose>
