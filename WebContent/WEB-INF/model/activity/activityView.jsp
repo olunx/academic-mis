@@ -31,7 +31,7 @@
 							<c:if test="${activityApply.status == 1}">
 								<tr>
 									<td><a href="<%=path %>/student/viewStudent?id=${activityApply.student.id}">${activityApply.student.realName}</a></td>
-									<td><a href="<%=path %>/activity/passActivity?id=${activityApply.id}">通过</a>|<a href="<%=path %>/activity/refuseActivity?id=${activityApply.id}">拒绝</a></td>
+									<td><a href="<%=path %>/activity/passApplyActivity?id=${activityApply.id}">通过</a>|<a href="<%=path %>/activity/refuseApplyActivity?id=${activityApply.id}">拒绝</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -57,7 +57,7 @@
 											<a href="<%=path %>/student/viewStudent?id=${student.id}">${student.realName}</a>|
 										</c:forEach>
 									</td>
-									<td><a href="<%=path %>/activity/passActivity?id=${activityApply.id}">通过</a>|<a href="<%=path %>/activity/refuseActivity?id=${activityApply.id}">拒绝</a></td>
+									<td><a href="<%=path %>/activity/passApplyActivity?id=${activityApply.id}">通过</a>|<a href="<%=path %>/activity/refuseApplyActivity?id=${activityApply.id}">拒绝</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>

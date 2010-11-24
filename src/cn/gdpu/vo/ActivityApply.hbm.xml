@@ -12,7 +12,7 @@
 		<many-to-one name="operator" column="managerId" />
 		<property name="record" />
 		<property name="status" />
-		<one-to-one name="opus" cascade="save-update" class="Opus" property-ref="activityApply" />
+		<one-to-one name="opus" class="Opus" property-ref="activityApply" />
 	    
 		
 		<!-- TeamApply -->

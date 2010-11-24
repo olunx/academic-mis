@@ -112,7 +112,7 @@
 		<property name="baseDao" ref="teamApplyDaoImpl" />
 	</bean>
 	
-	<!-- opusDao -->
+	<!-- opus bean -->
 	<bean name="opusDaoImpl" class="cn.gdpu.dao.impl.OpusDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -120,5 +120,12 @@
 		<property name="baseDao" ref="opusDaoImpl" />
 	</bean>
 	
+	<!-- activityResult bean -->
+	<bean name="activityResultDaoImpl" class="cn.gdpu.dao.impl.ActivityResultDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="activityResultService" class="cn.gdpu.service.impl.ActivityResultServiceImpl" scope="prototype">
+		<property name="baseDao" ref="activityResultDaoImpl" />
+	</bean>
 
 </beans>

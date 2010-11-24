@@ -291,6 +291,7 @@ public class ActivityAction extends BaseAction {
 			aa.setRecord(aa.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
 			activityApplyService.updateEntity(aa);
 			Log.init(getClass()).info(sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
+			getRequest().put("id", aa.getActivity().getId());
 			return "audit";
 		}
 		return ERROR;
@@ -311,6 +312,7 @@ public class ActivityAction extends BaseAction {
 			aa.setRecord(aa.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
 			activityApplyService.updateEntity(aa);
 			Log.init(getClass()).info(sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
+			getRequest().put("id", aa.getActivity().getId());
 			return "audit";
 		}
 		return ERROR;
