@@ -14,6 +14,8 @@ public class ActivityApply {
 	 */
 	private int status;
 	private Opus opus;
+	private ActivityResult activityResult;
+
 	
 	public int getId() {
 		return id;
@@ -62,5 +64,11 @@ public class ActivityApply {
 	}
 	public void setOpus(Opus opus) {
 		this.opus = opus;
+	}
+	public ActivityResult getActivityResult() {
+		return activityResult;
+	}
+	public void setActivityResult(ActivityResult activityResult) {
+		this.activityResult = activityResult;
 	}
 }

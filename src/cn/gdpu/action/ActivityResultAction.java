@@ -2,6 +2,7 @@ package cn.gdpu.action;
 
 import cn.gdpu.service.ActivityResultService;
 import cn.gdpu.vo.ActivityResult;
+import cn.gdpu.vo.Manager;
 
 public class ActivityResultAction extends BaseAction {
 	private ActivityResultService<ActivityResult, Integer> activityResultService;
@@ -27,8 +28,11 @@ public class ActivityResultAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		// TODO Auto-generated method stub
-		return super.goAdd();
+		Manager manager = (Manager) getSession().get("manager");
+		if(manager != null){
+			return super.goAdd();
+		}
+		return ERROR;
 	}
 
 	@Override

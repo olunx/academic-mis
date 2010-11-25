@@ -13,6 +13,7 @@
 		<property name="record" />
 		<property name="status" />
 		<one-to-one name="opus" class="Opus" property-ref="activityApply" />
+		<one-to-one name="activityResult" class="ActivityResult" property-ref="awarder" />
 	    
 		
 		<!-- TeamApply -->

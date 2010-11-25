@@ -14,7 +14,7 @@
 <body>
 	修改活动作品页面<br />
 	<form action="<%=path %>/opus/modifyOpus" method="post">
-		小组名称：<input type="text" name="id" value="${opus.id}"/><br/>
+		<input type="hidden" name="id" value="${opus.id}"/><br/>
 		作品名称：<input type="text" name="opusDto.name" value="${opus.name}"/><br/>
 		作品简介：<textarea name="opusDto.intro" rows="" cols="" >${opus.intro}</textarea><br/>
 		指导老师：<input type="text" name="opusDto.instructor" value="${opus.instructor.tnum}"/><br/>

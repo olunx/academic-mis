@@ -15,7 +15,6 @@ public class Activity {
 	 * 0=不用交作品，1=作品必要
 	 */
 	private int opusNeed;
-	private Set<ActivityResult> activityResults;
 	private Date airtime;
 	private Date deadtime;
 	private Manager publisher;
@@ -64,12 +63,6 @@ public class Activity {
 	}
 	public void setOpusNeed(int opusNeed) {
 		this.opusNeed = opusNeed;
-	}
-	public Set<ActivityResult> getActivityResults() {
-		return activityResults;
-	}
-	public void setActivityResults(Set<ActivityResult> activityResults) {
-		this.activityResults = activityResults;
 	}
 	public Date getAirtime() {
 		return airtime;

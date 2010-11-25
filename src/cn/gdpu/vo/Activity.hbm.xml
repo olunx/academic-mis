@@ -12,10 +12,6 @@
 		<many-to-one name="activityType" column="atId" />
 		<property name="applyCount" />
 		<property name="opusNeed" />
-		<set name="activityResults" cascade="all" lazy="false" order-by="id asc">
-			<key column="activityId" />
-			<one-to-many class="ActivityResult" />
-		</set>
 		<property name="airtime" />
 		<property name="deadtime" />
 		<property name="time" />

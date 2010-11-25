@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>创建活动作品</title>
+<title>添加活动结果</title>
 
 <%
 	String path = request.getContextPath();
@@ -12,13 +12,12 @@
 
 </head>
 <body>
-	创建活动作品页面<br />
-	<form action="<%=path %>/opus/addOpus" method="post">
+	添加活动结果页面<br />
+	<form action="<%=path %>/activityResult/addActivityResult" method="post">
 		<input type="hidden" name="id" value="${id}"/><br/>
-		作品名称：<input type="text" name="opusDto.name" /><br/>
-		作品简介：<textarea name="opusDto.intro" rows="" cols="" ></textarea><br/>
-		指导老师：<input type="text" name="opusDto.instructor" /><br/>
-		<input type="submit" value="创建">
+		获奖等级：<input type="text" name="arDto.prize" /><br/>
+		获奖说明：<textarea name="arDto.remark" rows="" cols="" ></textarea><br/>
+		<input type="submit" value="添加">
 	</form>
 </body>
 </html>

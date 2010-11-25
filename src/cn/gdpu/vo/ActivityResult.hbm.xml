@@ -7,7 +7,10 @@
 			<generator class="native" />
 		</id>
 		<property name="prize" />
-		<many-to-one name="awarder" column="aaId"/>
 		<property name="remark" />
+		<many-to-one name="awarder" class="ActivityApply" cascade="save-update" fetch="select">
+			<column name="aaId" />
+	    </many-to-one>  
+		<property name="record" />
 	</class>
 </hibernate-mapping>

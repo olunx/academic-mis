@@ -167,4 +167,21 @@
 		<action name="*Opus" class="cn.gdpu.action.OpusAction" method="{1}">
 		</action>
 	</package>
+	
+	<!-- activityResult管理 -->
+	<package name="activityResult" extends="struts-default" namespace="/activityResult">
+		<default-action-ref name="listActivityResult"	/>
+		<global-results>
+			<result name="list" type="redirect">listActivityResult?page=${page}</result>
+			<result name="add" type="redirectAction">
+				<param name="namespace">/activity</param>
+				<param name="actionName">listApplyActivity?page=${page}</param>
+			</result>
+			<result name="viewPage">/WEB-INF/model/activityResult/activityResultView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/activityResult/activityResultModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/activityResult/activityResultAdd.jsp</result>
+		</global-results>
+		<action name="*ActivityResult" class="cn.gdpu.action.ActivityResultAction" method="{1}">
+		</action>
+	</package>
 </struts>    
