@@ -4,6 +4,7 @@ package cn.gdpu.vo;
 public class ActivityResult {
 	private int id;
 	private int prize;
+	private String name;
 	private String remark;
 	private ActivityApply awarder;
 	private String record;
@@ -18,6 +19,12 @@ public class ActivityResult {
 	}
 	public void setPrize(int prize) {
 		this.prize = prize;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public ActivityApply getAwarder() {
 		return awarder;

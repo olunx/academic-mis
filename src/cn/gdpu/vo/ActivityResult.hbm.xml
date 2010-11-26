@@ -7,6 +7,7 @@
 			<generator class="native" />
 		</id>
 		<property name="prize" />
+		<property name="name" />
 		<property name="remark" />
 		<many-to-one name="awarder" class="ActivityApply" cascade="save-update" fetch="select">
 			<column name="aaId" />
