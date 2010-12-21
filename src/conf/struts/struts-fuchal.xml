@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts 
+	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+
+	<!-- index -->
+	<package name="index" extends="struts-default" namespace="/">
+		<default-action-ref name="index"/>
+		
+		<action name="index" class="cn.gdpu.action.IndexAction" method="index">
+			<result name="success" type="redirect">/index.html</result>
+		</action>
+		<action name="login" class="cn.gdpu.action.IndexAction" method="login">
+			<result name="stulogin">/WEB-INF/model/student/studentIndex.jsp</result>
+			<result name="asslogin">/WEB-INF/model/assistant/assistantIndex.jsp</result>
+			<result name="tchlogin">/WEB-INF/model/teacher/teacherIndex.jsp</result>
+			<result name="gologin">/index.html</result>
+			<result name="error">/index.html</result>
+		</action>
+		<action name="admin" class="cn.gdpu.action.AdminAction" method="goLogin">
+			<result name="gologin">/admin/adminLogin.jsp</result>
+		</action>
+		<action name="install" class="cn.gdpu.action.InstallAction" method="install">
+			<result name="success" >/WEB-INF/model/install/installSuc.jsp</result>
+			<result name="error" >/WEB-INF/model/install/installFail.jsp</result>
+		</action>
+	</package>
+	
+	<!-- admin管理 -->
+	<package name="admin" extends="struts-default" namespace="/admin">
+		<default-action-ref name="goLoginAdmin"	/>
+		<global-results>
+			<result name="list" type="redirect">listAdmin?page=${page}</result>
+			<result name="index">/WEB-INF/model/admin/adminList.jsp</result>
+			<result name="gologin">/admin/adminLogin.jsp</result>
+			<result name="logout">/admin/adminLogin.jsp</result>
+			<result name="indexPage">/admin/adminIndex.jsp</result>
+			<result name="viewPage">/WEB-INF/model/admin/adminView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/admin/adminModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/admin/adminAdd.jsp</result>
+		</global-results>
+		<action name="goLoginAdmin" class="cn.gdpu.action.AdminAction" method="goLogin">
+		</action>
+		<action name="*Admin" class="cn.gdpu.action.AdminAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- student管理 -->
+	<package name="student" extends="struts-default" namespace="/student">
+		<default-action-ref name="goLoginStudent"	/>
+		<global-results>
+			<result name="gologin">/index.html</result>
+			<result name="logout">index.html</result>
+			<result name="indexPage">/WEB-INF/model/student/studentIndex.jsp</result>
+			<result name="viewPage">/WEB-INF/model/student/studentIndex.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/student/studentModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/student/studentAdd.jsp</result>
+		</global-results>
+		<action name="goLoginStudent" class="cn.gdpu.action.StudentAction" method="goLogin">
+		</action>
+		<action name="*Student" class="cn.gdpu.action.StudentAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- teacher管理 -->
+	<package name="teacher" extends="struts-default" namespace="/teacher">
+		<default-action-ref name="goLoginTeacher"	/>
+		<global-results>
+			<result name="gologin">/index.html</result>
+			<result name="logout">index.html</result>
+			<result name="indexPage">/WEB-INF/model/teacher/teacherIndex.jsp</result>
+			<result name="viewPage">/WEB-INF/model/teacher/teacherView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/teacher/teacherModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/teacher/teacherAdd.jsp</result>
+		</global-results>
+		<action name="goLoginTeacher" class="cn.gdpu.action.TeacherAction" method="goLogin">
+		</action>
+		<action name="*Teacher" class="cn.gdpu.action.TeacherAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- group管理 -->
+	<package name="group" extends="struts-default" namespace="/group">
+		<default-action-ref name="listGroup"	/>
+		<global-results>
+			<result name="list" type="redirect">listGroup?page=${page}</result>
+			<result name="index">/WEB-INF/model/group/groupList.jsp</result>
+			<result name="listall">/WEB-INF/model/group/groupListAll.jsp</result>
+			<result name="listme">/WEB-INF/model/group/groupListMe.jsp</result>
+			<result name="check" type="redirect">listApplyGroup?page=${page}</result>
+			<result name="listapply">/WEB-INF/model/group/groupListApply.jsp</result>
+			<result name="gologin">/index.html</result>
+			<result name="logout">index.html</result>
+			<result name="viewPage">/WEB-INF/model/group/groupView.jsp</result>
+			<result name="audit" type="redirect">viewGroup?id=${group.id}</result>
+			<result name="modifyPage">/WEB-INF/model/group/groupModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/group/groupAdd.jsp</result>
+		</global-results>
+		<action name="*Group" class="cn.gdpu.action.GroupAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- assistant管理 -->
+	<package name="assistant" extends="struts-default" namespace="/assistant">
+		<default-action-ref name="goLoginAssistant"	/>
+		<global-results>
+			<result name="list" type="redirect">listAssistant?page=${page}</result>
+			<result name="index">/WEB-INF/model/assistant/assistantList.jsp</result>
+			<result name="gologin">/index.html</result>
+			<result name="logout">/goods/listGoods</result>
+			<result name="viewPage">/WEB-INF/model/assistant/assistantIndex.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/assistant/assistantModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/assistant/assistantAdd.jsp</result>
+		</global-results>
+		<action name="goLoginAssistant" class="cn.gdpu.action.AssistantAction" method="goLogin">
+		</action>
+		<action name="*Assistant" class="cn.gdpu.action.AssistantAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- activity管理 -->
+	<package name="activity" extends="struts-default" namespace="/activity">
+		<default-action-ref name="listActivity"	/>
+		<global-results>
+			<result name="list" type="redirect">listActivity?page=${page}</result>
+			<result name="index">/WEB-INF/model/activity/activityList.jsp</result>
+			<result name="viewPage">/WEB-INF/model/activity/activityView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/activity/activityModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/activity/activityAdd.jsp</result>
+			<result name="applyPage">/WEB-INF/model/activity/activityApply.jsp</result>
+			<result name="check" type="redirect">listApplyActivity?page=${page}</result>
+			<result name="audit" type="redirect">viewActivity?id=${activityApply.activity.id}</result>
+			<result name="listapply">/WEB-INF/model/activity/activityListApply.jsp</result>
+		</global-results>
+		<action name="*Activity" class="cn.gdpu.action.ActivityAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- activityType管理 -->
+	<package name="activitytype" extends="struts-default" namespace="/activitytype">
+		<default-action-ref name="listActivityType"	/>
+		<global-results>
+			<result name="list" type="redirect">listActivityType?page=${page}</result>
+			<result name="index">/WEB-INF/model/activitytype/activityTypeList.jsp</result>
+			<result name="viewPage">/activitytype/activityTypeIndex.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/activitytype/activityTypeModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/activitytype/activityTypeAdd.jsp</result>
+		</global-results>
+		<action name="*ActivityType" class="cn.gdpu.action.ActivityTypeAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- opus管理 -->
+	<package name="opus" extends="struts-default" namespace="/opus">
+		<default-action-ref name="listOpus"	/>
+		<global-results>
+			<result name="list" type="redirect">listOpus?page=${page}</result>
+			<result name="add" type="redirectAction">
+				<param name="namespace">/activity</param>
+				<param name="actionName">listApplyActivity?page=${page}</param>
+			</result>
+			<result name="viewPage">/WEB-INF/model/opus/opusView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/opus/opusModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/opus/opusAdd.jsp</result>
+		</global-results>
+		<action name="*Opus" class="cn.gdpu.action.OpusAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- activityResult管理 -->
+	<package name="activityResult" extends="struts-default" namespace="/activityResult">
+		<default-action-ref name="listActivityResult"	/>
+		<global-results>
+			<result name="list" type="redirect">listActivityResult?page=${page}</result>
+			<result name="save" type="redirectAction">
+				<param name="namespace">/activity</param>
+				<param name="actionName">viewActivity</param>
+				<param name="id">${activityApply.activity.id}</param>
+			</result>
+			<result name="viewPage">/WEB-INF/model/activityResult/activityResultView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/activityResult/activityResultModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/activityResult/activityResultAdd.jsp</result>
+		</global-results>
+		<action name="*ActivityResult" class="cn.gdpu.action.ActivityResultAction" method="{1}">
+		</action>
+	</package>
+</struts>    
