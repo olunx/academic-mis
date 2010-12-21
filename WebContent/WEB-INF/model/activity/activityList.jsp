@@ -47,7 +47,7 @@
 						<td>第${activity.session}届</td>
 						<td>${activity.activityType.name}</td>
 						<td>${activity.applyCount == 1 ? '单人报名' : '团队报名'},限${activity.applyCount }人</td>
-						<td>${activity.publisher.permission == 1? '系统管理员' : '管理员助理'}:${activity.publisher.realName}</td>
+						<td>${my:userTypeCompare(activity.publisher) == 1? '系统管理员' : '管理员助理'}:${activity.publisher.realName}</td>
 						<td>${activity.time}</td>
 						<th>${activity.opusNeed == 1  ? '要求作品' : '无需作品'}</th>
 						<c:if test="${manager != null }">

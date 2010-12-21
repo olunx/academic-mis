@@ -73,11 +73,17 @@
 		<function-signature>boolean isMyOpus(cn.gdpu.vo.ActivityApply,cn.gdpu.vo.Student)</function-signature>
 	</function>
 	
-	
 	<!-- 时间格式函数 -->
 	<function>
 		<name>formatDate</name>
 		<function-class>cn.gdpu.jstl.Functions</function-class>
 		<function-signature>String formatDate(java.util.Date)</function-signature>
+	</function>
+	
+	<!-- 用户类型判断 -->
+	<function>
+		<name>userTypeCompare</name>
+		<function-class>cn.gdpu.jstl.Functions</function-class>
+		<function-signature>Integer userTypeCompare(java.lang.Object)</function-signature>
 	</function>
 </taglib>

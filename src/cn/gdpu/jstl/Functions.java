@@ -3,6 +3,11 @@ package cn.gdpu.jstl;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import cn.gdpu.vo.Admin;
+import cn.gdpu.vo.Assistant;
+import cn.gdpu.vo.Student;
+import cn.gdpu.vo.Teacher;
 public class Functions {
 	public static String formatDate(Date date) {
 		Calendar cal = Calendar.getInstance();
@@ -29,4 +34,17 @@ public class Functions {
 		else
 			return new SimpleDateFormat("yyyy-MM-dd hh:mm").format(date);
 	};
+	
+	public static int userTypeCompare(Object object) {
+		if(object instanceof Admin)
+			return 1;
+		else if(object instanceof Assistant)
+			return 2;
+		else if(object instanceof Student)
+			return 3;
+		else if(object instanceof Teacher)
+			return 4;
+		else return 0;
+	}
+	
 }

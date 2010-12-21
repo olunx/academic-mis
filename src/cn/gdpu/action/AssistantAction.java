@@ -41,7 +41,6 @@ public class AssistantAction extends BaseAction{
 						ass.setUsername(asDto.getUsername());
 						ass.setPassword(Md5.getMD5(asDto.getPassword().getBytes()));
 						ass.setRealName(asDto.getRealName());
-						ass.setPermission(2);
 						ass.setRemark("管理员助理");
 						assistantService.addEntity(ass);
 						return super.add();
