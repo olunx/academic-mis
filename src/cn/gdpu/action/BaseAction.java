@@ -15,6 +15,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware, 
 	public final String ADD_PAGE = "addPage";
 	public final String MODIFY_PAGE = "modifyPage";
 	public final String VIEW_PAGE = "viewPage";
+	public final String LIST_PAGE = "listPage";
 	public final String LIST = "list";
 	private Map<String, Object> request;
 	private Map<String, Object> session;
@@ -25,7 +26,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware, 
 	 * @return
 	 */
 	public String list() {
-		return INDEX;
+		return LIST_PAGE;
 	}
 
 	/**

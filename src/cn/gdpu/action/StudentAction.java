@@ -17,8 +17,12 @@ import cn.gdpu.service.InstituteService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
+import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.ActivityType;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
+import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -29,6 +33,8 @@ public class StudentAction extends BaseAction {
 	private StudentService<Student, Integer> studentService;
 	private StudentDto stuDto;
 	private Student student;
+	private PageBean pageBean;
+	private int page;
 
 	public void prepare() throws Exception {
 		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
@@ -148,8 +154,16 @@ public class StudentAction extends BaseAction {
 
 	@Override
 	public String list() {
-		// TODO Auto-generated method stub
-		return super.list();
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null){
+			this.pageBean = this.studentService.queryForPage(Student.class, 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+
+			return super.list();
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -204,5 +218,21 @@ public class StudentAction extends BaseAction {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
 	}
 }

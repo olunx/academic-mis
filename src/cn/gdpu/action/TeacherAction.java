@@ -16,8 +16,11 @@ import cn.gdpu.service.InstituteService;
 import cn.gdpu.service.TeacherService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
+import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
+import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Teacher;
 
@@ -26,6 +29,8 @@ public class TeacherAction extends BaseAction {
 	private TeacherService<Teacher, Integer> teacherService;
 	private Teacher teacher;
 	private TeacherDto teaDto;
+	private PageBean pageBean;
+	private int page;
 
 	public void prepare() throws Exception {
 		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
@@ -113,8 +118,16 @@ public class TeacherAction extends BaseAction {
 
 	@Override
 	public String list() {
-		// TODO Auto-generated method stub
-		return super.list();
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null){
+			this.pageBean = this.teacherService.queryForPage(Teacher.class, 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+
+			return super.list();
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -161,6 +174,22 @@ public class TeacherAction extends BaseAction {
 
 	public void setTeaDto(TeacherDto teaDto) {
 		this.teaDto = teaDto;
+	}
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
 	}
 
 }
