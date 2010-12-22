@@ -1,5 +1,7 @@
 package cn.gdpu.vo;
 
+import java.util.Set;
+
 public abstract class People {
 	private int id;
 	private String username;
@@ -9,6 +11,7 @@ public abstract class People {
 	private int sex;
 	private int age;
 	private String remark;
+	private Set<Post> posts;
 	
 	public int getId() {
 		return id;
@@ -57,5 +60,11 @@ public abstract class People {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public Set<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
 	}
 }
