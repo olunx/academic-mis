@@ -188,4 +188,31 @@
 		<action name="*ActivityResult" class="cn.gdpu.action.ActivityResultAction" method="{1}">
 		</action>
 	</package>
+	
+	<!-- noticeType管理 -->
+	<package name="noticetype" extends="struts-default" namespace="/noticetype">
+		<default-action-ref name="listNoticeType"	/>
+		<global-results>
+			<result name="list" type="redirect">listNoticeType?page=${page}</result>
+			<result name="listPage">/WEB-INF/model/noticetype/noticeTypeList.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/noticetype/noticeTypeModify.jsp</result>
+			<result name="addPage">/WEB-INF/model/noticetype/noticeTypeAdd.jsp</result>
+		</global-results>
+		<action name="*NoticeType" class="cn.gdpu.action.NoticeTypeAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- notice管理 -->
+	<package name="notice" extends="struts-default" namespace="/notice">
+		<default-action-ref name="listNotice"	/>
+		<global-results>
+			<result name="list" type="redirect">listNotice?page=${page}</result>
+			<result name="listPage">/WEB-INF/model/notice/noticeList.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/notice/noticeModify.jsp</result>
+			<result name="viewPage">/WEB-INF/model/notice/noticeView.jsp</result>
+			<result name="addPage">/WEB-INF/model/notice/noticeAdd.jsp</result>
+		</global-results>
+		<action name="*Notice" class="cn.gdpu.action.NoticeAction" method="{1}">
+		</action>
+	</package>
 </struts>    

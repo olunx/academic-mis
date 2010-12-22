@@ -11,6 +11,8 @@
 	欢迎您 ${manager.realName } 进入助理管理页面<br/>
 	<a href="<%=path %>/activity/goAddActivity">添加学术活动</a><br/>
 	<a href="<%=path %>/activity/listActivity">列出学术活动</a><br/>
+	<a href="<%=path %>/noticetype/goAddNoticeType">添加通知类型</a><br/>
+	<a href="<%=path %>/noticetype/listNoticeType">列出通知类型</a><br/>
 	
 </body>
 </html>

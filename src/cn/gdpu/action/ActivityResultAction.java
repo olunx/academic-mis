@@ -10,7 +10,9 @@ import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.ActivityResult;
 import cn.gdpu.vo.Manager;
 
+@SuppressWarnings("serial")
 public class ActivityResultAction extends BaseAction {
+	
 	private ActivityResultService<ActivityResult, Integer> activityResultService;
 	private ActivityApplyService<ActivityApply, Integer> activityApplyService;
 	private ActivityResult activityResult;
