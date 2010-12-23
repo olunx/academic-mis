@@ -13,6 +13,8 @@
 	<a href="<%=path %>/activity/listActivity">列出学术活动</a><br/>
 	<a href="<%=path %>/noticetype/goAddNoticeType">添加通知类型</a><br/>
 	<a href="<%=path %>/noticetype/listNoticeType">列出通知类型</a><br/>
+	<a href="<%=path %>/notice/goAddNotice">添加通知</a><br/>
+	<a href="<%=path %>/notice/listNotice">列出通知</a><br/>
 	
 </body>
 </html>
