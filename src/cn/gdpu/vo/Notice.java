@@ -10,6 +10,8 @@ public class Notice {
 	private NoticeType type;
 	private Manager author;
 	private Date time;
+	private String remark;
+	private int isCmsAllow;
 	private List<Post> comments;
 	
 	public int getId() {
@@ -47,6 +49,18 @@ public class Notice {
 	}
 	public void setTime(Date time) {
 		this.time = time;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public int getIsCmsAllow() {
+		return isCmsAllow;
+	}
+	public void setIsCmsAllow(int isCmsAllow) {
+		this.isCmsAllow = isCmsAllow;
 	}
 	public List<Post> getComments() {
 		return comments;

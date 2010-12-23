@@ -10,7 +10,9 @@
 	        <many-to-one name="author" column="managerId" />
 	        <property name="title" />
 	        <property name="time" />
+	        <property name="remark" />
 	        <property name="content" type="text" />
+			<property name="isCmsAllow" />
 	        <list name="comments" inverse="false" lazy="true" cascade="all">
 	                <key column="parentid" />
 	                <list-index column="commentlistid"/>

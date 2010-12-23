@@ -215,4 +215,27 @@
 		<action name="*Notice" class="cn.gdpu.action.NoticeAction" method="{1}">
 		</action>
 	</package>
+	
+	<!-- post管理 -->
+	<package name="post" extends="struts-default" namespace="/post">
+		<default-action-ref name="listPost"	/>
+		<global-results>
+			<result name="list" type="redirect">listPost?page=${page}</result>
+			<result name="listPage">/WEB-INF/model/post/postList.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/post/postModify.jsp</result>
+			<result name="viewPage">/WEB-INF/model/post/postView.jsp</result>
+			<result name="addPage">/WEB-INF/model/post/postAdd.jsp</result>
+		</global-results>
+		<action name="*Post" class="cn.gdpu.action.PostAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- xheditor Editor 插入本地图片action配置	-->
+	<package name="editor" extends="struts-default" namespace="/xheditor">
+		<action name="editorUpload" class="cn.gdpu.action.EditorUploadAction" >
+			<param name="savePath">/upload/xheditor</param>
+			<result name="success">/content/xheditor/xheditorRes.jsp</result>
+			<result name="error">/content/xheditor/xheditorRes.jsp</result>
+		</action>
+	</package>
 </struts>    
