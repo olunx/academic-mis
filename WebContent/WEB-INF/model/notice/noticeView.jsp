@@ -25,19 +25,6 @@
 			</div>
 			<c:choose>
 				<c:when test="${notice.isCmsAllow == 1}">
-					<c:forEach items="${posts}" var="post" varStatus="i">
-						<div class="post">
-							<div class="post_info">
-	                        <a class="btn_del float_right"  href="<%=path %>/post/deletePost?id=${param.id }&pid=${post.id }">删除</a>
-	                        <a class="btn_edit float_right" href="<%=path %>/post/goModifyPost?id=${param.id }&pid=${post.pid }">编辑</a>
-	                        ${i.count}.${post.author.realName} <fmt:formatDate value="${post.time}" pattern="yyyy-MM-dd HH:mm"/>
-							</div>
-							<div class="post_content">
-							${post.content}
-							</div>
-						</div>
-					</c:forEach>
-					
 					<div id="notice_post">
 						<form action="<%=path %>/post/addPost" method="post">
 							评论：
@@ -46,6 +33,20 @@
 							<input type="submit" value="写好了，保存" />
 						</form>
 					</div>
+					<br/><br/>
+					<c:forEach items="${notice.comments}" var="post" varStatus="i">
+						<div class="post">
+							<div class="post_info">
+	                        <a class="btn_del float_right"  href="<%=path %>/post/deletePost?id=${notice.id }&pid=${post.id }">删除</a>
+	                        <a class="btn_edit float_right" href="<%=path %>/post/goModifyPost?id=${notice.id }&pid=${post.id }">编辑</a>
+	                        ${i.count}.${post.author.realName} <fmt:formatDate value="${post.time}" pattern="yyyy-MM-dd HH:mm"/>
+							</div>
+							<div class="post_content">
+							${post.content}
+							</div>
+						</div>
+					</c:forEach>
+					
 				</c:when>
 				<c:otherwise>
 					评论已关闭

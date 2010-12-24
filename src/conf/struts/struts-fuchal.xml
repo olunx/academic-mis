@@ -220,6 +220,11 @@
 	<package name="post" extends="struts-default" namespace="/post">
 		<default-action-ref name="listPost"	/>
 		<global-results>
+			<result name="notice" type="redirectAction">
+				<param name="namespace">/notice</param>
+				<param name="actionName">viewNotice</param>
+				<param name="id">${id}</param>
+			</result>
 			<result name="list" type="redirect">listPost?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/post/postList.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/post/postModify.jsp</result>

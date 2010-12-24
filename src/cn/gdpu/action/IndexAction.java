@@ -27,6 +27,7 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Student student = studentService.getStudentByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(student != null){
+					getSession().put("people", student);
 					getSession().put("student", student);
 					if(getSession().get("manager") != null) getSession().put("manager", null);
 					if(getSession().get("teacher") != null) getSession().put("teacher", null);
@@ -45,6 +46,7 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Teacher teacher = teacherService.getTeacherByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(teacher!= null){
+					getSession().put("people", teacher);
 					getSession().put("teacher", teacher);
 					if(getSession().get("manager") != null) getSession().put("manager", null);
 					if(getSession().get("student") != null) getSession().put("student", null);
@@ -62,6 +64,7 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Assistant assistant = assistantService.getAssistantByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(assistant != null){
+					getSession().put("people", assistant);
 					getSession().put("manager", assistant);
 					if(getSession().get("student") != null) getSession().put("student", null);
 					if(getSession().get("teacher") != null) getSession().put("teacher", null);

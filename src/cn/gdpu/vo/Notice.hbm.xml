@@ -13,10 +13,9 @@
 	        <property name="remark" />
 	        <property name="content" type="text" />
 			<property name="isCmsAllow" />
-	        <list name="comments" inverse="false" lazy="true" cascade="all">
-	                <key column="parentid" />
-	                <list-index column="commentlistid"/>
-	                <one-to-many class="Post" />
-	        </list>
+			<set name="comments" cascade="all" lazy="false" order-by="id asc">
+				<key column="noticeId" />
+				<one-to-many class="Post" />
+			</set>
 	</class>
 </hibernate-mapping>
