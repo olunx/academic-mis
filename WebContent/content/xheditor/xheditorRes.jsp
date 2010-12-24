@@ -1,1 +1,1 @@
-{"err":"${err}","msg":"${imgUrl}"}
+{'err':"${err}",'msg':${msg}}
