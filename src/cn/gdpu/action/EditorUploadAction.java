@@ -27,7 +27,7 @@ public class EditorUploadAction extends BaseAction {
 	public String execute() throws Exception {
 		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
 		ServletContext context = ServletActionContext.getServletContext();
-		
+		String msg = "";
 		if ("application/octet-stream".equals(httpRequest.getContentType())) { //HTML 5 上传
             try {
                 String dispoString = httpRequest.getHeader("Content-Disposition");
@@ -54,26 +54,24 @@ public class EditorUploadAction extends BaseAction {
                 	getRequest().put("err", "上传文件的大小超出限制");
                     return ERROR;
                 }
-                System.out.println("sFileName : " + sFileName);
                 if (checkFileType(sFileName)){ 
                 	getRequest().put("err", "不允许上传此类型的文件");
                 	return ERROR; //检查文件类型
                 }
                 
                 String filepathString = generateFileName(sFileName);
-                System.out.println("output : " + context.getRealPath("") +  savePath + "/" + filepathString);
                 OutputStream out=new BufferedOutputStream(new FileOutputStream(context.getRealPath("") +  savePath + "/" + filepathString,true));
                 out.write(buffer);
                 out.close();
                 
                 imgUrl = context.getContextPath() + savePath + "/" + filepathString;
+                msg = "{'url':'" + jsonString(imgUrl) + "','localname':'" + jsonString(filepathString) + "','id':'1'}";
             } catch (Exception ex) {
                 System.out.println("ex : " + ex.getMessage());
                 getRequest().put("err", ex.getMessage());
                 return ERROR;
             }
-            System.out.println("imgUrl : " + imgUrl);
-            getRequest().put("imgUrl", imgUrl);
+            getRequest().put("msg", msg);
             return SUCCESS;
 		}else{
 			if(filedata == null){
@@ -95,8 +93,8 @@ public class EditorUploadAction extends BaseAction {
 				e.printStackTrace();
 			}
 			imgUrl = context.getContextPath() + savePath + "/" + targetFileName;
-			 System.out.println("imgUrl : " + imgUrl);
-			getRequest().put("imgUrl", imgUrl);
+			msg = "{'url':'" + jsonString(imgUrl) + "','localname':'" + jsonString(targetFileName) + "','id':'1'}";
+			getRequest().put("msg", msg);
 			return SUCCESS;
 		}
 	}
@@ -116,6 +114,14 @@ public class EditorUploadAction extends BaseAction {
         if (("," + fileExt.toLowerCase() + ",").indexOf("," + extensionName.toLowerCase() + ",") < 0) { //检查文件类型
         	return true;
         }else return false;
+    }
+    
+    public String jsonString(String str) 
+    {
+        str = str.replace("\\", "\\\\");
+        str = str.replace("/", "\\/");
+        str = str.replace("'", "\\'");
+        return str;
     }
     
 	//Getter and Setter

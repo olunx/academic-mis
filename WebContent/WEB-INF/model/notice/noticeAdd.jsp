@@ -14,7 +14,8 @@
 $(pageInit);
 function pageInit()
 {
-	$('#elm1').xheditor({upLinkUrl:"<%=path %>/xheditor/editorUpload.action",upLinkExt:"zip,rar,txt",upImgUrl:"<%=path %>/xheditor/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",upFlashUrl:"<%=path %>/xheditor/editorUpload.action",upFlashExt:"swf",upMediaUrl:"<%=path %>/xheditor/editorUpload.action",upMediaExt:"wmv,avi,wma,mp3,mid",shortcuts:{'ctrl+enter':submitForm}});
+	$('#elm1').xheditor({upLinkUrl:"<%=path %>/xheditor/editorUpload.action",upLinkExt:"zip,rar,txt",upImgUrl:"<%=path %>/xheditor/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",upFlashUrl:"<%=path %>/xheditor/editorUpload.action",upFlashExt:"swf",upMediaUrl:"<%=path %>/xheditor/editorUpload.action",upMediaExt:"wmv,avi,wma,mp3,mid",onUpload:insertUpload,shortcuts:{'ctrl+enter':submitForm}});
+	$('#elm6').xheditor({upLinkUrl:"<%=path %>/xheditor/editorUpload.action",upLinkExt:"zip,rar,txt",upImgUrl:"<%=path %>/xheditor/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",onUpload:insertUpload,shortcuts:{'ctrl+enter':submitForm}});
 }
 function insertUpload(arrMsg)
 {
@@ -46,7 +47,7 @@ function submitForm(){$('#frmDemo').submit();}
 		<a href="<%=path %>/noticetype/goAddNoticeType">新建类型</a>
 		是否允许评论: <input type="radio" name="noticeDto.isCmsAllow" value="1" checked="checked" />是
 					<input type="radio" name="noticeDto.isCmsAllow" value="0" />否<br/>
-		通知内容：<br/><textarea id="elm1" name="noticeDto.content" rows="20" cols="80" style="width: 60%"></textarea>
+		通知内容：<br/><textarea id="elm6" name="noticeDto.content" rows="20" cols="80" style="width: 60%"></textarea>
 		<br /><br />上传文件列表：<select id="uploadList" style="width:350px;"></select>
 		<br/><br />
 		<input type="submit" name="save" value="发表" />
