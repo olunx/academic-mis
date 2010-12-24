@@ -13,7 +13,6 @@ import cn.gdpu.service.NoticeService;
 import cn.gdpu.service.NoticeTypeService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
-import cn.gdpu.vo.Activity;
 import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Notice;
 import cn.gdpu.vo.NoticeType;
@@ -68,13 +67,20 @@ public class NoticeAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		// TODO Auto-generated method stub
-		return super.delete();
+		Manager manager = (Manager) getSession().get("manager");
+		if(manager != null){
+			if(id <= 0) return ERROR;
+			notice = noticeService.getEntity(Notice.class, id);
+			if(notice == null) return ERROR;
+			noticeService.deleteEntity(Notice.class, id);
+			Log.init(getClass()).info(manager.getRealName() + " 删除了通知 " + notice.getTitle());
+			return super.delete();
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String deleteMany() {
-		// TODO Auto-generated method stub
 		return super.deleteMany();
 	}
 

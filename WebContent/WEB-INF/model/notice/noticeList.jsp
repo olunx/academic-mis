@@ -36,7 +36,15 @@
 						<td>${notice.type.name}</td>
 						<td>
 							<c:choose>
-								<c:when test="${notice.isCmsAllow == 1}">有<a href="<%=path%>/notice/viewNotice?id=${notice.id }">${fn:length(notice.comments)}</a>条评论
+								<c:when test="${notice.isCmsAllow == 1}">
+									<c:choose>
+										<c:when test="${fn:length(notice.comments) == 0}">
+											暂无评论
+										</c:when>
+										<c:otherwise>
+											有<a href="<%=path%>/notice/viewNotice?id=${notice.id }">${fn:length(notice.comments)}</a>条评论
+										</c:otherwise>
+									</c:choose>
 								</c:when>
 								<c:otherwise>
 									禁止评论

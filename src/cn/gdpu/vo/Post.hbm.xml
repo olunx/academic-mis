@@ -7,7 +7,7 @@
 	                <generator class="native" />
 	        </id>
 	        <many-to-one name="author" column="peopleId" />
-	        <many-to-one name="parent" column="parentid"/>
+	        <many-to-one name="parent" column="noticeId" cascade="save-update"/>
 	        <property name="time" />
 	        <property name="content" type="text"/>
 	</class>

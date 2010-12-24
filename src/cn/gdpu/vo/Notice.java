@@ -1,7 +1,7 @@
 package cn.gdpu.vo;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 public class Notice {
 	private int id;
@@ -12,7 +12,7 @@ public class Notice {
 	private Date time;
 	private String remark;
 	private int isCmsAllow;
-	private List<Post> comments;
+	private Set<Post> comments;
 	
 	public int getId() {
 		return id;
@@ -62,10 +62,10 @@ public class Notice {
 	public void setIsCmsAllow(int isCmsAllow) {
 		this.isCmsAllow = isCmsAllow;
 	}
-	public List<Post> getComments() {
+	public Set<Post> getComments() {
 		return comments;
 	}
-	public void setComments(List<Post> comments) {
+	public void setComments(Set<Post> comments) {
 		this.comments = comments;
 	}
 }
