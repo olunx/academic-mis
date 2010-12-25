@@ -135,7 +135,15 @@
 	<bean name="noticeService" class="cn.gdpu.service.impl.NoticeServiceImpl" scope="prototype">
 		<property name="baseDao" ref="noticeDaoImpl" />
 	</bean>
-
+	
+	<!-- noticeHot bean -->
+	<bean name="noticeHotDaoImpl" class="cn.gdpu.dao.impl.NoticeHotDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="noticeHotService" class="cn.gdpu.service.impl.NoticeHotServiceImpl" scope="prototype">
+		<property name="baseDao" ref="noticeHotDaoImpl" />
+	</bean>
+	
 	<!-- noticeType bean -->
 	<bean name="noticeTypeDaoImpl" class="cn.gdpu.dao.impl.NoticeTypeDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -151,5 +159,6 @@
 	<bean name="postService" class="cn.gdpu.service.impl.PostServiceImpl" scope="prototype">
 		<property name="baseDao" ref="postDaoImpl" />
 	</bean>
+	
 	
 </beans>

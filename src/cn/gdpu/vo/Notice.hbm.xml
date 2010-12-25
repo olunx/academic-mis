@@ -17,5 +17,6 @@
 				<key column="noticeId" />
 				<one-to-many class="Post" />
 			</set>
+			<one-to-one name="noticeHot" class="NoticeHot" property-ref="notice" />
 	</class>
 </hibernate-mapping>

@@ -216,6 +216,20 @@
 		</action>
 	</package>
 	
+	<!-- noticeHot管理 -->
+	<package name="noticehot" extends="struts-default" namespace="/noticehot">
+		<default-action-ref name="listNoticeHot"	/>
+		<global-results>
+			<result name="list" type="redirect">listNoticeHot?page=${page}</result>
+			<result name="listPage">/WEB-INF/model/noticehot/noticeHotList.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/noticehot/noticeHotModify.jsp</result>
+			<result name="viewPage">/WEB-INF/model/noticehot/noticeHotView.jsp</result>
+			<result name="addPage">/WEB-INF/model/noticehot/noticeHotAdd.jsp</result>
+		</global-results>
+		<action name="*NoticeHot" class="cn.gdpu.action.NoticeHotAction" method="{1}">
+		</action>
+	</package>
+	
 	<!-- post管理 -->
 	<package name="post" extends="struts-default" namespace="/post">
 		<default-action-ref name="listPost"	/>

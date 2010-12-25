@@ -6,6 +6,7 @@ public class NoticeDto {
 	private String content;
 	private int type;
 	private int isCmsAllow;
+	private String image;
 	
 	public int getId() {
 		return id;
@@ -36,6 +37,12 @@ public class NoticeDto {
 	}
 	public void setIsCmsAllow(int isCmsAllow) {
 		this.isCmsAllow = isCmsAllow;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 }

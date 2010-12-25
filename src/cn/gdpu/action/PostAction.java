@@ -3,6 +3,10 @@ package cn.gdpu.action;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import cn.gdpu.service.NoticeService;
 import cn.gdpu.service.PostService;
 import cn.gdpu.util.Log;
@@ -26,6 +30,21 @@ public class PostAction extends BaseAction {
 	 */
 	private int pid;
 
+	
+	public void prepare() throws Exception {
+		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
+		String action=  httpRequest.getServletPath().split("/")[1];
+		String[] uri=action.split("\\.");
+		if(uri[0].equals("add")){
+			Notice notice = noticeService.getEntity(Notice.class, id);
+			getRequest().put("notice", notice);
+		}
+		if(uri[0].equals("modify")){
+			Notice notice = noticeService.getEntity(Notice.class, id);
+			getRequest().put("notice", notice);
+		}
+	}
+	
 	@Override
 	public String add() {
 		People author = (People) getSession().get("people");
