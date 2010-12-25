@@ -23,7 +23,7 @@ function insertUpload(arrMsg)
 	for(i=0;i<arrMsg.length;i++)
 	{
 		msg=arrMsg[i];
-		$("#uploadList").append('<option value="'+msg.id+'">'+msg.localname+'</option>');
+		$("#uploadList").append('<option value="'+msg.url+'">'+msg.url+'</option>');
 	}
 }
 function submitForm(){$('#frmDemo').submit();}
@@ -48,7 +48,7 @@ function submitForm(){$('#frmDemo').submit();}
 		是否允许评论: <input type="radio" name="noticeDto.isCmsAllow" value="1" checked="checked" />是
 					<input type="radio" name="noticeDto.isCmsAllow" value="0" />否<br/>
 		通知内容：<br/><textarea id="elm6" name="noticeDto.content" rows="20" cols="80" style="width: 60%"></textarea>
-		<br /><br />上传文件列表：<select id="uploadList" style="width:350px;"></select>
+		<br />上传图片列表：<select id="uploadList" style="width:350px;"></select>
 		<br/><br />
 		<input type="submit" name="save" value="发表" />
 		<input type="reset" name="reset" value="重置" />

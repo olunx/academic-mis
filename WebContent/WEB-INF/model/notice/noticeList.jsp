@@ -27,6 +27,7 @@
 					<th>评论</th>
 					<th>发表人</th>
 					<th>发表时间</th>
+					<th>热门</th>
 					<th>编辑</th>
 					<th>删除</th>
 				</tr>
@@ -53,6 +54,16 @@
 						</td>
 						<td>${notice.author.realName }</td>
 						<td><fmt:formatDate value="${notice.time}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+						<td>
+							<c:choose>
+								<c:when test="${notice.noticeHot == null}">
+									<a href="<%=path%>/noticehot/goAddNoticeHot?id=${notice.id }">设为热门</a>
+								</c:when>
+								<c:otherwise>
+									Hot-<a href="<%=path%>/noticehot/deleteNoticeHot?id=${notice.id }">取消</a>
+								</c:otherwise>
+							</c:choose>
+						</td>
 						<td><a href="<%=path%>/notice/goModifyNotice?id=${notice.id }">编辑</a></td>
 						<td><a href="<%=path%>/notice/deleteNotice?id=${notice.id }">删除</a></td>
 					</tr>

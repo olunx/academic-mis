@@ -13,6 +13,7 @@ public class Notice {
 	private String remark;
 	private int isCmsAllow;
 	private Set<Post> comments;
+	private NoticeHot noticeHot;
 	
 	public int getId() {
 		return id;
@@ -67,5 +68,11 @@ public class Notice {
 	}
 	public void setComments(Set<Post> comments) {
 		this.comments = comments;
+	}
+	public NoticeHot getNoticeHot() {
+		return noticeHot;
+	}
+	public void setNoticeHot(NoticeHot noticeHot) {
+		this.noticeHot = noticeHot;
 	}
 }
