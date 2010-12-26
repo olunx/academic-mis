@@ -1,12 +1,16 @@
 package cn.gdpu.action;
 
+import java.util.List;
+
 import cn.gdpu.dto.LoginDto;
 import cn.gdpu.service.AssistantService;
+import cn.gdpu.service.NoticeHotService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.service.TeacherService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
 import cn.gdpu.vo.Assistant;
+import cn.gdpu.vo.NoticeHot;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Teacher;
 
@@ -14,9 +18,15 @@ public class IndexAction extends BaseAction {
 	private StudentService<Student, Integer> studentService;
 	private AssistantService<Assistant, Integer> assistantService;
 	private TeacherService<Teacher, Integer> teacherService;
+	private NoticeHotService<NoticeHot, Integer> noticeHotService;
 	private LoginDto loginDto;
 	
 	public String index(){
+		String hql = "from NoticeHot nh order by nh.rank asc, nh.id desc";
+		List<NoticeHot> nhs = noticeHotService.queryForLimit(hql, 0, 6);
+		if(nhs.isEmpty() || nhs.size() == 0)
+			nhs = null;
+		getRequest().put("nhs", nhs);
 		return SUCCESS;
 	}
 
@@ -104,6 +114,15 @@ public class IndexAction extends BaseAction {
 
 	public void setTeacherService(TeacherService<Teacher, Integer> teacherService) {
 		this.teacherService = teacherService;
+	}
+
+	public NoticeHotService<NoticeHot, Integer> getNoticeHotService() {
+		return noticeHotService;
+	}
+
+	public void setNoticeHotService(
+			NoticeHotService<NoticeHot, Integer> noticeHotService) {
+		this.noticeHotService = noticeHotService;
 	}
 
 	public LoginDto getLoginDto() {

@@ -18,6 +18,10 @@
 <script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine-cn.js"></script>
 <script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine.js"></script>
 
+<!--[if IE]> 
+		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
+<![endif]-->
+
 <script type="text/javascript">
 
 //验证事件
@@ -31,7 +35,7 @@ $(document).ready(function() {
 		action: '<%=path%>/image/imageUpload', 
 		data:{
             'cutWidth':${cutWidth},
-            'cutHeight':${cutHeight},
+            'cutHeight':${cutHeight}
         },
 		name: 'files',
 		onSubmit : function(file, ext){

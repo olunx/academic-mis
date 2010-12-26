@@ -23,13 +23,13 @@
 					<th>ID</th>
 					<th>标题</th>
 					<th>序号</th>
+					<th>删除</th>
 				</tr>
 				<c:forEach items="${nhs}" var="noticeHot">
 					<tr>
 						<td>${noticeHot.id}</td>
 						<td>${noticeHot.notice.title}</td>
 						<td>${noticeHot.rank}</td>
-						<td><a href="<%=path%>/noticehot/goModifyNoticeHot?id=${noticeHot.id }">编辑</a></td>
 						<td><a href="<%=path%>/noticehot/deleteNoticeHot?id=${noticeHot.id }">删除</a></td>
 					</tr>
 				</c:forEach>
