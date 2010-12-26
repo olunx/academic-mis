@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -86,8 +87,8 @@
 					<div class="wrapper">
 						<a href="http://www.baidu.com"><img src="<%=path%>/content/images/slider/tempphoto-1.jpg" alt="temp"  border=0 /></a>
 						<div class="photo-meta-data">
-							Photo Credit: <a href="http://flickr.com/photos/astrolondon/2396265240/">Kaustav Bhattacharya</a><br />
-							<span>"Free Tibet" Protest at the Olympic Torch Rally</span>
+							<span>"Free Tibet" Protest at the Olympic Torch Rally</span><br />
+							Photo Credit: <a href="http://flickr.com/photos/astrolondon/2396265240/">Kaustav Bhattacharya</a>
 						</div>
 					</div>
 				</div>
@@ -95,8 +96,8 @@
 					<div class="wrapper">
 						<a href="www.baidu.com"><img src="<%=path%>/content/images/slider/tempphoto-2.jpg" alt="temp" /></a>
 						<div class="photo-meta-data">
-							Chicago Bears at Seattle Seahawks<br />
-							<span>Fifth field goal, overtime win for the Seahawks</span>
+							<span>Fifth field goal, overtime win for the Seahawks</span><br />
+							Chicago Bears at Seattle Seahawks
 						</div>
 					</div>
 				</div>		
@@ -112,25 +113,24 @@
 		<c:otherwise>
 		<div id="main-photo-slider" class="csw">
 			<div class="panelContainer">
-				<c:forEach items="${nhs}" var="noticeHot">
-					<div class="panel" title="Panel 1">
+				<c:forEach items="${nhs}" var="noticeHot" varStatus="i">
+					<div class="panel">
 						<div class="wrapper">
 							<a href="<%=path%>/notice/viewNotice?id=${noticeHot.notice.id}"><img src="<%=path%>${noticeHot.image.bigFileUrl}" alt="temp"  border=0 width="419" /></a>
 							<div class="photo-meta-data">
-								Photo Credit: <a href="http://flickr.com/photos/astrolondon/2396265240/">Kaustav Bhattacharya</a><br />
-								<span>"Free Tibet" Protest at the Olympic Torch Rally</span>
+								 <a href="<%=path%>/notice/viewNotice?id=${noticeHot.notice.id}"><span>${noticeHot.notice.title }</span></a><br/>
+								${noticeHot.notice.author.realName } : ${noticeHot.notice.time }
 							</div>
 						</div>
 					</div>
 				</c:forEach>
-				
 			</div>
 		</div>
+			<a href="#1" class="cross-link active-thumb"><img src="<%=path%>${nhs[0].image.minFileUrl}" class="nav-thumb" alt="temp-thumb" /></a>
+			<div id="movers-row">
 			<c:forEach items="${nhs}" var="noticeHot" varStatus="i">
 			<c:choose>
 				<c:when test="${i.count == 1}">
-					<a href="#1" class="cross-link active-thumb"><img src="<%=path%>${noticeHot.image.minFileUrl}" class="nav-thumb" alt="temp-thumb" /></a>
-					<div id="movers-row">
 				</c:when>
 				<c:otherwise>
 					

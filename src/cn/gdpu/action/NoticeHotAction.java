@@ -57,7 +57,7 @@ public class NoticeHotAction extends BaseAction {
 			noticeHot = new NoticeHot();
 			noticeHot.setNotice(notice);
 			noticeHot.setImage(image);
-			if(nhDto.getRank() > 6 || nhDto.getRank() < 1) return ERROR;
+			if(nhDto.getRank() > 6 || nhDto.getRank() < 1) nhDto.setRank(1);//如果没有设定序号，或者输入的序号有错，自动当成第一个
 			//为该插入的序号排序
 			NoticeHot nh;
 			List<NoticeHot> gfq = noticeHotService.getEntity(NoticeHot.class,"from NoticeHot nh where nh.rank ='" + nhDto.getRank() + "'");

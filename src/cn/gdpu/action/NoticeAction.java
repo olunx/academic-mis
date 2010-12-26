@@ -143,13 +143,9 @@ public class NoticeAction extends BaseAction {
 
 	@Override
 	public String view() {
-		Manager manager = (Manager) getSession().get("manager");
-		if(manager != null){
-			if(id <= 0) return ERROR;
-			notice = noticeService.getEntity(Notice.class, id);
-			return super.view();
-		}
-		return ERROR;
+		if(id <= 0) return ERROR;
+		notice = noticeService.getEntity(Notice.class, id);
+		return super.view();
 	}
 
 	
