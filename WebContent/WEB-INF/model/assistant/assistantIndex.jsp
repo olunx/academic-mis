@@ -15,6 +15,7 @@
 	<a href="<%=path %>/noticetype/listNoticeType">列出通知类型</a><br/>
 	<a href="<%=path %>/notice/goAddNotice">添加通知</a><br/>
 	<a href="<%=path %>/notice/listNotice">列出通知</a><br/>
+	<a href="<%=path %>/noticehot/listNoticeHot">热门通知管理</a><br/>
 	
 </body>
 </html>
