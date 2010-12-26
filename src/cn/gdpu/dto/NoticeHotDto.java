@@ -1,6 +1,6 @@
 package cn.gdpu.dto;
 
-public class NoticeHot {
+public class NoticeHotDto {
 	private int id;
 	private int notice;
 	private int rank;

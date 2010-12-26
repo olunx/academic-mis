@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import cn.gdpu.dto.NoticeDto;
+import cn.gdpu.dto.NoticeHotDto;
 import cn.gdpu.service.NoticeHotService;
 import cn.gdpu.service.NoticeService;
+import cn.gdpu.util.Log;
 import cn.gdpu.vo.Image;
 import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Notice;
@@ -21,7 +23,7 @@ public class NoticeHotAction extends BaseAction {
 	private NoticeHotService<NoticeHot, Integer> noticeHotService;
 	private NoticeHot noticeHot;
 	private Notice notice;
-	private NoticeHot nhDto;
+	private NoticeHotDto nhDto;
 	private Image image;
 	private int id;
 
@@ -55,9 +57,7 @@ public class NoticeHotAction extends BaseAction {
 			noticeHot = new NoticeHot();
 			noticeHot.setNotice(notice);
 			noticeHot.setImage(image);
-			System.out.println("nhDto.getRank() : " + nhDto.getRank());
 			if(nhDto.getRank() > 6 || nhDto.getRank() < 1) return ERROR;
-			System.out.println("sadfasdfsadf222222");
 			//为该插入的序号排序
 			NoticeHot nh;
 			List<NoticeHot> gfq = noticeHotService.getEntity(NoticeHot.class,"from NoticeHot nh where nh.rank ='" + nhDto.getRank() + "'");
@@ -77,12 +77,7 @@ public class NoticeHotAction extends BaseAction {
 				noticeHot.setRank(nhDto.getRank());
 				noticeHotService.addEntity(noticeHot);
 			}
-			List<NoticeHot> nhs = noticeHotService.getAllEntity(NoticeHot.class);
-			System.out.println("nh3 : " );
-			for(NoticeHot nh3 : nhs){
-				System.out.print("nh3 : " +nh3.getNotice().getTitle() + ", ");
-			}
-			System.out.println("");
+			Log.init(getClass()).info(manager.getRealName() + " 添加了热门通知 " + noticeHot.getNotice().getTitle());
 			return super.add();
 		}
 		return ERROR;
@@ -92,9 +87,7 @@ public class NoticeHotAction extends BaseAction {
 	 * @param nh
 	 */
 	public void changRank(NoticeHot nh){
-		System.out.println("nh : " + nh.getNotice().getTitle() + " | rank : " + nh.getRank());
 		NoticeHot nh2;
-		System.out.println("hql : from NoticeHot nh where nh.rank ='" + (nh.getRank() + 1) + "'");
 		List<NoticeHot> gfq = noticeHotService.getEntity(NoticeHot.class, "from NoticeHot nh where nh.rank ='" + (nh.getRank() + 1) + "'");
 		if(gfq != null && gfq.size() !=0){
 			nh2 = gfq.get(0);
@@ -120,8 +113,16 @@ public class NoticeHotAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		// TODO Auto-generated method stub
-		return super.delete();
+		Manager manager = (Manager) getSession().get("manager");
+		if(manager != null){
+			if(id <= 0) return ERROR;
+			noticeHot = noticeHotService.getEntity(NoticeHot.class, id);
+			if(noticeHot == null) return ERROR;
+			noticeHotService.deleteEntity(NoticeHot.class, id);
+			Log.init(getClass()).info(manager.getRealName() + " 删除了热门通知 " + noticeHot.getNotice().getTitle());
+			return super.delete();
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -214,11 +215,7 @@ public class NoticeHotAction extends BaseAction {
 		this.notice = notice;
 	}
 
-	public NoticeHot getNhDto() {
-		return nhDto;
-	}
-
-	public void setNhDto(NoticeHot nhDto) {
+	public void setNhDto(NoticeHotDto nhDto) {
 		this.nhDto = nhDto;
 	}
 

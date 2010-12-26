@@ -9,14 +9,14 @@
 		<default-action-ref name="index"/>
 		
 		<action name="index" class="cn.gdpu.action.IndexAction" method="index">
-			<result name="success" type="redirect">/index.html</result>
+			<result name="success">/index.jsp</result>
 		</action>
 		<action name="login" class="cn.gdpu.action.IndexAction" method="login">
 			<result name="stulogin">/WEB-INF/model/student/studentIndex.jsp</result>
 			<result name="asslogin">/WEB-INF/model/assistant/assistantIndex.jsp</result>
 			<result name="tchlogin">/WEB-INF/model/teacher/teacherIndex.jsp</result>
-			<result name="gologin">/index.html</result>
-			<result name="error">/index.html</result>
+			<result name="gologin">/index.jsp</result>
+			<result name="error">/index.jsp</result>
 		</action>
 		<action name="admin" class="cn.gdpu.action.AdminAction" method="goLogin">
 			<result name="gologin">/admin/adminLogin.jsp</result>
@@ -50,8 +50,8 @@
 	<package name="student" extends="struts-default" namespace="/student">
 		<default-action-ref name="goLoginStudent"	/>
 		<global-results>
-			<result name="gologin">/index.html</result>
-			<result name="logout">index.html</result>
+			<result name="gologin">/index.jsp</result>
+			<result name="logout">index.jsp</result>
 			<result name="list" type="redirect">listStudentType?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/student/studentList.jsp</result>
 			<result name="viewPage">/WEB-INF/model/student/studentIndex.jsp</result>
@@ -68,8 +68,8 @@
 	<package name="teacher" extends="struts-default" namespace="/teacher">
 		<default-action-ref name="goLoginTeacher"	/>
 		<global-results>
-			<result name="gologin">/index.html</result>
-			<result name="logout">index.html</result>
+			<result name="gologin">/index.jsp</result>
+			<result name="logout">index.jsp</result>
 			<result name="list" type="redirect">listTeacherType?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/teacher/teacherList.jsp</result>
 			<result name="indexPage">/WEB-INF/model/teacher/teacherIndex.jsp</result>
@@ -93,8 +93,8 @@
 			<result name="listme">/WEB-INF/model/group/groupListMe.jsp</result>
 			<result name="check" type="redirect">listApplyGroup?page=${page}</result>
 			<result name="listapply">/WEB-INF/model/group/groupListApply.jsp</result>
-			<result name="gologin">/index.html</result>
-			<result name="logout">index.html</result>
+			<result name="gologin">/index.jsp</result>
+			<result name="logout">index.jsp</result>
 			<result name="viewPage">/WEB-INF/model/group/groupView.jsp</result>
 			<result name="audit" type="redirect">viewGroup?id=${group.id}</result>
 			<result name="modifyPage">/WEB-INF/model/group/groupModify.jsp</result>
@@ -110,7 +110,7 @@
 		<global-results>
 			<result name="list" type="redirect">listAssistant?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/assistant/assistantList.jsp</result>
-			<result name="gologin">/index.html</result>
+			<result name="gologin">/index.jsp</result>
 			<result name="logout">/goods/listGoods</result>
 			<result name="viewPage">/WEB-INF/model/assistant/assistantIndex.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/assistant/assistantModify.jsp</result>
