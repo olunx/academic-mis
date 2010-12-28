@@ -27,6 +27,7 @@ import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Activity;
 import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.ActivityType;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.SingleApply;
@@ -155,8 +156,25 @@ public class ActivityAction extends BaseAction {
 			pageBean.setList(null);
 
 		return super.list();
+	}
+	
+	public String listByType() {
+		if(id <= 0) return ERROR;
+		ActivityType at = activityTypeService.getEntity(ActivityType.class, id);
+		if(at == null) return ERROR;
+		pageBean = activityService.queryForPage("from Activity a where a.activityType.id = '" + at.getId() + "'", 10, page);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
+		
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null)
+			return "admin_listPage";
+		else
+			return super.list();
 		
 	}
+	
 
 	@Override
 	public String modify() {
