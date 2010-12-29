@@ -16,10 +16,6 @@
 <![endif]-->
 <script type="text/javascript" src="<%=path %>/style/js/cufon-yui.js"></script>
 <script type="text/javascript" src="<%=path %>/style/js/Delicious.font.js"></script>
-<script type="text/javascript">
-    	Cufon.replace('h2');
-    	Cufon.replace('h3');
-</script>
 <script type='text/javascript' src='<%=path %>/style/js/jquery.js'></script>
 <script type='text/javascript' src='<%=path %>/style/js/jquery.easing.min.js'></script>
 <script type='text/javascript' src='<%=path %>/style/js/loopedSlider.js'></script>
