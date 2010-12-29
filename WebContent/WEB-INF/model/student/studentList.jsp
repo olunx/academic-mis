@@ -54,7 +54,7 @@
 							<c:forEach items="${pageBean.list}" var="student">
 								<tr>
 									<td><input type="checkbox" name="id" value="${student.id}" /></td>
-									<td>${student.username}</td>
+									<td><a href="<%=path%>/student/viewStudent?id=${student.id }&page=${page}" class="btn_edit">${student.username}</a></td>
 									<td>${student.realName}</td>
 									<td><a href="<%=path%>/student/goModifyStudent?id=${student.id }&page=${page}" class="btn_edit">编辑</a></td>
 									<td><a href="<%=path%>/student/deleteStudent?id=${student.id }&page=${page}" class="btn_del">删除</a></td>

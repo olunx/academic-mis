@@ -35,6 +35,7 @@ public class StudentAction extends BaseAction {
 	private Student student;
 	private PageBean pageBean;
 	private int page;
+	private int id;
 
 	public void prepare() throws Exception {
 		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
@@ -174,8 +175,16 @@ public class StudentAction extends BaseAction {
 
 	@Override
 	public String view() {
-		// TODO Auto-generated method stub
-		return super.view();
+		if(id <= 0) return ERROR;
+		student = studentService.getEntity(Student.class, id);
+		if(student == null) return ERROR;
+		
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null)
+			return "admin_viewPage";
+		else
+			return super.view();
 	}
 	
 	//getter and setter
@@ -234,5 +243,13 @@ public class StudentAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

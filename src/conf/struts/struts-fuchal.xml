@@ -55,7 +55,8 @@
 			<result name="list" type="redirect">listStudentType?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/student/studentList.jsp</result>
 			<result name="indexPage">/WEB-INF/model/student/studentIndex.jsp</result>
-			<result name="viewPage">/WEB-INF/model/student/studentIndex.jsp</result>
+			<result name="viewPage">/WEB-INF/model/student/studentView.jsp</result>
+			<result name="admin_viewPage">/WEB-INF/model/student/studentView_Admin.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/student/studentModify.jsp</result>
 			<result name="addPage">/WEB-INF/model/student/studentAdd.jsp</result>
 		</global-results>
