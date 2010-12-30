@@ -9,7 +9,8 @@ public class Student extends People{
 	private Set<Group> myGroups;
 	private Set<Group> groups;
 	private Set<GroupApply> groupApplys;
-	private Set<ActivityApply> activityApplys;
+	private Set<SingleApply> singleApplys;
+	private Set<TeamApply> TeamApplys;
 	
 	public String getStuNo() {
 		return stuNo;
@@ -47,11 +48,17 @@ public class Student extends People{
 	public void setGroupApplys(Set<GroupApply> groupApplys) {
 		this.groupApplys = groupApplys;
 	}
-	public Set<ActivityApply> getActivityApplys() {
-		return activityApplys;
+	public Set<SingleApply> getSingleApplys() {
+		return singleApplys;
 	}
-	public void setActivityApplys(Set<ActivityApply> activityApplys) {
-		this.activityApplys = activityApplys;
+	public void setSingleApplys(Set<SingleApply> singleApplys) {
+		this.singleApplys = singleApplys;
+	}
+	public Set<TeamApply> getTeamApplys() {
+		return TeamApplys;
+	}
+	public void setTeamApplys(Set<TeamApply> teamApplys) {
+		TeamApplys = teamApplys;
 	}
 	
 	

@@ -38,15 +38,27 @@ public class GroupServiceTest{
 	@Test
 	public void add() {
 		List<Student> students = studentService.getAllEntity(Student.class);
-		for(int i = 0; i <= students.size(); i++){
-			Group group = new Group();
-			group.setName("3C");
-			group.setIntro("3C TEARM");
-			group.setCaptain(students.get(i));
-			Set<Student> members = new HashSet<Student>();
-			members.add(students.get(i));
-			group.setMembers(members);
-			groupService.addEntity(group);
+		Group group = new Group();
+		for(int i = 0; i < students.size(); i++){
+			if(i % 5 == 0){
+				group = new Group();
+				group.setName("TestTeam" + i);
+				group.setIntro("TestTeam" + i);
+				group.setCaptain(students.get(i));
+				Set<Student> members = new HashSet<Student>();
+				members.add(students.get(i));
+				group.setMembers(members);
+				groupService.addEntity(group);
+			}
+			else{
+				Set<Student> members = group.getMembers();
+				if(members == null){
+					members = new HashSet<Student>();
+				}
+				members.add(students.get(i));
+				group.setMembers(members);
+				groupService.updateEntity(group);
+			}
 		}
 		
 	}
