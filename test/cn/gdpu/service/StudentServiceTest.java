@@ -1,5 +1,7 @@
 package cn.gdpu.service;
 
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -14,6 +16,7 @@ public class StudentServiceTest{
 	private static StudentService<Student, Integer> studentService;
 	private static ClassesService<Classes, Integer> classesService;
 	
+	@SuppressWarnings("unchecked")
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
@@ -29,14 +32,23 @@ public class StudentServiceTest{
 
 	@Test
 	public void add() {
-		Classes cls = classesService.getAllEntity(Classes.class).get(0);
-		Student student = new Student();
-		student.setUsername("user");
-		student.setPassword("user");
-		student.setStuNo("0000");
-		student.setRealName("user");
-		student.setClasses(cls);
-		student.setSchoolYear(2007);
-		studentService.addEntity(student);
+		List<Classes> cls = classesService.getAllEntity(Classes.class);
+		for(int i = 0; i <= cls.size(); i++){
+			for(int j = 1; j <= 10; j++){
+				Student student;
+				student = studentService.getStudentByUsername("test" + i);
+				if(student == null)
+					student = new Student();
+				else 
+					continue;
+				student.setUsername("test" + i);
+				student.setPassword("test");
+				student.setStuNo(i + "0000" + j);	
+				student.setRealName("user");
+				student.setClasses(cls.get(i));
+				student.setSchoolYear(2007);
+				studentService.addEntity(student);
+			}
+		}
 	}
 }

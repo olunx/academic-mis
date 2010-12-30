@@ -37,6 +37,9 @@
         <td width="7%">&nbsp;</td>
         <td width="100%" valign="top">
         	<div class="context">
+        		<div>
+        		当前位置：学生主页
+        		</div>
       			<c:choose>
 					<c:when test="${pageBean.list == null}">
 									没有数据！

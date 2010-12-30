@@ -15,9 +15,11 @@ import cn.gdpu.dto.StudentDto;
 import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.InstituteService;
 import cn.gdpu.service.StudentService;
+import cn.gdpu.service.ActivityApplyService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
 import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.ActivityType;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
@@ -31,6 +33,7 @@ public class StudentAction extends BaseAction {
 	private InstituteService<Institute, Integer> instituteService;
 	private ClassesService<Classes, Integer> classesService;
 	private StudentService<Student, Integer> studentService;
+	private ActivityApplyService<ActivityApply, Integer> activityApplyService;
 	private StudentDto stuDto;
 	private Student student;
 	private PageBean pageBean;
@@ -178,7 +181,10 @@ public class StudentAction extends BaseAction {
 		if(id <= 0) return ERROR;
 		student = studentService.getEntity(Student.class, id);
 		if(student == null) return ERROR;
-		
+		List<ActivityApply> aa = activityApplyService.getEntity(ActivityApply.class, "from ActivityApply aa where (aa.student.id = '" + student.getId() + "') or ('" + student.getId() + "' = some elements(aa.applicants))");
+		if(aa.isEmpty() || aa.size() == 0)
+			aa = null;
+		getRequest().put("aa", aa);
 		Manager manager = (Manager) getSession().get("manager");
 		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null)
@@ -211,6 +217,15 @@ public class StudentAction extends BaseAction {
 
 	public void setStudentService(StudentService<Student, Integer> studentService) {
 		this.studentService = studentService;
+	}
+
+	public ActivityApplyService<ActivityApply, Integer> getActivityApplyService() {
+		return activityApplyService;
+	}
+
+	public void setActivityApplyService(
+			ActivityApplyService<ActivityApply, Integer> activityApplyService) {
+		this.activityApplyService = activityApplyService;
 	}
 
 	public StudentDto getStuDto() {
