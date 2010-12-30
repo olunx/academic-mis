@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.gdpu.util.Md5;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Student;
 
@@ -33,21 +34,22 @@ public class StudentServiceTest{
 	@Test
 	public void add() {
 		List<Classes> cls = classesService.getAllEntity(Classes.class);
-		for(int i = 0; i <= cls.size(); i++){
-			for(int j = 1; j <= 10; j++){
+		for(int i = 0; i < cls.size(); i++){
+			for(int j = 1; j <= 50; j++){
 				Student student;
-				student = studentService.getStudentByUsername("test" + i);
+				student = studentService.getStudentByUsername(i + "test" + j);
 				if(student == null)
 					student = new Student();
 				else 
 					continue;
-				student.setUsername("test" + i);
-				student.setPassword("test");
+				student.setUsername( i + "test" + j);
+				student.setPassword(Md5.getMD5("test".getBytes()));
 				student.setStuNo(i + "0000" + j);	
-				student.setRealName("user");
+				student.setRealName( i + "test" + j);
 				student.setClasses(cls.get(i));
 				student.setSchoolYear(2007);
 				studentService.addEntity(student);
+				System.out.println("添加学生 ： " + student.getRealName());
 			}
 		}
 	}

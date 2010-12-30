@@ -20,10 +20,10 @@
 		<joined-subclass name="TeamApply" table="t_team_apply">
 			<key column="id" />
 			<many-to-one name="group" column="groupId" />
-			<set name="applicants" lazy="false" order-by="id asc">
-				<key column="ataId" />
-			<one-to-many class="Student" />
-		</set>
+			<set name="applicants" table="t_teamapply_student" lazy="false" order-by="taId asc" cascade="save-update">
+				<key column="taId" />
+				<many-to-many class="Student" column="stuId"/>
+			</set>
 		</joined-subclass>
 		
 		<!-- SingleApply -->
