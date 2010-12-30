@@ -20,6 +20,7 @@ public class GroupServiceTest{
 	private static GroupService<Group, Integer> groupService;
 	private static StudentService<Student, Integer> studentService;
 	private static GroupApplyService<GroupApply, Integer> groupApplyService;
+	@SuppressWarnings("unchecked")
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
@@ -36,15 +37,18 @@ public class GroupServiceTest{
 
 	@Test
 	public void add() {
-		Student student = studentService.getAllEntity(Student.class).get(0);
-		Group group = new Group();
-		group.setName("3C");
-		group.setIntro("3C TEARM");
-		group.setCaptain(student);
-		Set<Student> members = new HashSet<Student>();
-		members.add(student);
-		group.setMembers(members);
-		groupService.addEntity(group);
+		List<Student> students = studentService.getAllEntity(Student.class);
+		for(int i = 0; i <= students.size(); i++){
+			Group group = new Group();
+			group.setName("3C");
+			group.setIntro("3C TEARM");
+			group.setCaptain(students.get(i));
+			Set<Student> members = new HashSet<Student>();
+			members.add(students.get(i));
+			group.setMembers(members);
+			groupService.addEntity(group);
+		}
+		
 	}
 	@Test
 	public void query(){
