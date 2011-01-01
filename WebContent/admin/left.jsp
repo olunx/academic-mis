@@ -29,6 +29,21 @@
           <li><a href="right.jsp" target="main">后台首页</a></li>
         </ul>
       </div>
+      <h1 class="type"><a href="javascript:void(0)">通知信息管理</a></h1>
+      <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><img src="<%=path %>/content/images/admin/menu_topline.gif" width="182" height="5" /></td>
+          </tr>
+        </table>
+        <ul class="MM">
+          <li><a href="<%=path %>/notice/listNotice" target="main">通知管理</a></li>
+          <li><a href="<%=path %>/notice/goAddNotice" target="main">添加通知</a></li>
+          <li><a href="<%=path %>/noticetype/listNoticeType" target="main">通知类型管理</a></li>
+          <li><a href="<%=path %>/noticetype/goAddNoticeType" target="main">添加通知类型</a></li>
+          <li><a href="<%=path %>/noticehot/listNoticeHot" target="main">热门通知管理</a></li>
+        </ul>
+      </div>
        <h1 class="type"><a href="javascript:void(0)">注册用户管理</a></h1>
       <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -39,7 +54,17 @@
         <ul class="MM">
           <li><a href="<%=path %>/student/listStudent" target="main">学生管理</a></li>
           <li><a href="<%=path %>/teacher/listTeacher" target="main">教师管理</a></li>
-          <li><a href="<%=path %>/topic/listTopic" target="main">留言管理</a></li>
+        </ul>
+      </div>
+       <h1 class="type"><a href="javascript:void(0)">学习小组管理</a></h1>
+      <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><img src="<%=path %>/content/images/admin/menu_topline.gif" width="182" height="5" /></td>
+          </tr>
+        </table>
+        <ul class="MM">
+          <li><a href="<%=path %>/group/listAllGroup" target="main">小组管理</a></li>
         </ul>
       </div>
     </div>
@@ -53,7 +78,6 @@
         <ul class="MM">
           <li><a href="<%=path %>/activitytype/listActivityType" target="main">查看学术活动类型</a></li>
           <li><a href="<%=path %>/activitytype/goAddActivityType" target="main">添加学术活动类型</a></li>
-          <li><a href="<%=path %>/activitytype/goAddGoodsType" target="main">新建类型</a></li>
         </ul>
       </div>
       <h1 class="type"><a href="javascript:void(0)">管理员管理</a></h1>

@@ -17,5 +17,9 @@
 			<key column="groupId" />
 			<one-to-many class="GroupApply" />
 		</set>
+		<set name="teamApplys" cascade="save-update" order-by="id asc">
+			<key column="groupId" />
+			<one-to-many class="TeamApply" />
+		</set>
 	</class>
 </hibernate-mapping>

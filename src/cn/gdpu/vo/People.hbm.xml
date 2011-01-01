@@ -62,7 +62,7 @@
 			</set>
 			<set name="singleApplys" cascade="all" order-by="id asc">
 				<key column="studentId" />
-				<one-to-many class="ActivityApply" />
+				<one-to-many class="SingleApply" />
 			</set>
 			<set name="teamApplys" cascade="all" table="t_teamApply_student" lazy="true">
 				<key column="stuId" />
