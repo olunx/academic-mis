@@ -26,6 +26,7 @@
 			<tr>
 				<th>申请人</th>
 				<th>审核状态</th>
+				<c:if test="${manager != null }"><th>结果</th></c:if>
 			</tr>
 			<c:forEach items="${activity.activityApplys}" var="activityApply" >
 				<c:if test="${activityApply.status == 2}">
@@ -55,6 +56,7 @@
 					<th>报名人数</th>
 					<th>报名成员</th>
 					<th>审核状态</th>
+					<c:if test="${manager != null }"><th>结果</th></c:if>
 				</tr>
 				<c:forEach items="${activity.activityApplys}" var="activityApply" >
 					<c:if test="${activityApply.status == 2}">

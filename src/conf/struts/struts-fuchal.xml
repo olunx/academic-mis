@@ -92,6 +92,7 @@
 			<result name="list" type="redirect">listGroup?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/group/groupList.jsp</result>
 			<result name="listall">/WEB-INF/model/group/groupListAll.jsp</result>
+			<result name="admin_listPage">/WEB-INF/model/group/groupList_Admin.jsp</result>
 			<result name="listme">/WEB-INF/model/group/groupListMe.jsp</result>
 			<result name="check" type="redirect">listApplyGroup?page=${page}</result>
 			<result name="listapply">/WEB-INF/model/group/groupListApply.jsp</result>

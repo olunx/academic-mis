@@ -9,6 +9,7 @@ public class Group {
 	private Student captain;
 	private Set<Student> members;
 	private Set<GroupApply> groupApplys;
+	private Set<TeamApply> teamApplys;
 	
 	public int getId() {
 		return id;
@@ -45,5 +46,11 @@ public class Group {
 	}
 	public void setGroupApplys(Set<GroupApply> groupApplys) {
 		this.groupApplys = groupApplys;
+	}
+	public Set<TeamApply> getTeamApplys() {
+		return teamApplys;
+	}
+	public void setTeamApplys(Set<TeamApply> teamApplys) {
+		this.teamApplys = teamApplys;
 	}
 }

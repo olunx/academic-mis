@@ -20,7 +20,7 @@
     <td width="17" valign="top" background="<%=path %>/content/images/admin/mail_leftbg.gif"><img src="<%=path %>/content/images/admin/left-top-right.gif" width="17" height="29" /></td>
     <td valign="top" background="<%=path %>/content/images/admin/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
       <tr>
-        <td height="31"><div class="titlebt">查看助理</div></td>
+        <td height="31"><div class="titlebt">欢迎界面</div></td>
       </tr>
     </table></td>
     <td width="16" valign="top" background="<%=path %>/content/images/admin/mail_rightbg.gif"><img src="<%=path %>/content/images/admin/nav-right-bg.gif" width="16" height="29" /></td>
@@ -37,76 +37,58 @@
         <td width="7%">&nbsp;</td>
         <td width="100%" valign="top">
         	<div class="context">
-        		<div>
-        		当前位置：<a href="<%=path %>/student/listStudent">学生主页</a>-&gt;学生信息
-        		</div>
-				查看 ${student.realName} 同学的信息<br />
+      			<h2>所有的群组</h2>
+	<c:choose>
+		<c:when test="${pageBean.list == null}">
+						没有数据！
+		</c:when>
+		<c:otherwise>
+			<table class="table">
+				<tr>
+					<th>小组名称</th>
+					<th>小组简介</th>
+					<th>小组队长</th>
+					<th>小组成员</th>
+				</tr>
+				<c:forEach items="${pageBean.list}" var="group">
+					<tr>
+						<td><a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${group.id }">${group.name}</a></td>
+						<td>${fn:substring(fn:replace(group.intro,"<","&lt;"),0,20)}...</td>
+						<td>${group.captain.realName}</td>
+						<td>${fn:length(group.members)}</td>
+					</tr>
+				</c:forEach>
+			</table>
+	
+			<div id="pagecount">
+				<p>共  ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
+				<c:choose>
+					<c:when test="${pageBean.currentPage == 1}">
+						<a><span>首页</span></a>
+						<a><span>上一页</span></a>
+					</c:when>
+					<c:otherwise>
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listAllGroup?page=1"><span>首页</span></a>
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listAllGroup?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${pageBean.currentPage != pageBean.totalPage}">
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listAllGroup?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listAllGroup?page=${pageBean.totalPage}"><span>尾页</span></a>
+					</c:when>
+					<c:otherwise>
+						<a><span>下一页</span></a>
+						<a><span>尾页</span></a>
+					</c:otherwise>
+				</c:choose>
+				</div>
 				
-				${fn:length(student.singleApplys)}|${fn:length(student.teamApplys)}<br/>
-				<c:choose>
-					<c:when test="${student.singleApplys != null && fn:length(student.singleApplys) != 0}">
-						该同学参加过的学术活动-个人报名<br/>
-						<table class="table">
-							<tr>
-								<th>活动名称</th>
-								<th>活动结果</th>
-							</tr>
-						<c:forEach items="${student.singleApplys}" var="sa">
-							<tr>
-								<td><a href="<%=path %>/activity/viewActivity?id=${sa.activity.id}">${sa.activity.name }</a></td>
-								<td>${sa.activityResult != null ? sa.activityResult.remark : sa.status == 3 ? '该学生未能通过申请' : '参加了该活动'}</td>
-							</tr>
-						</c:forEach>
-						</table>
-					</c:when>
-					
-					<c:otherwise>
-						该同学还没参加过学术活动-个人报名
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${student.teamApplys != null && fn:length(student.teamApplys) != 0}">
-						该同学参加过的学术活动-团队报名<br/>
-						<table class="table">
-							<tr>
-								<th>活动名称</th>
-								<th>活动结果</th>
-							</tr>
-						<c:forEach items="${student.teamApplys}" var="ta">
-							<tr>
-								<td><a href="<%=path %>/activity/viewActivity?id=${ta.activity.id}">${ta.activity.name }</a></td>
-								<td>${ta.activityResult != null ? ta.activityResult.remark : ta.status == 3 ? '该学生未能通过申请' : '参加了该活动'}</td>
-							</tr>
-						</c:forEach>
-						</table>
-					</c:when>
-					
-					<c:otherwise>
-						该同学还没参加过学术活动-团队报名
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${student.groups != null && fn:length(student.groups) != 0}">
-						该同学加入的学习小组<br/>
-						<table class="table">
-							<tr>
-								<th>小组名称</th>
-								<th>小组简介</th>
-							</tr>
-						<c:forEach items="${student.groups}" var="group">
-							<tr>
-								<td><a href="<%=path %>/group/viewGroup?id=${group.id}">${group.name }</a></td>
-								<td>${group.intro}</td>
-							</tr>
-						</c:forEach>
-						</table>
-					</c:when>
-					
-					<c:otherwise>
-						该同学还没加入过学习小组
-					</c:otherwise>
-				</c:choose>
-			</div>
+			
+				</c:otherwise>
+			</c:choose>
+
+      		</div>
         </td>
       </tr>
       <tr>

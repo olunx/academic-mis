@@ -10,8 +10,10 @@ import cn.gdpu.service.GroupService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.GroupApply;
+import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -84,15 +86,17 @@ public class GroupAction extends BaseAction{
 	 * 查看该全部的小组
 	 */
 	public String listAll() {
-		Student student = (Student) this.getSession().get("student");
-		if(student != null){
-			this.pageBean = this.groupService.queryForPage("from Group ", 10, page);
-			if (pageBean.getList().isEmpty())
-				pageBean.setList(null);
-			getRequest().put("listType", "listall");
+		this.pageBean = this.groupService.queryForPage("from Group ", 10, page);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
+		getRequest().put("listType", "listall");
+		
+		Manager manager = (Manager) getSession().get("manager");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null)
+			return "admin_listPage";
+		else
 			return "listall";
-		}
-		return ERROR;
 	}
 	
 	/**
@@ -166,14 +170,10 @@ public class GroupAction extends BaseAction{
 
 	@Override
 	public String view() {
-		Student student = (Student) this.getSession().get("student");
-		if(student != null){
-			group = groupService.getEntity(Group.class, id);
-			if(group == null) return ERROR;
-			return super.view();
-		}
-		return ERROR;
-		
+		if(id <=0 ) return ERROR;
+		group = groupService.getEntity(Group.class, id);
+		if(group == null) return ERROR;
+		return super.view();
 	}
 	
 	/**
