@@ -6,6 +6,7 @@ public class Student extends People{
 	private String stuNo;
 	private Classes classes;
 	private int schoolYear;
+	private double credit;
 	private Set<Group> myGroups;
 	private Set<Group> groups;
 	private Set<GroupApply> groupApplys;
@@ -29,6 +30,12 @@ public class Student extends People{
 	}
 	public void setSchoolYear(int schoolYear) {
 		this.schoolYear = schoolYear;
+	}
+	public double getCredit() {
+		return credit;
+	}
+	public void setCredit(double credit) {
+		this.credit = credit;
 	}
 	public Set<Group> getMyGroups() {
 		return myGroups;

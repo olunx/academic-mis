@@ -48,6 +48,7 @@ public class StudentServiceTest{
 				student.setRealName( i + "test" + j);
 				student.setClasses(cls.get(i));
 				student.setSchoolYear(2007);
+				student.setCredit(0);
 				studentService.addEntity(student);
 				System.out.println("添加学生 ： " + student.getRealName());
 			}

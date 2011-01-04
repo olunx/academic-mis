@@ -29,7 +29,7 @@
 		<!-- SingleApply -->
 		<joined-subclass name="SingleApply" table="t_single_apply">
 			<key column="id" />
-			<many-to-one name="student" column="studentId" />
+			<many-to-one name="student" column="studentId" lazy="false"/>
 		</joined-subclass>
 	</class>
 </hibernate-mapping>

@@ -72,10 +72,10 @@
 							<c:if test="${manager != null }">
 							<c:choose>
 								<c:when test="${activityApply.activityResult == null}">
-									<td><a href="<%=path %>/activityResult/goAddActivityResult?id=${activityApply.id}"><font color="red">添加结果</font></a></td>
+									<td><a href="<%=path %>/activityresult/goAddActivityResult?id=${activityApply.id}"><font color="red">添加结果</font></a></td>
 								</c:when>	
 								<c:otherwise>
-									<td><a href="<%=path %>/activityResult/viewActivityResult?id=${activityApply.activityResult.id}">查看结果</a></td>
+									<td><a href="<%=path %>/activityresult/viewActivityResult?id=${activityApply.activityResult.id}">查看结果</a></td>
 								</c:otherwise>
 							</c:choose>
 							</c:if>

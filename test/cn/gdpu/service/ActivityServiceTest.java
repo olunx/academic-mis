@@ -15,6 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.gdpu.vo.Activity;
 import cn.gdpu.vo.ActivityApply;
+import cn.gdpu.vo.ActivityResult;
 import cn.gdpu.vo.ActivityType;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Assistant;
@@ -29,6 +30,7 @@ public class ActivityServiceTest{
 	private static ActivityService<Activity, Integer> activityService;
 	private static ActivityTypeService<ActivityType, Integer> activityTypeService;
 	private static ActivityApplyService<ActivityApply, Integer> activityApplyService;
+	private static ActivityResultService<ActivityResult, Integer> activityResultService;
 	private static SingleApplyService<SingleApply, Integer> singleApplyService;
 	private static TeamApplyService<TeamApply, Integer> teamApplyService;
 	private static AssistantService<Assistant, Integer> assistantService;
@@ -43,6 +45,7 @@ public class ActivityServiceTest{
 			activityService = (ActivityService<Activity, Integer>) ctx.getBean("activityService");
 			activityTypeService = (ActivityTypeService<ActivityType, Integer>) ctx.getBean("activityTypeService");
 			activityApplyService = (ActivityApplyService<ActivityApply, Integer>) ctx.getBean("activityApplyService");
+			activityResultService = (ActivityResultService<ActivityResult, Integer>) ctx.getBean("activityResultService");
 			singleApplyService = (SingleApplyService<SingleApply, Integer>) ctx.getBean("singleApplyService");
 			teamApplyService = (TeamApplyService<TeamApply, Integer>) ctx.getBean("teamApplyService");
 			assistantService = (AssistantService<Assistant, Integer>) ctx.getBean("assistantService");
@@ -110,10 +113,11 @@ public class ActivityServiceTest{
 		List<Group> groups = groupService.getAllEntity(Group.class);
 		Assistant ass = assistantService.getAllEntity(Assistant.class).get(0);
 		for(int i = 0; i < activitys.size(); i++){
-			if(activitys.get(i).getApplyCount() == 1){
-				for(int j = 0; j < students.size(); j += 3){
+			Activity activity = activitys.get(i);
+			if(activity.getApplyCount() == 1){
+				for(int j = 0; j < students.size(); j += (int) Math.floor((Math.random() * 5 ) + 5)){
 					SingleApply sa = new SingleApply();
-					sa.setActivity(activitys.get(i));
+					sa.setActivity(activity);
 					sa.setStudent(students.get(j));
 					sa.setApplytime(new Date());
 					sa.setEndtime(new Date());
@@ -123,13 +127,13 @@ public class ActivityServiceTest{
 				}
 			}
 			else{
-				for(int j = 0; j < groups.size(); j++){
+				for(int j = 0; j < groups.size(); j += (int) Math.floor((Math.random() * 5 ) + 1)){
 					TeamApply ta = new TeamApply();
-					ta.setActivity(activitys.get(i));
+					ta.setActivity(activity);
 					ta.setGroup(groups.get(j));
 					Set<Student> members = groups.get(j).getMembers();
 					Set<Student> applicants = new HashSet<Student>();
-					for (Iterator iterator = members.iterator(); iterator.hasNext();) {
+					for (Iterator<Student> iterator = members.iterator(); iterator.hasNext();) {
 						Student member = (Student) iterator.next();
 						applicants.add(member);
 						if(applicants.size() >= 3) break;
@@ -141,6 +145,102 @@ public class ActivityServiceTest{
 					ta.setOperator(ass);
 					ta.setStatus(2); //1为申请，2为通过，3为拒绝
 					teamApplyService.addEntity(ta);
+				}
+			}
+		}
+	}
+	@Test
+	public void addResult(){	//	添加活动结果
+		List<Activity> activitys = activityService.getAllEntity(Activity.class);
+		for(int i = 0; i < activitys.size(); i++){
+			Activity activity = activitys.get(i);
+			if(activity.getApplyCount() == 1){		//该活动属于SingleApply
+				Set<ActivityApply> aas = activity.getActivityApplys();
+				if(aas == null || aas.isEmpty()) continue;
+				int j = 1;
+				for (Iterator<ActivityApply> iterator = aas.iterator(); iterator.hasNext();) {
+					SingleApply sa = (SingleApply) iterator.next();
+					if(sa.getActivityResult() != null) continue;
+					ActivityResult ar = new ActivityResult();
+					String name = "参与奖";
+					int prize = 4;
+					double credit = 0.5;
+					switch (j) {
+					case 1:
+						name = "一等奖";
+						prize = 1;
+						credit = 3;
+						break;
+					case 2:
+						name = "二等奖";
+						prize = 2;
+						credit = 2;
+						break;
+					case 3:
+						name = "三等奖";
+						prize = 3;
+						credit = 1;
+						break;
+
+					default:
+						break;
+					}
+					ar.setName(name);
+					ar.setPrize(prize);
+					ar.setCredit(credit);
+					ar.setRecord("获得" + name);
+					ar.setAwarder(sa);
+					activityResultService.addEntity(ar);
+					Student student = sa.getStudent();
+					System.out.println(sa.getId());
+					student.setCredit(student.getCredit() + ar.getCredit());
+					studentService.updateEntity(student);
+					j++;
+				}
+			}
+			else{
+				Set<ActivityApply> aas = activity.getActivityApplys();
+				if(aas == null || aas.isEmpty()) continue;
+				int j = 1;
+				for (Iterator<ActivityApply> iterator = aas.iterator(); iterator.hasNext();) {
+					TeamApply ta = (TeamApply) iterator.next();
+					if(ta.getActivityResult() != null) continue;
+					ActivityResult ar = new ActivityResult();
+					String name = "参与奖";
+					int prize = 4;
+					double credit = 0.5;
+					switch (i) {
+					case 1:
+						name = "一等奖";
+						prize = 1;
+						credit = 3;
+						break;
+					case 2:
+						name = "二等奖";
+						prize = 2;
+						credit = 2;
+						break;
+					case 3:
+						name = "三等奖";
+						prize = 3;
+						credit = 1;
+						break;
+
+					default:
+						break;
+					}
+					ar.setName(name);
+					ar.setPrize(prize);
+					ar.setCredit(credit);
+					ar.setRecord("获得" + name);
+					ar.setAwarder(ta);
+					activityResultService.addEntity(ar);
+					Set<Student> students = ta.getApplicants();
+					for (Student student : students) {
+						student.setCredit(student.getCredit() + ar.getCredit());
+						studentService.updateEntity(student);
+					}
+					j++;
 				}
 			}
 		}
