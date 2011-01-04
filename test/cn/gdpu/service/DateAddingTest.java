@@ -56,5 +56,7 @@ public class DateAddingTest{
 		System.out.println("---------------------学术活动类型与学术活动数据添加完成------------------");
 		ast.apply();
 		System.out.println("---------------------学习申请加入学术活动数据添加完成------------------");
+		ast.addResult();
+		System.out.println("---------------------学术活动的结果数据添加完成------------------");
 	}
 }

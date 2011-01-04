@@ -2435,7 +2435,7 @@
 <XPD:ATTR name="Left" type="integer">28</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">372</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">183</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">134</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">147</XPD:ATTR>
 <XPD:REF name="Model">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="h+Xe0oGuzE2c7RGaq1DvbwAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="o3OQEzcqUk+maBy3RiazkQAA">
@@ -2463,7 +2463,7 @@
 <XPD:OBJ name="OwnedViews[5]" type="UMLAssociationView" guid="8dixJK+t20KxrW4Rph/KjwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">229,332;187,372</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">231,332;191,372</XPD:ATTR>
 <XPD:REF name="Model">Yxf+Z5IS+EeUUPzPCZkEDQAA</XPD:REF>
 <XPD:REF name="Head">RQBKoYH8Zk2fnxRryIOSJgAA</XPD:REF>
 <XPD:REF name="Tail">EanRAsJRg067wX2rrffYEAAA</XPD:REF>
@@ -3149,9 +3149,9 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">668</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">504</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">552</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">146</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">186</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">105</XPD:ATTR>
 <XPD:REF name="Model">RFEnmRLiPEaPTDqtIHzgYwAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="Dd0SP50KW0ugoS5RHNAgKQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="U3IEbXpd80a6pqvyvjxc2QAA">
@@ -3294,7 +3294,7 @@
 <XPD:OBJ name="OwnedViews[15]" type="UMLAssociationView" guid="cj1bdHGCpUSM6GblewApiAAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">668,598;392,607</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">668,605;392,608</XPD:ATTR>
 <XPD:REF name="Model">tYe0h6GhnEy5B9EO8wNxdAAA</XPD:REF>
 <XPD:REF name="Head">BMvTO5Ril0u6PtZ6TBB4OwAA</XPD:REF>
 <XPD:REF name="Tail">9T1c/woclUqauxhgesqkkgAA</XPD:REF>
@@ -3378,7 +3378,7 @@
 <XPD:OBJ name="OwnedViews[16]" type="UMLAssociationView" guid="fzNcFgA/4U2WX+JhoRm+XgAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">668,571;605,549</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">668,576;605,552</XPD:ATTR>
 <XPD:REF name="Model">/RDZDOzmHk+y9GedBg2yJgAA</XPD:REF>
 <XPD:REF name="Head">uTFXZm8J90yS0+C7e7S8KQAA</XPD:REF>
 <XPD:REF name="Tail">9T1c/woclUqauxhgesqkkgAA</XPD:REF>
@@ -3746,7 +3746,7 @@
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">360</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">183</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">147</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">160</XPD:ATTR>
 <XPD:REF name="Model">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="XB9Bcga3EkesI9pPEo+tiAAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="YYxRSTXs0ECXvAOCWvAuZwAA">
@@ -3774,7 +3774,7 @@
 <XPD:OBJ name="OwnedViews[24]" type="UMLAssociationView" guid="0CZM5Y9ZKEqCUU5X4LbWIQAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">744,75;542,74</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">744,77;542,78</XPD:ATTR>
 <XPD:REF name="Model">Yxf+Z5IS+EeUUPzPCZkEDQAA</XPD:REF>
 <XPD:REF name="Head">HdiaFgtRP0eSC9XYKLdwswAA</XPD:REF>
 <XPD:REF name="Tail">H10hfDzRDkKIFN3JOxj/EAAA</XPD:REF>
@@ -3858,7 +3858,7 @@
 <XPD:OBJ name="OwnedViews[25]" type="UMLAssociationView" guid="bSa8y6yHv0Kwc9a2iLs7MwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">461,176;458,146</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">460,176;458,159</XPD:ATTR>
 <XPD:REF name="Model">VZ6UMGEOEUOXjZPxMer5rAAA</XPD:REF>
 <XPD:REF name="Head">HdiaFgtRP0eSC9XYKLdwswAA</XPD:REF>
 <XPD:REF name="Tail">zUAz9kwjjkepZDncGPufpgAA</XPD:REF>
@@ -3973,7 +3973,7 @@
 <XPD:OBJ name="OwnedViews[27]" type="UMLAssociationView" guid="KleDZTkpRkySUWiCz7tJvgAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">577,160;542,136</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">574,160;542,139</XPD:ATTR>
 <XPD:REF name="Model">G9eElouB4EiOeSzEJiBJvAAA</XPD:REF>
 <XPD:REF name="Head">HdiaFgtRP0eSC9XYKLdwswAA</XPD:REF>
 <XPD:REF name="Tail">swCRyM0YR02ZWQf2zqm6agAA</XPD:REF>
@@ -5358,14 +5358,14 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Views[1]">Q36YYyMG/kiNpko5kWROoAAA</XPD:REF>
 <XPD:REF name="Views[2]">Idg11/mwL02As3QecIuPJwAA</XPD:REF>
 <XPD:REF name="Views[3]">d6YFDRH/nUipoXN+cPs5tgAA</XPD:REF>
-<XPD:REF name="Views[4]">7ewRqQVrMUSQoSXoDlV22QAA</XPD:REF>
-<XPD:REF name="Views[5]">+pB8Wff/7kq5R6xBtgpBMAAA</XPD:REF>
-<XPD:REF name="Views[6]">em/7v1AZD0aGq/CcPkO2YgAA</XPD:REF>
-<XPD:REF name="Views[7]">xh3QNBYeHk+n2HaghvkD1wAA</XPD:REF>
-<XPD:REF name="Views[8]">HdiaFgtRP0eSC9XYKLdwswAA</XPD:REF>
-<XPD:REF name="Views[9]">RThXADtKG0eGcs+HC0wQ4QAA</XPD:REF>
-<XPD:REF name="Views[10]">CSxt1oNwE0mCMsu36OqN1QAA</XPD:REF>
-<XPD:REF name="Views[11]">zPhWzw9ffU2bnAnPQVOx9gAA</XPD:REF>
+<XPD:REF name="Views[4]">HdiaFgtRP0eSC9XYKLdwswAA</XPD:REF>
+<XPD:REF name="Views[5]">RThXADtKG0eGcs+HC0wQ4QAA</XPD:REF>
+<XPD:REF name="Views[6]">CSxt1oNwE0mCMsu36OqN1QAA</XPD:REF>
+<XPD:REF name="Views[7]">zPhWzw9ffU2bnAnPQVOx9gAA</XPD:REF>
+<XPD:REF name="Views[8]">7ewRqQVrMUSQoSXoDlV22QAA</XPD:REF>
+<XPD:REF name="Views[9]">+pB8Wff/7kq5R6xBtgpBMAAA</XPD:REF>
+<XPD:REF name="Views[10]">em/7v1AZD0aGq/CcPkO2YgAA</XPD:REF>
+<XPD:REF name="Views[11]">xh3QNBYeHk+n2HaghvkD1wAA</XPD:REF>
 <XPD:ATTR name="#Generalizations" type="integer">2</XPD:ATTR>
 <XPD:REF name="Generalizations[0]">fHWVOFXCAkadqRDOam8BkwAA</XPD:REF>
 <XPD:REF name="Generalizations[1]">ZTcSka0Y6UqTQvmw5c7sqwAA</XPD:REF>
@@ -5378,7 +5378,7 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Associations[3]">blGcu+Y9yk6+ASx9f7IkUQAA</XPD:REF>
 <XPD:REF name="Associations[4]">Vdu5IQ5pl0OzjHFVwnSlgQAA</XPD:REF>
 <XPD:REF name="Associations[5]">kEKamPaZkkaWh6yEx3BOuQAA</XPD:REF>
-<XPD:ATTR name="#Attributes" type="integer">8</XPD:ATTR>
+<XPD:ATTR name="#Attributes" type="integer">9</XPD:ATTR>
 <XPD:OBJ name="Attributes[0]" type="UMLAttribute" guid="fLnI3TEF1U2tWO/7AJRSlQAA">
 <XPD:ATTR name="Name" type="string">stuNo</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
@@ -5398,31 +5398,37 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:ATTR name="TypeExpression" type="string">int</XPD:ATTR>
 <XPD:REF name="Owner">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Attributes[3]" type="UMLAttribute" guid="mgTEf1z+80KNpFvDoMADqwAA">
+<XPD:OBJ name="Attributes[3]" type="UMLAttribute" guid="NUnUMnX0FUSf9DWAK0Y2YAAA">
+<XPD:ATTR name="Name" type="string">credit</XPD:ATTR>
+<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">int</XPD:ATTR>
+<XPD:REF name="Owner">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Attributes[4]" type="UMLAttribute" guid="mgTEf1z+80KNpFvDoMADqwAA">
 <XPD:ATTR name="Name" type="string">myGrops</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">Set&lt;Group&gt;</XPD:ATTR>
 <XPD:REF name="Owner">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Attributes[4]" type="UMLAttribute" guid="XW6GzThllE6DEuJIR1bnLwAA">
+<XPD:OBJ name="Attributes[5]" type="UMLAttribute" guid="XW6GzThllE6DEuJIR1bnLwAA">
 <XPD:ATTR name="Name" type="string">groups</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">Set&lt;Group&gt;</XPD:ATTR>
 <XPD:REF name="Owner">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Attributes[5]" type="UMLAttribute" guid="9eLtP6KudkCNdl18NyvsjQAA">
+<XPD:OBJ name="Attributes[6]" type="UMLAttribute" guid="9eLtP6KudkCNdl18NyvsjQAA">
 <XPD:ATTR name="Name" type="string">groupApplys</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">Set&lt;GroupApply&gt;</XPD:ATTR>
 <XPD:REF name="Owner">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Attributes[6]" type="UMLAttribute" guid="MCJds7jBjUyZ8+UPAbkk0wAA">
+<XPD:OBJ name="Attributes[7]" type="UMLAttribute" guid="MCJds7jBjUyZ8+UPAbkk0wAA">
 <XPD:ATTR name="Name" type="string">singleApplys</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">Set&lt;SingleApply&gt;</XPD:ATTR>
 <XPD:REF name="Owner">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Attributes[7]" type="UMLAttribute" guid="lJqAolx/eU2uGm+MhFQfLgAA">
+<XPD:OBJ name="Attributes[8]" type="UMLAttribute" guid="lJqAolx/eU2uGm+MhFQfLgAA">
 <XPD:ATTR name="Name" type="string">teamApplys</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">Set&lt;TeamApply&gt;</XPD:ATTR>
@@ -5481,9 +5487,9 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Owner">PcOpBGxj7UiQEHER+DuyWQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[5]" type="UMLAttribute" guid="XouJkUtVpU2UvtCyYNsj6gAA">
-<XPD:ATTR name="Name" type="string">activityApplys</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">teamApplys</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">Set&lt;ActivityApply&gt;</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">Set&lt;TeamApply&gt;</XPD:ATTR>
 <XPD:REF name="Owner">PcOpBGxj7UiQEHER+DuyWQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -5520,8 +5526,8 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Views[2]">H2asM1QCjUegQVglDy6XsQAA</XPD:REF>
 <XPD:REF name="Views[3]">YmI33Xoh30yj3NSSMn3KSAAA</XPD:REF>
 <XPD:REF name="Views[4]">Zvf/fGhTt0OMH/CfpoLgqQAA</XPD:REF>
-<XPD:REF name="Views[5]">hbz6QmNqZUeZqhjLgd5p2wAA</XPD:REF>
-<XPD:REF name="Views[6]">XBkeNlYyY0uUddJV3b+DlgAA</XPD:REF>
+<XPD:REF name="Views[5]">XBkeNlYyY0uUddJV3b+DlgAA</XPD:REF>
+<XPD:REF name="Views[6]">hbz6QmNqZUeZqhjLgd5p2wAA</XPD:REF>
 <XPD:REF name="Views[7]">ZgxTpStW0USV9+sT5xaTqAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="HExmPZ3CDUOrStWyRX+16gAA">
@@ -5533,8 +5539,8 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Views[2]">2KQHKHpfEkKIZqZxSqQwqAAA</XPD:REF>
 <XPD:REF name="Views[3]">Y5/QVLtYpEOYl8NlalSUYgAA</XPD:REF>
 <XPD:REF name="Views[4]">Ko9d+uY44kaYPiE+uDhucQAA</XPD:REF>
-<XPD:REF name="Views[5]">DfcZIXBad0K8qoRfNzXTSQAA</XPD:REF>
-<XPD:REF name="Views[6]">IoEZyktTLEWrL5+Jqy1BnAAA</XPD:REF>
+<XPD:REF name="Views[5]">IoEZyktTLEWrL5+Jqy1BnAAA</XPD:REF>
+<XPD:REF name="Views[6]">DfcZIXBad0K8qoRfNzXTSQAA</XPD:REF>
 <XPD:REF name="Views[7]">/tg1jog370yp4YXvSOBSTAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -7299,8 +7305,8 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Participant">Sk/c0x78Hkup7QfAG68axQAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">Jw6RcpxWqUCg7RzabF3BbgAA</XPD:REF>
-<XPD:REF name="Views[1]">niNAlseLvEaZT2zNhDlQzwAA</XPD:REF>
-<XPD:REF name="Views[2]">7+oh28oeM0i2MuzA8rHWUgAA</XPD:REF>
+<XPD:REF name="Views[1]">7+oh28oeM0i2MuzA8rHWUgAA</XPD:REF>
+<XPD:REF name="Views[2]">niNAlseLvEaZT2zNhDlQzwAA</XPD:REF>
 <XPD:REF name="Views[3]">MBuVqdZrBkGT1fa+a3zMdgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="YFazYQS3REaWMBP2l1kZuQAA">
@@ -7309,8 +7315,8 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Participant">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">n3Ou9e9yFk2X+gVrzHfWOAAA</XPD:REF>
-<XPD:REF name="Views[1]">iV3DgAJ/v0WGPhlbmJ31rwAA</XPD:REF>
-<XPD:REF name="Views[2]">d16hOgurJE29ycB/BzcAsQAA</XPD:REF>
+<XPD:REF name="Views[1]">d16hOgurJE29ycB/BzcAsQAA</XPD:REF>
+<XPD:REF name="Views[2]">iV3DgAJ/v0WGPhlbmJ31rwAA</XPD:REF>
 <XPD:REF name="Views[3]">tby2tw4xIEW+CnXv5K38CgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -7407,8 +7413,8 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Participant">dVdokRa1+kOtbz9OqPljggAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">oCki1LhB7U+LM9macEkltwAA</XPD:REF>
-<XPD:REF name="Views[1]">vydBNJbgfUK9erAWabSfDwAA</XPD:REF>
-<XPD:REF name="Views[2]">8UNEL3vYdEuUoS94hn3E9wAA</XPD:REF>
+<XPD:REF name="Views[1]">8UNEL3vYdEuUoS94hn3E9wAA</XPD:REF>
+<XPD:REF name="Views[2]">vydBNJbgfUK9erAWabSfDwAA</XPD:REF>
 <XPD:REF name="Views[3]">8emHWuYbdkubK2dtxTfivQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="kEKamPaZkkaWh6yEx3BOuQAA">
@@ -7417,8 +7423,8 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Participant">pqcjHIcLt0yovM9f5K5P8wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">vT1oEYlTIEm/vE0O8V0DIgAA</XPD:REF>
-<XPD:REF name="Views[1]">75OWJ8MZU0qoIO8vMrX1lwAA</XPD:REF>
-<XPD:REF name="Views[2]">iX/041MpwEmhE7Vxp2sm5gAA</XPD:REF>
+<XPD:REF name="Views[1]">iX/041MpwEmhE7Vxp2sm5gAA</XPD:REF>
+<XPD:REF name="Views[2]">75OWJ8MZU0qoIO8vMrX1lwAA</XPD:REF>
 <XPD:REF name="Views[3]">eKYcxUaRr02WWNV/Cak8AQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -7435,8 +7441,8 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Participant">dVdokRa1+kOtbz9OqPljggAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">ctjSFN8y4k69Na0hKq8ihgAA</XPD:REF>
-<XPD:REF name="Views[1]">dnF2VgMKI0qKKS7z7YaBMgAA</XPD:REF>
-<XPD:REF name="Views[2]">N6H3cIZT4UiK9WtWgyiBTAAA</XPD:REF>
+<XPD:REF name="Views[1]">N6H3cIZT4UiK9WtWgyiBTAAA</XPD:REF>
+<XPD:REF name="Views[2]">dnF2VgMKI0qKKS7z7YaBMgAA</XPD:REF>
 <XPD:REF name="Views[3]">gXu4GeUt3UqDO8QKdsp4pgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="A7tN42WbA0G5KloD6eQ1OAAA">
@@ -7445,8 +7451,8 @@ Teacher为教师注册后，可以登陆前台参与学术活动功能
 <XPD:REF name="Participant">C8Bybq/XFU2BNF+Qhuee6QAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">haKRxs27Zky0mOOR6ibOJwAA</XPD:REF>
-<XPD:REF name="Views[1]">tH+mWYoyPkivQRSo42arJwAA</XPD:REF>
-<XPD:REF name="Views[2]">18tCQSUvgE2Txr7dJXxPEwAA</XPD:REF>
+<XPD:REF name="Views[1]">18tCQSUvgE2Txr7dJXxPEwAA</XPD:REF>
+<XPD:REF name="Views[2]">tH+mWYoyPkivQRSo42arJwAA</XPD:REF>
 <XPD:REF name="Views[3]">9eaqs47VIESZlUwOhKlqyQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>

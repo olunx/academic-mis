@@ -17,6 +17,7 @@
 		<input type="hidden" name="id" value="${activityResult.id}"/><br/>
 		获奖等级：<input type="text" name="arDto.prize" value="${activityResult.prize }"/><br/>
 		获奖名称: <input type="text" name="arDto.name" value="${activityResult.name }"/><br/> 
+		可得学分: <input type="text" name="arDto.credit" value="${activityResult.credit }"/><br/> 
 		获奖说明：<textarea name="arDto.remark" rows="" cols="" >${activityResult.remark }</textarea><br/>
 		<input type="submit" value="修改">
 	</form>
