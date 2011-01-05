@@ -102,7 +102,8 @@
           </tr>
         </table>
         <ul class="MM">
-		  <li><a href="<%=path %>/statistics/activistStatistics" target="main">学术活动积极分子</a></li>
+		  <li><a href="<%=path %>/statistics/activistStatistics?clsId=-1" target="main">学术活动积极分子</a></li>
+		  <li><a href="<%=path %>/statistics/activityStatistics" target="main">学术活动统计</a></li>
         </ul>
       </div>
         <h1 class="type"><a href="javascript:void(0)">其它参数管理</a></h1>

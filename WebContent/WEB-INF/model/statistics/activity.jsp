@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
+
 <%
 	String path = request.getContextPath();
 %>
@@ -14,13 +16,14 @@
 		background-color: #EEF2FB;
 	}
 </style>
+
 <body>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="17" valign="top" background="<%=path %>/content/images/admin/mail_leftbg.gif"><img src="<%=path %>/content/images/admin/left-top-right.gif" width="17" height="29" /></td>
     <td valign="top" background="<%=path %>/content/images/admin/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
       <tr>
-        <td height="31"><div class="titlebt">查看助理</div></td>
+        <td height="31"><div class="titlebt">查看活动统计</div></td>
       </tr>
     </table></td>
     <td width="16" valign="top" background="<%=path %>/content/images/admin/mail_rightbg.gif"><img src="<%=path %>/content/images/admin/nav-right-bg.gif" width="16" height="29" /></td>
@@ -37,76 +40,73 @@
         <td width="7%">&nbsp;</td>
         <td width="100%" valign="top">
         	<div class="context">
-        		<div>
-        		当前位置：<a href="<%=path %>/student/listStudent">学生主页</a>-&gt;学生信息
-        		</div>
-				查看 ${student.realName} 同学的信息<br />
+        		<h1>学术活动统计</h1>
+        		<form action="<%=path %>/statistics/activityStatistics" method="POST" >
+	        		<div>
+	        		开始年份 : <input type="text" name="airtime">
+	        		结束年份 : <input type="text" name="deadtime">
+					<input type="submit" value="查询">
+					</div>
+				</form>
+				<br/>
+				<div>
+      			<c:choose>
+					<c:when test="${pageBean.list == null}">
+									没有数据！
+							</c:when>
+					<c:otherwise>
+						<table class="table">
+							<tr>
+								<th>活动名称</th>
+								<th>届次</th>
+								<th>所属类型</th>
+								<th>报名方式</th>
+								<th>发布人</th>
+								<th>创建时间</th>
+								<th>比赛结果</th>
+							</tr>
+							<c:forEach items="${pageBean.list}" var="activity">
+								<tr>
+									<td><a onclick="ajaxload(this);return false;" href="<%=path%>/activity/viewActivity?id=${activity.id }">${activity.name}</a></td>
+									<td>第${activity.session}届</td>
+									<td>${activity.activityType.name}</td>
+									<td>${activity.applyCount == 1 ? '单人报名' : '团队报名'},限${activity.applyCount }人</td>
+									<td>${my:userTypeCompare(activity.publisher) == 1? '系统管理员' : '管理员助理'}:${activity.publisher.realName}</td>
+									<td>${activity.time}</td>
+									<th></th>
+								</tr>
+							</c:forEach>
+						</table>
 				
-				${fn:length(student.singleApplys)}|${fn:length(student.teamApplys)}<br/>
-				<c:choose>
-					<c:when test="${student.singleApplys != null && fn:length(student.singleApplys) != 0}">
-						该同学参加过的学术活动-个人报名<br/>
-						<table class="table">
-							<tr>
-								<th>活动名称</th>
-								<th>活动结果</th>
-							</tr>
-						<c:forEach items="${student.singleApplys}" var="sa">
-							<tr>
-								<td><a href="<%=path %>/activity/viewActivity?id=${sa.activity.id}">${sa.activity.name }</a></td>
-								<td>${sa.activityResult != null ? sa.activityResult.record : sa.status == 3 ? '该学生未能通过申请' : '参加了该活动'}</td>
-							</tr>
-						</c:forEach>
-						</table>
-					</c:when>
+						<div id="pagecount">
+							<p>共  ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
+							<c:choose>
+								<c:when test="${pageBean.currentPage == 1}">
+									<a><span>首页</span></a>
+									<a><span>上一页</span></a>
+								</c:when>
+								<c:otherwise>
+									<a href="<%=path%>/statistics/activityStatistics?page=1"><span>首页</span></a>
+									<a href="<%=path%>/statistics/activityStatistics?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${pageBean.currentPage != pageBean.totalPage}">
+									<a href="<%=path%>/statistics/activityStatistics?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+									<a href="<%=path%>/statistics/activityStatistics?page=${pageBean.totalPage}"><span>尾页</span></a>
+								</c:when>
+								<c:otherwise>
+									<a><span>下一页</span></a>
+									<a><span>尾页</span></a>
+								</c:otherwise>
+							</c:choose>
+							</div>
 					
-					<c:otherwise>
-						该同学还没参加过学术活动-个人报名
+				
 					</c:otherwise>
 				</c:choose>
-				<c:choose>
-					<c:when test="${student.teamApplys != null && fn:length(student.teamApplys) != 0}">
-						该同学参加过的学术活动-团队报名<br/>
-						<table class="table">
-							<tr>
-								<th>活动名称</th>
-								<th>活动结果</th>
-							</tr>
-						<c:forEach items="${student.teamApplys}" var="ta">
-							<tr>
-								<td><a href="<%=path %>/activity/viewActivity?id=${ta.activity.id}">${ta.activity.name }</a></td>
-								<td>${ta.activityResult != null ? ta.activityResult.record : ta.status == 3 ? '该学生未能通过申请' : '参加了该活动'}</td>
-							</tr>
-						</c:forEach>
-						</table>
-					</c:when>
-					
-					<c:otherwise>
-						该同学还没参加过学术活动-团队报名
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${student.groups != null && fn:length(student.groups) != 0}">
-						该同学加入的学习小组<br/>
-						<table class="table">
-							<tr>
-								<th>小组名称</th>
-								<th>小组简介</th>
-							</tr>
-						<c:forEach items="${student.groups}" var="group">
-							<tr>
-								<td><a href="<%=path %>/group/viewGroup?id=${group.id}">${group.name }</a></td>
-								<td>${group.intro}</td>
-							</tr>
-						</c:forEach>
-						</table>
-					</c:when>
-					
-					<c:otherwise>
-						该同学还没加入过学习小组
-					</c:otherwise>
-				</c:choose>
-			</div>
+				</div>
+      		</div>
         </td>
       </tr>
       <tr>

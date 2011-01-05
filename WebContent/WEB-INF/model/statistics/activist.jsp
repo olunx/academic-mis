@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -14,6 +15,21 @@
 		background-color: #EEF2FB;
 	}
 </style>
+
+<!-- JQuery库 -->
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
+<script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
+
+<script type="text/JavaScript">
+	 $(document).ready(function(){
+			
+		var majorselect = ${clsmap};
+	    $('#first').doubleSelect('second', majorselect);      
+	 });
+</script>
 <body>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -38,12 +54,27 @@
         <td width="100%" valign="top">
         	<div class="context">
         		<h1>活动积极者</h1>
+        		<form action="<%=path %>/statistics/activistStatistics" method="POST" >
+	        		<div>
+					<label>选择班级：</label>
+					<select id="first" name="insId" size="1" ><option value="">--</option></select>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;
+					<select id="second" name="clsId" size="1"><option value="">--</option></select>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="submit" value="查询">
+					</div>
+				</form>
+				<br/>
+				<div>
       			<c:choose>
 					<c:when test="${pageBean.list == null}">
 									没有数据！
 							</c:when>
 					<c:otherwise>
-						<table class="table">
+						<table class="table" >
 							<tr>
 								<th>用户名</th>
 								<th>姓名</th>
@@ -84,7 +115,7 @@
 				
 					</c:otherwise>
 				</c:choose>
-
+				</div>
       		</div>
         </td>
       </tr>
