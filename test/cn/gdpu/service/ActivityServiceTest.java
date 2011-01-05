@@ -80,6 +80,7 @@ public class ActivityServiceTest{
 				activity.setOpusNeed(1);
 				activity.setAirtime(new Date());
 				activity.setDeadtime(nextDate);
+				activity.setTime(new Date());
 				activity.setPublisher(ass);
 				activitys.add(activity);
 			}
