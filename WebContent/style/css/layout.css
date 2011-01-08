@@ -250,7 +250,8 @@ ol.commentlist ul.children li{margin: 0 0 0 20px;border-left:1px solid #eee;bord
 	.res_1{	width: 34%;}
 	.res_2{	width: 60%;}
 	#author,#email,#url{width:95%;height:14px;padding:10px;color: #818181;border: 1px solid #ccc;background: url(../images/field.jpg) repeat-x top;}
-	textarea#comment{width: 94%;color:#818181;padding: 10px;font-family: Verdana;font-size: 11px;height: 140px;border: 1px solid #ccc;background: url(../images/field.jpg) repeat-x top;}
+	textarea#comment{width: 95%;color:#818181;padding: 10px;font-family: Verdana;font-size: 11px;height: 140px;border: 1px solid #ccc;background: url(../images/field.jpg) repeat-x top;}
+	#submit2{height: 30px;background: #333;color: #ccc;cursor: pointer;border: none;display: block;width: 100px;}
 	#respond #submit{height: 30px;background: #333;color: #ccc;cursor: pointer;border: none;display: block;width: 105%;}
 	.cancel-comment-reply{display: block;margin: 5px 0 10px;}
 	
