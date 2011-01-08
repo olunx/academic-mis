@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
@@ -8,109 +8,79 @@
 	String path = request.getContextPath();
 %>
 <jsp:include page="/top.jsp"></jsp:include>
-  <!-- Content Starts -->
-  <div id="content" class="wrap">
-  
- 	<!-- 左边栏 -->
-    <div class="col-left">
-      <div id="featured">
-      	
-<div id="comments">
-<!-- You can start editing here. -->
-<div id="comments_wrap">
-	<h2>我加入的小组</h2>
-	<ol class="commentlist">
-		<li class="comment wrap">
-		    <div class="comment wrap">
-		        <div class="col-left">
-		            <img alt="" src="<%=path %>/style/js/images/pic.jpeg" class="avatar avatar-80 photo" height="80" width="80">
-		            <p>小组名称<br></p>
-		            <p>创建时间日期<br></p>
-		        </div>
-		        <div class="col-right">
-		            <p>小组简介</p>
-		        </div>
-		     	<div class="reply"><a rel="nofollow" class="comment-reply-link" href="#" >查看详情</a></div>        
-		    </div>
-			<div class="fix"></div>
-		</li>
-	</ol>    
-	<div class="navigation">
-		<div class="alignleft"></div>
-		<div class="alignright"></div>
-		<div class="fix"></div>
+	<!--内容区 开始 -->
+	<div id="content" class="subcontainer fleft">
+		<div class="breadcrumb"> <a href="#">首页</a> &raquo; <a href="#">我参加的小组</a> </div>
+	<div class="post">
+		<h2 class="mainhead">我参加的小组</h2>
+		<c:choose>
+		<c:when test="${pageBean.list == null}">
+						没有数据！
+		</c:when>
+		<c:otherwise>
+			<ul id="excerpt">
+			<c:forEach items="${pageBean.list}" var="group">
+		        <li>
+				<div class="p_coleft fleft">
+					<p class="date_s">队长：${group.captain.realName}</p>
+					<span class="comment_s"><a href="#">共${fn:length(group.members)}名成员 </a></span>
+				</div>
+				<div class="p_coright fright">
+					<h1 class="prevtitle">组名： <a href="<%=path%>/group/viewGroup?id=${group.id }">${group.name}</a></h1>	小组简介:${group.intro}
+				 </div>
+				<br class="clear" />
+		        </li>
+	        </c:forEach>
+	        </ul>
+			
+			<br class="clear">
+			<div class="wp-pagenavi">
+				<span class="pages">共 ${pageBean.allRow} 条记录  页码 ${pageBean.currentPage}/${pageBean.totalPage}</span>
+				<c:choose>
+					<c:when test="${pageBean.currentPage == 1}">
+						<a class="page" href="#">首页</a>
+						<a class="page" href="#">上一页</a>
+					</c:when>
+					<c:otherwise>
+						<a class="page" href="<%=path%>/group/listGroup?page=1">首页</a>
+						<a class="page" href="<%=path%>/group/listGroup?page=${pageBean.currentPage-1}">上一页</a>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test="${pageBean.currentPage != pageBean.totalPage}">
+						<a class="page" href="<%=path%>/group/listGroup?page=${pageBean.currentPage+1}">下一页</a>
+						<a class="last" href="<%=path%>/group/listGroup?page=${pageBean.totalPage}">尾页</a>
+					</c:when>
+					<c:otherwise>
+						<a class="page" href="#">下一页</a>
+						<a class="last" href="#">尾页</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			</c:otherwise>
+	</c:choose>
 	</div>
-	<br>
-</div> <!-- end #comments_wrap -->
-</div><!-- end #comments -->
-
-<div id="comments">
-<!-- You can start editing here. -->
-<div id="comments_wrap">
-	<h3>我加入的小组</h3>
-	<ol class="commentlist">
-		<li class="comment wrap">
-		    <div class="comment wrap">
-		        <div class="col-left">
-		            <img alt="" src="<%=path %>/style/js/images/pic.jpeg" class="avatar avatar-80 photo" height="80" width="80">
-		            <p>小组名称<br></p>
-		            <p>创建时间日期<br></p>
-		        </div>
-		        <div class="col-right">
-		            <p>小组简介</p>
-		        </div>
-		     	<div class="reply"><a rel="nofollow" class="comment-reply-link" href="#" >查看详情</a></div>        
-		    </div>
-			<div class="fix"></div>
-		</li>
-	</ol>    
-	<div class="navigation">
-		<div class="alignleft"></div>
-		<div class="alignright"></div>
-		<div class="fix"></div>
 	</div>
-	<br>
-</div> <!-- end #comments_wrap -->
-</div><!-- end #comments -->
-
-      </div><!-- featured ends -->
-    </div><!-- .col-left ends -->
-    
-    <!-- 右边栏 -->
-    <div class="col-right">
-      <div id="main">
-      
-<div id="comments">
-<!-- You can start editing here. -->
-<div id="comments_wrap">
-	<h2>所有的小组</h2>
-	<ol class="commentlist">
-		<li class="comment wrap">
-		    <div class="comment wrap">
-		        <div class="col-left">
-		            <img alt="" src="<%=path %>/style/js/images/pic.jpeg" class="avatar avatar-80 photo" height="80" width="80">
-		            <p>小组名称<br></p>
-		            <p>创建时间日期<br></p>
-		        </div>
-		        <div class="col-right">
-		            <p>小组简介</p>
-		        </div>
-		     	<div class="reply"><a rel="nofollow" class="comment-reply-link" href="#" >查看详情</a></div>        
-		    </div>
-			<div class="fix"></div>
-		</li>
-	</ol>    
-	<div class="navigation">
-		<div class="alignleft"></div>
-		<div class="alignright"></div>
-		<div class="fix"></div>
+	<!--内容区 结束 -->
+	
+	<!--侧边栏 开始 -->
+	<div id="sidebar" class="sidecontainer fright">
+		<div class="widgets">
+			<h2 class="mainhead">RSS Feed</h2>
+			<p class="feed"><a href="http://localhost/wordpress/?feed=rss2">Subscribe
+			to feed <br>
+			<span>get the latest updates!</span></a></p>
+			<form method="get" id="ksearchform"
+				action="../olunx — 又一个 WordPress 站点_files/olunx — 又一个 WordPress 站点.htm">
+			<div><input type="text" size="18" value="" name="s" id="s">
+			<input type="submit" id="ksearchsubmit" value="Search" class="btn">
+			</div>
+			<br class="clear">
+			</form>
+		</div>
+		<ul>
+		</ul>
 	</div>
-	<br>
-</div> <!-- end #comments_wrap -->
-</div><!-- end #comments -->
-
-      </div><!-- main ends -->
-    </div><!-- .col-right ends -->
-    
-  </div> <!-- Content Ends -->
+	<!--侧边栏 结束 -->
+	
 <jsp:include page="/bottom.jsp"></jsp:include>

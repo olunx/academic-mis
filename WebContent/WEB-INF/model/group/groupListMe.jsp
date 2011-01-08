@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
@@ -7,71 +7,80 @@
 <%
 	String path = request.getContextPath();
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<script type="text/javascript">
-	$(function() {
-		list("#group_more_list", "#wall");
-	});
-</script>
-<title>管理学生小组</title>
-</head>
-<body>
-	<h2>该用户创建的群组</h2>
-	<c:choose>
+<jsp:include page="/top.jsp"></jsp:include>
+	<!--内容区 开始 -->
+	<div id="content" class="subcontainer fleft">
+		<div class="breadcrumb"> <a href="#">首页</a> &raquo; <a href="#">我创建的小组</a> </div>
+	<div class="post">
+		<h2 class="mainhead">我创建的小组</h2>
+		<c:choose>
 		<c:when test="${pageBean.list == null}">
 						没有数据！
 		</c:when>
 		<c:otherwise>
-			<table class="table">
-				<tr>
-					<th>小组名称</th>
-					<th>小组简介</th>
-					<th>小组队长</th>
-					<th>小组成员</th>
-					<th>申请人数</th>
-				</tr>
-				<c:forEach items="${pageBean.list}" var="group">
-					<tr>
-						<td><a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${group.id }">${group.name}</a></td>
-						<td>${fn:substring(fn:replace(group.intro,"<","&lt;"),0,20)}...</td>
-						<td>${group.captain.realName}</td>
-						<td>${fn:length(group.members)}</td>
-						<td>${my:groupApplyCount(group)}</td>
-					</tr>
-				</c:forEach>
-			</table>
-	
-			<div id="pagecount">
-				<p>共  ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
+			<ul id="excerpt">
+			<c:forEach items="${pageBean.list}" var="group">
+		        <li>
+				<div class="p_coleft fleft">
+					<p class="date_s">队长：${group.captain.realName}</p>
+					<span class="comment_s"><a href="#">共${fn:length(group.members)}名成员 </a></span>
+				</div>
+				<div class="p_coright fright">
+					<h1 class="prevtitle">组名： <a href="<%=path%>/group/viewGroup?id=${group.id }">${group.name}</a></h1>	小组简介:${group.intro}
+				 </div>
+				<br class="clear" />
+		        </li>
+	        </c:forEach>
+	        </ul>
+			
+			<br class="clear">
+			<div class="wp-pagenavi">
+				<span class="pages">共 ${pageBean.allRow} 条记录  页码 ${pageBean.currentPage}/${pageBean.totalPage}</span>
 				<c:choose>
 					<c:when test="${pageBean.currentPage == 1}">
-						<a><span>首页</span></a>
-						<a><span>上一页</span></a>
+						<a class="page" href="#">首页</a>
+						<a class="page" href="#">上一页</a>
 					</c:when>
 					<c:otherwise>
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listMeGroup?page=1"><span>首页</span></a>
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listMeGroup?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+						<a class="page" href="<%=path%>/group/listMeGroup?page=1">首页</a>
+						<a class="page" href="<%=path%>/group/listMeGroup?page=${pageBean.currentPage-1}">上一页</a>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listMeGroup?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listMeGroup?page=${pageBean.totalPage}"><span>尾页</span></a>
+						<a class="page" href="<%=path%>/group/listMeGroup?page=${pageBean.currentPage+1}">下一页</a>
+						<a class="last" href="<%=path%>/group/listMeGroup?page=${pageBean.totalPage}">尾页</a>
 					</c:when>
 					<c:otherwise>
-						<a><span>下一页</span></a>
-						<a><span>尾页</span></a>
+						<a class="page" href="#">下一页</a>
+						<a class="last" href="#">尾页</a>
 					</c:otherwise>
 				</c:choose>
-				</div>
-		
-	
-		</c:otherwise>
+			</div>
+			</c:otherwise>
 	</c:choose>
-
-</body>
-</html>
+	</div>
+	</div>
+	<!--内容区 结束 -->
+	
+	<!--侧边栏 开始 -->
+	<div id="sidebar" class="sidecontainer fright">
+		<div class="widgets">
+			<h2 class="mainhead">RSS Feed</h2>
+			<p class="feed"><a href="http://localhost/wordpress/?feed=rss2">Subscribe
+			to feed <br>
+			<span>get the latest updates!</span></a></p>
+			<form method="get" id="ksearchform"
+				action="../olunx — 又一个 WordPress 站点_files/olunx — 又一个 WordPress 站点.htm">
+			<div><input type="text" size="18" value="" name="s" id="s">
+			<input type="submit" id="ksearchsubmit" value="Search" class="btn">
+			</div>
+			<br class="clear">
+			</form>
+		</div>
+		<ul>
+		</ul>
+	</div>
+	<!--侧边栏 结束 -->
+	
+<jsp:include page="/bottom.jsp"></jsp:include>
