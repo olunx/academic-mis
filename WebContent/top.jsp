@@ -37,8 +37,8 @@
 <!--横幅 开始-->
 <div id="header" class="clear">
   <div class="container cheader">
-    <h1 id="blogtitle"><a href="#">Academic System</a></h1>
-    <p class="blogdesc">学术活动管理系统</p>
+    <h1 id="blogtitle"><a href="#">学术活动</a></h1>
+    <p class="blogdesc">创建一个关于我们的学术交流平台</p>
   </div>
 </div>
 <!--横幅 结束-->
@@ -46,20 +46,13 @@
   <div class="container">
     <!--菜单栏 开始-->
     <ul>
-      <li class="cat-item"><a href="#">比赛小组</a>
+      <li class="cat-item"><a href="#">院校导航</a>
         <ul class="children">
-          <li class="cat-item"><a href="<%=path %>/group/listAllGroup">所有小组</a></li>
-          <li class="cat-item"><a href="<%=path %>/group/listGroup">我参加的</a></li>
-          <li class="cat-item"><a href="<%=path %>/group/listMeGroup">我创建的</a></li>
-          <li class="cat-item"><a href="<%=path %>/group/listApplyGroup">我申请的</a></li>
+          <li class="cat-item"><a href="http://branch.gdpu.edu.cn/kxyj/">科学研究</a></li>
+          <li class="cat-item"><a href="#">管理系统</a></li>
         </ul>
       </li>
-      <li class="cat-item"><a href="#">学术活动</a>
-        <ul class="children">
-          <li class="cat-item"><a href="<%=path %>/activity/listApplyActivity">我申请的活动</a> </li>
-          <li class="cat-item"><a href="<%=path %>/activity/listActivity">所有学术活动</a> </li>
-        </ul>
-      </li>
+      <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">图书馆</a></li>
     </ul>
     <!--菜单栏 结束-->
   </div>
