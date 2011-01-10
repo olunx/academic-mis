@@ -219,13 +219,13 @@ ul#excerpt li{margin: 0 0px 30px 0;}
 /*== Single */
 /*===========================================*/
 .related{background:lightblue;padding: 0px 0px 20px;margin: 30px 0 30px;}
-.related h3{background:#333;font-size:16px;padding:10px 20px;display:block;font-family: "Helvetica Neue",Helvetica,Verdana,Arial;font-weight:lighter;color:#eee;text-transform:uppercase;}
-.related ul{padding: 30px 20px 20px 40px;float:left;}
-.related li{float:left;width:114px;margin:0 26px 0 0;}
+.related h3{background:#333;font-size:16px;padding:10px 20px;display:block;font-weight:lighter;color:#eee;text-transform:uppercase;}
+.related ul{padding: 10px 10px 10px 20px;float:left;}
+.related li{float:left;width:78px;margin:20px 20px 0 0;}
 .related li img{border:7px solid #9CC5D1;margin:0 0 8px;}
 li.last{margin:0;}
 .related li a{color: #8BB0BB;}
-.related_empty{display: block;height: 60px;width: 114px;background: none;margin: 0 0 40px 0;}
+.related_empty{display: block;height: 60px;width: 78px;background: none;margin: 0 0 40px 0;}
 
 /*===========================================*/
 /*== Comments */
@@ -233,7 +233,7 @@ li.last{margin:0;}
 
 #comments{}
 ol.commentlist{margin: 0 0 20px;}
-.commentlist li{padding:25px 0;border-bottom:1px solid #eee;}
+.commentlist li{padding:10px 0;border-bottom:1px solid #eee;}
 .commentlist img.avatar{border: 8px solid #eee;}
 .comment-author{ margin:0 10px 0 0;width:13%;}
 .comment-info{ width:84%;}

@@ -10,7 +10,7 @@
 <title>学术活动管理系统</title>
 <!-- TemplateEndEditable -->
 <link rel="stylesheet" href="<%=path %>/style/css/layout.css" type="text/css" media="screen">
-<script type="text/javascript" src="<%=path %>/style/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=path %>/style/js/jquery-1.4.2.min.js"></script>
 <style type="text/css">
 .recentcomments a {
 	display:inline !important;
@@ -24,7 +24,7 @@
 <div id="nav">
   <div class="container">
     <ul>
-      <li class="current_page_item page_item"><a href="#" title=""><span>首页</span></a></li>
+      <li class="current_page_item page_item"><a href="<%=path%>/index" title=""><span>首页</span></a></li>
       <li class="page_item"><a href="#" title="iRemember"><span>iRemember</span></a></li>
       <li class="page_item"><a href="#" title="iRss"><span>iRss</span></a></li>
       <li class="page_item"><a href="#" title="关于"><span>关于</span></a></li>
