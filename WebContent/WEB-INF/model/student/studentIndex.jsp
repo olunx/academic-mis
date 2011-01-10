@@ -18,4 +18,5 @@
     </div><!-- .col-right ends -->
   </div> <!-- Content Ends -->
   
+<jsp:include page="/sidestu.jsp"></jsp:include>
 <jsp:include page="/bottom.jsp"></jsp:include>

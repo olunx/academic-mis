@@ -65,4 +65,5 @@
 	</div>
 	<!--内容区 结束 -->
 	
+<jsp:include page="/sidestu.jsp"></jsp:include>
 <jsp:include page="/bottom.jsp"></jsp:include>
