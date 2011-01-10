@@ -1,41 +1,59 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>教师用户注册</title>
-
 <%
 	String path = request.getContextPath();
 %>
-
-<!-- JQuery库 -->
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
-
-</head>
-<body>
-	教师注册页面<br />
+<jsp:include page="/top.jsp"></jsp:include>
+	<!--内容区 开始 -->
+	<div id="content" class="subcontainer fleft">
+		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="#">教师用户注册</a> </div>
+	    <!--评论列表 开始-->
+    <div id="comments">
+       <!--发表评论 开始-->
+      <div id="respond">
+        <div class="cancel-comment-reply"> </div>
 	<form action="<%=path %>/teacher/addTeacher" method="post">
-		用户账号：<input type="text" name="teaDto.username" /><br/>
-		用户密码：<input type="password" name="teaDto.password" /><br/>
-		确认密码：<input type="password" name="teaDto.rpassword" /><br/>
-		教师号：<input type="text" name="teaDto.tnum" /><br/>
-		真实姓名：<input type="text" name="teaDto.realName" /><br/>
-		用户性别：<input type="radio" name="teaDto.sex" value="1" checked="checked">男<input type="radio" name="teaDto.sex" value="0">女<br/>
-		用户年龄：<input type="text" name="teaDto.age" /><br/>
-		<div id="select">
-			<label>选择班级：</label>
-			<select name="teaDto.institute" size="1">
-				<c:forEach items="${institutes}" var="institute" ><option value="${institute.id}">${institute.name}</option></c:forEach>
-			</select>
-		</div>
-		<input type="submit" value="注册">
+			<p>
+				<input type="text" title="用户账号" name="teaDto.username" id="input" value="" size="22" tabindex="1" />
+			</p>
+			<p>
+				<input type="text" title="用户密码" name="teaDto.password" id="input" value="" size="22" tabindex="2" />
+			</p>
+			<p>
+				<input type="text" title="确认密码" name="teaDto.rpassword" id="input" value="" size="22" tabindex="3" />
+			</p>
+			<p>
+				<input type="text" title="教师号" name="teaDto.tnum" id="input" value="" size="22" tabindex="4"/>
+			</p>
+			<p>
+				<input type="text" title="真实姓名" name="teaDto.realName" id="input" value="" size="22" tabindex="5"/>
+			</p>
+			<p>
+				<input type="text" title="年龄" name="teaDto.age" id="input" value="" size="22" tabindex="6"/>
+			</p>
+			<p>
+				<input type="radio" name="teaDto.sex" id="sex" value="1" checked="checked">男
+				<input type="radio" name="teaDto.sex" id="sex" value="0">女<br/>
+			</p>
+			<p>
+				<select name="teaDto.institute" size="1">
+				<c:forEach items="${institutes}" var="institute" >
+				<option value="${institute.id}">${institute.name}</option>
+				</c:forEach>
+				</select>
+			</p>
+			<div class="clear"></div>
+			<p>
+				<input name="submit" type="submit" id="submit2" tabindex="5" value="注册" />
+			</p>
+		<div class="clear"></div>
 	</form>
-</body>
-</html>
+	
+      </div>
+       <!--发表评论 结束-->
+    </div>
+    <!--评论列表 结束-->
+	</div>
+	<!--内容区 结束 -->
+<jsp:include page="/sideidx.jsp"></jsp:include>
+<jsp:include page="/bottom.jsp"></jsp:include>

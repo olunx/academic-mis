@@ -16,14 +16,11 @@
        <!--发表评论 开始-->
       <div id="respond">
         <h2 class="mainhead">添加小组</h2>
-        <div class="cancel-comment-reply"> <a rel="nofollow" id="cancel-comment-reply-link" href="/wordpress/?p=552#respond" style="display:none;">Cancel</a> </div>
         <form action="<%=path %>/group/addGroup" method="post" id="commentform">
 			<p>
-				<label for="author">小组名称</label>
-				<input type="text" title="小组名称" name="group.name" id="author" value="" size="22" tabindex="1" aria-required='true' />
+				<input type="text" title="小组名称" name="group.name" id="input" value="" size="22" tabindex="1" aria-required='true' />
 			</p>
 			<p>
-				<label for="commentt">小组简介</label>
 				<textarea name="group.intro" title="小组简介..." id="comment" cols="100%" rows="10" tabindex="4"></textarea>
 			</p>
 			<div class="clear"></div>

@@ -1,23 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
+<jsp:include page="/top.jsp"></jsp:include>
+<!-- 
 <link rel="stylesheet" type="text/css" href="<%=path%>/content/images/style.css" />
-
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="<%=path%>/content/js/jquery-easing-1.3.pack.js"></script>
 <script type="text/javascript" src="<%=path%>/content/js/jquery-easing-compatibility.1.2.pack.js"></script>
 <script type="text/javascript" src="<%=path%>/content/js/coda-slider.1.1.1.pack.js"></script>
-
 <script type="text/javascript">
 
 	var theInt = null;
@@ -62,22 +55,15 @@
 		theInterval();
 	});
 </script>
+ -->
+	<!--内容区 开始 -->
+	<div id="content" class="subcontainer fleft">
 
-</head>
-<body>
-	<form action="login" method="POST">
-		账号<input type="text" name="loginDto.username">
-		密码<input type="password" name="loginDto.password">
-		<select name="loginDto.loginType" size="1">
-			<option value="0" selected="selected">学生</option>
-			<option value="1">教师</option>
-			<option value="2">助理</option>
-		</select>
-		<input type="submit" value="登陆"> <a href="student/goAddStudent">学生注册</a>|<a href="teacher/goAddTeacher">老师注册</a>
-	</form>
-	
-	
-	<div id="page-wrap">
+	<!--post 开始-->
+	<div class="post">
+		<h2 class="mainhead">最新公告</h2>
+<!-- 
+    	<div id="page-wrap">
 	<div class="slider-wrap">
 		<c:choose>
 		<c:when test="${nhs == null}">
@@ -143,5 +129,13 @@
 		</c:choose>
 	</div>
 	</div>
-</body>
-</html>
+     -->
+     
+	</div>
+    <!--post 结束-->
+ 
+	</div>
+	<!--内容区 结束 -->
+
+<jsp:include page="/sideidx.jsp"></jsp:include>
+<jsp:include page="/bottom.jsp"></jsp:include>

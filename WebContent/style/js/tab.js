@@ -1,5 +1,3 @@
- 
-
 $(document).ready(function() {
 // setting the tabs in the sidebar hide and show, setting the current tab
 	$('div.tabbed div').hide();
