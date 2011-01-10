@@ -10,7 +10,7 @@
 <jsp:include page="/top.jsp"></jsp:include>
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
-		<div class="breadcrumb"> <a href="#">首页</a> &raquo; <a href="#">创建小组</a> </div>
+		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="<%=path %>/group/goAddGroup">创建小组</a> </div>
 	    <!--评论列表 开始-->
     <div id="comments">
        <!--发表评论 开始-->
