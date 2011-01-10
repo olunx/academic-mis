@@ -14,10 +14,10 @@
 </head>
 <body>
 	老师登陆成功,欢迎您${teacher.realName}<br />
-	<a href="<%=path %>/group/goAddGroup">创建小组</a><br/>
-	<a href="<%=path %>/group/listGroup">查看我加入的小组</a><br/>
-	<a href="<%=path %>/group/listMeGroup">查看我创建的小组</a><br/>
-	<a href="<%=path %>/group/listApplyGroup">查看我申请的小组</a><br/>
-	<a href="<%=path %>/group/listAllGroup">查看所有的小组</a>
+	<a href="#">发布课题</a><br />
+	<a href="#">查看课题</a><br />
+	<a href="#">查看作品</a><br />
+	<a href="#">我点评作品</a><br />
+	<a href="<%=path %>/group/listAllGroup">查看学习小组</a>
 </body>
 </html>
