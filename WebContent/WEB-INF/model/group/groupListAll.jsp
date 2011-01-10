@@ -10,9 +10,9 @@
 <jsp:include page="/top.jsp"></jsp:include>
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
-		<div class="breadcrumb"> <a href="#">首页</a> &raquo; <a href="#">我参加的小组</a> </div>
+		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="#">所有的小组</a> </div>
 	<div class="post">
-		<h2 class="mainhead">我参加的小组</h2>
+		<h2 class="mainhead">所有的小组</h2>
 		<c:choose>
 		<c:when test="${pageBean.list == null}">
 						没有数据！
@@ -39,8 +39,8 @@
 				<span class="pages">共 ${pageBean.allRow} 条记录  页码 ${pageBean.currentPage}/${pageBean.totalPage}</span>
 				<c:choose>
 					<c:when test="${pageBean.currentPage == 1}">
-						<a class="page" href="#">首页</a>
-						<a class="page" href="#">上一页</a>
+						<a class="page">首页</a>
+						<a class="page">上一页</a>
 					</c:when>
 					<c:otherwise>
 						<a class="page" href="<%=path%>/group/listAllGroup?page=1">首页</a>
@@ -53,8 +53,8 @@
 						<a class="last" href="<%=path%>/group/listAllGroup?page=${pageBean.totalPage}">尾页</a>
 					</c:when>
 					<c:otherwise>
-						<a class="page" href="#">下一页</a>
-						<a class="last" href="#">尾页</a>
+						<a class="page">下一页</a>
+						<a class="last">尾页</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
