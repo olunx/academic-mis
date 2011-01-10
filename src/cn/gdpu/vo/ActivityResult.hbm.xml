@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.gdpu.vo">
+	<class name="ActivityResult" table="t_activity_result" >
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="prize" />
+		<property name="name" />
+		<property name="remark" />
+		<many-to-one name="awarder" class="ActivityApply" cascade="save-update" fetch="select">
+			<column name="aaId" />
+	    </many-to-one>  
+		<property name="record" />
+	</class>
+</hibernate-mapping>
