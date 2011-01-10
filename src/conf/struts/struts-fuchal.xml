@@ -7,7 +7,16 @@
 	<!-- index -->
 	<package name="index" extends="struts-default" namespace="/">
 		<default-action-ref name="index"/>
-		
+		<global-results>
+			<result name="error" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">goLogin</param>
+			</result>
+			<result name="gologin" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">goLogin</param>
+			</result>
+		</global-results>
 		<action name="index" class="cn.gdpu.action.IndexAction" method="index">
 			<result name="success">/index.jsp</result>
 		</action>
@@ -15,9 +24,12 @@
 			<result name="stulogin">/WEB-INF/model/student/studentIndex.jsp</result>
 			<result name="asslogin">/WEB-INF/model/assistant/assistantIndex.jsp</result>
 			<result name="tchlogin">/WEB-INF/model/teacher/teacherIndex.jsp</result>
-			<result name="gologin">/index.jsp</result>
-			<result name="error">/index.jsp</result>
 		</action>
+		
+		<action name="goLogin">
+            <result>/WEB-INF/model/index/login.jsp</result>
+        </action>
+		
 		<action name="admin" class="cn.gdpu.action.AdminAction" method="goLogin">
 			<result name="gologin">/admin/adminLogin.jsp</result>
 		</action>

@@ -1,0 +1,84 @@
+@charset "utf-8";
+/*
+ * Name : Academic
+ * By : Fuchal 2011-01
+ */
+/*public*/
+/* Reset */
+body{background:#fafafa url("bodybg_login.gif") repeat-x top;color:#7a7a7a;font-size:12px;line-height:166.6%}body,input,select,button,textarea{font-family:verdana,simsun,sans-serif}h1,h2,h3,h4,h5,h6,select,input,textarea,button,table{font-size:100%}body,h1,h2,h3,h4,h5,h6,ul,ol,li,form,p,dl,dt,dd,table,th,td,img,blockquote,legend,fieldset{margin:0;padding:0;border:0}input,button,textarea,select,img{margin:0;line-height:normal}abbr,acronym,address,cite,q,em,code,var,dfn,ins{font-style:normal;text-decoration:none}q:before,q:after{content:""}ul,ol{list-style:none}table{border-collapse:collapse;border-spacing:0}.ipt-b,button{line-height:135%;padding:0 .5em;overflow:visible}select,input,button,button img{vertical-align:middle}.ipt-r,.ipt-c{width:16px;height:16px;padding:0;margin:2px 3px 2px 0;overflow:hidden}.page,.header,.content,.footer{margin:auto}
+/* 全局 */
+a{color:#005590;text-decoration:none}
+/* 清除浮动和垂直边距重叠 */
+.header,
+.ne-clear{+zoom:1}
+.header:before,
+.header:after,
+.ne-clear:before,
+.ne-clear:after{clear:both;content:".";font-size:0;display:block;height:0;overflow:hidden;visibility:hidden}
+/* 公用背景图 */
+.dialogbox .hd .rc,
+.dialogbox .hd,
+.login .ext li,
+.login .ipt-t,
+.login .tab,
+.login .tabs,
+.footer,
+.intro dl dd,
+.login,
+.btn,
+i{background-image:url("bg_v2_login.gif");background-color:transparent;background-repeat:no-repeat}
+/* 整体 */
+.page{padding:20px 0}
+/* 页头 */
+.header{width:795px;margin-bottom:25px;position:relative;z-index:2}
+.logo{float:left;padding-left:10px}
+.logo img{display:block;width:166px;height:40px}
+.nav{float:right;}
+.nav a{color:#7a7a7a;padding:0 5px}
+/* 主体 */
+.content{background:url("content_login.gif") no-repeat;color:#000000;width:785px;position:relative;z-index:1}
+/* 主要内容 */
+.main{position:relative;width:785px;height:430px;top:13px;background: #fff;}
+.intro{position:absolute;left:6px;top:30px;width:410px;height:380px;background: url("intro_login.gif") no-repeat center top}
+.intro dl {position:absolute;left:6px;top:260px;padding:5px 20px 5px}
+.intro dl dt{font-size:14px;font-weight:bold;margin-bottom:4px}
+.intro dl dt a{color:#3F3F3F}
+.intro dl dd{padding-left:12px;color:#858686;line-height:20px;background-position:-756px -72px}
+.login{position:absolute;right:0;top:30px;width:375px;height:380px;background-position:0 -108px}
+.login h2{width:190px;height:28px;background-position:0 0;line-height:999em;overflow:hidden}
+.login .fi{margin:14px 0;_margin:13px 0;height:30px}
+.login .fi-nolb{padding-left:46px;height:24px}
+.login .lb{float:left;line-height:30px;margin-right:10px;_margin-right:7px}
+.login .domain{width:75px;height:16px;background-position:0 -36px;line-height:999em;overflow:hidden}
+.login .forget{color:#333}
+.login .ipt-t{width:172px;height:20px;margin-right:5px;border:1px solid #838383;padding:4px;font-size:14px;line-height:18px;font-weight:bold;ime-mode:disabled;background-position:-396px -252px}
+.login .ipt-t-focus,
+.login .ipt-t-mouse,
+.login .ipt-t:focus{background:#FFFFE1}
+.login select{width:182px;position:relative;top:4px}
+.login .options{position:relative}
+.login .btn{float:left;height:29px;margin:0 20px 0 0; line-height:29px;text-align:center;cursor:pointer;border:0;padding:0;font-weight:bold;font-size:14px;color:#2B2B2B}
+.login .btn-login{width:80px;background-position:-432px 0}
+.login .btn-login-hover,
+.login .btn-login:hover{background-position:-432px -36px}
+.login .btn-login-active,
+.login .btn-login:active{background-position:-432px -72px}
+.login .btn-reg{width:80px;background-position:-324px 0}
+.login .btn-reg-hover,
+.login .btn-reg:hover{background-position:-324px -36px}
+.login .btn-reg-active,
+.login .btn-reg:active{background-position:-324px -72px}
+.login .tabs{position:relative;height:41px;margin:2px 0 0 1px;background-position:-396px -108px;overflow:hidden}
+.login .tabs span{position:relative;float:left;display:inline;width:100%;line-height:40px;font-size:14px;font-weight:bold;text-align:center;background-position:0 100px}
+.login .panel{padding:15px 25px 0}
+.login .ext{border-top:1px solid #DCDCDC;margin-top:25px;padding:14px 0 0 35px;_padding-top:10px;}
+.login .ext li{margin:4px 0;padding-left:12px;background-position:-756px -73px}
+.login .ext a{color:#848585}
+.login .ext a:hover{color:#000}
+.login .ext li[id=reg] a {color:#0000EE}
+.login .ext li[id=reg] a:hover{color:#FF0000}
+/* 页脚 */
+.footer{width:735px;height:63px;margin-top:15px;padding:0 25px;background-position:0 -504px}
+.container{margin: 0 auto;padding: 20px 0;}
+.fleft{float: left;}
+.fright{float: right;}
