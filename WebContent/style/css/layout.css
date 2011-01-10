@@ -180,9 +180,9 @@ ul#excerpt li{margin: 0 0px 30px 0;}
 /*===========================================*/
 /*== Sidebar */
 /*===========================================*/
-#sidebar{}
+#sidebar{ background:#ECFBFF; padding:3px;}
 
-.widgets{margin: 0 0 20px;float: left;width: 300px;}
+.widgets{background:#F5FDFE;margin: 0 0 20px;float: left;width: 300px;}
 	.widgets ul{padding: 0 0 0 20px;}
 	.widgets li{padding: 4px 0;list-style-image: url(../images/bulle.jpg);}
 	.widgets img{margin: 0 0 10px;}
