@@ -5,16 +5,10 @@
 	<!--侧边栏 开始 -->
 	<div id="sidebar" class="sidecontainer fright">
 		<div class="widgets">
-			<h2 class="mainhead">登录</h2>
-			<ul>
-				<li><a href="<%=path %>/goLogin">登录</a></li>
-			</ul>
-			<br class="clear">
-			
 			<h2 class="mainhead">注册</h2>
 			<ul>
-				<li><a href="<%=path %>/student/goAddStudent">注册学生</a></li>
-		        <li><a href="<%=path %>/teacher/goAddTeacher">注册教师</a></li>
+				<li><a href="<%=path %>/student/goAddStudent">学生注册</a></li>
+		        <li><a href="<%=path %>/teacher/goAddTeacher">老师注册</a></li>
 			</ul>
 			<br class="clear">
 			

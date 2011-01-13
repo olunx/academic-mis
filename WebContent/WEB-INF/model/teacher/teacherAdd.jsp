@@ -14,37 +14,34 @@
         <div class="cancel-comment-reply"> </div>
 	<form action="<%=path %>/teacher/addTeacher" method="post">
 			<p>
-				<input type="text" title="用户账号" name="teaDto.username" id="input" value="" size="22" tabindex="1" />
+				<input type="text" title="用户账号" name="teaDto.username" class="text"/>
 			</p>
 			<p>
-				<input type="text" title="用户密码" name="teaDto.password" id="input" value="" size="22" tabindex="2" />
+				<input type="text" title="用户密码" name="teaDto.password" class="text" />
 			</p>
 			<p>
-				<input type="text" title="确认密码" name="teaDto.rpassword" id="input" value="" size="22" tabindex="3" />
+				<input type="text" title="确认密码" name="teaDto.rpassword" class="text"/>
 			</p>
 			<p>
-				<input type="text" title="教师号" name="teaDto.tnum" id="input" value="" size="22" tabindex="4"/>
+				<input type="text" title="教师号" name="teaDto.tnum" class="text"/>
 			</p>
 			<p>
-				<input type="text" title="真实姓名" name="teaDto.realName" id="input" value="" size="22" tabindex="5"/>
+				<input type="text" title="真实姓名" name="teaDto.realName" class="text"/>
 			</p>
 			<p>
-				<input type="text" title="年龄" name="teaDto.age" id="input" value="" size="22" tabindex="6"/>
+				<input type="text" title="年龄" name="teaDto.age" class="text" />
 			</p>
 			<p>
-				<input type="radio" name="teaDto.sex" id="sex" value="1" checked="checked">男
-				<input type="radio" name="teaDto.sex" id="sex" value="0">女<br/>
-			</p>
-			<p>
-				<select name="teaDto.institute" size="1">
+				<select name="teaDto.institute" class="reg" >
 				<c:forEach items="${institutes}" var="institute" >
-				<option value="${institute.id}">${institute.name}</option>
+					<option value="${institute.id}">${institute.name}</option>
 				</c:forEach>
 				</select>
+				<select class="reg" name="teaDto.sex"><option value="1" >男教师</option><option value="0">女教师</option></select>
 			</p>
 			<div class="clear"></div>
 			<p>
-				<input name="submit" type="submit" id="submit2" tabindex="5" value="注册" />
+				<input name="submit" type="submit" class="submit" value="注册" />
 			</p>
 		<div class="clear"></div>
 	</form>

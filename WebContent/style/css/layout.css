@@ -21,8 +21,13 @@ body{background: #fff;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0;}   
 
 .container{width: 950px;margin: 0 auto;padding: 0;}
-.subcontainer{width: 620px;}
-.sidecontainer{width: 300px;}
+.subcontainer{width: 620px; float:left; padding:12px 0 0 5px;color:#CCC; font-weight:bold;}
+.subcontainer a{ color:#CCC; font-weight:bold; text-decoration:none; margin:0 5px 0 5px;}
+.subcontainer input{ width:100px; height:18px;background:#CCC; border:none; margin-right:10px;}
+.subcontainer input#submit{ width:60px; background:#999; border:none; cursor:pointer;}
+.subcontainer select{ width:60px; height:18px; background:#CCC; border:none; margin-right:10px;}
+.sidecontainer{width: 300px;float:right;padding:12px 0 0 5px; color:#0D9BC1;}
+.sidecontainer a{color:#0D9BC1; font-weight:bold;text-decoration: none; margin:0 5px 0 5px;}
 
 .clear{clear:both;}
 
@@ -249,10 +254,11 @@ ol.commentlist ul.children li{margin: 0 0 0 20px;border-left:1px solid #eee;bord
  	#respond p{margin: 0 0 10px 0;}
 	.res_1{	width: 34%;}
 	.res_2{	width: 60%;}
-	#input{width:95%;height:14px;padding:10px;color: #818181;border: 1px solid #ccc;background: url(../images/field.jpg) repeat-x top;}
+	input.text{width:95%;height:14px;padding:10px;color: #818181;border: 1px solid #ccc;background: url(../images/field.jpg) repeat-x top;}
+	select.reg{width:150px;height:25px;margin:5px 0 5px 0;border: 1px solid #ccc;background: url(../images/field.jpg) repeat-x top;}
+	input.submit{height: 30px;background: #333;color: #ccc;cursor: pointer;border: none;display: block;width: 105%;}
 	textarea#comment{width: 95%;color:#818181;padding: 10px;font-family: Verdana;font-size: 11px;height: 140px;border: 1px solid #ccc;background: url(../images/field.jpg) repeat-x top;}
-	#submit2{height: 30px;background: #333;color: #ccc;cursor: pointer;border: none;display: block;width: 100px;}
-	#respond #submit{height: 30px;background: #333;color: #ccc;cursor: pointer;border: none;display: block;width: 105%;}
+	#respond .submit2{height: 30px;background: #333;color: #ccc;cursor: pointer;border: none;display: block;width: 100px;}
 	.cancel-comment-reply{display: block;margin: 5px 0 10px;}
 	
 	

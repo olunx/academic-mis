@@ -21,7 +21,7 @@
 <script type="text/javascript"> 
 	jQuery(function($){
 	    //snip
-		$("#input,#comment,#s").fieldtag();
+		$("input,#comment,#s").fieldtag();
 	    //snap
 	});
 </script>
