@@ -24,19 +24,35 @@
 <!--导航栏 开始-->
 <div id="nav">
   <div class="container">
-    <ul>
-      <li class="current_page_item page_item"><a href="<%=path%>/index"><span>首页</span></a></li>
-      <c:if test="${student != null}"><li><a><span>欢迎你：${student.realName} | 用户名：${student.username}</span></a></li></c:if>
-      <c:if test="${teacher != null}"><li><a><span>欢迎您：${teacher.realName} | 用户名：${teacher.username}</span></a></li></c:if>
-      <c:if test="${manager != null}"><li><a><span>欢迎你：${manager.realName} | 用户名：${manager.username}</span></a></li></c:if>
-    </ul>
+    <div class="subcontainer">
+    <c:if test="${people == null}">
+    <form action="<%=path%>/login">
+    账号：<input type="text" name="loginDto.username" value="" />
+    密码：<input type="password" name="loginDto.password" value="" />
+    身份：<select><option value="0" selected="selected">学生</option><option value="1" >教师</option><option value="2" >助理</option></select>
+    <input id="submit" type="submit" value="登录" />
+    </form>
+    </c:if>
+	<c:if test="${student != null}">
+		<a>欢迎你：${student.realName}</a>|<a>用户名：${student.username}</a>|<a href="#">个人资料</a>|<a href="<%=path%>/loginout">注销</a>
+	</c:if>
+	<c:if test="${teacher != null}">
+		<a>欢迎您：${teacher.realName}</a>|<a>用户名：${teacher.username}</a>|<a href="#">个人资料</a>|<a href="<%=path%>/loginout">注销</a>
+	</c:if>
+	<c:if test="${manager != null}">
+		<a>欢迎你：${manager.realName}</a>|<a>用户名：${manager.username}</a>|<a href="#">个人资料</a>|<a href="<%=path%>/loginout">注销</a>
+	</c:if>
+    </div>
+    <div class="sidecontainer">
+    <a href="<%=path%>/index">首页</a>&#9679;<a href="<%=path%>/student/goAddStudent">学生注册</a>&#9679;<a href="<%=path%>/teacher/goAddTeacher">老师注册</a>
+    </div>
   </div>
 </div>
 <!--导航栏 结束-->
 <!--横幅 开始-->
 <div id="header" class="clear">
   <div class="container cheader">
-    <h1 id="blogtitle"><a href="#">学术活动</a></h1>
+    <h1 id="blogtitle"><a href="<%=path %>/index">学术活动</a></h1>
     <p class="blogdesc">创建一个关于我们的学术交流平台</p>
   </div>
 </div>

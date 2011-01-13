@@ -19,40 +19,41 @@
     <div id="comments">
        <!--发表评论 开始-->
       <div id="respond">
-        <div class="cancel-comment-reply"></div>
         <form action="<%=path %>/student/addStudent" method="post" >
 			<p>
-				<input type="text" title="用户账号" name="stuDto.username" id="input" value="" size="22" tabindex="1" />
+				<input type="text" title="用户账号" name="stuDto.username" class="text" />
 			</p>
 			<p>
-				<input type="text" title="用户密码" name="stuDto.password" id="input" value="" size="22" tabindex="2" />
+				<input type="text" title="用户密码" name="stuDto.password" class="text" />
 			</p>
 			<p>
-				<input type="text" title="确认密码" name="stuDto.rpassword" id="input" value="" size="22" tabindex="3" />
+				<input type="text" title="确认密码" name="stuDto.rpassword" class="text" />
 			</p>
 			<p>
-				<input type="text" title="学号" name="stuDto.stuNo" id="input" value="" size="22" tabindex="4"/>
+				<input type="text" title="学号" name="stuDto.stuNo" class="text" />
 			</p>
 			<p>
-				<input type="text" title="真实姓名" name="stuDto.realName" id="input" value="" size="22" tabindex="5"/>
+				<input type="text" title="真实姓名" name="stuDto.realName" class="text" />
 			</p>
 			<p>
-				<input type="text" title="年龄" name="stuDto.age" id="input" value="" size="22" tabindex="6"/>
+				<input type="text" title="年龄" name="stuDto.age" class="text" />
 			</p>
 			<p>
-				<input type="radio" name="stuDto.sex" id="sex" value="1" checked="checked">男
-				<input type="radio" name="stuDto.sex" id="sex" value="0">女<br/>
+				<select id="first" class="reg"><option value="">--</option></select>
+				<select id="second" name="stuDto.classes" class="reg"><option value="">--</option></select>
+				<select name="stuDto.schoolYear" class="reg">
+					<option value="2007">2007级</option>
+					<option value="2008">2008级</option>
+					<option value="2009">2009级</option>
+					<option value="2010">2010级</option>
+					<option value="2011">2011级</option>
+				</select>
+				<select class="reg" name="stuDto.sex"><option value="1" >男生</option><option value="0">女生</option></select>
 			</p>
-			<p>
-				<select id="first" size="1"><option value="">--</option></select>
-				<select id="second" name="stuDto.classes" size="1"><option value="">--</option></select>
-			</p>
-			<p>
-				<input type="text" title="入学年份" name="stuDto.schoolYear" id="input" value="" size="22" tabindex="7" />
-			</p>
+
 			<div class="clear"></div>
 			<p>
-				<input name="submit" type="submit" id="submit2" tabindex="5" value="注册" />
+				<input name="submit" type="submit" class="submit" tabindex="5" value="注册" />
 			</p>
         <div class="clear"></div>
         </form>
