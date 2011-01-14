@@ -20,17 +20,17 @@
         <form action="<%=path %>/opus/addOpus" method="post" id="commentform">
         	<input type="hidden" name="id" value="${id}"/>
 			<p>
-				<input type="text" title="作品名称" name="opusDto.name" id="author" value="" size="22" tabindex="1" aria-required='true' />
+				<input type="text" title="作品名称" name="opusDto.name" class="text" />
 			</p>
             <p>
-				<input type="text" title="指导老师" name="opusDto.instructor" id="url" value="" size="22" tabindex="1"/>
+				<input type="text" title="指导老师" name="opusDto.instructor" class="text" />
 			</p>
 			<p>
-				<textarea name="opusDto.intro" title="作品简介..." id="comment" cols="100%" rows="10" tabindex="4" aria-required='true' ></textarea>
+				<textarea name="opusDto.intro" title="作品简介..." id="comment" cols="100%" rows="10" ></textarea>
 			</p>
 			<div class="clear"></div>
 			<p>
-				<input name="submit" type="submit" id="submit2" tabindex="5" value="创建" />
+				<input name="submit" type="submit" class="submit2" value="创建" />
 			</p>
         <div class="clear"></div>
         </form>

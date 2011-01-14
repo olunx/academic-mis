@@ -56,12 +56,6 @@
 	});
 </script>
  -->
-	<!--内容区 开始 -->
-	<div id="content" class="subcontainer fleft">
-
-	<!--post 开始-->
-	<div class="post">
-		<h2 class="mainhead">最新公告</h2>
 <!-- 
     	<div id="page-wrap">
 	<div class="slider-wrap">
@@ -119,7 +113,6 @@
 				<c:when test="${i.count == 1}">
 				</c:when>
 				<c:otherwise>
-					
 						<div><a href="#${i.count }" class="cross-link"><img src="<%=path%>${noticeHot.image.minFileUrl}" class="nav-thumb" alt="temp-thumb" /></a></div>
 				</c:otherwise>
 			</c:choose>
@@ -131,11 +124,106 @@
 	</div>
      -->
      
-	</div>
-    <!--post 结束-->
- 
-	</div>
-	<!--内容区 结束 -->
+    <div id="news">
+    	<div id="hot">
+        	<h2 class="title">最新动态</h2><hr class="title"/>
+        </div><!-- end of hot-->
+        <div id="notice">
+        	<h2 class="title">最新公告</h2><hr class="title"/>
+            <ul class="notice">
+            	<li><a href="#">公告1</a></li>
+                <li><a href="#">公告2</a></li>
+                <li><a href="#">公告3</a></li>
+                <li><a href="#">公告4</a></li>
+                <li><a href="#">公告5</a></li>
+                <li><a href="#">公告6</a></li>
+                <li><a href="#">公告7</a></li>
+                <li><a href="#">公告8</a></li>
+            </ul>
+        </div><!-- end of notice-->
+    </div><!-- end of news-->
+    
+    <div id="camp">
+    	<div class="third">
+        	<h2 class="title">名师课题</h2><hr class="title" />
+            <ul class="notice">
+            	<li><a href="#">标题1</a></li>
+                <li><a href="#">标题2</a></li>
+                <li><a href="#">标题3</a></li>
+                <li><a href="#">标题4</a></li>
+                <li><a href="#">标题5</a></li>
+                <li><a href="#">标题6</a></li>
+                <li><a href="#">标题7</a></li>
+                <li><a href="#">标题8</a></li>
+            </ul>
+        </div>
+        <div class="third">
+        	<h2 class="title">外包课题</h2><hr class="title" />
+            <ul class="notice">
+            	<li><a href="#">标题1</a></li>
+                <li><a href="#">标题2</a></li>
+                <li><a href="#">标题3</a></li>
+                <li><a href="#">标题4</a></li>
+                <li><a href="#">标题5</a></li>
+                <li><a href="#">标题6</a></li>
+                <li><a href="#">标题7</a></li>
+                <li><a href="#">标题8</a></li>
+            </ul>
+        </div>
+        <div class="third">
+       		<h2 class="title">比赛项目</h2><hr class="title" />
+            <ul class="notice">
+            	<li><a href="#">标题1</a></li>
+                <li><a href="#">标题2</a></li>
+                <li><a href="#">标题3</a></li>
+                <li><a href="#">标题4</a></li>
+                <li><a href="#">标题5</a></li>
+                <li><a href="#">标题6</a></li>
+                <li><a href="#">标题7</a></li>
+                <li><a href="#">标题8</a></li>
+            </ul>
+        </div>
+    </div><!-- end of camp-->
+    
+    <script type="text/javascript" src="<%=path%>/style/js/jMyCarousel.min.js"></script>
+  	<script type="text/javascript">
+		$(function() {
+		    $(".projects").jMyCarousel({
+		        visible: '7',
+		        eltByElt: true,
+				auto: true,
+				speed: 5000,
+		        evtStart: 'mousedown',
+		        evtStop: 'mouseup'
+		    });
+		});
+	</script>
+	<div id="works">
+    	<h2 class="title">作品展示</h2><hr class="title"/>
+        <div class="projects" >
+            <ul>
+                <li>
+	                <a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/1.jpg" title="作品1">
+	                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/1_s.jpg"></a>
+                </li>
+                <li>
+	                <a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/3.jpg" title="作品2">
+	                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/3_s.jpg"></a>
+                </li>
+                <li>
+	                <a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
+	                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a>
+                </li>
+                <li>
+					<a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
+					<img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a>
+                </li>
+                <li>
+	                <a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
+	                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a>
+                </li>
+            </ul>
+        </div><!-- end of projects-->
+    </div><!-- end of works-->
 
-<jsp:include page="/sideidx.jsp"></jsp:include>
 <jsp:include page="/bottom.jsp"></jsp:include>
