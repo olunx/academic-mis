@@ -11,7 +11,7 @@
 <div id="footer">
   <div class="container">
     <div class="ftext fleft">&copy; 2011 广东药学院 版权所有</div>
-    <div class="fcred fright"> <span class="fleft">3C团队 作品</span></div>
+    <div class="fcred fright"> <span class="fright">3C团队 作品</span></div>
   </div>
   <div class="clear"></div>
 </div>
@@ -21,7 +21,7 @@
 <script type="text/javascript"> 
 	jQuery(function($){
 	    //snip
-		$("input,#comment,#s").fieldtag();
+		$("input.text,#comment,#s").fieldtag();
 	    //snap
 	});
 </script>

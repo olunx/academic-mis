@@ -26,9 +26,9 @@
   <div class="container">
     <div class="subcontainer">
     <c:if test="${people == null}">
-    <form action="<%=path%>/login">
-    账号：<input type="text" name="loginDto.username" value="" />
-    密码：<input type="password" name="loginDto.password" value="" />
+    <form action="<%=path%>/login"  method="post">
+    账号：<input type="text" name="loginDto.username"/>
+    密码：<input type="password" name="loginDto.password"/>
     身份：<select><option value="0" selected="selected">学生</option><option value="1" >教师</option><option value="2" >助理</option></select>
     <input id="submit" type="submit" value="登录" />
     </form>

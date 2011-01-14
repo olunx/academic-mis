@@ -18,14 +18,14 @@
         <h2 class="mainhead">添加小组</h2>
         <form action="<%=path %>/group/addGroup" method="post" id="commentform">
 			<p>
-				<input type="text" title="小组名称" name="group.name" id="input" value="" size="22" tabindex="1" aria-required='true' />
+				<input type="text" title="小组名称" name="group.name" class="text"/>
 			</p>
 			<p>
-				<textarea name="group.intro" title="小组简介..." id="comment" cols="100%" rows="10" tabindex="4"></textarea>
+				<textarea name="group.intro" title="小组简介..." id="comment" cols="100%" rows="10"></textarea>
 			</p>
 			<div class="clear"></div>
 			<p>
-				<input name="submit" type="submit" id="submit2" tabindex="5" value="创建" />
+				<input name="submit" type="submit" class="submit2" value="创建" />
 			</p>
         <div class="clear"></div>
         </form>
