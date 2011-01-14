@@ -14,8 +14,8 @@
 <div class="post-552 post type-post hentry category-android tag-37"
 	id="post-552">
 <div class="posthead">
-<div class="maindate fleft">09<br />
-<span>十一 </span></div>
+<div class="maindate fleft">---<br />
+<span>组名</span></div>
 <h1 class="maintitle fleft"><a href="#" rel="bookmark">${group.name}</a></h1>
 <br class="clear" />
 </div>
@@ -46,7 +46,8 @@
 </ul>
 <br class="clear" />
 </div>
-<!--小组成员 结束--> <!--申请加入小组 开始-->
+<!--小组成员 结束-->
+<!--申请加入小组 开始-->
 <div id="comments"><c:choose>
 	<c:when test="${group.captain.id == student.id}">
 		<c:choose>
@@ -57,18 +58,14 @@
 						<c:if test="${groupApply.status == 1}">
 							<li class="comment even thread-even depth-1" id="li-comment-204">
 							<div id="comment-204">
-							<div class="comment-author fleft"><img
-								src='<%=path%>/style/images/nobody.png'
-								class='avatar avatar-60 photo' height='60' width='60' /></div>
+							<div class="comment-author fleft"><img src='<%=path%>/style/images/nobody.png' class='avatar avatar-60 photo' height='60' width='60' /></div>
 							<div class="comment-info fright">
-							<div class="c_info"><a href='#' class='url'>${groupApply.student.realName}</a>
-							(${groupApply.student.age == 0 ? '女' : '男'})</div>
-							<p>${groupApply.student.classes.name}
-							${groupApply.student.schoolYear}</p>
-							<div class="reply fleft"><a class='comment-reply-link'
-								href='<%=path%>/group/passGroup?id=${groupApply.id}'>通过</a> | <a
-								class='comment-reply-link'
-								href='<%=path%>/group/refuseGroup?id=${groupApply.id}'>拒绝</a></div>
+								<div class="c_info"><a href='#' class='url'>${groupApply.student.realName}</a>(${groupApply.student.age == 0 ? '女' : '男'})</div>
+									<p>${groupApply.student.classes.name} ${groupApply.student.schoolYear}</p>
+									<div class="reply fleft">
+										<a class='comment-reply-link' href='<%=path%>/group/passGroup?id=${groupApply.id}'>通过</a> | 
+										<a class='comment-reply-link' href='<%=path%>/group/refuseGroup?id=${groupApply.id}'>拒绝</a>
+									</div>
 							</div>
 							<div class="clear"></div>
 							</div>
@@ -82,8 +79,11 @@
 			</c:otherwise>
 		</c:choose>
 	</c:when>
-</c:choose></div>
-<!--申请加入小组 结束--> <!--发表评论 开始-->
+</c:choose>
+</div>
+<!--申请加入小组 结束-->
+
+<!--发表评论 开始-->
 <div id="respond">
 <h2 class="mainhead">参加过的学术活动</h2>
 <c:choose>
@@ -109,8 +109,10 @@
 			<c:otherwise> 该小组没有参加过学术活动 </c:otherwise>
 		</c:choose>
 	</c:when>
-</c:choose></div>
-<!--发表评论 结束--></div>
+</c:choose>
+</div>
+<!--发表评论 结束-->
+</div>
 <!--内容区 结束 -->
 <jsp:include page="/sidestu.jsp"></jsp:include>
 <jsp:include page="/bottom.jsp"></jsp:include>
