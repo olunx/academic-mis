@@ -14,9 +14,7 @@
 	default-lazy-init="false"		
 	>
 
-	<import resource="beans-olunx.xml" />
-	<import resource="beans-fatkun.xml" />
-	<import resource="beans-fuchal.xml" />
+	<import resource="beans.xml" />
 	
 	<!-- 装载属性配置文件 -->
 	<bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

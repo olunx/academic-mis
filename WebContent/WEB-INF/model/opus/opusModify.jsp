@@ -26,11 +26,11 @@
 				<input type="text" title="请填入指导老师号码" name="opusDto.instructor" value="${opus.instructor.tnum}" class="text"/>
 			</p>
 			<p>
-				<textarea title="作品简介..." id="comment" name="opusDto.intro" cols="100%" rows="10" tabindex="4" >${opus.intro}</textarea>
+				<textarea title="作品简介..." id="comment" name="opusDto.intro" cols="100%" rows="10" >${opus.intro}</textarea>
 			</p>
 			<div class="clear"></div>
 			<p>
-				<input name="submit" type="submit" class="submit2" tabindex="5" value="修改" />
+				<input name="submit" type="submit" class="submit2" value="修改" />
 			</p>
         <div class="clear"></div>
         </form>
@@ -40,5 +40,4 @@
     <!--评论列表 结束-->
 	</div>
 	<!--内容区 结束 -->
-<jsp:include page="/sidestu.jsp"></jsp:include>
 <jsp:include page="/bottom.jsp"></jsp:include>
