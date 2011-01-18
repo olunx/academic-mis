@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0027)http://localhost/wordpress/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN"><!-- InstanceBegin template="/Templates/tpl.dwt" codeOutsideHTMLIsLocked="false" -->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>模块页</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style/css/layout.css" type="text/css" media="screen">
+<script type="text/javascript" src="style/js/jquery.min.js"></script>
+<style type="text/css">
+.recentcomments a {
+	display:inline !important;
+	padding:0 !important;
+	margin:0 !important;
+}
+</style>
+</head>
+<body class="home blog logged-in">
+<!--导航栏 开始-->
+<div id="nav">
+  <div class="container">
+    <div class="subcontainer">
+    <form action="<%=path%>/login">
+    账号：<input type="text" name="loginDto.username" value="" />
+    密码：<input type="password" name="loginDto.password" value="" />
+    身份：<select><option value="0" selected="selected">学生</option><option value="1" >教师</option><option value="2" >助理</option></select>
+    <input id="submit" type="submit" value="登录" />
+    </form>
+    </div>
+    <div class="sidecontainer">
+    <a href="<%=path%>/index">首页</a>&#9679;<a href="<%=path%>/student/goAddStudent">学生注册</a>&#9679;<a href="<%=path%>/teacher/goAddTeacher">老师注册</a>
+    </div>
+  </div>
+</div>
+<!--导航栏 结束-->
+<!--横幅 开始-->
+<div id="header" class="clear">
+  <div class="container cheader">
+    <h1 id="blogtitle"><a href="#">Academic System</a></h1>
+    <p class="blogdesc">比赛活动管理系统</p>
+  </div>
+</div>
+<!--横幅 结束-->
+<div id="navcat">
+  <div class="container">
+    <!--菜单栏 开始-->
+    <ul>
+      <li class="cat-item"><a href="#">比赛小组</a>
+        <ul class="children">
+          <li class="cat-item"><a href="<%=path %>/group/listAllGroup">所有小组</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listGroup">我已加入的</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listMeGroup">我创建的</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listApplyGroup">我申请的</a></li>
+        </ul>
+      </li>
+      <li class="cat-item"><a href="#">学术活动</a>
+        <ul class="children">
+          <li class="cat-item"><a href="<%=path %>/activity/listApplyActivity">我申请的活动</a> </li>
+          <li class="cat-item"><a href="<%=path %>/activity/listActivity">所有学术活动</a> </li>
+        </ul>
+      </li>
+    </ul>
+    <!--菜单栏 结束-->
+  </div>
+</div>
+<div class="clear"></div>
+<div id="wrapper" class="container">
+  <!--主内容区 开始-->
+  <!-- InstanceBeginEditable name="wrapper" -->
+  <div id="content" class="subcontainer fleft">
+    <div class="breadcrumb"> <a href="http://localhost/wordpress/">Home</a> &raquo; <a href="http://localhost/wordpress/?page_id=321">iRemember</a> </div>
+    <div class="post" id="post-321">
+      <h2 class="mainhead">iRemember</h2>
+      <div class="entry">
+        <p><strong>iRemember &#8211; 运行于Android平台上的一款记忆软件。<br />
+          </strong></p>
+        <p>目的：用于辅助记忆所有需要的文字信息。</p>
+        <p>支持系统版本：android 1.6 或更高</p>
+        <p>初步功能：背单词<br />
+          支持词库格式：CVS文本格式(可将其它多种格式词库转为此格式)</p>
+        <blockquote>
+          <h3><strong><span style="color: #3366ff;">实现功能：</span></strong></h3>
+        </blockquote>
+        <div id="_mcePaste">
+          <div id="_mcePaste"><strong>2010年8月19日 版本 beta 7</strong></div>
+          <div><strong><br />
+            </strong></div>
+          <div id="_mcePaste" style="padding-left: 30px;"><strong>0.结合艾宾浩斯记忆曲线和个人的记忆特点。</strong></div>
+          <div style="padding-left: 30px;"><strong>1.支持合成发音、真人发音。</strong></div>
+          <div style="padding-left: 30px;"><strong>2.自带五本流行词库，已有多达200本词库。</strong></div>
+          <div style="padding-left: 30px;"><strong>3.单词详细解释功能，自由选用stardict词典数据。</strong></div>
+          <div id="_mcePaste" style="padding-left: 30px;"><strong>4.本地单词查询功能，使用详细解释选择的词典。</strong></div>
+          <div id="_mcePaste" style="padding-left: 30px;"><strong>5.多种复习记忆方式，如看词义拼单词、看单词想词义、看单词选词义。</strong></div>
+          <div id="_mcePaste" style="padding-left: 30px;"><strong>6.数据备份功能；软件数据存放在sdcard中，系统或软件重装数据不受影响。</strong></div>
+          <div id="_mcePaste" style="padding-left: 30px;"><strong>7.支持逗号分隔符词库（csv，用户可以通过excel方便的制作词库）。</strong></div>
+          <div><strong><span style="font-weight: normal;">项目地址：<a href="http://code.google.com/p/olunx-com/">http://code.google.com/p/olunx-com/</a></span></strong></div>
+          <div><strong><br />
+            </strong></div>
+        </div>
+        <div id="_mcePaste">使用说明：删除sdcard上iremember目录中的所有东西，安装软件，打开一次，等初始化完成后，再看iremember中生成的说明文件。</div>
+        <div id="_mcePaste"><span style="font-weight: normal;">软件和词库下载：</span><a href="http://code.google.com/p/olunx-com/downloads/list" target="_blank"><span style="font-weight: normal;">http://code.google.com/p/olunx-com/downloads/list</span></a></div>
+        <div id="_mcePaste"><span style="font-weight: normal;">stardict词库下载：</span><a href="http://yeelou.com/huzheng/stardict-dic/">http://yeelou.com/huzheng/stardict-dic/</a></div>
+        <div id="_mcePaste"><span style="font-weight: normal;">真人语音库下载：</span><a href="http://code.google.com/p/wdict/downloads/detail?name=WyabdcRealPeopleTTS_mp3.tgz" target="_blank"><span style="font-weight: normal;">http://code.google.com/p/wdict/&#8230;WyabdcRealPeopleTTS_mp3.tgz</span></a></div>
+        <div><span style="font-weight: normal;"><br />
+          </span></div>
+        <p><a href="http://olunx.com/wp-content/uploads/2010/05/002-记忆界面.png"><img class="alignnone size-medium wp-image-381" title="002-记忆界面" src="http://olunx.com/wp-content/uploads/2010/05/002-记忆界面-200x300.png" alt="" width="200" height="300" /></a><a href="http://olunx.com/wp-content/uploads/2010/05/005-选择记忆.png"><img class="alignnone size-medium wp-image-383" title="005-选择记忆" src="http://olunx.com/wp-content/uploads/2010/05/005-选择记忆-200x300.png" alt="" width="200" height="300" /></a></p>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar" class="sidecontainer fright">
+    <div class="widgets">
+      <h2 class="mainhead">RSS Feed</h2>
+      <p class="feed"><a href="http://localhost/wordpress/?feed=rss2">Subscribe to feed <br />
+        <span>get the latest updates!</span></a></p>
+      <form method="get" id="ksearchform" action="http://localhost/wordpress/">
+        <div>
+          <input type="text" size="18" value="" name="s" id="s" />
+          <input type="submit" id="ksearchsubmit" value="Search" class="btn" />
+        </div>
+        <br class="clear" />
+      </form>
+    </div>
+    <ul>
+    </ul>
+  </div>
+  <!--end of #sidebar -->
+  <!-- InstanceEndEditable -->
+  <!--主内容区 结束-->
+  <br class="clear">
+</div>
+<!-- end of #wrapper -->
+<!--底部 开始-->
+<div id="footer">
+  <div class="container">
+    <div class="ftext fleft">&copy; 2011 广东药学院 版权所有</div>
+    <div class="fcred fright"> <span class="fright">3C团队 作品</span></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--底部 结束-->
+<script language="javascript" type="text/javascript" src="style/js/tab.js"></script>
+<script language="javascript" type="text/javascript" src="style/js/jquery.fieldtag.min.js"></script>
+<script type="text/javascript"> 
+	<!--
+	jQuery(function($){
+	    //snip
+		$("#author,#url,#email,#comment").fieldtag();
+	    //snap
+	});
+	-->
+	</script>
+<div style="display: none; " id="hiddenlpsubmitdiv"></div>
+<script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); form.lpsubmitorig2(); } } }}catch(e){}</script>
+</body>
+<!-- InstanceEnd --></html>
