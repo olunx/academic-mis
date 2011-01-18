@@ -61,6 +61,48 @@
   <div class="container">
     <!--菜单栏 开始-->
     <ul>
+	<li class="cat-item"><a href="<%=path %>/index">首页</a></li>
+	
+	<c:if test="${student != null}">
+	<li class="cat-item"><a href="#">我的菜单</a>
+		<ul class="children">
+			<li class="cat-item"><a href="<%=path %>/group/goAddGroup">创建小组</a></li>
+	        <li class="cat-item"><a href="<%=path %>/group/listAllGroup">所有小组</a></li>
+	        <li class="cat-item"><a href="<%=path %>/group/listGroup">我参加的</a></li>
+	        <li class="cat-item"><a href="<%=path %>/group/listMeGroup">我创建的</a></li>
+	        <li class="cat-item"><a href="<%=path %>/group/listApplyGroup">我申请的</a></li>
+	        <li class="cat-item"><a href="<%=path %>/activity/listApplyActivity">我申请的活动</a></li>
+	        <li class="cat-item"><a href="<%=path %>/activity/listActivity">所有学术活动</a></li>
+		</ul>
+	</li>
+	</c:if>
+	
+	<c:if test="${teacher != null}">
+	<li class="cat-item"><a href="#">我的菜单</a>
+		<ul class="children">
+			<li class="cat-item"><a href="#">发布课题</a></li>
+	        <li class="cat-item"><a href="#">查看课题</a></li>
+	        <li class="cat-item"><a href="#">查看作品</a></li>
+	        <li class="cat-item"><a href="#">我点评的作品</a></li>
+	        <li class="cat-item"><a href="<%=path %>/group/listAllGroup">查看学习小组</a></li>
+		</ul>
+	</li>
+	</c:if>
+	
+	<c:if test="${manager != null}">
+	<li class="cat-item"><a href="#">我的菜单</a>
+		<ul class="children">
+			<li class="cat-item"><a href="<%=path %>/activity/goAddActivity">添加学术活动</a></li>
+	        <li class="cat-item"><a href="<%=path %>/activity/listActivity">列出学术活动</a></li>
+	        <li class="cat-item"><a href="<%=path %>/noticetype/goAddNoticeType">添加通知类型</a></li>
+	        <li class="cat-item"><a href="<%=path %>/noticetype/listNoticeType">列出通知类型</a></li>
+	        <li class="cat-item"><a href="<%=path %>/notice/goAddNotice">添加通知</a></li>
+	        <li class="cat-item"><a href="<%=path %>/notice/listNotice">列出通知</a></li>
+	        <li class="cat-item"><a href="<%=path %>/noticehot/listNoticeHot">热门通知管理</a></li>
+		</ul>
+	</li>
+	</c:if>
+	
       <li class="cat-item"><a href="#">院校导航</a>
         <ul class="children">
           <li class="cat-item"><a href="http://branch.gdpu.edu.cn/kxyj/">科学研究</a></li>
@@ -73,4 +115,5 @@
   </div>
 </div>
 <div class="clear"></div>
+
 <div id="wrapper" class="container">
