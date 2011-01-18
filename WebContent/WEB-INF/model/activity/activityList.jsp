@@ -22,21 +22,21 @@
 			<c:forEach items="${pageBean.list}" var="activity">
 		        <li>
 				<div class="p_coleft fleft">
-					<p class="date_s">${my:userTypeCompare(activity.publisher) == 1? '系统管理员' : '管理员助理'}:${activity.publisher.realName}</p>
-					<span class="comment_s">${activity.time}</span>
+					<p class="date_s"><fmt:formatDate value="${activity.time}" pattern="yyyy-MM-dd"/></p>
+					<span class="comment_s">${my:userTypeCompare(activity.publisher) == 1? '管理员' : '助理员'}:${activity.publisher.realName}</span>
 				</div>
 				<div class="p_coright fright">
 					<h1 class="prevtitle"><a href="<%=path%>/activity/viewActivity?id=${activity.id }">${activity.name}</a></h1>
 							<c:if test="${manager != null }">
 							<c:choose>
 								<c:when test="${my:activityApplyCount(activity) != 0}">
-									<font color="red" >当前有${my:activityApplyCount(activity)}个报名</font></br>
+									<font color="red" >当前有${my:activityApplyCount(activity)}个报名</font><br />
 								</c:when>
-								<c:otherwise>暂时没有报名</br></c:otherwise>
+								<c:otherwise>暂时没有报名<br /></c:otherwise>
 							</c:choose>
 						</c:if>
                    	参赛方式： ${activity.applyCount == 1 ? '单人报名' : '团队报名'}，限${activity.applyCount }人。      其它：${activity.opusNeed == 1  ? '要求作品' : '无需作品'}
-                    </br>简介:${fn:substring(fn:replace(activity.intro,"<","&lt;"),0,100)}
+                    <br />简介:${fn:substring(fn:replace(activity.intro,"<","&lt;"),0,100)}
 				 </div>
 				<br class="clear" />
 		        </li>
@@ -73,5 +73,4 @@
 	</div>
 	<!--内容区 结束 -->
 	
-<jsp:include page="/sidestu.jsp"></jsp:include>
 <jsp:include page="/bottom.jsp"></jsp:include>

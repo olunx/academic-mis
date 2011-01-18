@@ -2,6 +2,8 @@
 <%
 	String path = request.getContextPath();
 %>
+<jsp:include page="/sidebar.jsp"></jsp:include>
+
   <!-- TemplateEndEditable -->
   <!--主内容区 结束-->
   <br class="clear">
