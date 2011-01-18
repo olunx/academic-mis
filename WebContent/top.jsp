@@ -29,7 +29,7 @@
     <form action="<%=path%>/login"  method="post">
     账号：<input type="text" name="loginDto.username"/>
     密码：<input type="password" name="loginDto.password"/>
-    身份：<select><option value="0" selected="selected">学生</option><option value="1" >教师</option><option value="2" >助理</option></select>
+    身份：<select name="loginDto.loginType" ><option selected="selected" value="0">学生</option><option value="1" >教师</option><option value="2" >助理</option></select>
     <input id="submit" type="submit" value="登录" />
     </form>
     </c:if>

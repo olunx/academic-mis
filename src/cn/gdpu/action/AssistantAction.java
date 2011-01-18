@@ -21,9 +21,6 @@ public class AssistantAction extends BaseAction{
 	private PageBean pageBean;
 	private int page;
 	
-	
-	
-	
 	public String goLogin(){
 		return "gologin";
 	}

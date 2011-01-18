@@ -6,5 +6,4 @@
 	<br />欢迎您${teacher.username}<br />
 	</div>
 	<!--内容区 结束 -->
-<jsp:include page="/sidetea.jsp"></jsp:include>
 <jsp:include page="/bottom.jsp"></jsp:include>

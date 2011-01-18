@@ -52,5 +52,4 @@
     <!--评论列表 结束-->
 	</div>
 	<!--内容区 结束 -->
-<jsp:include page="/sideidx.jsp"></jsp:include>
 <jsp:include page="/bottom.jsp"></jsp:include>
