@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN"><!-- InstanceBegin template="/Templates/tpl.dwt" codeOutsideHTMLIsLocked="false" -->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Index</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style/css/layout.css" type="text/css" media="screen">
+<script type="text/javascript" src="style/js/jquery.min.js"></script>
+<style type="text/css">
+.recentcomments a {
+	display:inline !important;
+	padding:0 !important;
+	margin:0 !important;
+}
+</style>
+</head>
+<body class="home blog logged-in">
+<!--导航栏 开始-->
+<div id="nav">
+  <div class="container">
+    <div class="subcontainer">
+    <form action="<%=path%>/login">
+    账号：<input type="text" name="loginDto.username" value="" />
+    密码：<input type="password" name="loginDto.password" value="" />
+    身份：<select><option value="0" selected="selected">学生</option><option value="1" >教师</option><option value="2" >助理</option></select>
+    <input id="submit" type="submit" value="登录" />
+    </form>
+    </div>
+    <div class="sidecontainer">
+    <a href="<%=path%>/index">首页</a>&#9679;<a href="<%=path%>/student/goAddStudent">学生注册</a>&#9679;<a href="<%=path%>/teacher/goAddTeacher">老师注册</a>
+    </div>
+  </div>
+</div>
+<!--导航栏 结束-->
+<!--横幅 开始-->
+<div id="header" class="clear">
+  <div class="container cheader">
+    <h1 id="blogtitle"><a href="#">Academic System</a></h1>
+    <p class="blogdesc">比赛活动管理系统</p>
+  </div>
+</div>
+<!--横幅 结束-->
+<div id="navcat">
+  <div class="container">
+    <!--菜单栏 开始-->
+    <ul>
+      <li class="cat-item"><a href="#">比赛小组</a>
+        <ul class="children">
+          <li class="cat-item"><a href="<%=path %>/group/listAllGroup">所有小组</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listGroup">我已加入的</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listMeGroup">我创建的</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listApplyGroup">我申请的</a></li>
+        </ul>
+      </li>
+      <li class="cat-item"><a href="#">学术活动</a>
+        <ul class="children">
+          <li class="cat-item"><a href="<%=path %>/activity/listApplyActivity">我申请的活动</a> </li>
+          <li class="cat-item"><a href="<%=path %>/activity/listActivity">所有学术活动</a> </li>
+        </ul>
+      </li>
+    </ul>
+    <!--菜单栏 结束-->
+  </div>
+</div>
+<div class="clear"></div>
+<div id="wrapper" class="container">
+  <!--主内容区 开始-->
+  <!-- InstanceBeginEditable name="wrapper" -->
+    <div id="news">
+    	<div id="hot">
+        	<h2 class="title">最新动态</h2><hr class="title"/>
+        </div><!-- end of hot-->
+        <div id="notice">
+        	<h2 class="title">最新公告</h2><hr class="title"/>
+            <ul class="notice">
+            	<li><a href="#">公告1</a></li>
+                <li><a href="#">公告2</a></li>
+                <li><a href="#">公告3</a></li>
+                <li><a href="#">公告4</a></li>
+                <li><a href="#">公告5</a></li>
+                <li><a href="#">公告6</a></li>
+                <li><a href="#">公告7</a></li>
+                <li><a href="#">公告8</a></li>
+            </ul>
+        </div><!-- end of notice-->
+    </div><!-- end of news-->
+    
+    <div id="camp">
+    	<div class="third">
+        	<h2 class="title">名师课题</h2><hr class="title" />
+            <ul class="notice">
+            	<li><a href="#">标题1</a></li>
+                <li><a href="#">标题2</a></li>
+                <li><a href="#">标题3</a></li>
+                <li><a href="#">标题4</a></li>
+                <li><a href="#">标题5</a></li>
+                <li><a href="#">标题6</a></li>
+                <li><a href="#">标题7</a></li>
+                <li><a href="#">标题8</a></li>
+            </ul>
+        </div>
+        <div class="third">
+        	<h2 class="title">外包课题</h2><hr class="title" />
+            <ul class="notice">
+            	<li><a href="#">标题1</a></li>
+                <li><a href="#">标题2</a></li>
+                <li><a href="#">标题3</a></li>
+                <li><a href="#">标题4</a></li>
+                <li><a href="#">标题5</a></li>
+                <li><a href="#">标题6</a></li>
+                <li><a href="#">标题7</a></li>
+                <li><a href="#">标题8</a></li>
+            </ul>
+        </div>
+        <div class="third">
+       		<h2 class="title">比赛项目</h2><hr class="title" />
+            <ul class="notice">
+            	<li><a href="#">标题1</a></li>
+                <li><a href="#">标题2</a></li>
+                <li><a href="#">标题3</a></li>
+                <li><a href="#">标题4</a></li>
+                <li><a href="#">标题5</a></li>
+                <li><a href="#">标题6</a></li>
+                <li><a href="#">标题7</a></li>
+                <li><a href="#">标题8</a></li>
+            </ul>
+        </div>
+    </div><!-- end of camp-->
+    
+    <script type="text/javascript" src="style/js/jMyCarousel.min.js"></script>
+  	<script type="text/javascript">
+		$(function() {
+		    $(".projects").jMyCarousel({
+		        visible: '7',
+		        eltByElt: true,
+				auto: true,
+				speed: 5000,
+		        evtStart: 'mousedown',
+		        evtStop: 'mouseup'
+		    });
+		});
+	</script>
+	<div id="works">
+    	<h2 class="title">作品展示</h2><hr class="title"/>
+        <div class="projects" >
+            <ul>
+                <li><a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/1.jpg" title="作品1">
+                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/1_s.jpg"></a></li>
+                <li><a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/3.jpg" title="作品2">
+                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/3_s.jpg"></a></li>
+                <li><a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
+                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a></li>
+                <li><a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
+                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a></li>
+                <li><a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
+                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a></li>
+            </ul>
+        </div><!-- end of projects-->
+    </div><!-- end of works-->
+  <!-- InstanceEndEditable -->
+  <!--主内容区 结束-->
+  <br class="clear">
+</div>
+<!-- end of #wrapper -->
+<!--底部 开始-->
+<div id="footer">
+  <div class="container">
+    <div class="ftext fleft">&copy; 2011 广东药学院 版权所有</div>
+    <div class="fcred fright"> <span class="fright">3C团队 作品</span></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--底部 结束-->
+<script language="javascript" type="text/javascript" src="style/js/tab.js"></script>
+<script language="javascript" type="text/javascript" src="style/js/jquery.fieldtag.min.js"></script>
+<script type="text/javascript"> 
+	<!--
+	jQuery(function($){
+	    //snip
+		$("#author,#url,#email,#comment").fieldtag();
+	    //snap
+	});
+	-->
+	</script>
+<div style="display: none; " id="hiddenlpsubmitdiv"></div>
+<script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); form.lpsubmitorig2(); } } }}catch(e){}</script>
+</body>
+<!-- InstanceEnd --></html>

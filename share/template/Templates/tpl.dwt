@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>Index</title>
+<!-- TemplateEndEditable -->
+<link rel="stylesheet" href="../style/css/layout.css" type="text/css" media="screen">
+<script type="text/javascript" src="../style/js/jquery.min.js"></script>
+<style type="text/css">
+.recentcomments a {
+	display:inline !important;
+	padding:0 !important;
+	margin:0 !important;
+}
+</style>
+</head>
+<body class="home blog logged-in">
+<!--导航栏 开始-->
+<div id="nav">
+  <div class="container">
+    <div class="subcontainer">
+    <form action="<%=path%>/login">
+    账号：<input type="text" name="loginDto.username" value="" />
+    密码：<input type="password" name="loginDto.password" value="" />
+    身份：<select><option value="0" selected="selected">学生</option><option value="1" >教师</option><option value="2" >助理</option></select>
+    <input id="submit" type="submit" value="登录" />
+    </form>
+    </div>
+    <div class="sidecontainer">
+    <a href="<%=path%>/index">首页</a>&#9679;<a href="<%=path%>/student/goAddStudent">学生注册</a>&#9679;<a href="<%=path%>/teacher/goAddTeacher">老师注册</a>
+    </div>
+  </div>
+</div>
+<!--导航栏 结束-->
+<!--横幅 开始-->
+<div id="header" class="clear">
+  <div class="container cheader">
+    <h1 id="blogtitle"><a href="#">Academic System</a></h1>
+    <p class="blogdesc">比赛活动管理系统</p>
+  </div>
+</div>
+<!--横幅 结束-->
+<div id="navcat">
+  <div class="container">
+    <!--菜单栏 开始-->
+    <ul>
+      <li class="cat-item"><a href="#">比赛小组</a>
+        <ul class="children">
+          <li class="cat-item"><a href="<%=path %>/group/listAllGroup">所有小组</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listGroup">我已加入的</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listMeGroup">我创建的</a></li>
+          <li class="cat-item"><a href="<%=path %>/group/listApplyGroup">我申请的</a></li>
+        </ul>
+      </li>
+      <li class="cat-item"><a href="#">学术活动</a>
+        <ul class="children">
+          <li class="cat-item"><a href="<%=path %>/activity/listApplyActivity">我申请的活动</a> </li>
+          <li class="cat-item"><a href="<%=path %>/activity/listActivity">所有学术活动</a> </li>
+        </ul>
+      </li>
+    </ul>
+    <!--菜单栏 结束-->
+  </div>
+</div>
+<div class="clear"></div>
+<div id="wrapper" class="container">
+  <!--主内容区 开始-->
+  <!-- TemplateBeginEditable name="wrapper" -->
+  <div id="content" class="subcontainer fleft">
+    <ul id="highlight">
+    </ul>
+    <!-- end of #highlight -->
+    <div id="prev">
+      <h2 class="mainhead">Previous Posts</h2>
+      <ul id="excerpt">
+        <li>
+          <div class="p_coleft fleft">
+            <p class="date_s">十二 20, 2010</p>
+            <span class="comment_s"><a href="http://localhost/wordpress/?p=643#respond" title="无标题 上的评论">No Comments</a></span> </div>
+          <div class="p_coright fright">
+            <h1 class="prevtitle"> <a href="http://localhost/wordpress/?p=643" rel="bookmark" title="无标题">无标题</a> </h1>
+            很久没有在这里更新日志。多数时候都是阶段性的在QQ空间更新。... </div>
+          <br class="clear">
+        </li>
+        <li>
+          <div class="p_coleft fleft">
+            <p class="date_s">十一 09, 2010</p>
+            <span class="comment_s"><a href="http://localhost/wordpress/?p=552#comments" title="android多语言与国际化 上的评论">1 Comment</a></span> </div>
+          <div class="p_coright fright">
+            <h1 class="prevtitle"> <a href="http://localhost/wordpress/?p=552" rel="bookmark" title="android多语言与国际化">android多语言与国际化</a> </h1>
+            internationalization （国际化）简称 i18n,因为在i和n之间还有18个字符，localization（本地化 ），简称L10n。 一般用 语言_地区的形式表示一种语言，如&nbsp; zh_CN, zh_TW. 各国语言缩写&nbsp; http://www.loc.gov/standards/iso639-2/php/code_list.php 国家和地区简写 http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html 在Android工程的res目录下，通过定义特殊的文件夹名称就可以实现多语言支持。比如我们的程序兼容 简体中文、日文、英文、法文和德文，在values文件夹中建立默认strings.xml，再建立 values-zh-rCN（zh表示中文rCN表示简体，类似还有美式英语，奥式英语）、values-ja、values、values-fr和values-de文件夹。（可以用开发工具建：见http://www.cnblogs.com/wuyunan/archive/2009/09/16/1567960.html） 在每个文件夹里放置一个strings.xml，strings.xml里是各种语言字符串。如果涉及到参数配置类xml文件夹也要改成xml-zh、xml-ja、xml、xml-fr和xml-de。这样在android的系统中进行语言切换，所开发的程序也会跟着切换语言。 &nbsp;&nbsp;&nbsp;&nbsp; 在代码中切换语言： &nbsp;&nbsp;&nbsp;&nbsp; Resources resources = getResources();//获得res资源对象 &nbsp;&nbsp;&nbsp;&nbsp; Configuration config = resources.getConfiguration();//获得设置对象 &nbsp;&nbsp;&nbsp;&nbsp; DisplayMetrics dm = resources .getDisplayMetrics();//获得屏幕参数：主要是分辨率，像素等。 &nbsp;&nbsp;&nbsp;&nbsp; config.locale = Locale.SIMPLIFIED_CHINESE; //简体中文 &nbsp;&nbsp;&nbsp;&nbsp; resources.updateConfiguration(config, dm); &nbsp;... </div>
+          <br class="clear">
+        </li>
+        <!-- 5 Start -->
+        <!-- Erro 5 End -->
+      </ul>
+    </div>
+    <br class="clear">
+    <div class="wp-pagenavi"> <span class="pages">Page 1 of 125</span><span class="current">1</span><a href="http://localhost/wordpress/?paged=2" class="page" title="2">2</a><a href="http://localhost/wordpress/?paged=3" class="page" title="3">3</a><a href="http://localhost/wordpress/?paged=4" class="page" title="4">4</a><a href="http://localhost/wordpress/?paged=5" class="page" title="5">5</a><a href="http://localhost/wordpress/?paged=2">»</a><a href="http://localhost/wordpress/?paged=10" class="page" title="10">10</a><a href="http://localhost/wordpress/?paged=20" class="page" title="20">20</a><a href="http://localhost/wordpress/?paged=30" class="page" title="30">30</a><span class="extend">...</span><a href="http://localhost/wordpress/?paged=125" class="last" title="Last »">Last »</a></div>
+  </div>
+
+	<!--侧边栏 开始 -->
+	<div id="sidebar" class="sidecontainer fright">
+		<div class="widgets">
+			<h2 class="mainhead">参赛小组</h2>
+			<ul>
+		        <li><a href="<%=path %>/group/listAllGroup">所有小组</a></li>
+		        <li><a href="<%=path %>/group/listGroup">我参加的</a></li>
+		        <li><a href="<%=path %>/group/listMeGroup">我创建的</a></li>
+		        <li><a href="<%=path %>/group/listApplyGroup">我申请的</a></li>
+			</ul>
+			<br class="clear">
+			
+			<h2 class="mainhead">学术活动</h2>
+			<ul>
+		        <li><a href="<%=path %>/activity/listApplyActivity">我申请的活动</a></li>
+		        <li><a href="<%=path %>/activity/listActivity">所有学术活动</a></li>
+			</ul>
+			<br class="clear">
+			
+			<h2 class="mainhead">搜索</h2>
+			<form method="get" id="ksearchform" action="#">
+				<div>
+					<input type="text" size="18" value="" name="s" id="s">
+					<input type="submit" id="ksearchsubmit" value="Search" class="btn">
+				</div>
+				<br class="clear">
+			</form>
+		</div>
+	</div>
+	<!--侧边栏 结束 -->
+
+  <!-- TemplateEndEditable -->
+  <!--主内容区 结束-->
+  <br class="clear">
+</div>
+<!-- end of #wrapper -->
+<!--底部 开始-->
+<div id="footer">
+  <div class="container">
+    <div class="ftext fleft">&copy; 2011 广东药学院 版权所有</div>
+    <div class="fcred fright"> <span class="fright">3C团队 作品</span></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--底部 结束-->
+<script language="javascript" type="text/javascript" src="../style/js/tab.js"></script>
+<script language="javascript" type="text/javascript" src="../style/js/jquery.fieldtag.min.js"></script>
+<script type="text/javascript"> 
+	<!--
+	jQuery(function($){
+	    //snip
+		$("#author,#url,#email,#comment").fieldtag();
+	    //snap
+	});
+	-->
+	</script>
+<div style="display: none; " id="hiddenlpsubmitdiv"></div>
+<script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); form.lpsubmitorig2(); } } }}catch(e){}</script>
+</body>
+</html>
