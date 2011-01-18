@@ -226,4 +226,18 @@
         </div><!-- end of projects-->
     </div><!-- end of works-->
 
-<jsp:include page="/bottom.jsp"></jsp:include>
+  <!-- TemplateEndEditable -->
+  <!--主内容区 结束-->
+  <br class="clear">
+</div><!-- end of #wrapper -->
+
+<!--底部 开始-->
+<div id="footer">
+  <div class="container">
+    <div class="ftext fleft">&copy; 2011 广东药学院 版权所有</div>
+    <div class="fcred fright"> <span class="fright">3C团队 作品</span></div>
+  </div>
+  <div class="clear"></div>
+</div>
+</body>
+</html>
