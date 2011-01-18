@@ -35,8 +35,10 @@
 				<textarea name="acDto.intro" title="活动简介..." id="comment" cols="100%" rows="10" ></textarea>
 			</p>
 			<p>
-			报名开始时间: <input type="text" class="Wdate" name="acDto.airtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
-			-截止时间: <input type="text" class="Wdate" name="acDto.deadtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
+			<input type="text" class="Wdate text" title="报名开始时间" name="acDto.airtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
+			</p>
+			<p>
+			<input type="text" class="Wdate text" title="报名截止时间" name="acDto.deadtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
 			</p>
 			<div class="clear"></div>
 			<p>
@@ -50,5 +52,5 @@
     <!--评论列表 结束-->
 	</div>
 	<!--内容区 结束 -->
-<jsp:include page="/sideidx.jsp"></jsp:include>
+
 <jsp:include page="/bottom.jsp"></jsp:include>
