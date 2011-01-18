@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<description>JSTL 1.1 functions library</description>
+	<display-name>JSTL functions</display-name>
+	<tlib-version>1.1</tlib-version>
+	<short-name>fn</short-name>
+	<uri>http://gdpu.cn/functions</uri>
+
+	<!-- 小组函数 -->
+	<function>
+		<name>isMyGroup</name>
+		<function-class>cn.gdpu.jstl.GroupFunctions</function-class>
+		<function-signature>boolean isMyGroup(cn.gdpu.vo.Group,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	<function>
+		<name>isMyApplyGroup</name>
+		<function-class>cn.gdpu.jstl.GroupFunctions</function-class>
+		<function-signature>boolean isMyApplyGroup(cn.gdpu.vo.Group,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	<function>
+		<name>groupApplyCount</name>
+		<function-class>cn.gdpu.jstl.GroupFunctions</function-class>
+		<function-signature>Integer groupApplyCount(cn.gdpu.vo.Group)</function-signature>
+	</function>
+	
+	<!-- 活动函数 -->
+	<function>
+		<name>isMyActivity</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>Integer isMyActivity(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	<function>
+		<name>isSingleApplyDone</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>boolean isSingleApplyDone(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	<function>
+		<name>isTeamApplyDone</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>cn.gdpu.vo.Group isTeamApplyDone(cn.gdpu.vo.Activity,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	
+	<function>
+		<name>activityApplyCount</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>Integer activityApplyCount(cn.gdpu.vo.Activity)</function-signature>
+	</function>
+	
+	<function>
+		<name>activityApplyDoneCount</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>Integer activityApplyDoneCount(cn.gdpu.vo.Activity)</function-signature>
+	</function>
+	
+	<function>
+		<name>isActivityApplyTime</name>
+		<function-class>cn.gdpu.jstl.ActivityFunctions</function-class>
+		<function-signature>boolean isActivityApplyTime(cn.gdpu.vo.Activity)</function-signature>
+	</function>
+	
+	<!-- opus 作品函数 -->
+	<function>
+		<name>isMyOpus</name>
+		<function-class>cn.gdpu.jstl.OpusFunctions</function-class>
+		<function-signature>boolean isMyOpus(cn.gdpu.vo.ActivityApply,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	
+	<!-- 时间格式函数 -->
+	<function>
+		<name>formatDate</name>
+		<function-class>cn.gdpu.jstl.Functions</function-class>
+		<function-signature>String formatDate(java.util.Date)</function-signature>
+	</function>
+	
+	<!-- 用户类型判断 -->
+	<function>
+		<name>userTypeCompare</name>
+		<function-class>cn.gdpu.jstl.Functions</function-class>
+		<function-signature>Integer userTypeCompare(java.lang.Object)</function-signature>
+	</function>
+</taglib>

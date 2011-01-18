@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.gdpu.vo">
+	<class name="People" table="t_people">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="username" not-null="true"/>
+		<property name="password" not-null="true"/>
+		<property name="realName" not-null="true"/>
+		<property name="avatar" />
+		<property name="sex" />
+		<property name="age" />
+		<property name="remark" />
+		<set name="posts" cascade="all" lazy="true" order-by="id asc">
+			<key column="peopleId" />
+			<one-to-many class="Post" />
+		</set>
+		
+		<!-- Manager -->
+		<joined-subclass name="Manager" table="t_manager">
+			<key column="id" />
+			<set name="activitys" cascade="all" lazy="true" order-by="id asc">
+				<key column="publisherId" />
+				<one-to-many class="Activity" />
+			</set>
+				<set name="notices" cascade="all" lazy="true" order-by="id asc">
+				<key column="managerId" />
+				<one-to-many class="Notice" />
+			</set>
+			
+			<!-- Admin -->
+			<joined-subclass name="Admin" table="t_admin">
+				<key column="id" />
+			</joined-subclass>
+			
+			<!-- Assistant -->
+			<joined-subclass name="Assistant" table="t_assistant">
+				<key column="id" />
+			</joined-subclass>
+		
+		</joined-subclass>
+		
+		<!-- Student -->
+		<joined-subclass name="Student" table="t_student">
+			<key column="id" />
+			<property name="stuNo" unique="true" not-null="true"/>
+			<many-to-one name="classes" column="clsId" cascade="save-update" not-null="true"/>
+			<property name="schoolYear" not-null="true"/>
+			<property name="credit" />
+			<set name="myGroups" lazy="false" order-by="id asc">
+				<key column="creatorId" />
+				<one-to-many class="Group" />
+			</set>
+			<set name="groups" cascade="all" table="t_group_student" lazy="true">
+				<key column="stuId" />
+				<many-to-many class="Group" column="groupId" />
+			</set>
+			<set name="groupApplys" cascade="all" order-by="id asc">
+				<key column="studentId" />
+				<one-to-many class="GroupApply" />
+			</set>
+			<set name="singleApplys" cascade="all" order-by="id asc">
+				<key column="studentId" />
+				<one-to-many class="SingleApply" />
+			</set>
+			<set name="teamApplys" cascade="all" table="t_teamApply_student" lazy="true">
+				<key column="stuId" />
+				<many-to-many class="TeamApply" column="taId" />
+			</set>
+			
+		</joined-subclass>
+		
+		<!-- Teacher -->
+		<joined-subclass name="Teacher" table="t_Teacher">
+			<key column="id" />
+			<property name="tnum" unique="true" not-null="true"/>
+			<many-to-one name="Institute" column="insId" cascade="save-update" not-null="true"/>
+			<set name="opuses" cascade="all" order-by="id asc">
+			<key column="teacherId" />
+			<one-to-many class="Opus" />
+			</set>
+			<set name="comments" cascade="all" order-by="id asc">
+				<key column="teacherId" />
+				<one-to-many class="Comment" />
+			</set>
+			
+		</joined-subclass>
+		
+	</class>
+</hibernate-mapping>
