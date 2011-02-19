@@ -86,4 +86,26 @@
 		<function-class>cn.gdpu.jstl.Functions</function-class>
 		<function-signature>Integer userTypeCompare(java.lang.Object)</function-signature>
 	</function>
+	
+	<!-- 科研课题函数 -->
+	<function>
+		<name>subjectApplyCount</name>
+		<function-class>cn.gdpu.jstl.SubjectFunctions</function-class>
+		<function-signature>Integer subjectApplyCount(cn.gdpu.vo.Subject)</function-signature>
+	</function>
+	<function>
+		<name>subjectApplyDoneCount</name>
+		<function-class>cn.gdpu.jstl.SubjectFunctions</function-class>
+		<function-signature>Integer subjectApplyDoneCount(cn.gdpu.vo.Subject)</function-signature>
+	</function>
+	<function>
+		<name>mySubjectApplyStatus</name>
+		<function-class>cn.gdpu.jstl.SubjectFunctions</function-class>
+		<function-signature>Integer mySubjectApplyStatus(cn.gdpu.vo.Subject,cn.gdpu.vo.Student)</function-signature>
+	</function>
+	<function>
+		<name>isSubjectApplyTime</name>
+		<function-class>cn.gdpu.jstl.SubjectFunctions</function-class>
+		<function-signature>boolean isSubjectApplyTime(cn.gdpu.vo.Subject)</function-signature>
+	</function>
 </taglib>

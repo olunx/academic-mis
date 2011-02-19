@@ -9,10 +9,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
-import cn.gdpu.vo.Student;
 
 
 
@@ -50,18 +48,5 @@ public class InstituteServiceTest{
 		ins.setName("医药信息工程学院");
 		ins.setClasses(clss);
 		instituteService.addEntity(ins);
-	}
-	
-	@Test
-	public void get() {
-		List<Institute> institutes = instituteService.getAllEntity(Institute.class);
-		if(institutes.size() != 0){
-			System.out.print("Institute: " + institutes.get(0).getName() + " classes: ");
-			for(Classes cls : institutes.get(0).getClasses())
-				System.out.print(cls.getName() + "-");
-		}else{
-			System.out.println("Institute is empty");
-		}
-			
 	}
 }

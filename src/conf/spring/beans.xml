@@ -160,5 +160,20 @@
 		<property name="baseDao" ref="postDaoImpl" />
 	</bean>
 	
+	<!-- subject bean -->
+	<bean name="subjectDaoImpl" class="cn.gdpu.dao.impl.SubjectDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="subjectService" class="cn.gdpu.service.impl.SubjectServiceImpl" scope="prototype">
+		<property name="baseDao" ref="subjectDaoImpl" />
+	</bean>
+	
+	<!-- subjectAplly bean -->
+	<bean name="subjectApplyDaoImpl" class="cn.gdpu.dao.impl.SubjectApplyDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="subjectApplyService" class="cn.gdpu.service.impl.SubjectApplyServiceImpl" scope="prototype">
+		<property name="baseDao" ref="subjectApplyDaoImpl" />
+	</bean>
 	
 </beans>

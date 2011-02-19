@@ -34,17 +34,17 @@
     </form>
     </c:if>
 	<c:if test="${student != null}">
-		<a>欢迎你：${student.realName}</a>|<a>用户名：${student.username}</a>|<a href="#">个人资料</a>|<a href="<%=path%>/loginout">注销</a>
+		<a>欢迎你：${student.realName}</a>|<a>用户名：${student.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="#">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
 	<c:if test="${teacher != null}">
-		<a>欢迎您：${teacher.realName}</a>|<a>用户名：${teacher.username}</a>|<a href="#">个人资料</a>|<a href="<%=path%>/loginout">注销</a>
+		<a>欢迎您：${teacher.realName}</a>|<a>用户名：${teacher.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="#">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
 	<c:if test="${manager != null}">
-		<a>欢迎你：${manager.realName}</a>|<a>用户名：${manager.username}</a>|<a href="#">个人资料</a>|<a href="<%=path%>/loginout">注销</a>
+		<a>欢迎你：${manager.realName}</a>|<a>用户名：${manager.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="#">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
     </div>
     <div class="sidecontainer">
-    <a href="<%=path%>/index">首页</a>&#9679;<a href="<%=path%>/student/goAddStudent">学生注册</a>&#9679;<a href="<%=path%>/teacher/goAddTeacher">老师注册</a>
+    <a href="<%=path%>/index">首页</a>&#9679;<a href="<%=path%>/student/goAddStudent">学生注册</a>&#9679;<a href="<%=path%>/teacher/goAddTeacher">老师注册</a>&#9679;<a href="#">校园互动社区</a>
     </div>
   </div>
 </div>

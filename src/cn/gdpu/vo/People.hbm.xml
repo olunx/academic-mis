@@ -69,7 +69,10 @@
 				<key column="stuId" />
 				<many-to-many class="TeamApply" column="taId" />
 			</set>
-			
+			<set name="subjectApplys" cascade="all" order-by="id asc">
+				<key column="studentId" />
+				<one-to-many class="SubjectApply" />
+			</set>
 		</joined-subclass>
 		
 		<!-- Teacher -->
@@ -85,7 +88,12 @@
 				<key column="teacherId" />
 				<one-to-many class="Comment" />
 			</set>
-			
+			<set name="subjects" cascade="all" order-by="id asc">
+				<key column="publisherId" />
+				<one-to-many class="Subject" />
+			</set>	
+			<property name="title" />
+			<property name="indext" />
 		</joined-subclass>
 		
 	</class>
