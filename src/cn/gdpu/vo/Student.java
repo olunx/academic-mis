@@ -11,7 +11,8 @@ public class Student extends People{
 	private Set<Group> groups;
 	private Set<GroupApply> groupApplys;
 	private Set<SingleApply> singleApplys;
-	private Set<TeamApply> TeamApplys;
+	private Set<TeamApply> teamApplys;
+	private Set<SubjectApply> subjectApplys;
 	
 	public String getStuNo() {
 		return stuNo;
@@ -62,10 +63,16 @@ public class Student extends People{
 		this.singleApplys = singleApplys;
 	}
 	public Set<TeamApply> getTeamApplys() {
-		return TeamApplys;
+		return teamApplys;
 	}
 	public void setTeamApplys(Set<TeamApply> teamApplys) {
-		TeamApplys = teamApplys;
+		this.teamApplys = teamApplys;
+	}
+	public Set<SubjectApply> getSubjectApplys() {
+		return subjectApplys;
+	}
+	public void setSubjectApplys(Set<SubjectApply> subjectApplys) {
+		this.subjectApplys = subjectApplys;
 	}
 	
 	

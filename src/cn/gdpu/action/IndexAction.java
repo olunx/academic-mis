@@ -9,8 +9,11 @@ import cn.gdpu.service.StudentService;
 import cn.gdpu.service.TeacherService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Assistant;
+import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.NoticeHot;
+import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Teacher;
 
@@ -89,6 +92,32 @@ public class IndexAction extends BaseAction {
 		return ERROR;
 	}
 	
+	public String logout(){
+		if(getSession().get("people") != null) getSession().put("people", null);
+		if(getSession().get("student") != null) getSession().put("student", null);
+		if(getSession().get("teacher") != null) getSession().put("teacher", null);
+		if(getSession().get("manager") != null) getSession().put("manager", null);
+		return SUCCESS;
+	}
+	
+	public String myindex(){
+		People people = (People) getSession().get("people");
+		if(people != null){
+			int go = 0;
+			go = people instanceof Student ? 1 : (people instanceof Teacher ? 2 : (people instanceof Assistant ? 3 : 0));
+			switch (go) {
+			case 1:
+				return "stulogin";
+			case 2:
+				return "tchlogin";
+			case 3:
+				return "asslogin";
+			default:
+				break;
+			} 
+		}
+		return "gologin";
+	}
 	//getter and setter
 
 	public StudentService<Student, Integer> getStudentService() {

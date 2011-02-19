@@ -37,6 +37,12 @@
 					<option value="${institute.id}">${institute.name}</option>
 				</c:forEach>
 				</select>
+				<select class="reg" name="teaDto.title">
+					<option value="1"> 教授</option>
+					<option value="2">副教授</option>
+					<option value="3">讲师</option>
+					<option value="4">助教</option>
+					</select>
 				<select class="reg" name="teaDto.sex"><option value="1" >男教师</option><option value="0">女教师</option></select>
 			</p>
 			<div class="clear"></div>

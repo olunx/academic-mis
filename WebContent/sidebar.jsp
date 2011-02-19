@@ -29,9 +29,10 @@
 			<c:if test="${teacher != null}">
 				<h2 class="mainhead">功能</h2>
 				<ul>
-					<li><a href="#">发布课题</a></li>
-			        <li><a href="#">查看课题</a></li>
-			        <li><a href="#">查看作品</a></li>
+					<li><a href="<%=path %>/subject/goAddSubject">发布课题招募</a></li>
+			        <li><a href="<%=path %>/subject/listMeSubject">查看我的课题招募</a></li>
+			        <li><a href="<%=path %>/subject/listSubject">查看全部课题招募</a></li>
+			        <li><a href="<%=path %>/opus/listOpus">查看学生作品</a></li>
 			        <li><a href="#">我点评的作品</a></li>
 			        <li><a href="<%=path %>/group/listAllGroup">查看学习小组</a></li>
 				</ul>

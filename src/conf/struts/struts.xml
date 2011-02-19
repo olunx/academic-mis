@@ -25,11 +25,20 @@
 			<result name="asslogin">/WEB-INF/model/assistant/assistantIndex.jsp</result>
 			<result name="tchlogin">/WEB-INF/model/teacher/teacherIndex.jsp</result>
 		</action>
-
+		<action name="logout" class="cn.gdpu.action.IndexAction" method="logout">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="myindex" class="cn.gdpu.action.IndexAction" method="myindex">
+			<result name="stulogin">/WEB-INF/model/student/studentIndex.jsp</result>
+			<result name="asslogin">/WEB-INF/model/assistant/assistantIndex.jsp</result>
+			<result name="tchlogin">/WEB-INF/model/teacher/teacherIndex.jsp</result>
+		</action>
 		<action name="goLogin">
 			<result>/index.jsp</result>
 		</action>
-
 		<action name="admin" class="cn.gdpu.action.AdminAction" method="goLogin">
 			<result name="gologin">/admin/adminLogin.jsp</result>
 		</action>
@@ -330,6 +339,32 @@
 			<result name="activist">/WEB-INF/model/statistics/activist.jsp</result>
 		</global-results>
 		<action name="*Statistics" class="cn.gdpu.action.StatisticsAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- subject管理 -->
+	<package name="subject" extends="struts-default" namespace="/subject">
+		<default-action-ref name="listSubject" />
+		<global-results>
+			<result name="list" type="redirect">listSubject?page=${page}</result>
+			<result name="listPage">/WEB-INF/model/subject/subjectList.jsp</result>
+			<result name="list_me" type="redirect">listMeSubject?page=${page}</result>
+			<result name="listPage_me">/WEB-INF/model/subject/subjectList_Me.jsp</result>
+			<result name="admin_listPage">/WEB-INF/model/subject/subjectList_Admin.jsp</result>
+			<result name="viewPage">/WEB-INF/model/subject/subjectView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/subject/subjectModify.jsp
+			</result>
+			<result name="addPage">/WEB-INF/model/subject/subjectAdd.jsp</result>
+			<result name="applyPage">/WEB-INF/model/subject/subjectApply.jsp
+			</result>
+			<result name="check" type="redirect">listApplySubject?page=${page}
+			</result>
+			<result name="audit" type="redirect">viewSubject?id=${subjectApply.subject.id}
+			</result>
+			<result name="listapply">/WEB-INF/model/subject/subjectListApply.jsp
+			</result>
+		</global-results>
+		<action name="*Subject" class="cn.gdpu.action.SubjectAction" method="{1}">
 		</action>
 	</package>
 </struts>    
