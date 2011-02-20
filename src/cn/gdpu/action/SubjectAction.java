@@ -3,17 +3,24 @@ package cn.gdpu.action;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import cn.gdpu.dto.SubjectDto;
+import cn.gdpu.service.SubjectApplyService;
 import cn.gdpu.service.SubjectService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Subject;
+import cn.gdpu.vo.SubjectApply;
 import cn.gdpu.vo.Teacher;
 
 public class SubjectAction extends BaseAction {
 	private SubjectService<Subject, Integer> subjectService;
+	private SubjectApplyService<SubjectApply, Integer> subjectApplyService;
 	private Subject subject;
+	private SubjectApply subjectApply;
 	private SubjectDto sjDto;
 	private PageBean pageBean;
 	private int page;
@@ -145,6 +152,101 @@ public class SubjectAction extends BaseAction {
 		return ERROR;
 	}
 
+	/**
+	 * 申请报名科研课题招聘
+	 * @return
+	 */
+	public String apply(){
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			if(id <= 0) return ERROR;
+			subject = subjectService.getEntity(Subject.class, id);
+			if(subject == null) return ERROR;
+			Date toDay = new Date();
+			//检查是否不在报名时间内
+			if(toDay.getTime() < subject.getAirtime().getTime() || toDay.getTime() > subject.getDeadtime().getTime()) return "timeout";
+			Set<SubjectApply> applicants = subject.getSubjectApplys();
+			if(applicants == null) applicants = new HashSet<SubjectApply>();
+			for (SubjectApply applicant : applicants) {
+				if(applicant.getStudent().getId() == student.getId()) return ERROR;
+			}
+			SubjectApply subjectApply = new SubjectApply();
+			subjectApply.setSubject(subject);
+			subjectApply.setStudent(student);
+			subjectApply.setStatus(1);
+			subjectApply.setApplytime(new Date());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			subjectApply.setRecord(sdf.format(new Date()) + " : " + student.getRealName() + " 申请报名科研课题 " + subject.getName());
+			applicants.add(subjectApply);
+			subject.setSubjectApplys(applicants);
+			subjectService.updateEntity(subject);
+			return "check";
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 查看正在审核的我申请的课题
+	 */
+	public String listApply() {
+		Student student = (Student) this.getSession().get("student");
+		if(student != null){
+			this.pageBean = this.subjectApplyService.queryForPage("from SubjectApply sa where sa.student.id = '" + student.getId() + "'", 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+			return "listapply";
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 通过审核
+	 * @return
+	 */
+	public String passApply() {
+		Teacher teacher = (Teacher) getSession().get("teacher");
+		if(teacher != null){
+			subjectApply = subjectApplyService.getEntity(SubjectApply.class, id);
+			if(subjectApply == null) return ERROR;
+			subject = subjectService.getEntity(Subject.class, subjectApply.getSubject().getId());
+			if(subject == null) return ERROR;
+			if(teacher.getId() != subject.getPublisher().getId()) return ERROR; //当前操作用户不是该课题的发布者，没有权限操作
+			subjectApply.setStatus(2); //1==申请 2==通过 3==拒绝
+			subjectApply.setEndtime(new Date());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			subjectApply.setRecord(subjectApply.getRecord() + "; " + sdf.format(new Date()) + " : " + teacher.getRealName() + "通过你的课题申请  " + subjectApply.getSubject().getName());
+			subjectApplyService.updateEntity(subjectApply);
+			subjectService.updateEntity(subject);
+			Log.init(getClass()).info(sdf.format(new Date()) + " : " + teacher.getRealName() + "同意 " + subjectApply.getStudent().getRealName() + " 的课题申请 " + subjectApply.getSubject().getName());
+			return "audit";
+		}
+		return ERROR;
+		
+	}
+	/**
+	 * 拒绝审核
+	 * @return
+	 */
+	public String refuseApply() {
+		Teacher teacher = (Teacher) getSession().get("teacher");
+		if(teacher != null){
+			subjectApply = subjectApplyService.getEntity(SubjectApply.class, id);
+			if(subjectApply == null) return ERROR;
+			subject = subjectService.getEntity(Subject.class, subjectApply.getSubject().getId());
+			if(subject == null) return ERROR;
+			if(teacher.getId() != subject.getPublisher().getId()) return ERROR; //当前操作用户不是该课题的发布者，没有权限操作
+			subjectApply.setStatus(3); //1==申请 2==通过 3==拒绝
+			subjectApply.setEndtime(new Date());
+			SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			subjectApply.setRecord(subjectApply.getRecord() + "; " + sdf.format(new Date()) + " : " + teacher.getRealName() + "拒绝你的课题申请 " + subjectApply.getSubject().getName());
+			subjectApplyService.updateEntity(subjectApply);
+			subjectService.updateEntity(subject);
+			return "audit";
+		}
+		return ERROR;
+		
+	}
+	
 	@Override
 	public String view() {
 		if(id <= 0 ) return ERROR;
@@ -162,12 +264,29 @@ public class SubjectAction extends BaseAction {
 		this.subjectService = subjectService;
 	}
 
+	public SubjectApplyService<SubjectApply, Integer> getSubjectApplyService() {
+		return subjectApplyService;
+	}
+
+	public void setSubjectApplyService(
+			SubjectApplyService<SubjectApply, Integer> subjectApplyService) {
+		this.subjectApplyService = subjectApplyService;
+	}
+
 	public Subject getSubject() {
 		return subject;
 	}
 
 	public void setSubject(Subject subject) {
 		this.subject = subject;
+	}
+
+	public SubjectApply getSubjectApply() {
+		return subjectApply;
+	}
+
+	public void setSubjectApply(SubjectApply subjectApply) {
+		this.subjectApply = subjectApply;
 	}
 
 	public SubjectDto getSjDto() {

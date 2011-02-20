@@ -145,7 +145,7 @@
     
     <div id="camp">
     	<div class="third">
-        	<h2 class="title">名师课题</h2><hr class="title" />
+        	<h2 class="title">名师课题<a href="<%=path %>/subject/listSubject">[更多]</a></h2><hr class="title" />
             <ul class="notice">
             	<li><a href="#">标题1</a></li>
                 <li><a href="#">标题2</a></li>
@@ -199,7 +199,7 @@
 		});
 	</script>
 	<div id="works">
-    	<h2 class="title">作品展示</h2><hr class="title"/>
+    	<h2 class="title">作品展示<a href="<%=path %>/opus/listOpus">[更多]</a></h2><hr class="title"/>
         <div class="projects" >
             <ul>
                 <li>

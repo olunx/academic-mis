@@ -24,6 +24,13 @@
 			        <li><a href="<%=path %>/activity/listActivity">所有学术活动</a></li>
 				</ul>
 				<br class="clear">
+				
+				<h2 class="mainhead">科研课题</h2>
+				<ul>
+			        <li><a href="<%=path %>/subject/listApplySubject">我申请的课题</a></li>
+			        <li><a href="<%=path %>/subject/listSubject">所有课题信息</a></li>
+				</ul>
+				<br class="clear">
 			</c:if>
 			
 			<c:if test="${teacher != null}">
@@ -33,7 +40,7 @@
 			        <li><a href="<%=path %>/subject/listMeSubject">查看我的课题招募</a></li>
 			        <li><a href="<%=path %>/subject/listSubject">查看全部课题招募</a></li>
 			        <li><a href="<%=path %>/opus/listOpus">查看学生作品</a></li>
-			        <li><a href="#">我点评的作品</a></li>
+			        <li><a href="<%=path %>/opus/listMyCmtOpus">我点评的作品</a></li>
 			        <li><a href="<%=path %>/group/listAllGroup">查看学习小组</a></li>
 				</ul>
 				<br class="clear">

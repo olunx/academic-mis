@@ -8,6 +8,7 @@ import cn.gdpu.service.SingleApplyService;
 import cn.gdpu.service.TeacherService;
 import cn.gdpu.service.TeamApplyService;
 import cn.gdpu.util.Log;
+import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.Opus;
 import cn.gdpu.vo.SingleApply;
@@ -23,6 +24,8 @@ public class OpusAction extends BaseAction {
 	private TeacherService<Teacher, Integer> teacherService;
 	private Opus opus;
 	private OpusDto opusDto;
+	private PageBean pageBean;
+	private int page;
 	private int id;
 
 	@Override
@@ -78,10 +81,27 @@ public class OpusAction extends BaseAction {
 
 	@Override
 	public String list() {
-		// TODO Auto-generated method stub
+		this.pageBean = opusService.queryForPage(Opus.class, 10, page);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
+		getRequest().put("listtype", "list");
 		return super.list();
 	}
+	
+	public String listMyCmt() {//
+		Teacher teacher = (Teacher) getSession().get("teacher");
+		if(teacher != null){
+			this.pageBean = opusService.queryForPage("from Opus o where '" + teacher + "' = some elements(o.comments)", 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+			getRequest().put("listtype", "listMyCmt");
+			return super.list();
+		}
+		return ERROR;
+	}
 
+	
+	
 	@Override
 	public String modify() {
 		Student student = (Student) getSession().get("student");
@@ -185,6 +205,22 @@ public class OpusAction extends BaseAction {
 
 	public void setOpusDto(OpusDto opusDto) {
 		this.opusDto = opusDto;
+	}
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
 	}
 
 	public int getId() {
