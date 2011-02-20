@@ -46,7 +46,7 @@
 		                			该活动的报名时间为[${subject.airtime} - ${subject.deadtime}],现在不是报名时间，或者报名已经结束了。
 		                		</c:when>
 		                		<c:otherwise>
-		                			<a href="<%=path%>/subject/goApplySubject?id=${subject.id}">申请加入</a>
+		                			<a href="<%=path%>/subject/applySubject?id=${subject.id}"><font color="red">申请加入</font></a>
 		                		</c:otherwise>
 					 		</c:choose>
 					 	</c:otherwise>

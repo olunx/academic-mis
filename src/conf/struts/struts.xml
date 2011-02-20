@@ -199,6 +199,7 @@
 		<default-action-ref name="listOpus" />
 		<global-results>
 			<result name="list" type="redirect">listOpus?page=${page}</result>
+			<result name="listPage">/WEB-INF/model/opus/opusList.jsp</result>
 			<result name="add" type="redirectAction">
 				<param name="namespace">/activity</param>
 				<param name="actionName">listApplyActivity?page=${page}</param>
@@ -352,17 +353,11 @@
 			<result name="listPage_me">/WEB-INF/model/subject/subjectList_Me.jsp</result>
 			<result name="admin_listPage">/WEB-INF/model/subject/subjectList_Admin.jsp</result>
 			<result name="viewPage">/WEB-INF/model/subject/subjectView.jsp</result>
-			<result name="modifyPage">/WEB-INF/model/subject/subjectModify.jsp
-			</result>
+			<result name="modifyPage">/WEB-INF/model/subject/subjectModify.jsp</result>
 			<result name="addPage">/WEB-INF/model/subject/subjectAdd.jsp</result>
-			<result name="applyPage">/WEB-INF/model/subject/subjectApply.jsp
-			</result>
-			<result name="check" type="redirect">listApplySubject?page=${page}
-			</result>
-			<result name="audit" type="redirect">viewSubject?id=${subjectApply.subject.id}
-			</result>
-			<result name="listapply">/WEB-INF/model/subject/subjectListApply.jsp
-			</result>
+			<result name="check" type="redirect">listApplySubject?page=${page}</result>
+			<result name="audit" type="redirect">viewSubject?id=${subjectApply.subject.id}</result>
+			<result name="listapply">/WEB-INF/model/subject/subjectListApply.jsp</result>
 		</global-results>
 		<action name="*Subject" class="cn.gdpu.action.SubjectAction" method="{1}">
 		</action>
