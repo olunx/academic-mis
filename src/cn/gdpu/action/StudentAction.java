@@ -11,6 +11,8 @@ import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.Preparable;
+
 import cn.gdpu.dto.StudentDto;
 import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.InstituteService;
@@ -20,7 +22,6 @@ import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.ActivityApply;
-import cn.gdpu.vo.ActivityType;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
@@ -28,7 +29,7 @@ import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
-public class StudentAction extends BaseAction {
+public class StudentAction extends BaseAction implements Preparable {
 
 	private InstituteService<Institute, Integer> instituteService;
 	private ClassesService<Classes, Integer> classesService;
@@ -40,13 +41,32 @@ public class StudentAction extends BaseAction {
 	private int page;
 	private int id;
 
+	@Override
 	public void prepare() throws Exception {
 		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
-		String action=  httpRequest.getServletPath().split("/")[1];
-		String[] uri=action.split("\\.");
-		if(uri[0].equals("add")){
+		String action=  httpRequest.getServletPath().split("/")[2];
+		String[] uri = action.split("\\.");
+		if(uri[0].equals("goAddStudent") || uri[0].equals("addStudent")){
 			List<Institute> institutes = instituteService.getAllEntity(Institute.class);
 			
+			Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
+			for(Institute institute: institutes){
+				Map<String, Object> insmap = new LinkedHashMap<String, Object>();
+				Map<String, Integer> clsmap = new LinkedHashMap<String, Integer>();
+				insmap.put("key", institute.getId());
+				insmap.put("defaultvalue", institute.getClasses().iterator().next().getId());
+				for(Classes classes : institute.getClasses()){
+					clsmap.put(classes.getName(), classes.getId());
+				}
+				
+				insmap.put("values", clsmap);
+				map.put(institute.getName(), insmap);
+			}
+	        JSONObject jo = JSONObject.fromObject(map);
+			getRequest().put("clsmap", jo);
+		}
+		if(uri[0].equals("goModifyStudent") || uri[0].equals("modifyStudent") || uri[0].equals("modifyPswStudent")){//待修改
+			List<Institute> institutes = instituteService.getAllEntity(Institute.class);
 			Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
 			for(Institute institute: institutes){
 				Map<String, Object> insmap = new LinkedHashMap<String, Object>();
@@ -129,31 +149,18 @@ public class StudentAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		List<Institute> institutes = instituteService.getAllEntity(Institute.class);
-		
-		Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
-		for(Institute institute: institutes){
-			Map<String, Object> insmap = new LinkedHashMap<String, Object>();
-			Map<String, Integer> clsmap = new LinkedHashMap<String, Integer>();
-			insmap.put("key", institute.getId());
-			insmap.put("defaultvalue", institute.getClasses().iterator().next().getId());
-			for(Classes classes : institute.getClasses()){
-				clsmap.put(classes.getName(), classes.getId());
-			}
-			
-			insmap.put("values", clsmap);
-			map.put(institute.getName(), insmap);
-		}
-        JSONObject jo = JSONObject.fromObject(map);
-		getRequest().put("clsmap", jo);
-		
 		return super.goAdd();
 	}
 
 	@Override
 	public String goModify() {
-		// TODO Auto-generated method stub
-		return super.goModify();
+		Student student = (Student) getSession().get("student");
+		if(student != null){
+			student = studentService.getEntity(Student.class, student.getId());
+			getRequest().put("student", student);
+			return super.goModify();
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -172,8 +179,40 @@ public class StudentAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		// TODO Auto-generated method stub
-		return super.modify();
+		Student student = (Student) getSession().get("student");
+		if(student != null ){
+			Student stu = studentService.getEntity(Student.class, stuDto.getId());
+			if(stu.getId() != student.getId()) return "goModify";  //当前用户没有权限修改该账号
+			Classes classes = classesService.getEntity(Classes.class, stuDto.getClasses());
+			stu.setUsername(stuDto.getUsername());
+			stu.setStuNo(stuDto.getStuNo());
+			stu.setRealName(stuDto.getRealName());
+			stu.setAge(stuDto.getAge());
+			stu.setClasses(classes);
+			stu.setSchoolYear(stuDto.getSchoolYear());
+			stu.setSex(stuDto.getSex());
+			studentService.updateEntity(stu);
+			Log.init(getClass()).info("修改学生用户成功: " + student);
+			return "modify";
+		}
+		return ERROR;
+	}
+	
+	public String modifyPsw() {
+		Student student = (Student) getSession().get("student");
+		if(student != null){
+			Student stu = studentService.getEntity(Student.class, stuDto.getId());
+			if(stu.getId() != student.getId()) return "goModify";  //当前用户没有权限修改该账号
+			if(stuDto.getOpassword() == null || !stu.getPassword().equals(Md5.getMD5(stuDto.getOpassword().getBytes())))//验证密码错误
+				return "goModify";
+			if(stuDto.getPassword() == null || stuDto.getRpassword() == null || !stuDto.getPassword().equals(stuDto.getRpassword()))//确认新密码错误 
+				return "goModify";
+			stu.setPassword(Md5.getMD5(stuDto.getPassword().getBytes()));
+			studentService.updateEntity(stu);
+			Log.init(getClass()).info("修改学生用户密码成功: " + student);
+			return "modify";
+		}
+		return ERROR;
 	}
 
 	@Override

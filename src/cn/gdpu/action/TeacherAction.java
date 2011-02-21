@@ -11,6 +11,8 @@ import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.Preparable;
+
 import cn.gdpu.dto.TeacherDto;
 import cn.gdpu.service.InstituteService;
 import cn.gdpu.service.TeacherService;
@@ -24,7 +26,7 @@ import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Teacher;
 
-public class TeacherAction extends BaseAction {
+public class TeacherAction extends BaseAction implements Preparable {
 	private InstituteService<Institute, Integer> instituteService;
 	private TeacherService<Teacher, Integer> teacherService;
 	private Teacher teacher;
@@ -32,6 +34,7 @@ public class TeacherAction extends BaseAction {
 	private PageBean pageBean;
 	private int page;
 
+	@Override
 	public void prepare() throws Exception {
 		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
 		String action=  httpRequest.getServletPath().split("/")[1];

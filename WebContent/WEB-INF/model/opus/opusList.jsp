@@ -43,13 +43,17 @@
 			<c:forEach items="${pageBean.list}" var="opus">
 		        <li>
 				<div class="p_coleft fleft">
-					<p class="date_s">队长：opus.captain.realName</p>
-					<span class="comment_s"><a href="#">共$fn:length(opus.members)名成员 </a></span>
+					<p class="date_s">作品名字： <br/> <a href="<%=path%>/opus/viewOpus?id=${opus.id }">${opus.name}</a></p>
+					<span class="comment_s">所属学术活动：<br/><a href="<%=path %>/activity/viewActivity?id=${opus.activityApply.activity.id}">${opus.activityApply.activity.name }</a></span>
 				</div>
 				<div class="p_coright fright">
-					<h1 class="prevtitle">作品名字： <a href="<%=path%>/opus/viewOpus?id=${opus.id }">${opus.name}</a></h1>
-					作品简介:${fn:substring(fn:replace(opus.intro,"<","&lt;"),0,100)}
-				 </div>
+					<h1 class="prevtitle">作品简介：
+					<c:if test="${teacher != null && my:isIcanCmt(opus,teacher)}"><a href="<%=path %>/opus/goVoteOpus?id=${opus.id}"><font color="red">我要点评</font></a></c:if>
+					</h1>
+					${fn:substring(fn:replace(opus.intro,"<","&lt;"),0,100)}<br/>
+					点评<a href="<%=path%>/opus/viewOpus?id=${opus.id }">${fn:length(opus.comments)}</a>,教师评定[${my:evaluate(opus)}]
+					
+				</div>
 				<br class="clear" />
 		        </li>
 	        </c:forEach>

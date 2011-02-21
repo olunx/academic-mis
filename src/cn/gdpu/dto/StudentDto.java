@@ -6,6 +6,7 @@ public class StudentDto {
 	private String username;
 	private String password;
 	private String rpassword;
+	private String opassword;
 	private String stuNo;
 	private String realName;
 	private int sex;
@@ -38,6 +39,12 @@ public class StudentDto {
 	}
 	public void setRpassword(String rpassword) {
 		this.rpassword = rpassword;
+	}
+	public String getOpassword() {
+		return opassword;
+	}
+	public void setOpassword(String opassword) {
+		this.opassword = opassword;
 	}
 	public String getStuNo() {
 		return stuNo;

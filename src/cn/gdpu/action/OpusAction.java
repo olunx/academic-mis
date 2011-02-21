@@ -1,8 +1,12 @@
 package cn.gdpu.action;
 
+import java.util.Date;
+import java.util.Set;
+
 import cn.gdpu.dto.OpusDto;
 import cn.gdpu.jstl.OpusFunctions;
 import cn.gdpu.service.ActivityApplyService;
+import cn.gdpu.service.CommentService;
 import cn.gdpu.service.OpusService;
 import cn.gdpu.service.SingleApplyService;
 import cn.gdpu.service.TeacherService;
@@ -10,6 +14,7 @@ import cn.gdpu.service.TeamApplyService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.ActivityApply;
+import cn.gdpu.vo.Comment;
 import cn.gdpu.vo.Opus;
 import cn.gdpu.vo.SingleApply;
 import cn.gdpu.vo.Student;
@@ -22,8 +27,10 @@ public class OpusAction extends BaseAction {
 	private SingleApplyService<SingleApply, Integer> singleApplyService;
 	private TeamApplyService<TeamApply, Integer> teamApplyService;
 	private TeacherService<Teacher, Integer> teacherService;
+	private CommentService<Comment, Integer> commentService;
 	private Opus opus;
 	private OpusDto opusDto;
+	private Comment comment;
 	private PageBean pageBean;
 	private int page;
 	private int id;
@@ -146,6 +153,40 @@ public class OpusAction extends BaseAction {
 	}
 
 	
+	/**跳转到教师点评页面
+	 * @return
+	 */
+	public String goVote(){
+		Teacher teacher = (Teacher) getSession().get("teacher");
+		if(teacher != null){
+			opus = opusService.getEntity(Opus.class, id);
+			if(opus == null ) return ERROR;
+			Set<Comment> cmts = opus.getComments();
+			for (Comment cmt : cmts) {
+				if(cmt.getTeacher().getId() == teacher.getId()) return "listMyCmt";
+			}
+			return "votePage";
+		}
+		return ERROR;
+	}
+	
+	/**教师对作品进行点评
+	 * @return
+	 */
+	public String vote(){
+		Teacher teacher = (Teacher) getSession().get("teacher");
+		if(teacher != null){
+			opus = opusService.getEntity(Opus.class, id);
+			if(opus == null ) return ERROR;
+			comment.setOpus(opus);
+			comment.setTeacher(teacher);
+			comment.setTime(new Date());
+			commentService.addEntity(comment);
+			return "vote";
+		}
+		return ERROR;
+	}
+	
 	//getter and setter
 	
 	public OpusService<Opus, Integer> getOpusService() {
@@ -191,6 +232,14 @@ public class OpusAction extends BaseAction {
 		this.teacherService = teacherService;
 	}
 
+	public CommentService<Comment, Integer> getCommentService() {
+		return commentService;
+	}
+
+	public void setCommentService(CommentService<Comment, Integer> commentService) {
+		this.commentService = commentService;
+	}
+
 	public Opus getOpus() {
 		return opus;
 	}
@@ -205,6 +254,14 @@ public class OpusAction extends BaseAction {
 
 	public void setOpusDto(OpusDto opusDto) {
 		this.opusDto = opusDto;
+	}
+
+	public Comment getComment() {
+		return comment;
+	}
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
 
 	public PageBean getPageBean() {

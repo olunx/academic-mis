@@ -120,6 +120,14 @@
 		<property name="baseDao" ref="opusDaoImpl" />
 	</bean>
 	
+	<!-- comment bean -->
+	<bean name="commentDaoImpl" class="cn.gdpu.dao.impl.CommentDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="commentService" class="cn.gdpu.service.impl.CommentServiceImpl" scope="prototype">
+		<property name="baseDao" ref="commentDaoImpl" />
+	</bean>
+	
 	<!-- activityResult bean -->
 	<bean name="activityResultDaoImpl" class="cn.gdpu.dao.impl.ActivityResultDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />

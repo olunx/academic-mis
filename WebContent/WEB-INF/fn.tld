@@ -72,6 +72,16 @@
 		<function-class>cn.gdpu.jstl.OpusFunctions</function-class>
 		<function-signature>boolean isMyOpus(cn.gdpu.vo.ActivityApply,cn.gdpu.vo.Student)</function-signature>
 	</function>
+	<function>
+		<name>evaluate</name>
+		<function-class>cn.gdpu.jstl.OpusFunctions</function-class>
+		<function-signature>String evaluate(cn.gdpu.vo.Opus)</function-signature>
+	</function>
+	<function>
+		<name>isIcanCmt</name>
+		<function-class>cn.gdpu.jstl.OpusFunctions</function-class>
+		<function-signature>boolean isIcanCmt(cn.gdpu.vo.Opus,cn.gdpu.vo.Teacher)</function-signature>
+	</function>
 	
 	<!-- 时间格式函数 -->
 	<function>
