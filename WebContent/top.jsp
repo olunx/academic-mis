@@ -34,13 +34,13 @@
     </form>
     </c:if>
 	<c:if test="${student != null}">
-		<a>欢迎你：${student.realName}</a>|<a>用户名：${student.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="#">个人资料</a>|<a href="<%=path%>/logout">注销</a>
+		<a>欢迎你：${student.realName}</a>|<a>用户名：${student.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/student/viewStudent?id=${student.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
 	<c:if test="${teacher != null}">
-		<a>欢迎您：${teacher.realName}</a>|<a>用户名：${teacher.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="#">个人资料</a>|<a href="<%=path%>/logout">注销</a>
+		<a>欢迎您：${teacher.realName}</a>|<a>用户名：${teacher.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/teacher/viewTeacher?id=${teacher.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
 	<c:if test="${manager != null}">
-		<a>欢迎你：${manager.realName}</a>|<a>用户名：${manager.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="#">个人资料</a>|<a href="<%=path%>/logout">注销</a>
+		<a>欢迎你：${manager.realName}</a>|<a>用户名：${manager.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/assistant/viewassistant?id=${manager.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
     </div>
     <div class="sidecontainer">
@@ -110,6 +110,9 @@
         </ul>
       </li>
       <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">图书馆</a></li>
+      <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">学术活动简介</a></li>
+      <li class="cat-item"><a href="<%=path %>/opus/listOpus">作品展示</a></li>
+      <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">名师风采</a></li>
     </ul>
     <!--菜单栏 结束-->
   </div>

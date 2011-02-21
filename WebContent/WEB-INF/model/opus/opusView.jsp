@@ -18,21 +18,46 @@
 <h1 class="maintitle fleft"><a href="#">作品名称：${opus.name }</a></h1>
 <br class="clear" />
 </div>
-<div class="entry">所属比赛: ${opus.activityApply.activity.name}<br />
+<div class="entry">所属比赛: <a href="<%=path %>/activity/viewActivity?id=${opus.activityApply.activity.id}">${opus.activityApply.activity.name}</a><br />
 作品介绍: ${opus.intro }<br />
+作者:<c:choose>
+	<c:when test="${activityApply.activity.applyCount == 1}">
+		<a href="<%=path %>/student/viewStudent?id=${activityApply.student.id }">${activityApply.student.realName }</a>
+	</c:when>
+	<c:otherwise>
+		<c:forEach items="${activityApply.applicants}" var="student"  >
+			<a href="<%=path %>/student/viewStudent?id=${student.id }">${student.realName }</a>,
+		</c:forEach>
+	</c:otherwise>
+</c:choose>
+<br/>
 <c:choose>
 	<c:when test="${opus.instructor != null}">
 			指导老师:<a href="<%=path%>/teacher/viewTeacher?id=${opus.instructor.id}">${opus.instructor.realName}</a>
 	</c:when>
 	<c:otherwise>
-		<br /><font color="red">你的作品还没有指导老师。</font>
+		<br /><font color="red">该作品还没有指导老师。</font>
 	</c:otherwise>
 </c:choose></div>
-<p class="postinfo clear"><span class="category"><c:if
-	test="${my:isMyOpus(activityApply,student)}">
+<p class="postinfo clear"><span class="category"><c:if test="${student != null && my:isMyOpus(opus.activityApply,student)}">
 	<a href="<%=path%>/opus/goModifyOpus?id=${opus.id}">修改作品</a>
 </c:if></span><br />
 </p>
+</div>
+
+<div>
+	<h1>教师点评</h1><hr/>
+	<c:choose>
+		<c:when test="${opus.comments == null}">
+			暂无点评
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${opus.comments}" var="comment">
+				${comment.teacher.realName } : ${comment.remark } ${comment.time }<br/>
+				教师点评打分：${comment.score }<hr/>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 </div>
 
 </div>

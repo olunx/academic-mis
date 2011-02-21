@@ -77,8 +77,9 @@
 			<result name="listPage">/WEB-INF/model/student/studentList.jsp</result>
 			<result name="indexPage">/WEB-INF/model/student/studentIndex.jsp</result>
 			<result name="viewPage">/WEB-INF/model/student/studentView.jsp</result>
-			<result name="admin_viewPage">/WEB-INF/model/student/studentView_Admin.jsp
-			</result>
+			<result name="admin_viewPage">/WEB-INF/model/student/studentView_Admin.jsp</result>
+			<result name="modify" type="redirect">viewStudent?id=${stuDto.id}</result>
+			<result name="goModify" type="redirect">goModifyStudent</result>
 			<result name="modifyPage">/WEB-INF/model/student/studentModify.jsp</result>
 			<result name="addPage">/WEB-INF/model/student/studentAdd.jsp</result>
 		</global-results>
@@ -207,11 +208,14 @@
 			<result name="viewPage">/WEB-INF/model/opus/opusView.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/opus/opusModify.jsp</result>
 			<result name="addPage">/WEB-INF/model/opus/opusAdd.jsp</result>
+			<result name="votePage">/WEB-INF/model/opus/opusVote.jsp</result>
+			<result name="listMyCmt" type="redirect">listMyCmtOpus?page=${page}</result>
+			<result name="vote" type="redirect">viewOpus?id=${opus.id}</result>
 		</global-results>
 		<action name="*Opus" class="cn.gdpu.action.OpusAction" method="{1}">
 		</action>
 	</package>
-
+	
 	<!-- activityResult管理 -->
 	<package name="activityresult" extends="struts-default" namespace="/activityresult">
 		<default-action-ref name="listActivityResult" />
