@@ -45,7 +45,7 @@ function showsubmenu(sid) {
     <td width="61%" height="64"><img src="<%=path %>/content/images/admin/logo.gif" width="262" height="64"></td>
     <td width="39%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="74%" height="38" class="admin_txt">管理员：<b><font color="#EE0000">${admin.realName}</font></b> 您好,感谢登陆使用！</td>
+        <td width="74%" height="38" class="admin_txt">管理员：<b><font color="#EE0000">${user.realName}</font></b> 您好,感谢登陆使用！</td>
         <td width="22%" height="38" align="right"><a href="#" target="_self" onClick="logout();"><img src="<%=path %>/content/images/admin/out.gif" alt="安全退出" width="46" height="20" border="0"></a></td>
         <td width="4%">&nbsp;</td>
       </tr>

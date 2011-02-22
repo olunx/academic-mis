@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -7,7 +8,7 @@
 	<div id="sidebar" class="sidecontainer fright">
 		<div class="widgets">
 		
-			<c:if test="${student != null}">
+			<c:if test="${my:userTypeCompare(user) == 3}">
 				<h2 class="mainhead">参赛小组</h2>
 				<ul>
 					<li><a href="<%=path %>/group/goAddGroup">创建小组</a></li>
@@ -33,7 +34,7 @@
 				<br class="clear">
 			</c:if>
 			
-			<c:if test="${teacher != null}">
+			<c:if test="${my:userTypeCompare(user) == 4}">
 				<h2 class="mainhead">功能</h2>
 				<ul>
 					<li><a href="<%=path %>/subject/goAddSubject">发布课题招募</a></li>
@@ -46,7 +47,7 @@
 				<br class="clear">
 			</c:if>
 			
-			<c:if test="${manager != null}">
+			<c:if test="${my:userTypeCompare(user) == 2}">
 				<h2 class="mainhead">功能</h2>
 				<ul>
 					<li><a href="<%=path %>/activity/goAddActivity">添加学术活动</a></li>

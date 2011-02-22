@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -25,7 +26,7 @@
 <div id="nav">
   <div class="container">
     <div class="subcontainer">
-    <c:if test="${people == null}">
+    <c:if test="${user == null}">
     <form action="<%=path%>/login"  method="post">
     账号：<input type="text" name="loginDto.username"/>
     密码：<input type="password" name="loginDto.password"/>
@@ -33,14 +34,14 @@
     <input id="submit" type="submit" value="登录" />
     </form>
     </c:if>
-	<c:if test="${student != null}">
-		<a>欢迎你：${student.realName}</a>|<a>用户名：${student.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/student/viewStudent?id=${student.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
+	<c:if test="${my:userTypeCompare(user) == 3}">
+		<a>欢迎你：${user.realName}</a>|<a>用户名：${user.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/student/viewStudent?id=${user.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
-	<c:if test="${teacher != null}">
-		<a>欢迎您：${teacher.realName}</a>|<a>用户名：${teacher.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/teacher/viewTeacher?id=${teacher.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
+	<c:if test="${my:userTypeCompare(user) == 4}">
+		<a>欢迎您：${user.realName}</a>|<a>用户名：${user.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/user/viewTeacher?id=${user.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
-	<c:if test="${manager != null}">
-		<a>欢迎你：${manager.realName}</a>|<a>用户名：${manager.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/assistant/viewassistant?id=${manager.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
+	<c:if test="${my:userTypeCompare(user) == 2}">
+		<a>欢迎你：${user.realName}</a>|<a>用户名：${user.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/assistant/viewassistant?id=${user.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
     </div>
     <div class="sidecontainer">
@@ -63,7 +64,7 @@
     <ul>
 	<li class="cat-item"><a href="<%=path %>/index">首页</a></li>
 	
-	<c:if test="${student != null}">
+	<c:if test="${my:userTypeCompare(user) == 3}">
 	<li class="cat-item"><a href="#">我的菜单</a>
 		<ul class="children">
 			<li class="cat-item"><a href="<%=path %>/group/goAddGroup">创建小组</a></li>
@@ -77,7 +78,7 @@
 	</li>
 	</c:if>
 	
-	<c:if test="${teacher != null}">
+	<c:if test="${my:userTypeCompare(user) == 4}">
 	<li class="cat-item"><a href="#">我的菜单</a>
 		<ul class="children">
 			<li class="cat-item"><a href="#">发布课题</a></li>
@@ -89,7 +90,7 @@
 	</li>
 	</c:if>
 	
-	<c:if test="${manager != null}">
+	<c:if test="${my:userTypeCompare(user) == 5}">
 	<li class="cat-item"><a href="#">我的菜单</a>
 		<ul class="children">
 			<li class="cat-item"><a href="<%=path %>/activity/goAddActivity">添加学术活动</a></li>

@@ -19,7 +19,7 @@ public class NoticeTypeAction extends BaseAction {
 	
 	@Override
 	public String add() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(noticeTypeService.getNoticeTypeByName(ntDto.getName()) != null) return super.goAdd(); //该通知主题已经存在
 			noticeType = new NoticeType();
@@ -34,7 +34,7 @@ public class NoticeTypeAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id == 0) return ERROR;
 			noticeType = noticeTypeService.getEntity(NoticeType.class, id);
@@ -54,7 +54,7 @@ public class NoticeTypeAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			return super.goAdd();
 		}
@@ -63,7 +63,7 @@ public class NoticeTypeAction extends BaseAction {
 
 	@Override
 	public String goModify() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			noticeType = noticeTypeService.getEntity(NoticeType.class, id);
 			return super.goModify();
@@ -73,7 +73,7 @@ public class NoticeTypeAction extends BaseAction {
 
 	@Override
 	public String list() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			this.pageBean = noticeTypeService.queryForPage(NoticeType.class, 10, page);
 			if (pageBean.getList().isEmpty())
@@ -85,7 +85,7 @@ public class NoticeTypeAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			noticeType = noticeTypeService.getEntity(NoticeType.class, id);
 			if(noticeType == null) return ERROR;

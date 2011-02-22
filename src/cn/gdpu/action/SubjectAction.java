@@ -28,7 +28,7 @@ public class SubjectAction extends BaseAction {
 	
 	@Override
 	public String add() {
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			subject = new Subject();
 			subject.setName(sjDto.getName());
@@ -64,7 +64,7 @@ public class SubjectAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			if(id <= 0 ) return ERROR;
 			subject = subjectService.getEntity(Subject.class, id);
@@ -78,7 +78,7 @@ public class SubjectAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			return super.goAdd();
 		}
@@ -87,7 +87,7 @@ public class SubjectAction extends BaseAction {
 
 	@Override
 	public String goModify() {
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			if(id <= 0 ) return ERROR;
 			subject = subjectService.getEntity(Subject.class, id);
@@ -106,7 +106,7 @@ public class SubjectAction extends BaseAction {
 	}
 	
 	public String listMe() {
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			this.pageBean = this.subjectService.queryForPage("from Subject s where s.publisher.id ='" + teacher.getId() + "'", 10, page);
 			if (pageBean.getList().isEmpty())
@@ -118,7 +118,7 @@ public class SubjectAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			subject = new Subject();
 			subject.setId(sjDto.getId());
@@ -157,7 +157,7 @@ public class SubjectAction extends BaseAction {
 	 * @return
 	 */
 	public String apply(){
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			if(id <= 0) return ERROR;
 			subject = subjectService.getEntity(Subject.class, id);
@@ -189,7 +189,7 @@ public class SubjectAction extends BaseAction {
 	 * 查看正在审核的我申请的课题
 	 */
 	public String listApply() {
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			this.pageBean = this.subjectApplyService.queryForPage("from SubjectApply sa where sa.student.id = '" + student.getId() + "'", 10, page);
 			if (pageBean.getList().isEmpty())
@@ -204,7 +204,7 @@ public class SubjectAction extends BaseAction {
 	 * @return
 	 */
 	public String passApply() {
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			subjectApply = subjectApplyService.getEntity(SubjectApply.class, id);
 			if(subjectApply == null) return ERROR;
@@ -228,7 +228,7 @@ public class SubjectAction extends BaseAction {
 	 * @return
 	 */
 	public String refuseApply() {
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			subjectApply = subjectApplyService.getEntity(SubjectApply.class, id);
 			if(subjectApply == null) return ERROR;

@@ -22,7 +22,7 @@ public class ActivityResultAction extends BaseAction {
 
 	@Override
 	public String add() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			activityApply = activityApplyService.getEntity(ActivityApply.class, id);
 			if(activityApply == null) return ERROR;
@@ -55,7 +55,7 @@ public class ActivityResultAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			return super.goAdd();
 		}
@@ -64,7 +64,7 @@ public class ActivityResultAction extends BaseAction {
 
 	@Override
 	public String goModify() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id == 0) return ERROR;
 			activityResult = activityResultService.getEntity(ActivityResult.class, id);
@@ -81,7 +81,7 @@ public class ActivityResultAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id == 0) return ERROR;
 			activityResult = activityResultService.getEntity(ActivityResult.class, id);

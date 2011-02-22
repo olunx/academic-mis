@@ -47,40 +47,42 @@ public class PostAction extends BaseAction {
 	
 	@Override
 	public String add() {
-		People author = (People) getSession().get("people");
-		if(id <=0 ) return ERROR;
-		Notice notice = noticeService.getEntity(Notice.class, id);
-		if(notice == null) return ERROR;
-		post = new Post();
-		post.setContent(postDto.getContent());
-		post.setAuthor(author);
-		post.setParent(notice);
-		post.setTime(new Date());
-		postService.addEntity(post);
-		Log.init(getClass()).info(author.getRealName() + " 评论了通知 " + notice.getTitle() + " : " + post);
-		return "notice";
+		People author = (People) getSession().get("user");
+		if(author != null){
+			if(id <=0 ) return ERROR;
+			Notice notice = noticeService.getEntity(Notice.class, id);
+			if(notice == null) return ERROR;
+			post = new Post();
+			post.setContent(postDto.getContent());
+			post.setAuthor(author);
+			post.setParent(notice);
+			post.setTime(new Date());
+			postService.addEntity(post);
+			Log.init(getClass()).info(author.getRealName() + " 评论了通知 " + notice.getTitle() + " : " + post);
+			return "notice";
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String delete() {
-		People author = (People) getSession().get("people");
-		Manager manager = (Manager) getSession().get("manager");
-		if(pid <=0 || id <= 0) return ERROR;
-		post = postService.getEntity(Post.class, pid);
-		if(post == null) return ERROR;
-		if(post.getAuthor().getId() == author.getId() || manager != null){
-			postService.deleteEntity(Post.class, pid);
-			if(manager != null){
-				Log.init(getClass()).info(manager.getRealName() + "管理员删除此贴 " + post);
+		People author = (People) getSession().get("user");
+		if(author != null){
+			if(pid <=0 || id <= 0) return ERROR;
+			post = postService.getEntity(Post.class, pid);
+			if(post == null) return ERROR;
+			if(author instanceof Manager){
+				postService.deleteEntity(Post.class, pid);
+				Log.init(getClass()).info(author.getRealName() + "管理员删除此贴 " + post);
+				return "notice";
 			}
-			else{
+			if(post.getAuthor().getId() == author.getId()){
+				postService.deleteEntity(Post.class, pid);
 				Log.init(getClass()).info(author.getRealName() + "删除此贴 " + post);
+				return "notice";
 			}
-			return "notice";
 		}
-		else{
-			return ERROR;
-		}
+		return ERROR;
 	}
 
 	@Override
@@ -96,16 +98,18 @@ public class PostAction extends BaseAction {
 
 	@Override
 	public String goModify() {
-		People author = (People) getSession().get("people");
-		Manager manager = (Manager) getSession().get("manager");
-		if(pid <=0) return ERROR;
-		post = postService.getEntity(Post.class, pid);
-		if(post.getAuthor().getId() == author.getId() || manager != null){
-			return super.goModify();
+		People author = (People) getSession().get("user");
+		if(author != null){
+			if(pid <=0) return ERROR;
+			post = postService.getEntity(Post.class, pid);
+			if(post.getAuthor().getId() == author.getId() || author instanceof Manager){
+				return super.goModify();
+			}
+			else{
+				return ERROR;
+			}
 		}
-		else{
-			return ERROR;
-		}
+		return ERROR;
 	}
 
 	@Override
@@ -116,30 +120,26 @@ public class PostAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		People author = (People) getSession().get("people");
-		Manager manager = (Manager) getSession().get("manager");
-		if(pid <=0 || id <= 0) return ERROR;
-		post = postService.getEntity(Post.class, pid);
-		System.out.println("authorid : " + author.getId());
-		System.out.println("post.getAuthor().getId() : " + post.getAuthor().getId());
-		if(post.getAuthor().getId() == author.getId() || manager != null){
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			post.setContent(postDto.getContent());
+		People author = (People) getSession().get("user");
+		if(author != null){
+			if(pid <=0 || id <= 0) return ERROR;
+			post = postService.getEntity(Post.class, pid);
 			if(post == null) return ERROR;
-			if(manager != null){
-				post.setContent(post.getContent() + "<br/><br/>" + sdf.format(new Date()) + ":此贴由管理员 " + manager.getRealName() + "修改");
-				Log.init(getClass()).info(manager.getRealName() + "管理员修改此贴 " + post);
-			}
-			else{
+			post.setContent(postDto.getContent());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			if(author instanceof Manager){
+				post.setContent(post.getContent() + "<br/><br/>" + sdf.format(new Date()) + ":此贴由管理员 " + author.getRealName() + "修改");
+				Log.init(getClass()).info(author.getRealName() + "管理员修改此贴 " + post);
+			}else if(post.getAuthor().getId() == author.getId()){
 				post.setContent(post.getContent() + "<br/><br/>" + sdf.format(new Date()) + ": " + author.getRealName() + "修改此贴");
 				Log.init(getClass()).info(author.getRealName() + "修改此贴 " + post);
+			}else{
+				return ERROR;//该用户没有修改贴子权限
 			}
 			postService.updateEntity(post);
 			return "notice";
 		}
-		else{
-			return ERROR;
-		}
+		return ERROR;
 	}
 
 	@Override

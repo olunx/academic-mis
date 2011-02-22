@@ -34,7 +34,7 @@
         <td colspan="2" valign="top"><span class="left_bt">感谢您使用  学生学术活动管理系统 程序</span><br>
               <br>
             <span class="left_txt">&nbsp;<img src="<%=path %>/content/images/admin/ts.gif" width="16" height="16"> 提示：<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您现在使用的是由 广州大学城-广东药学院-医药信息工程学院-医药软件07-陈福全 开发的一套用于 学生学术活动管理 的信息系统平台！如果您有任何疑问请点左下解的</span><span class="left_ts">在线客服</span><span class="left_txt">进行咨询！<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您现在使用的是由 广州大学城-广东药学院-医药信息工程学院-医药软件07-陈福全  开发的一套用于 学生学术活动管理 的信息系统平台！如果您有任何疑问请点左下解的</span><span class="left_ts">在线客服</span><span class="left_txt">进行咨询！<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;七大栏目完美整合，一站通使用方式，功能强大，操作简单，后台操作易如反掌，只需会打字，会上网，就会管理网站！<br>
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此程序是您建立地区级商家信息门户的首选方案！　 <br>
 </span></td>

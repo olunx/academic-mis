@@ -59,7 +59,8 @@ public class ActivityAction extends BaseAction {
 			getRequest().put("ats", ats);
 		}
 		if(uri[0].equals("apply")){
-			Student student = (Student) getSession().get("student");
+			
+			Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 			if(student != null){
 				student = studentService.getEntity(Student.class, student.getId());
 				Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
@@ -83,7 +84,7 @@ public class ActivityAction extends BaseAction {
 	
 	@Override
 	public String add(){
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager)getSession().get("user") : null;
 		if(manager != null){
 			ActivityType at = activityTypeService.getEntity(ActivityType.class, acDto.getActivityType());
 			if(at == null) return ERROR;
@@ -134,7 +135,7 @@ public class ActivityAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			List<ActivityType> ats = activityTypeService.getAllEntity(ActivityType.class);
 			getRequest().put("ats", ats);
@@ -178,7 +179,7 @@ public class ActivityAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			return super.modify();
 		}
@@ -193,7 +194,7 @@ public class ActivityAction extends BaseAction {
 	}
 	
 	public String goApply(){
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			student = studentService.getEntity(Student.class, student.getId());
 			if(student.getMyGroups() == null) return "applyPage";
@@ -219,7 +220,7 @@ public class ActivityAction extends BaseAction {
 	}
 	
 	public String apply(){
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			if(applytype == 1){
 				activity = activityService.getEntity(Activity.class, id);
@@ -283,7 +284,7 @@ public class ActivityAction extends BaseAction {
 	 * 查看正在审核申请的活动
 	 */
 	public String listApply() {
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			this.pageBean = this.activityApplyService.queryForPage("from ActivityApply aa where (aa.student.id = '" + student.getId() + "') or ('" + student.getId() + "' = some elements(aa.applicants))", 10, page);
 			
@@ -299,7 +300,7 @@ public class ActivityAction extends BaseAction {
 	 * 管理人员通过报名审核
 	 */
 	public String passApply(){
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			activityApply = activityApplyService.getEntity(ActivityApply.class, id);
 			if(activityApply == null) return ERROR;
@@ -319,7 +320,7 @@ public class ActivityAction extends BaseAction {
 	 * 管理人员拒绝报名审核
 	 */
 	public String refuseApply(){
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			ActivityApply aa = activityApplyService.getEntity(ActivityApply.class, id);
 			if(aa == null) return ERROR;

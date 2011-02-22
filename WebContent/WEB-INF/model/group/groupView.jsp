@@ -22,14 +22,14 @@
 <div class="entry">小组介绍: ${group.intro }</div>
 <p class="postinfo clear"><span class="category">小组组长：<a href="#" rel="category">${group.captain.realName }</a></span>
 <c:choose>
-	<c:when test="${my:isMyGroup(group,student)}">
+	<c:when test="${my:isMyGroup(group,user)}">
 		<span class="comment"><a href="<%=path%>/group/quitGroup?id=${group.id}">退出</a></span>
 	</c:when>
 	<c:otherwise><span class="comment"><a href="<%=path%>/group/applyGroup?id=${group.id}">申请加入</a></span></c:otherwise>
 </c:choose> <br />
 </p>
 <p class="tag"><c:choose>
-	<c:when test="${my:isMyApplyGroup(group,student)}">
+	<c:when test="${my:isMyApplyGroup(group,user)}">
 		<a href="<%=path%>/group/listApplyGroup">你已经申请加入该小组了,请等待审核</a>
 	</c:when>
 </c:choose></p>
@@ -49,7 +49,7 @@
 <!--小组成员 结束-->
 <!--申请加入小组 开始-->
 <div id="comments"><c:choose>
-	<c:when test="${group.captain.id == student.id}">
+	<c:when test="${group.captain.id == user.id}">
 		<c:choose>
 			<c:when test="${my:groupApplyCount(group) != 0}">
 				<h2 class="mainhead">有${my:groupApplyCount(group)}个学生申请加入小组</h2>
@@ -87,7 +87,7 @@
 <div id="respond">
 <h2 class="mainhead">参加过的学术活动</h2>
 <c:choose>
-	<c:when test="${manager != null}">
+	<c:when test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2}">
 		<c:choose>
 			<c:when
 				test="${group.teamApplys != null && fn:length(group.teamApplys) != 0}">

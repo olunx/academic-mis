@@ -48,7 +48,7 @@
 				</div>
 				<div class="p_coright fright">
 					<h1 class="prevtitle">作品简介：
-					<c:if test="${teacher != null && my:isIcanCmt(opus,teacher)}"><a href="<%=path %>/opus/goVoteOpus?id=${opus.id}"><font color="red">我要点评</font></a></c:if>
+					<c:if test="${my:userTypeCompare(user) == 4 && my:isIcanCmt(opus,user)}"><a href="<%=path %>/opus/goVoteOpus?id=${opus.id}"><font color="red">我要点评</font></a></c:if>
 					</h1>
 					${fn:substring(fn:replace(opus.intro,"<","&lt;"),0,100)}<br/>
 					点评<a href="<%=path%>/opus/viewOpus?id=${opus.id }">${fn:length(opus.comments)}</a>,教师评定[${my:evaluate(opus)}]

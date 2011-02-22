@@ -25,22 +25,22 @@
 	    <span class="comment">报名方式：<a href="#">${activity.applyCount == 1 ? '个人报名参赛' : '团队报名参赛'}</a></span>
 	    <span class="category">
 		    <c:choose>
-			 	<c:when test="${student != null}">
+			 	<c:when test="${my:userTypeCompare(user) == 3}">
 			 		<c:choose>
-			 			<c:when test="${activity.applyCount == 1 && my:isMyActivity(activity,student) == 1}">
+			 			<c:when test="${activity.applyCount == 1 && my:isMyActivity(activity,user) == 1}">
 					 		你已经完成该活动的报名了，<a href="<%=path%>/activity/quitActivity?id=${activity.id}">退出</a>
 					 	</c:when>
-					 	<c:when test="${activity.applyCount == 1 && my:isSingleApplyDone(activity,student)}">
+					 	<c:when test="${activity.applyCount == 1 && my:isSingleApplyDone(activity,user)}">
 		                	<a href="<%=path %>/activity/listApplyActivity"><font color="Blue">你已经申请该活动的报名了,请等待审核</font></a>
 		                </c:when>
-				 		<c:when test="${activity.applyCount != 1 && my:isMyActivity(activity,student) == 2}">
+				 		<c:when test="${activity.applyCount != 1 && my:isMyActivity(activity,user) == 2}">
 		                	你创建的小组已经完成该活动的报名了，<a href="<%=path%>/activity/quitActivity?id=${activity.id}">退出</a>
 		                </c:when>
-					 	<c:when test="${activity.applyCount != 1 && my:isMyActivity(activity,student) == 3}">
+					 	<c:when test="${activity.applyCount != 1 && my:isMyActivity(activity,user) == 3}">
 		                	你所在的小组已经完成该活动的报名了。
 		                </c:when>
-					 	<c:when test="${activity.applyCount != 1 && my:isTeamApplyDone(activity,student) != null}">
-		                	<a href="<%=path %>/activity/listApplyActivity"><font color="Blue">你所在的小组${my:isTeamApplyDone(activity,student).name}已经申请该活动的报名了,请等待审核</font></a>
+					 	<c:when test="${activity.applyCount != 1 && my:isTeamApplyDone(activity,user) != null}">
+		                	<a href="<%=path %>/activity/listApplyActivity"><font color="Blue">你所在的小组${my:isTeamApplyDone(activity,user).name}已经申请该活动的报名了,请等待审核</font></a>
 		                </c:when>
 					 	<c:when test="${my:isActivityApplyTime(activity)}">
 		                	该活动的报名时间为[${activity.airtime} - ${activity.deadtime}],现在不是报名时间，或者报名已经结束了。
@@ -72,7 +72,7 @@
 		                    <div class="c_info">申请人：<a href="<%=path %>/student/viewStudent?id=${activityApply.student.id}">${activityApply.student.realName}</a></div>
 		                    <p>审核状态：${activityApply.record }</p>
 		                    <div class="reply fleft">
-		                        <c:if test="${manager != null }">
+		                        <c:if test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2 }">
 		                        <c:choose>
 		                            <c:when test="${activityApply.activityResult == null}">
 		                                <a class='comment-reply-link' href="<%=path %>/activityResult/goAddActivityResult?id=${activityApply.id}">添加结果</a>
@@ -111,7 +111,7 @@
 								</c:forEach>
 								<br/>审核状态：${activityApply.record }
 							</p>
-							<c:if test="${manager != null }">
+							<c:if test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2}">
 								<c:choose>
 								<c:when test="${activityApply.activityResult == null}">
 									<div class="reply fleft">

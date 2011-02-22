@@ -48,7 +48,7 @@ public class NoticeHotAction extends BaseAction {
 	
 	@Override
 	public String add() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id <= 0) return ERROR;
 			if(image == null) return ERROR;
@@ -113,7 +113,7 @@ public class NoticeHotAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id <= 0) return ERROR;
 			noticeHot = noticeHotService.getEntity(NoticeHot.class, id);
@@ -133,7 +133,7 @@ public class NoticeHotAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id <= 0) return ERROR;
 			notice = noticeService.getEntity(Notice.class, id);
@@ -156,7 +156,7 @@ public class NoticeHotAction extends BaseAction {
 
 	@Override
 	public String list() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			String hql = "from NoticeHot nh order by nh.rank asc, nh.id desc";
 			List<NoticeHot> nhs = noticeHotService.queryForLimit(hql, 0, 6);

@@ -44,10 +44,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 		if(username != null && password != null){
 			Admin admin = adminService.getAdminByUsernameAndPassword(username, password);
 			if(admin != null){
-				getSession().put("people", admin);
-				getSession().put("manager", admin);
-				if(getSession().get("student") != null) getSession().put("student", null);
-				if(getSession().get("teacher") != null) getSession().put("teacher", null);
+				getSession().put("user", admin);
 				return "indexPage";
 			}else{
 				return "gologin";
@@ -57,10 +54,9 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 		}
 	}
 	public String logout(){
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
-			getSession().remove("admin");
+			getSession().remove("user");
 			return "logout";
 		}
 		
@@ -69,8 +65,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String add() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			if(username != null && !username.trim().equals("") && password != null && !password.trim().equals("") 
 					&& repassword != null && !repassword.trim().equals("") && name != null && !name.trim().equals("")){
@@ -91,8 +86,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String delete() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			adminService.deleteEntity(Admin.class, id);
 			return super.delete();
@@ -108,8 +102,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String goAdd() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			return super.goAdd();
 		}
@@ -118,8 +111,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String goModify() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			return super.goModify();
 		}
@@ -128,8 +120,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String list() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			this.pageBean = this.adminService.queryForPage(Admin.class, 10, page);
 			if (pageBean.getList().isEmpty())
@@ -143,8 +134,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String modify() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			if(password != null && !password.trim().equals("") 
 					&& repassword != null && !repassword.trim().equals("") && name != null && !name.trim().equals("")){
@@ -163,8 +153,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 
 	@Override
 	public String view() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			adminService.getEntity(Admin.class, id);
 			return super.view();

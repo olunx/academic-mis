@@ -79,9 +79,7 @@ public class TeacherAction extends BaseAction implements Preparable {
 				teacher.setRemark(teaDto.getRemark());
 				teacher.setInstitute(institute);
 				teacherService.addEntity(teacher);
-				getSession().put("teacher", teacher);
-				if(getSession().get("manager") != null) getSession().put("manager", null);
-				if(getSession().get("student") != null) getSession().put("student", null);
+				getSession().put("user", teacher);
 				Log.init(getClass()).info("添加教师用户成功: " + teacher.getRealName());
 				return "indexPage";
 			}else{
@@ -121,8 +119,7 @@ public class TeacherAction extends BaseAction implements Preparable {
 
 	@Override
 	public String list() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			this.pageBean = this.teacherService.queryForPage(Teacher.class, 10, page);
 			if (pageBean.getList().isEmpty())

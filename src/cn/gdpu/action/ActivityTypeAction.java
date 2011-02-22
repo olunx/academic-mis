@@ -4,7 +4,6 @@ import cn.gdpu.service.ActivityTypeService;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.ActivityType;
 import cn.gdpu.vo.Admin;
-import cn.gdpu.vo.Manager;
 
 public class ActivityTypeAction extends BaseAction {
 	
@@ -16,8 +15,7 @@ public class ActivityTypeAction extends BaseAction {
 	
 	@Override
 	public String add() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			if(atDto.getName() == null) return ERROR;
 			activityType = activityTypeService.getActivityTypeByName(atDto.getName());
@@ -46,8 +44,7 @@ public class ActivityTypeAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			return super.goAdd();
 		}
@@ -62,8 +59,7 @@ public class ActivityTypeAction extends BaseAction {
 
 	@Override
 	public String list() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			this.pageBean = this.activityTypeService.queryForPage(ActivityType.class, 10, page);
 			if (pageBean.getList().isEmpty())

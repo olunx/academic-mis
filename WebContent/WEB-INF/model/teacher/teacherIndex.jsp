@@ -3,7 +3,7 @@
 <jsp:include page="/top.jsp"></jsp:include>
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
-	<br />欢迎您${teacher.username}<br />
+	<br />欢迎您${user.username}<br />
 	</div>
 	<!--内容区 结束 -->
 <jsp:include page="/bottom.jsp"></jsp:include>
