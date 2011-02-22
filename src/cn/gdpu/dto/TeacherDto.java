@@ -6,11 +6,13 @@ public class TeacherDto {
 	private String username;
 	private String tnum;
 	private String password;
+	private String opassword;
 	private String rpassword;
 	private String realName;
 	private int sex;
 	private int age;
 	private int institute;
+	private int title;
 	private String avatar;
 	private String remark;
 	
@@ -31,6 +33,12 @@ public class TeacherDto {
 	}
 	public void setTnum(String tnum) {
 		this.tnum = tnum;
+	}
+	public String getOpassword() {
+		return opassword;
+	}
+	public void setOpassword(String opassword) {
+		this.opassword = opassword;
 	}
 	public String getPassword() {
 		return password;
@@ -67,6 +75,12 @@ public class TeacherDto {
 	}
 	public void setInstitute(int institute) {
 		this.institute = institute;
+	}
+	public int getTitle() {
+		return title;
+	}
+	public void setTitle(int title) {
+		this.title = title;
 	}
 	public String getAvatar() {
 		return avatar;

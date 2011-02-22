@@ -38,10 +38,10 @@
 		<a>欢迎你：${user.realName}</a>|<a>用户名：${user.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/student/viewStudent?id=${user.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
 	<c:if test="${my:userTypeCompare(user) == 4}">
-		<a>欢迎您：${user.realName}</a>|<a>用户名：${user.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/user/viewTeacher?id=${user.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
+		<a>欢迎您：${user.realName}</a>|<a>用户名：${user.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/teacher/viewTeacher?id=${user.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
 	<c:if test="${my:userTypeCompare(user) == 2}">
-		<a>欢迎你：${user.realName}</a>|<a>用户名：${user.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/assistant/viewassistant?id=${user.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
+		<a>欢迎你：${user.realName}</a>|<a>用户名：${user.username}</a>|<a href="<%=path %>/myindex">个人中心</a>|<a href="<%=path %>/assistant/viewAssistant?id=${user.id}">个人资料</a>|<a href="<%=path%>/logout">注销</a>
 	</c:if>
     </div>
     <div class="sidecontainer">

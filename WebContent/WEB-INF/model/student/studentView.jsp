@@ -26,7 +26,8 @@
       		性别:${student.sex == 1 ? '男' : '女'}<br/>
       		年龄:${student.age }<br/>
       		班级:${student.classes.institute.name }-${student.classes.name }-${student.schoolYear }届<br/>
-      		
+      		<h1>学生详细介绍 </h1><hr/>
+      		${student.remark != null ? student.remark : '这家伙很懒，什么都没留下！'}
       		
 
 			<div class="clear"></div>
