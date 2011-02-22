@@ -29,7 +29,7 @@ public class GroupAction extends BaseAction{
 
 	@Override
 	public String add() {
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		Group g = groupService.getGroupByName(group.getName());
 		if(student != null && g == null){
 			group.setCaptain(student);
@@ -71,7 +71,7 @@ public class GroupAction extends BaseAction{
 	 */
 	@Override
 	public String list() {
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			this.pageBean = this.groupService.queryForPage("from Group g where '" + student.getId() + "' = some elements(g.members)", 10, page);
 			if (pageBean.getList().isEmpty())
@@ -91,8 +91,7 @@ public class GroupAction extends BaseAction{
 			pageBean.setList(null);
 		getRequest().put("listType", "listall");
 		
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null)
 			return "admin_listPage";
 		else
@@ -103,7 +102,7 @@ public class GroupAction extends BaseAction{
 	 * 查看该用户创建的小组
 	 */
 	public String listMe() {
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			this.pageBean = this.groupService.queryForPage("from Group g where g.captain.id = '" + student.getId() + "'", 10, page);
 			if (pageBean.getList().isEmpty())
@@ -118,7 +117,7 @@ public class GroupAction extends BaseAction{
 	 * 查看正在审核的小组
 	 */
 	public String listApply() {
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			this.pageBean = this.groupApplyService.queryForPage("from GroupApply ga where ga.student.id = '" + student.getId() + "'", 10, page);
 			if (pageBean.getList().isEmpty())
@@ -135,7 +134,7 @@ public class GroupAction extends BaseAction{
 	 * @return
 	 */
 	public String apply(){
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			group = groupService.getEntity(Group.class, id);
 			if(group == null) return ERROR;
@@ -160,7 +159,7 @@ public class GroupAction extends BaseAction{
 	}
 	@Override
 	public String modify() {
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			// TODO Auto-generated method stub
 			return super.modify();
@@ -181,7 +180,7 @@ public class GroupAction extends BaseAction{
 	 * @return
 	 */
 	public String pass() {
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			GroupApply groupApply = groupApplyService.getEntity(GroupApply.class, id);
 			if(groupApply == null) return ERROR;
@@ -214,7 +213,7 @@ public class GroupAction extends BaseAction{
 	 * @return
 	 */
 	public String refuse() {
-		Student student = (Student) this.getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			GroupApply groupApply = groupApplyService.getEntity(GroupApply.class, id);
 			if(groupApply == null) return ERROR;

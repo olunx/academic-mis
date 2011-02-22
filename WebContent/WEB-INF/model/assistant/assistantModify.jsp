@@ -6,24 +6,24 @@
 
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
-		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="#">添加助理</a> </div>
+		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="#">修改助理信息</a> </div>
 	    <!--评论列表 开始-->
     <div id="comments">
        <!--发表评论 开始-->
       <div id="respond">
         <form action="<%=path %>/assistant/modifyAssistant" method="post" >
-        	<input type="hidden" name="id" value="${admin.id }">
+        	<input type="hidden" name="asDto.id" value="${assistant.id }">
 			<p>
-				<input type="text" title="用户名" value="${admin.username }" class="text" />
+				<input type="text" title="用户名" name="asDto.username" value="${assistant.username }" class="text" />
 			</p>
 			<p>
-				<input type="text" title="用户密码" name="password" class="text" />
+				<input type="text" title="重置密码" name="asDto.opassword" class="text" />
 			</p>
 			<p>
-				<input type="text" title="确认密码" name="rpassword" class="text" />
+				<input type="text" title="确认密码" name="asDto.rpassword" class="text" />
 			</p>
 			<p>
-				<input type="text" title="真实姓名" name="name" class="text" />
+				<input type="text" title="真实姓名" name="asDto.name" value="${assistant.name }" class="text" />
 			</p>
 			<div class="clear"></div>
 			<p>

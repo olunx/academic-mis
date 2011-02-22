@@ -27,7 +27,7 @@
 				</div>
 				<div class="p_coright fright">
 					<h1 class="prevtitle"><a href="<%=path%>/activity/viewActivity?id=${activity.id }">${activity.name}</a></h1>
-							<c:if test="${manager != null }">
+							<c:if test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2}">
 							<c:choose>
 								<c:when test="${my:activityApplyCount(activity) != 0}">
 									<font color="red" >当前有${my:activityApplyCount(activity)}个报名</font><br />

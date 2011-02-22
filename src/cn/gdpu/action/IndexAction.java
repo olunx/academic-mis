@@ -9,9 +9,7 @@ import cn.gdpu.service.StudentService;
 import cn.gdpu.service.TeacherService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
-import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Assistant;
-import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.NoticeHot;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
@@ -24,7 +22,7 @@ public class IndexAction extends BaseAction {
 	private NoticeHotService<NoticeHot, Integer> noticeHotService;
 	private LoginDto loginDto;
 	
-	public String index(){
+	public String index(){//首页信息，未完成
 		String hql = "from NoticeHot nh order by nh.rank asc, nh.id desc";
 		List<NoticeHot> nhs = noticeHotService.queryForLimit(hql, 0, 6);
 		if(nhs.isEmpty() || nhs.size() == 0)
@@ -40,10 +38,7 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Student student = studentService.getStudentByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(student != null){
-					getSession().put("people", student);
-					getSession().put("student", student);
-					if(getSession().get("manager") != null) getSession().put("manager", null);
-					if(getSession().get("teacher") != null) getSession().put("teacher", null);
+					getSession().put("user", student);
 					Log.init(getClass()).info("学生用户登陆成功：" + student.getRealName());
 					return "stulogin";
 				}else{
@@ -59,10 +54,7 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Teacher teacher = teacherService.getTeacherByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(teacher!= null){
-					getSession().put("people", teacher);
-					getSession().put("teacher", teacher);
-					if(getSession().get("manager") != null) getSession().put("manager", null);
-					if(getSession().get("student") != null) getSession().put("student", null);
+					getSession().put("user", teacher);
 					Log.init(getClass()).info("教师登陆成功：" + teacher.getRealName());
 					return "tchlogin";
 				}else{
@@ -77,10 +69,7 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Assistant assistant = assistantService.getAssistantByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(assistant != null){
-					getSession().put("people", assistant);
-					getSession().put("manager", assistant);
-					if(getSession().get("student") != null) getSession().put("student", null);
-					if(getSession().get("teacher") != null) getSession().put("teacher", null);
+					getSession().put("user", assistant);
 					Log.init(getClass()).info("管理员助理登陆成功：" + assistant.getRealName());
 					return "asslogin";
 				}else{
@@ -93,15 +82,13 @@ public class IndexAction extends BaseAction {
 	}
 	
 	public String logout(){
-		if(getSession().get("people") != null) getSession().put("people", null);
-		if(getSession().get("student") != null) getSession().put("student", null);
-		if(getSession().get("teacher") != null) getSession().put("teacher", null);
-		if(getSession().get("manager") != null) getSession().put("manager", null);
+		if(getSession().get("user") != null) 
+			getSession().remove("user");
 		return SUCCESS;
 	}
 	
 	public String myindex(){
-		People people = (People) getSession().get("people");
+		People people = (People) getSession().get("user");
 		if(people != null){
 			int go = 0;
 			go = people instanceof Student ? 1 : (people instanceof Teacher ? 2 : (people instanceof Assistant ? 3 : 0));

@@ -51,7 +51,7 @@
 								<th>报名方式</th>
 								<th>发布人</th>
 								<th>创建时间</th>
-								<c:if test="${manager != null }">
+								<c:if test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2}">
 								<th>要求作品</th>
 								<th>报名情况</th>
 								</c:if>
@@ -65,7 +65,7 @@
 									<td>${my:userTypeCompare(activity.publisher) == 1? '系统管理员' : '管理员助理'}:${activity.publisher.realName}</td>
 									<td>${activity.time}</td>
 									<th>${activity.opusNeed == 1  ? '要求作品' : '无需作品'}</th>
-									<c:if test="${manager != null }">
+									<c:if test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2}">
 									<th>
 										<c:choose>
 											<c:when test="${my:activityApplyCount(activity) != 0}">

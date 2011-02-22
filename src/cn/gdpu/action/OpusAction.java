@@ -37,7 +37,7 @@ public class OpusAction extends BaseAction {
 
 	@Override
 	public String add() {
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null && id != 0){
 			ActivityApply aa = activityApplyService.getEntity(ActivityApply.class, id);
 			if(aa == null || aa.getOpus() != null) return ERROR;
@@ -70,7 +70,7 @@ public class OpusAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			return super.goAdd();
 		}
@@ -96,11 +96,13 @@ public class OpusAction extends BaseAction {
 	}
 	
 	public String listMyCmt() {//
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
-			this.pageBean = opusService.queryForPage("from Opus o where '" + teacher + "' = some elements(o.comments)", 10, page);
+			String hql = "select o from Opus o left join o.comments cs where cs.teacher.id ='" + teacher.getId()+ "'";
+			this.pageBean = opusService.queryForPage(hql, 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
+			
 			getRequest().put("listtype", "listMyCmt");
 			return super.list();
 		}
@@ -111,7 +113,7 @@ public class OpusAction extends BaseAction {
 	
 	@Override
 	public String modify() {
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null && id != 0){
 			opus = opusService.getEntity(Opus.class, id);
 			//查看权限
@@ -157,7 +159,7 @@ public class OpusAction extends BaseAction {
 	 * @return
 	 */
 	public String goVote(){
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			opus = opusService.getEntity(Opus.class, id);
 			if(opus == null ) return ERROR;
@@ -174,7 +176,7 @@ public class OpusAction extends BaseAction {
 	 * @return
 	 */
 	public String vote(){
-		Teacher teacher = (Teacher) getSession().get("teacher");
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
 			opus = opusService.getEntity(Opus.class, id);
 			if(opus == null ) return ERROR;

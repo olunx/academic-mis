@@ -44,8 +44,8 @@ public class NoticeAction extends BaseAction {
 	}
 	
 	@Override
-	public String add() {
-		Manager manager = (Manager) getSession().get("manager");
+	public String add() {//文本编辑器图片未处理
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			NoticeType nt = noticeTypeService.getEntity(NoticeType.class, noticeDto.getType());
 			if(nt == null) return ERROR;
@@ -67,7 +67,7 @@ public class NoticeAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id <= 0) return ERROR;
 			notice = noticeService.getEntity(Notice.class, id);
@@ -86,7 +86,7 @@ public class NoticeAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			List<NoticeType> nts = noticeTypeService.getAllEntity(NoticeType.class);
 			getRequest().put("nts", nts);
@@ -97,7 +97,7 @@ public class NoticeAction extends BaseAction {
 
 	@Override
 	public String goModify() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id <= 0) return ERROR;
 			notice = noticeService.getEntity(Notice.class, id);
@@ -110,7 +110,7 @@ public class NoticeAction extends BaseAction {
 
 	@Override
 	public String list() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			this.pageBean = this.noticeService.queryForPage(Notice.class, 10, page);
 			if (pageBean.getList().isEmpty())
@@ -122,7 +122,7 @@ public class NoticeAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
 			if(id <= 0) return ERROR;
 			notice = noticeService.getEntity(Notice.class, id);

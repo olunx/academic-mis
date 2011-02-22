@@ -20,7 +20,7 @@
        <!--发表评论 开始-->
       <div id="respond">
       		<h1>学生基本信息 </h1><hr/>
-      		学生账号:${student.username } <c:if test="${people.id == student.id}"><a href="<%=path %>/student/goModifyStudent"><font color="red">[修改用户信息]</font></a></c:if><br/>
+      		学生账号:${student.username } <c:if test="${user.id == student.id}"><a href="<%=path %>/student/goModifyStudent"><font color="red">[修改用户信息]</font></a></c:if><br/>
       		学生学号:${student.stuNo }<br/>
       		学生姓名:${student.realName }<br/>
       		性别:${student.sex == 1 ? '男' : '女'}<br/>

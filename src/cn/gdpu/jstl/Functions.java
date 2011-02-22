@@ -44,6 +44,8 @@ public class Functions {
 			return 3;
 		else if(object instanceof Teacher)
 			return 4;
+		else if(object instanceof Teacher)
+			return 4;
 		else return 0;
 	}
 	

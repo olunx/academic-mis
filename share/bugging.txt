@@ -1,6 +1,19 @@
 暂时存在的问题：
 
+-1* 重构了用户登陆后保存的session字段为user，去掉了people，student,teacher,admin,assistant，manager这几个字段，
+所以，差不多所有的页面和action都做了修改，可能会出现意想不到的bug，当出现新的问题时，请注意这条，相关改动如下：
+1.xxxAction中的角色类型判断改为
+Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
+Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
+Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
+Assistant assistant = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
+2.jsp页面中角色判断加入自定义jstl函数
+my:userTypeCompare(user) == 1=admin 2=ssistant 3= student 4=teacher
+
+
 1 登陆时用在session里的各个字段不合理，要改，麻烦
 2 学生用户修改基本信息时，用户的班级不能配对，待完善
 3 系统运行速度很慢，要优化，功能未完成，暂时不优化先
 4 作品添加时，加入导师，只能输入正确的教师号才能，该功能未完善
+5 WEB-INF/model/activity/activityView 代码比较混乱，待重构
+*6 上-1* 所示，重构了页面，可能会出现意想不到的BUG，请大伙测试反馈 2011-2-22 14：29

@@ -4,7 +4,7 @@
 
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
-	<br />欢迎您${student.username}<br />
+	<br />欢迎您${user.username}<br />
 	</div>
 	<!--内容区 结束 -->
 	  

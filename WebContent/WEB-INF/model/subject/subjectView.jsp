@@ -23,7 +23,7 @@
         </div>
         
     <div class="entry">课题简介: ${subject.intro }<br/></div>
-    <c:if test="${teacher != null && subject.publisher.id == teacher.id}">
+    <c:if test="${my:userTypeCompare(user) == 4 && subject.publisher.id == user.id}">
     	<a href="<%=path %>/subject/goModifySubject?id=${subject.id}">修改</a>
     	<a href="<%=path %>/subject/deleteSubject?id=${subject.id}">删除</a>
     </c:if>
@@ -32,18 +32,18 @@
 	    <span class="comment">招募结束时间：<a href="#">${subject.deadtime }</a></span>
 	    <span class="category">
 		    <c:choose>
-			 	<c:when test="${student != null}">
+			 	<c:when test="${my:userTypeCompare(user) == 3}">
 			 		<c:choose>
-			 			<c:when test="${my:mySubjectApplyStatus(subject,student) == 1}">
-					 		<a href="<%=path %>/subject/listApplySubject"><font color="Blue">你已经申请该活动的报名了,请等待审核</font></a>
+			 			<c:when test="${my:mySubjectApplyStatus(subject,user) == 1}">
+					 		<a href="<%=path %>/subject/listApplySubject"><font color="Blue">你已经申请该课题的报名了,请等待审核</font></a>
 					 	</c:when>
-					 	<c:when test="${my:mySubjectApplyStatus(subject,student) == 2}">
+					 	<c:when test="${my:mySubjectApplyStatus(subject,user) == 2}">
 					 		你已经完成该课题的报名了，<a href="<%=path%>/subject/quitSubject?id=${subject.id}">退出</a>
 					 	</c:when>
 					 	<c:otherwise>
 					 		<c:choose>
 					 			<c:when test="${my:isSubjectApplyTime(subject)}">
-		                			该活动的报名时间为[${subject.airtime} - ${subject.deadtime}],现在不是报名时间，或者报名已经结束了。
+		                			该课题招募的报名时间为[${subject.airtime} - ${subject.deadtime}],现在不是报名时间，或者报名已经结束了。
 		                		</c:when>
 		                		<c:otherwise>
 		                			<a href="<%=path%>/subject/applySubject?id=${subject.id}"><font color="red">申请加入</font></a>
@@ -92,7 +92,7 @@
 		
 <!-- 该课题发布人对报名进行管理 -->
 <c:choose>
-	<c:when test="${teacher != null && subject.publisher.id == teacher.id}">
+	<c:when test="${my:userTypeCompare(user) == 4 && subject.publisher.id == user.id}">
 		<c:choose>
 			<c:when test="${my:subjectApplyCount(subject) != 0}">
 			<h2 class="mainhead">有${my:subjectApplyCount(subject)}个人申请报名该课题</h2>

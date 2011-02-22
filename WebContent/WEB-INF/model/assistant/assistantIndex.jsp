@@ -4,7 +4,7 @@
 
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
-	<br />欢迎您 ${manager.realName } 进入助理管理页面<br/>
+	<br />欢迎您 ${user.realName } 进入助理管理页面<br/>
 	</div>
 	<!--内容区 结束 -->
 	  

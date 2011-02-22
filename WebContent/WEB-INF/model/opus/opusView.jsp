@@ -39,7 +39,7 @@
 		<br /><font color="red">该作品还没有指导老师。</font>
 	</c:otherwise>
 </c:choose></div>
-<p class="postinfo clear"><span class="category"><c:if test="${student != null && my:isMyOpus(opus.activityApply,student)}">
+<p class="postinfo clear"><span class="category"><c:if test="${my:userTypeCompare(user) == 3 && my:isMyOpus(opus.activityApply,user)}">
 	<a href="<%=path%>/opus/goModifyOpus?id=${opus.id}">修改作品</a>
 </c:if></span><br />
 </p>

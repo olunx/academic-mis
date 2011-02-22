@@ -120,9 +120,7 @@ public class StudentAction extends BaseAction implements Preparable {
 				student.setRemark(stuDto.getRemark());
 				student.setClasses(classes);
 				studentService.addEntity(student);
-				getSession().put("student", student);
-				if(getSession().get("manager") != null) getSession().put("manager", null);
-				if(getSession().get("teacher") != null) getSession().put("teacher", null);
+				getSession().put("user", student);
 				Log.init(getClass()).info("添加学生用户成功: " + student);
 				return "indexPage";
 			}else{
@@ -154,7 +152,7 @@ public class StudentAction extends BaseAction implements Preparable {
 
 	@Override
 	public String goModify() {
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			student = studentService.getEntity(Student.class, student.getId());
 			getRequest().put("student", student);
@@ -165,8 +163,7 @@ public class StudentAction extends BaseAction implements Preparable {
 
 	@Override
 	public String list() {
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
 			this.pageBean = this.studentService.queryForPage(Student.class, 10, page);
 			if (pageBean.getList().isEmpty())
@@ -179,7 +176,7 @@ public class StudentAction extends BaseAction implements Preparable {
 
 	@Override
 	public String modify() {
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null ){
 			Student stu = studentService.getEntity(Student.class, stuDto.getId());
 			if(stu.getId() != student.getId()) return "goModify";  //当前用户没有权限修改该账号
@@ -199,7 +196,7 @@ public class StudentAction extends BaseAction implements Preparable {
 	}
 	
 	public String modifyPsw() {
-		Student student = (Student) getSession().get("student");
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
 			Student stu = studentService.getEntity(Student.class, stuDto.getId());
 			if(stu.getId() != student.getId()) return "goModify";  //当前用户没有权限修改该账号
@@ -224,8 +221,8 @@ public class StudentAction extends BaseAction implements Preparable {
 		if(aa.isEmpty() || aa.size() == 0)
 			aa = null;
 		getRequest().put("aa", aa);
-		Manager manager = (Manager) getSession().get("manager");
-		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null)
 			return "admin_viewPage";
 		else
