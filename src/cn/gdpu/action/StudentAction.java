@@ -25,7 +25,6 @@ import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
-import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -181,7 +180,6 @@ public class StudentAction extends BaseAction implements Preparable {
 			Student stu = studentService.getEntity(Student.class, stuDto.getId());
 			if(stu.getId() != student.getId()) return "goModify";  //当前用户没有权限修改该账号
 			Classes classes = classesService.getEntity(Classes.class, stuDto.getClasses());
-			stu.setUsername(stuDto.getUsername());
 			stu.setStuNo(stuDto.getStuNo());
 			stu.setRealName(stuDto.getRealName());
 			stu.setAge(stuDto.getAge());
@@ -200,13 +198,26 @@ public class StudentAction extends BaseAction implements Preparable {
 		if(student != null){
 			Student stu = studentService.getEntity(Student.class, stuDto.getId());
 			if(stu.getId() != student.getId()) return "goModify";  //当前用户没有权限修改该账号
-			if(stuDto.getOpassword() == null || !stu.getPassword().equals(Md5.getMD5(stuDto.getOpassword().getBytes())))//验证密码错误
+			if(stuDto.getOpassword() == null || stuDto.getOpassword().equals("") || !stu.getPassword().equals(Md5.getMD5(stuDto.getOpassword().getBytes())))//验证密码错误
 				return "goModify";
-			if(stuDto.getPassword() == null || stuDto.getRpassword() == null || !stuDto.getPassword().equals(stuDto.getRpassword()))//确认新密码错误 
+			if(stuDto.getPassword() == null || stuDto.getPassword().equals("") || stuDto.getRpassword() == null || stuDto.getRpassword().equals("") || !stuDto.getPassword().equals(stuDto.getRpassword()))//确认新密码错误 
 				return "goModify";
 			stu.setPassword(Md5.getMD5(stuDto.getPassword().getBytes()));
 			studentService.updateEntity(stu);
 			Log.init(getClass()).info("修改学生用户密码成功: " + student);
+			return "modify";
+		}
+		return ERROR;
+	}
+	
+	public String modifyRemark() {
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
+		if(student != null ){
+			Student stu = studentService.getEntity(Student.class, stuDto.getId());
+			if(stu.getId() != student.getId()) return "goModify";  //当前用户没有权限修改该账号
+			stu.setRemark(stuDto.getRemark());
+			studentService.updateEntity(stu);
+			Log.init(getClass()).info("修改学生用户介绍成功: " + student);
 			return "modify";
 		}
 		return ERROR;

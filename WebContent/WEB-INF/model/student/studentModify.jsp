@@ -75,6 +75,19 @@
 			</p>
         <div class="clear"></div>
         </form>
+        <h1>学生详细介绍</h1><hr>
+        <form action="<%=path %>/student/modifyRemarkStudent" method="post" >
+        		<input type="hidden" name="stuDto.id" value="${student.id}" readonly="readonly">
+			<p>
+				<textarea name="stuDto.remark" class="xheditor-simple" id="comment" cols="100%" rows="10" >${student.remark != null ? student.remark : '这家伙很懒，什么都没留下！'}</textarea>
+			</p>
+
+			<div class="clear"></div>
+			<p>
+				<input name="submit" type="submit" class="submit" tabindex="5" value="完善介绍" />
+			</p>
+        <div class="clear"></div>
+        </form>
       </div>
        <!--发表评论 结束-->
     </div>

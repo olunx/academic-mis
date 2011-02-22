@@ -99,6 +99,8 @@
 			<result name="listPage">/WEB-INF/model/teacher/teacherList.jsp</result>
 			<result name="indexPage">/WEB-INF/model/teacher/teacherIndex.jsp</result>
 			<result name="viewPage">/WEB-INF/model/teacher/teacherView.jsp</result>
+			<result name="modify" type="redirect">viewTeacher?id=${teaDto.id}</result>
+			<result name="goModify" type="redirect">goModifyTeacher</result>
 			<result name="modifyPage">/WEB-INF/model/teacher/teacherModify.jsp</result>
 			<result name="addPage">/WEB-INF/model/teacher/teacherAdd.jsp</result>
 		</global-results>
