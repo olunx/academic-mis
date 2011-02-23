@@ -184,4 +184,11 @@
 		<property name="baseDao" ref="subjectApplyDaoImpl" />
 	</bean>
 	
+	<!-- banner bean -->
+	<bean name="bannerDaoImpl" class="cn.gdpu.dao.impl.BannerDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="bannerService" class="cn.gdpu.service.impl.BannerServiceImpl" scope="prototype">
+		<property name="baseDao" ref="bannerDaoImpl" />
+	</bean>
 </beans>

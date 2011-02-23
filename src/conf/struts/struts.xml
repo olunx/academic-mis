@@ -368,4 +368,22 @@
 		<action name="*Subject" class="cn.gdpu.action.SubjectAction" method="{1}">
 		</action>
 	</package>
+	
+	<!-- banner管理 -->
+	<package name="banner" extends="struts-default" namespace="/banner">
+		<default-action-ref name="listBanner" />
+		<global-results>
+			<result name="list" type="redirect">listBanner?page=${page}</result>
+			<result name="listPage">/WEB-INF/model/banner/bannerList.jsp
+			</result>
+			<result name="modifyPage">/WEB-INF/model/banner/bannerModify.jsp
+			</result>
+			<result name="viewPage">/WEB-INF/model/banner/bannerView.jsp
+			</result>
+			<result name="addPage">/WEB-INF/model/banner/bannerAdd.jsp
+			</result>
+		</global-results>
+		<action name="*Banner" class="cn.gdpu.action.BannerAction" method="{1}">
+		</action>
+	</package>
 </struts>    
