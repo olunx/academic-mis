@@ -29,5 +29,6 @@
 		<mapping resource="cn/gdpu/vo/Image.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/Subject.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/SubjectApply.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Banner.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

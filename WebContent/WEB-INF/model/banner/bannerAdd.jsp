@@ -39,22 +39,28 @@ $(document).ready(function(){
 
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
-		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="<%=path %>/notice/ListNotice">所有通知</a> &raquo; <a href="#">创建热门通知</a> </div>
+		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="<%=path %>/myindex">个人中心</a> &raquo; <a href="<%=path %>/notice/ListNotice">添加新横幅</a></div>
 	    <!--评论列表 开始-->
     <div id="comments">
        <!--发表评论 开始-->
       <div id="respond">
-        <h2 class="mainhead">添加热门通知</h2>
+        <h2 class="mainhead">添加新横幅</h2>
         <div class="cancel-comment-reply"> <a rel="nofollow" id="cancel-comment-reply-link" href="/wordpress/?p=552#respond" style="display:none;">Cancel</a> </div>
-	       <form action="<%=path %>/noticehot/addNoticeHot" method="post">
-				你确定要设《${notice.title }》为热门通知吗？
-				<input type="hidden" name="id" value="${notice.id }"/>
-				设置显示序号：<input type="text" name="nhDto.rank" />（1-6）<br/>
-				<label>上传头像：</label>
-				<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage?cutWidth=60&cutHeight=40">上传图片</a>
+	       <form action="<%=path %>/banner/addBanner" method="post">
+	  			<p>
+					<input type="text" title="横幅名称" name="banDto.name" class="text"/>
+				</p>
+				<p>
+					<textarea name="banDto.intro" title="横幅介绍" id="comment" cols="100%" rows="10" ></textarea>
+				</p>
+				<p>
+					<select class="reg" name="banDto.selected"><option value="1">设为当前主题</option><option value="0" selected="selected">不设为当前主题</option></select>
+				</p>
+				<label>上传横幅图片：推荐(1484*313)的图片来当横幅</label>
+				<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage?cutWidth=1484&cutHeight=313">上传图片</a>
 				<!-- 上传成功后，图片将插到这里。 -->
 				<div id="pic">
-					<img src="#"></img>
+					<img src="#" ></img>
 					<input id="oriFileName" type="hidden" name="image.oriFileName" value=""/>
 					<input id="bigFileName" type="hidden" name="image.bigFileName" value=""/>
 					<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value=""/>
@@ -62,25 +68,12 @@ $(document).ready(function(){
 					<input id="minFileUrl" type="hidden" name="image.minFileUrl" value=""/>
 				</div>
 				<p>
-					<input name="submit" type="submit" class="submit2" value="提交设置" />
+					<input name="submit" type="submit" class="submit" value="提交设置" />
 				</p>
 				 <div class="clear"></div>
 			</form>
 			<br/>
 			<br/>
-			<div>
-				当前热门通知<br/>
-				<c:choose>
-					<c:when test="${nhs != null}">
-						<c:forEach items="${nhs}" var="nh">
-							《${nh.notice.title }》-序号：${nh.rank}<br/>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						暂无热门通知！！！
-					</c:otherwise>
-				</c:choose>
-			</div>
 		</div>
        <!--发表评论 结束-->
     </div>
