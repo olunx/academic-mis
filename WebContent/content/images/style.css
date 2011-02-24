@@ -2,59 +2,34 @@
 	Featured Content Slider
 	by: Chris Coyier
 */
-*											{ margin: 0; padding: 0; }
-body 										{ font-family: Arial, Helvetica, sans-serif; font-size: 10px; }
-
-					  				  
-/*
-	UTILITY STYLES
-*/				  				  
-					  				  
-.floatLeft 									{ float: left; margin-right: 10px;}
-.floatRight									{ float: right; }
-.clear 										{ clear: both; }
-a											{ outline: none; }
-
 
 /*
 	PAGE STRUCTURE
 */
-#page-wrap 									{ float: left; width: 500px; margin: 25px left; position: relative; min-height: 500px; 
-											  background: url(slider/bg.png) top center; }
-
-
+#page-wrap 									{ float: left; width: 385px; margin: 25px left; position: relative; min-height: 310px; 
+											  background-color: #DDDDDD; }
 /*
 	TYPOGRAPHY
 */
-ul											{ list-style: square inside; }
-a, a:visited								{ color: #729dff; text-decoration: none; }
-a:hover, a:active							{ color: white; }
-blockquote									{ padding: 0 20px; margin-left: 20px; border-left: 20px solid #ccc; font-size: 14px; 
+blockquote									{ padding: 0 10px; margin-left: 20px; border-left: 20px solid #ccc; font-size: 14px; 
 									  		  font-family: Georgia, serif; font-style: italic; margin-top: 10px;}
-a img 										{ border: 0; }
 /*
 	SLIDER
 */
-.slider-wrap								{ width: 419px; position: absolute; top: 87px; left: 40px; }			
+.slider-wrap								{ width: 370px; height: 310px; overflow:hidden; position: absolute; padding: 5px; }			
 .stripViewer .panelContainer 
 .panel ul									{ text-align: left; margin: 0 15px 0 30px; }
-.stripViewer								{ position: relative; overflow: hidden; width: 419px; height: 285px; }
+.stripViewer								{ position: relative; overflow: hidden; width: 385px;  height: 255px; }
 .stripViewer .panelContainer				{ position: relative; left: 0; top: 0; }
-.stripViewer .panelContainer .panel			{ float: left; height: 100%; position: relative; width: 419px; }
+.stripViewer .panelContainer .panel			{ float: left; height: 100%; position: relative; width: 385px; }
 .stripNavL, .stripNavR, .stripNav			{ display: none; }
 .nav-thumb 									{ border: 1px solid black; margin-right: 5px; }
-#movers-row									{ margin: -43px 0 0 62px; }
-#movers-row div								{ width: 20%; float: left; }
-#movers-row div a.cross-link 				{ float: right; }
-.photo-meta-data							{ background: url(slider/transpBlack.png); position: absolute; top: 240px; left: 0px; width: 400px;
-											  padding: 10px; height: 30px; z-index: 9999; color: white; }
+#movers-row									{ margin: -43px 0 0 75px; }
+#movers-row div								{ width: 25%; float: left;}
+.photo-meta-data							{ background: url(slider/transpBlack.png); position: absolute; top: 213px; left: 0px;
+											  width: 355px; padding: 10px; height: 22px; z-index: 9999; color: white; }
 .photo-meta-data span 						{ font-size: 15px;}
-.cross-link									{ display: block; width: 62px; margin-top: -14px; 
+.cross-link									{ display: block; width: 75px; height: 40px; margin-top: -12px; 
 											  position: relative; padding-top: 15px; z-index: 9999; }
 .active-thumb 								{ background: transparent url(slider/icon-uparrowsmallwhite.png) top center no-repeat; }
-
-
-
-
-
 
