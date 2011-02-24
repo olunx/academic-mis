@@ -178,7 +178,7 @@ ul#excerpt li{margin: 0 0px 30px 0;}
 
 
 /*===========================================*/
-/*== 首页 */
+/*== 锟斤拷页 */
 /*===========================================*/
 h2.title{font-weight:bold; font-size:14px; color:#666;}
 hr.title{margin:2px 0 5px 0;}
@@ -187,24 +187,25 @@ ul.notice li{ border-bottom:dotted #CCC 1px; margin:6px; cursor:pointer;}
 ul.notice a{ font-size:14px;}
 ul.notice li:hover{ background:#ECFDFF; border-bottom:dotted #CCC 1px; margin:6px;}
 
-/** 新闻信息 **/
-#news{width:950px;height:232px;overflow:hidden;}
-#hot{width:460px; height:230px; float:left;}
-#notice{width:460px;margin-left:15px; float:left; overflow:hidden;}
+/** 锟斤拷锟斤拷锟斤拷息 **/
+#news{width:950px;height:320px;overflow:hidden;}
+#hot{width:385px; height:310px; float:left; }
+#notice{width:400px; height:320px; margin-left:10px;float:left; }
+.activestu{width:140px; height:315px; margin-left:10px;float:left; border:1px solid #DDDDDD;}
 
-/** 比赛信息 **/
+/** 锟斤拷锟斤拷锟斤拷息 **/
 #camp{width:950px;height:232px;overflow:hidden; margin-top:25px;}
 .third{width:305px; height:230px; float:left; margin-right:10px;}
 
 
-/** 作品展示 **/
+/** 锟斤拷品展示 **/
 #works{width:950px; margin-top:20px;}
 div.projects .prev{background: url('../images/arrow_left.gif') center center no-repeat;width:38px;height:48px;border:0px;cursor:pointer;}
 div.projects .next{background: url('../images/arrow_right.gif') center center no-repeat;width:38px;height:48px;border:0px;cursor:pointer;}
 div.projects .up{background: url('../images/arrow_up.gif') center center no-repeat;width:61px;height:40px;border:0px;cursor:pointer;}
 div.projects .down{background: url('../images/arrow_down.gif') center center no-repeat;width:47px;height:61px;border:0px;cursor:pointer;}
 
-/** 作品展示滚动 **/
+/** 锟斤拷品展示锟斤拷锟斤拷 **/
 div.projects{border:1px solid #636363;}
 div.projects ul{background-color:#EBEBEB;}
 div.projects ul li{margin:5px;border:1px solid #aaa;line-height:0px;padding:3px;list-style:none;padding-left:3px;background-color:#fff;}

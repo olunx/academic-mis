@@ -6,7 +6,6 @@
 	String path = request.getContextPath();
 %>
 <jsp:include page="/top.jsp"></jsp:include>
-<!-- 
 <link rel="stylesheet" type="text/css" href="<%=path%>/content/images/style.css" />
 <script type="text/javascript" src="<%=path%>/content/js/jquery-easing-1.3.pack.js"></script>
 <script type="text/javascript" src="<%=path%>/content/js/jquery-easing-compatibility.1.2.pack.js"></script>
@@ -55,78 +54,74 @@
 		theInterval();
 	});
 </script>
- -->
-<!-- 
-    	<div id="page-wrap">
-	<div class="slider-wrap">
-		<c:choose>
-		<c:when test="${nhs == null}">
-		<div id="main-photo-slider" class="csw">
-			<div class="panelContainer">
-				<div class="panel" title="Panel 1">
-					<div class="wrapper">
-						<a href="http://www.baidu.com"><img src="<%=path%>/content/images/slider/tempphoto-1.jpg" alt="temp"  border=0 /></a>
-						<div class="photo-meta-data">
-							<span>"Free Tibet" Protest at the Olympic Torch Rally</span><br />
-							Photo Credit: <a href="http://flickr.com/photos/astrolondon/2396265240/">Kaustav Bhattacharya</a>
-						</div>
-					</div>
-				</div>
-				<div class="panel" title="Panel 2">
-					<div class="wrapper">
-						<a href="www.baidu.com"><img src="<%=path%>/content/images/slider/tempphoto-2.jpg" alt="temp" /></a>
-						<div class="photo-meta-data">
-							<span>Fifth field goal, overtime win for the Seahawks</span><br />
-							Chicago Bears at Seattle Seahawks
-						</div>
-					</div>
-				</div>		
-				
-			</div>
-		</div>
-
-		<a href="#1" class="cross-link active-thumb"><img src="<%=path%>/content/images/slider/tempphoto-1thumb.jpg" class="nav-thumb" alt="temp-thumb" /></a>
-		<div id="movers-row">
-			<div><a href="#2" class="cross-link"><img src="<%=path%>/content/images/slider/tempphoto-2thumb.jpg" class="nav-thumb" alt="temp-thumb" /></a></div>
-		</div>
-		</c:when>
-		<c:otherwise>
-		<div id="main-photo-slider" class="csw">
-			<div class="panelContainer">
-				<c:forEach items="${nhs}" var="noticeHot" varStatus="i">
-					<div class="panel">
-						<div class="wrapper">
-							<a href="<%=path%>/notice/viewNotice?id=${noticeHot.notice.id}"><img src="<%=path%>${noticeHot.image.bigFileUrl}" alt="temp"  border=0 width="419" /></a>
-							<div class="photo-meta-data">
-								 <a href="<%=path%>/notice/viewNotice?id=${noticeHot.notice.id}"><span>${noticeHot.notice.title }</span></a><br/>
-								${noticeHot.notice.author.realName } : ${noticeHot.notice.time }
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
-			<a href="#1" class="cross-link active-thumb"><img src="<%=path%>${nhs[0].image.minFileUrl}" class="nav-thumb" alt="temp-thumb" /></a>
-			<div id="movers-row">
-			<c:forEach items="${nhs}" var="noticeHot" varStatus="i">
-			<c:choose>
-				<c:when test="${i.count == 1}">
-				</c:when>
-				<c:otherwise>
-						<div><a href="#${i.count }" class="cross-link"><img src="<%=path%>${noticeHot.image.minFileUrl}" class="nav-thumb" alt="temp-thumb" /></a></div>
-				</c:otherwise>
-			</c:choose>
-			</c:forEach>
-			</div>
-		</c:otherwise>
-		</c:choose>
-	</div>
-	</div>
-     -->
-     
+    
     <div id="news">
     	<div id="hot">
-        	<h2 class="title">最新动态</h2><hr class="title"/>
+    		<div id="page-wrap">
+			<div class="slider-wrap">
+				<c:choose>
+				<c:when test="${nhs == null}">
+				<div id="main-photo-slider" class="csw">
+					<div class="panelContainer">
+						<div class="panel" title="Panel 1">
+							<div class="wrapper">
+								<a href="http://www.baidu.com"><img src="<%=path%>/content/images/slider/tempphoto-1.jpg" alt="temp"  border=0 /></a>
+								<div class="photo-meta-data">
+									<span>"Free Tibet" Protest at the Olympic Torch Rally</span><br />
+									Photo Credit: <a href="http://flickr.com/photos/astrolondon/2396265240/">Kaustav Bhattacharya</a>
+								</div>
+							</div>
+						</div>
+						<div class="panel" title="Panel 2">
+							<div class="wrapper">
+								<a href="www.baidu.com"><img src="<%=path%>/content/images/slider/tempphoto-2.jpg" alt="temp" /></a>
+								<div class="photo-meta-data">
+									<span>Fifth field goal, overtime win for the Seahawks</span><br />
+									Chicago Bears at Seattle Seahawks
+								</div>
+							</div>
+						</div>		
+						
+					</div>
+				</div>
+		
+				<a href="#1" class="cross-link active-thumb"><img src="<%=path%>/content/images/slider/tempphoto-1thumb.jpg" class="nav-thumb" alt="temp-thumb" /></a>
+				<div id="movers-row">
+					<div><a href="#2" class="cross-link"><img src="<%=path%>/content/images/slider/tempphoto-2thumb.jpg" class="nav-thumb" alt="temp-thumb" /></a></div>
+				</div>
+				</c:when>
+				<c:otherwise>
+				<div id="main-photo-slider" class="csw">
+					<div class="panelContainer">
+						<c:forEach items="${nhs}" var="noticeHot" varStatus="i">
+							<div class="panel">
+								<div class="wrapper">
+									<a href="<%=path%>/notice/viewNotice?id=${noticeHot.notice.id}"><img src="<%=path%>${noticeHot.image.bigFileUrl}" alt="temp"  border=0 width="375px" /></a>
+									<div class="photo-meta-data">
+										 <a href="<%=path%>/notice/viewNotice?id=${noticeHot.notice.id}"><span>${noticeHot.notice.title }</span></a><br/>
+										${noticeHot.notice.author.realName } : ${noticeHot.notice.time }
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+					<a href="#1" class="cross-link active-thumb"><img src="<%=path%>${nhs[0].image.minFileUrl}" class="nav-thumb" alt="temp-thumb" /></a>
+					<div id="movers-row">
+					<c:forEach items="${nhs}" var="noticeHot" varStatus="i">
+					<c:choose>
+						<c:when test="${i.count == 1}">
+						</c:when>
+						<c:otherwise>
+								<div><a href="#${i.count }" class="cross-link"><img src="<%=path%>${noticeHot.image.minFileUrl}" class="nav-thumb" alt="temp-thumb" /></a></div>
+						</c:otherwise>
+					</c:choose>
+					</c:forEach>
+					</div>
+				</c:otherwise>
+				</c:choose>
+			</div>
+			</div>
         </div><!-- end of hot-->
         <div id="notice">
         	<h2 class="title">最新公告</h2><hr class="title"/>
@@ -141,6 +136,21 @@
                 <li><a href="#">公告8</a></li>
             </ul>
         </div><!-- end of notice-->
+        <div class="activestu">
+       		<h2 class="title">活跃学生</h2><hr class="title" />
+            <ul class="notice">
+            	<li><a href="#">标题1</a></li>
+                <li><a href="#">标题2</a></li>
+                <li><a href="#">标题3</a></li>
+                <li><a href="#">标题4</a></li>
+                <li><a href="#">标题5</a></li>
+                <li><a href="#">标题6</a></li>
+                <li><a href="#">标题7</a></li>
+                <li><a href="#">标题8</a></li>
+                <li><a href="#">标题9</a></li>
+                <li><a href="#">标题10</a></li>
+            </ul>
+        </div>
     </div><!-- end of news-->
     
     <div id="camp">
