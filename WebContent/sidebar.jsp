@@ -57,6 +57,8 @@
 			        <li><a href="<%=path %>/notice/goAddNotice">添加通知</a></li>
 			        <li><a href="<%=path %>/notice/listNotice">列出通知</a></li>
 			        <li><a href="<%=path %>/noticehot/listNoticeHot">热门通知管理</a></li>
+			        <li><a href="<%=path %>/feed/goAddFeed">发布系统消息</a></li>
+			        <li><a href="<%=path %>/feed/listFeed">查看系统消息</a></li>
 			        <li><a href="<%=path %>/banner/goAddBanner">添加横幅</a></li>
 			        <li><a href="<%=path %>/banner/listBanner">横幅管理</a></li>
 				</ul>

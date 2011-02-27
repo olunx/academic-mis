@@ -6,6 +6,7 @@ import java.util.Date;
 
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Assistant;
+import cn.gdpu.vo.Feed;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Teacher;
 public class Functions {
@@ -49,4 +50,26 @@ public class Functions {
 		else return 0;
 	}
 	
+	
+	/**
+	 * 1:系统消息 2:管理者消息 (0-9系统自定义消息)
+	 * 11:Activity 12:ActivityApply 13:ActivityResult(10-19学术自定义消息)
+	 * 21:group 22:groupApply(20-29学习小组自定义消息)
+	 * 31:subject 32:subjectApply(30-39科研课题消息)
+	 * 
+	 * 
+	 */
+	public static String checkFeedType(Feed feed) {
+		int type = feed.getType();
+		if(type >= 0 && type < 10)
+			return "系统消息";
+		else if(type >= 10 && type < 20)
+			return "学术活动";
+		else if(type >= 20 && type < 30)
+			return "学习小组";
+		else if(type >= 30 && type < 40)
+			return "科研课题";
+		else
+			return "系统消息";
+	}
 }
