@@ -9,6 +9,13 @@ public class Opus {
 	private ActivityApply activityApply;
 	private String intro;
 	private Teacher instructor;
+	private Image image;
+	public Image getImage() {
+		return image;
+	}
+	public void setImage(Image image) {
+		this.image = image;
+	}
 	private Set<Comment> comments;
 	
 	public int getId() {

@@ -13,6 +13,23 @@
 <!-- TemplateEndEditable -->
 <link rel="stylesheet" href="<%=path %>/style/css/layout.css" type="text/css" media="screen">
 <script type="text/javascript" src="<%=path %>/style/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" >
+	$(document).ready(function(){  
+		var url = "<%=path%>/banner/getAjaxBanner";  
+	    $.getJSON(url,function callback(data){  
+	        // convert to json object  
+	        if(data == null){
+	        	
+		    }
+	        else{
+		        var banner = eval("("+data+")");//  
+		        $("#header").css({"background-color":"#68C3D8", "background-image": "url(" + '<%=path%>' + banner.background +")", "background-repeat" : "repeat", "background-position" : "top"});  
+	            $("#bannerName").text(banner.name);  
+	            $("#bannerIntro").text(banner.intro); 
+        	}
+	    });
+	});
+</script>
 <style type="text/css">
 .recentcomments a {
 	display:inline !important;
@@ -53,8 +70,8 @@
 <!--横幅 开始-->
 <div id="header" class="clear">
   <div class="container cheader">
-    <h1 id="blogtitle"><a href="<%=path %>/index">学术活动</a></h1>
-    <p class="blogdesc">创建一个关于我们的学术交流平台</p>
+    <h1 id="blogtitle"><a href="<%=path %>/index" id="bannerName">学术活动</a></h1>
+    <p class="blogdesc" id="bannerIntro">创建一个关于我们的学术交流平台</p>
   </div>
 </div>
 <!--横幅 结束-->
