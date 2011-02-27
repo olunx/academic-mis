@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.gdpu.vo">
+	<class name="Feed" table="t_feed">
+	        <id name="id" column="id">
+	                <generator class="native" />
+	        </id>
+	        <property name="type" />
+	        <property name="news" type="text"/>
+	        <set name="recipients" table="t_feed_people" lazy="false" order-by="feedId asc" cascade="save-update">
+				<key column="feedId" />
+				<many-to-many class="People" column="peopleId"/>
+			</set>
+	        <property name="time" />
+	        <property name="hasRead" />
+	</class>
+</hibernate-mapping>

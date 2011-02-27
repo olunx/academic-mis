@@ -21,9 +21,7 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		<action name="login" class="cn.gdpu.action.IndexAction" method="login">
-			<result name="stulogin">/WEB-INF/model/student/studentIndex.jsp</result>
-			<result name="asslogin">/WEB-INF/model/assistant/assistantIndex.jsp</result>
-			<result name="tchlogin">/WEB-INF/model/teacher/teacherIndex.jsp</result>
+			<result name="login" type="redirect">/myindex</result>
 		</action>
 		<action name="logout" class="cn.gdpu.action.IndexAction" method="logout">
 			<result name="success" type="redirectAction">
@@ -389,6 +387,26 @@
             </result> 
 		</action>
 		<action name="*Banner" class="cn.gdpu.action.BannerAction" method="{1}">
+		</action>
+	</package>
+	
+	<!-- feed管理 -->
+	<package name="feed" extends="struts-default" namespace="/feed">
+		<default-action-ref name="listFeed" />
+		<global-results>
+			<result name="list" type="redirect">listFeed?page=${page}</result>
+			<result name="listPage">/WEB-INF/model/feed/feedList.jsp</result>
+			<result name="list_me" type="redirect">listMeFeed?page=${page}</result>
+			<result name="listPage_me">/WEB-INF/model/feed/feedList_Me.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/feed/feedModify.jsp</result>
+			<result name="viewPage">/WEB-INF/model/feed/feedView.jsp</result>
+			<result name="addPage">/WEB-INF/model/feed/feedAdd.jsp</result>
+			<result name="read" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">myindex</param>
+			</result>
+		</global-results>
+		<action name="*Feed" class="cn.gdpu.action.FeedAction" method="{1}">
 		</action>
 	</package>
 </struts>    

@@ -5,6 +5,7 @@ import java.util.List;
 import cn.gdpu.dto.LoginDto;
 import cn.gdpu.service.ActivityService;
 import cn.gdpu.service.AssistantService;
+import cn.gdpu.service.FeedService;
 import cn.gdpu.service.NoticeHotService;
 import cn.gdpu.service.NoticeService;
 import cn.gdpu.service.OpusService;
@@ -15,6 +16,7 @@ import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
 import cn.gdpu.vo.Activity;
 import cn.gdpu.vo.Assistant;
+import cn.gdpu.vo.Feed;
 import cn.gdpu.vo.Notice;
 import cn.gdpu.vo.NoticeHot;
 import cn.gdpu.vo.Opus;
@@ -32,6 +34,7 @@ public class IndexAction extends BaseAction {
 	private SubjectService<Subject, Integer> subjectService;
 	private ActivityService<Activity, Integer> activityService;
 	private OpusService<Opus, Integer> opusService;
+	private FeedService<Feed, Integer> feedService;
 	private LoginDto loginDto;
 	
 	public String index(){//首页信息，未完成
@@ -83,7 +86,7 @@ public class IndexAction extends BaseAction {
 				if(student != null){
 					getSession().put("user", student);
 					Log.init(getClass()).info("学生用户登陆成功：" + student.getRealName());
-					return "stulogin";
+					return "login";
 				}else{
 					return "gologin";
 				}
@@ -99,7 +102,7 @@ public class IndexAction extends BaseAction {
 				if(teacher!= null){
 					getSession().put("user", teacher);
 					Log.init(getClass()).info("教师登陆成功：" + teacher.getRealName());
-					return "tchlogin";
+					return "login";
 				}else{
 					return "gologin";
 				}
@@ -114,7 +117,7 @@ public class IndexAction extends BaseAction {
 				if(assistant != null){
 					getSession().put("user", assistant);
 					Log.init(getClass()).info("管理员助理登陆成功：" + assistant.getRealName());
-					return "asslogin";
+					return "login";
 				}else{
 					return "gologin";
 				}
@@ -133,6 +136,18 @@ public class IndexAction extends BaseAction {
 	public String myindex(){
 		People people = (People) getSession().get("user");
 		if(people != null){
+			//三角色主页公共部分
+			//系统通知			
+			List<Notice> notices = noticeService.queryForLimit("from Notice n order by n.id desc", 0, 10);
+			if(notices.isEmpty() || notices.size() == 0)
+				notices = null;
+			getRequest().put("notices", notices);
+			//Feed消息
+			List<Feed> feeds = feedService.queryForLimit("from Feed f where '" + people.getId() + "' = some elements(f.recipients) order by f.hasRead asc, f.id desc", 0, 10);
+			if(feeds.isEmpty() || feeds.size() == 0)
+				feeds = null;
+			getRequest().put("feeds", feeds);
+			
 			int go = 0;
 			go = people instanceof Student ? 1 : (people instanceof Teacher ? 2 : (people instanceof Assistant ? 3 : 0));
 			switch (go) {
@@ -214,6 +229,14 @@ public class IndexAction extends BaseAction {
 
 	public void setOpusService(OpusService<Opus, Integer> opusService) {
 		this.opusService = opusService;
+	}
+
+	public FeedService<Feed, Integer> getFeedService() {
+		return feedService;
+	}
+
+	public void setFeedService(FeedService<Feed, Integer> feedService) {
+		this.feedService = feedService;
 	}
 
 	public LoginDto getLoginDto() {

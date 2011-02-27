@@ -5,15 +5,18 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import cn.gdpu.service.FeedService;
 import cn.gdpu.service.GroupApplyService;
 import cn.gdpu.service.GroupService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Admin;
+import cn.gdpu.vo.Feed;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.GroupApply;
 import cn.gdpu.vo.Manager;
+import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -22,6 +25,7 @@ public class GroupAction extends BaseAction{
 	private GroupService<Group, Integer> groupService;
 	private GroupApplyService<GroupApply, Integer> groupApplyService;
 	private StudentService<Student, Integer> studentService;
+	private FeedService<Feed, Integer> feedService;
 	private Group group;
 	private PageBean pageBean;
 	private int page;
@@ -38,6 +42,17 @@ public class GroupAction extends BaseAction{
 			group.setMembers(students);
 			groupService.addEntity(group);
 			Log.init(getClass()).info(student.getRealName() + "添加了小组：" + group.getName());
+			
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			feed.setNews("恭喜您添加小组  " + group.getName() + " 成功！ ");
+			feed.setHasRead(0);
+			feed.setTime(new Date());
+			Set<People> recipients = new HashSet<People>();
+			recipients.add(student);
+			feed.setRecipients(recipients);
+			feedService.addEntity(feed);
 			return LIST;
 		}
 		return ERROR;
@@ -203,6 +218,16 @@ public class GroupAction extends BaseAction{
 			groupApplyService.updateEntity(groupApply);
 			groupService.updateEntity(group);
 			Log.init(getClass()).info(sdf.format(new Date()) + " : " + student.getRealName() + "同意 " + groupApply.getStudent().getRealName() + " 加入小组 " + groupApply.getGroup().getName());
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			feed.setNews(groupApply.getGroup().getName() + " 小组组长: " + student.getRealName() + " 同意您 " + groupApply.getStudent().getRealName() + " 加入小组 ");
+			feed.setHasRead(0);
+			feed.setTime(new Date());
+			Set<People> recipients = new HashSet<People>();
+			recipients.add(groupApply.getStudent());
+			feed.setRecipients(recipients);
+			feedService.addEntity(feed);
 			return "audit";
 		}
 		return ERROR;
@@ -228,6 +253,17 @@ public class GroupAction extends BaseAction{
 			groupApply.setRecord(groupApply.getRecord() + "; " + sdf.format(new Date()) + " : " + student.getRealName() + "拒绝你加入小组 " + groupApply.getGroup().getName());
 			groupApplyService.updateEntity(groupApply);
 			groupService.updateEntity(group);
+			Log.init(getClass()).info(sdf.format(new Date()) + " : " + student.getRealName() + "拒绝 " + groupApply.getStudent().getRealName() + " 加入小组 " + groupApply.getGroup().getName());
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			feed.setNews(groupApply.getGroup().getName() + " 小组组长: " + student.getRealName() + " 拒绝您 " + groupApply.getStudent().getRealName() + " 加入小组 ");
+			feed.setHasRead(0);
+			feed.setTime(new Date());
+			Set<People> recipients = new HashSet<People>();
+			recipients.add(groupApply.getStudent());
+			feed.setRecipients(recipients);
+			feedService.addEntity(feed);
 			return "audit";
 		}
 		return ERROR;
@@ -259,6 +295,14 @@ public class GroupAction extends BaseAction{
 	public void setGroupApplyService(
 			GroupApplyService<GroupApply, Integer> groupApplyService) {
 		this.groupApplyService = groupApplyService;
+	}
+
+	public FeedService<Feed, Integer> getFeedService() {
+		return feedService;
+	}
+
+	public void setFeedService(FeedService<Feed, Integer> feedService) {
+		this.feedService = feedService;
 	}
 
 	public Group getGroup() {

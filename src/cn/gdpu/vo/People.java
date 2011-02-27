@@ -12,6 +12,7 @@ public abstract class People {
 	private int age;
 	private String remark;
 	private Set<Post> posts;
+	private Set<Feed> feeds;
 	
 	public int getId() {
 		return id;
@@ -66,5 +67,11 @@ public abstract class People {
 	}
 	public void setPosts(Set<Post> posts) {
 		this.posts = posts;
+	}
+	public Set<Feed> getFeeds() {
+		return feeds;
+	}
+	public void setFeeds(Set<Feed> feeds) {
+		this.feeds = feeds;
 	}
 }
