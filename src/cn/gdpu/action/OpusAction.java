@@ -15,6 +15,7 @@ import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.Comment;
+import cn.gdpu.vo.Image;
 import cn.gdpu.vo.Opus;
 import cn.gdpu.vo.SingleApply;
 import cn.gdpu.vo.Student;
@@ -32,6 +33,7 @@ public class OpusAction extends BaseAction {
 	private OpusDto opusDto;
 	private Comment comment;
 	private PageBean pageBean;
+	private Image image;
 	private int page;
 	private int id;
 
@@ -49,6 +51,9 @@ public class OpusAction extends BaseAction {
 				Teacher teacher = teacherService.getTeacherByTnum(opusDto.getInstructor());
 				if(teacher != null) opus.setInstructor(teacher);
 			}
+			if(image.getOriFileName().equals("") || image.getOriFileName() == null) 
+				image = null;
+			opus.setImage(image);
 			opusService.addEntity(opus);
 			Log.init(getClass()).info(student.getRealName() + " 学生给 " + aa.getActivity().getName() + " 活动添加了作品: " + opus.getName());
 			return "add";
@@ -280,6 +285,14 @@ public class OpusAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public int getId() {

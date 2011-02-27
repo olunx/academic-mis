@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -42,16 +43,18 @@
 				<div class="p_coright fright">
 					<h1 class="prevtitle">(${notice.type.name})<a href="<%=path%>/notice/viewNotice?id=${notice.id }">${notice.title}</a></h1>
 						发表人：${notice.author.realName }<br />
-                        <c:choose>
-                            <c:when test="${notice.noticeHot == null}">
-								<a href="<%=path%>/noticehot/goAddNoticeHot?id=${notice.id }">设为热门</a>
-                            </c:when>
-                            <c:otherwise>
-								Hot-<a href="<%=path%>/noticehot/deleteNoticeHot?id=${notice.id }">取消</a>
-                            </c:otherwise>
-                        </c:choose>
-                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/notice/goModifyNotice?id=${notice.id }">编辑</a>
-                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/notice/deleteNotice?id=${notice.id }">删除</a>
+						<c:if test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2}">
+	                        <c:choose>
+	                            <c:when test="${notice.noticeHot == null}">
+									<a href="<%=path%>/noticehot/goAddNoticeHot?id=${notice.id }">设为热门</a>
+	                            </c:when>
+	                            <c:otherwise>
+									Hot-<a href="<%=path%>/noticehot/deleteNoticeHot?id=${notice.id }">取消</a>
+	                            </c:otherwise>
+	                        </c:choose>
+	                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/notice/goModifyNotice?id=${notice.id }">编辑</a>
+	                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/notice/deleteNotice?id=${notice.id }">删除</a>
+                        </c:if>
 				</div>
 				<br class="clear" />
 		        </li>

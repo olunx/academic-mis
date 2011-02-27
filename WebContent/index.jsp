@@ -11,7 +11,6 @@
 <script type="text/javascript" src="<%=path%>/content/js/jquery-easing-compatibility.1.2.pack.js"></script>
 <script type="text/javascript" src="<%=path%>/content/js/coda-slider.1.1.1.pack.js"></script>
 <script type="text/javascript">
-
 	var theInt = null;
 	var $crosslink, $navthumb;
 	var curclicked = 0;
@@ -124,31 +123,19 @@
 			</div>
         </div><!-- end of hot-->
         <div id="notice">
-        	<h2 class="title">最新公告</h2><hr class="title"/>
+        	<h2 class="title">最新公告<a href="<%=path %>/notice/listNotice">[更多]</a></h2><hr class="title"/>
             <ul class="notice">
-            	<li><a href="#">公告1</a></li>
-                <li><a href="#">公告2</a></li>
-                <li><a href="#">公告3</a></li>
-                <li><a href="#">公告4</a></li>
-                <li><a href="#">公告5</a></li>
-                <li><a href="#">公告6</a></li>
-                <li><a href="#">公告7</a></li>
-                <li><a href="#">公告8</a></li>
+            	<c:forEach items="${notices}" var="notice">
+            		<li><a href="<%=path %>/notice/viewNotice?id=${notice.id }">[${notice.type.name}]${notice.title }</a></li>
+            	</c:forEach>
             </ul>
         </div><!-- end of notice-->
         <div class="activestu">
-       		<h2 class="title">活跃学生</h2><hr class="title" />
+       		<h2 class="title">学术优秀学生</h2><hr class="title" />
             <ul class="notice">
-            	<li><a href="#">标题1</a></li>
-                <li><a href="#">标题2</a></li>
-                <li><a href="#">标题3</a></li>
-                <li><a href="#">标题4</a></li>
-                <li><a href="#">标题5</a></li>
-                <li><a href="#">标题6</a></li>
-                <li><a href="#">标题7</a></li>
-                <li><a href="#">标题8</a></li>
-                <li><a href="#">标题9</a></li>
-                <li><a href="#">标题10</a></li>
+            	<c:forEach items="${goodStus}" var="student" varStatus="i">
+            		<li><a href="<%=path %>/student/viewStudent?id=${student.id }">[${i.count }]${student.realName }-${student.classes.name }</a></li>
+            	</c:forEach>
             </ul>
         </div>
     </div><!-- end of news-->
@@ -157,40 +144,25 @@
     	<div class="third">
         	<h2 class="title">名师课题<a href="<%=path %>/subject/listSubject">[更多]</a></h2><hr class="title" />
             <ul class="notice">
-            	<li><a href="#">标题1</a></li>
-                <li><a href="#">标题2</a></li>
-                <li><a href="#">标题3</a></li>
-                <li><a href="#">标题4</a></li>
-                <li><a href="#">标题5</a></li>
-                <li><a href="#">标题6</a></li>
-                <li><a href="#">标题7</a></li>
-                <li><a href="#">标题8</a></li>
+            	<c:forEach items="${subjects}" var="subject">
+            		<li><a href="<%=path %>/subject/viewSubject?id=${subject.id }">${subject.name }</a></li>
+            	</c:forEach>
             </ul>
         </div>
         <div class="third">
         	<h2 class="title">外包课题</h2><hr class="title" />
             <ul class="notice">
-            	<li><a href="#">标题1</a></li>
-                <li><a href="#">标题2</a></li>
-                <li><a href="#">标题3</a></li>
-                <li><a href="#">标题4</a></li>
-                <li><a href="#">标题5</a></li>
-                <li><a href="#">标题6</a></li>
-                <li><a href="#">标题7</a></li>
-                <li><a href="#">标题8</a></li>
+            	<c:forEach items="${pns}" var="notice">
+            		<li><a href="<%=path %>/notice/viewNotice?id=${notice.id }">[${notice.type.name}]${notice.title }</a></li>
+            	</c:forEach>
             </ul>
         </div>
         <div class="third">
        		<h2 class="title">比赛项目</h2><hr class="title" />
             <ul class="notice">
-            	<li><a href="#">标题1</a></li>
-                <li><a href="#">标题2</a></li>
-                <li><a href="#">标题3</a></li>
-                <li><a href="#">标题4</a></li>
-                <li><a href="#">标题5</a></li>
-                <li><a href="#">标题6</a></li>
-                <li><a href="#">标题7</a></li>
-                <li><a href="#">标题8</a></li>
+            	<c:forEach items="${activitys}" var="activity">
+            		<li><a href="<%=path %>/activity/viewActivity?id=${activity.id }">${activity.name }</a></li>
+            	</c:forEach>
             </ul>
         </div>
     </div><!-- end of camp-->
@@ -212,26 +184,19 @@
     	<h2 class="title">作品展示<a href="<%=path %>/opus/listOpus">[更多]</a></h2><hr class="title"/>
         <div class="projects" >
             <ul>
-                <li>
-	                <a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/1.jpg" title="作品1">
-	                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/1_s.jpg"></a>
-                </li>
-                <li>
-	                <a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/3.jpg" title="作品2">
-	                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/3_s.jpg"></a>
-                </li>
-                <li>
-	                <a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
-	                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a>
-                </li>
-                <li>
-					<a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
-					<img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a>
-                </li>
-                <li>
-	                <a href="http://www.enova-tech.net/img/posts/lab/jmycarousel/4.jpg" title="作品3">
-	                <img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/4_s.jpg"></a>
-                </li>
+            	<c:forEach items="${opuses}" var="opus">
+            		<li>
+	                <a href="<%=path %>/opus/viewOpus?id=${opus.id }" title="${opus.name }">
+	                <c:choose>
+	                	<c:when test="${opus.image.minFileUrl != null}">
+	                		<img src="<%=path %>${opus.image.minFileUrl}"></a>
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img src="http://www.enova-tech.net/img/posts/lab/jmycarousel/3_s.jpg"></a>
+	                	</c:otherwise>
+	                </c:choose>
+                	</li>
+            	</c:forEach>
             </ul>
         </div><!-- end of projects-->
     </div><!-- end of works-->

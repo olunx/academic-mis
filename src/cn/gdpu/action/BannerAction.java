@@ -1,6 +1,10 @@
 package cn.gdpu.action;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 import cn.gdpu.service.BannerService;
 import cn.gdpu.util.Log;
@@ -17,6 +21,7 @@ public class BannerAction extends BaseAction {
 	private Image image;
 	private int page;
 	private int id;
+	private String result;
 
 	@Override
 	public String add() {
@@ -121,6 +126,23 @@ public class BannerAction extends BaseAction {
 		}
 		return ERROR;
 	}
+	
+	
+	public String getAjax(){
+		banner = this.bannerService.getEntity(Banner.class, "from Banner b where b.selected != 0").get(0);
+		if(banner == null){
+			result = null;
+		}
+		else{
+			Map<String, String> map = new HashMap<String, String>();  
+	        map.put("name", banner.getName());  
+	        map.put("intro",banner.getIntro());  
+	        map.put("background", banner.getImage().getBigFileUrl());
+	        JSONObject obj = JSONObject.fromObject(map);  
+	        result = obj.toString();
+		}
+		return "ajax";
+	}
 
 	@Override
 	public String modify() {
@@ -189,6 +211,14 @@ public class BannerAction extends BaseAction {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 }

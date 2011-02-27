@@ -16,6 +16,6 @@
 			<key column="opusId" />
 			<one-to-many class="Comment" />
 		</set>
-		
+		<many-to-one name="image" column="imageId" class="Image" lazy="false" cascade="all" unique="true" />
 	</class>
 </hibernate-mapping>

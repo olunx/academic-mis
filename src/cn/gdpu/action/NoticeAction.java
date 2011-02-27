@@ -110,14 +110,10 @@ public class NoticeAction extends BaseAction {
 
 	@Override
 	public String list() {
-		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
-		if(manager != null){
-			this.pageBean = this.noticeService.queryForPage(Notice.class, 10, page);
-			if (pageBean.getList().isEmpty())
-				pageBean.setList(null);
-			return super.list();
-		}
-		return ERROR;
+		this.pageBean = this.noticeService.queryForPage(Notice.class, 10, page);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
+		return super.list();
 	}
 
 	@Override

@@ -20,13 +20,19 @@
 				<c:when test="${notice.isCmsAllow == 1}">
 					<hr/>
 					<div id="notice_post">
+					<c:choose>
+						<c:when test="${user != null}">
 						<form action="<%=path %>/post/addPost" method="post">
 							评论：<br/>
 							<input type="hidden" name="id" value="${param.id }" />
 							<textarea rows="3" cols="40" name="postDto.content"></textarea>
 							<input type="submit" value="写好了，保存" />
 						</form>
+						</c:when>
+						<c:otherwise><font color="blue">注册用户才能进行评论</font></c:otherwise>
+					</c:choose>
 					</div>
+					
 					<br/><br/>
 					<c:choose>
 						<c:when test="${notice.comments != null}">

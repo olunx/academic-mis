@@ -183,7 +183,7 @@ ul#excerpt li{margin: 0 0px 30px 0;}
 h2.title{font-weight:bold; font-size:14px; color:#666;}
 hr.title{margin:2px 0 5px 0;}
 
-ul.notice li{ border-bottom:dotted #CCC 1px; margin:6px; cursor:pointer;}
+ul.notice li{white-space:nowrap; overflow:hidden; text-overflow: ellipsis; -o-text-overflow:ellipsis; border-bottom:dotted #CCC 1px; margin:6px; cursor:pointer;}
 ul.notice a{ font-size:14px;}
 ul.notice li:hover{ background:#ECFDFF; border-bottom:dotted #CCC 1px; margin:6px;}
 

@@ -7,15 +7,18 @@ import java.util.Set;
 import cn.gdpu.service.ActivityTypeService;
 import cn.gdpu.service.AdminService;
 import cn.gdpu.service.InstituteService;
+import cn.gdpu.service.NoticeTypeService;
 import cn.gdpu.vo.ActivityType;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
+import cn.gdpu.vo.NoticeType;
 
 public class InstallAction extends BaseAction{
 	private AdminService<Admin, Integer> adminService;
 	private InstituteService<Institute, Integer> instituteService;
 	private ActivityTypeService<ActivityType, Integer> activityTypeService;
+	private NoticeTypeService<NoticeType, Integer> noticeTypeService;
 	
 	public String install(){
 		List<Admin> admins = adminService.getAllEntity(Admin.class);
@@ -58,6 +61,13 @@ public class InstallAction extends BaseAction{
 		activityType.setIntro("教育部全国大学生文科计算机设计大赛介绍...");
 		activityTypeService.addEntity(activityType);
 		
+		//初始后通知类型
+		NoticeType nt1 = new NoticeType();
+		nt1.setName("通知");
+		NoticeType nt2 = new NoticeType();
+		nt2.setName("学术比赛");
+		NoticeType nt3 = new NoticeType();
+		nt3.setName("外包课题");
 		return SUCCESS;
 	}
 	
@@ -85,5 +95,14 @@ public class InstallAction extends BaseAction{
 	public void setActivityTypeService(
 			ActivityTypeService<ActivityType, Integer> activityTypeService) {
 		this.activityTypeService = activityTypeService;
+	}
+
+	public NoticeTypeService<NoticeType, Integer> getNoticeTypeService() {
+		return noticeTypeService;
+	}
+
+	public void setNoticeTypeService(
+			NoticeTypeService<NoticeType, Integer> noticeTypeService) {
+		this.noticeTypeService = noticeTypeService;
 	}
 }
