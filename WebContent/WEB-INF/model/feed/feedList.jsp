@@ -25,8 +25,8 @@
 					<span class="comment_s">
 						${my:checkFeedType(feed) }<br/>
 						接收人：
-						<c:forEach items="${feed.recipients}" var="people">
-							${people.realName}|
+						<c:forEach items="${feed.recipients}" var="feedBox">
+							${feedBox.people.realName}|
 						</c:forEach>
                     </span>
 				</div>

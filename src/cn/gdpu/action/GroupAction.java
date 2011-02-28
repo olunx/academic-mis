@@ -13,10 +13,9 @@ import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Feed;
+import cn.gdpu.vo.FeedBox;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.GroupApply;
-import cn.gdpu.vo.Manager;
-import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -47,11 +46,13 @@ public class GroupAction extends BaseAction{
 			Feed feed = new Feed();
 			feed.setType(22);
 			feed.setNews("恭喜您添加小组  " + group.getName() + " 成功！ ");
-			feed.setHasRead(0);
 			feed.setTime(new Date());
-			Set<People> recipients = new HashSet<People>();
-			recipients.add(student);
-			feed.setRecipients(recipients);
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(student);
+			feedBoxs.add(feedBox);
+			feed.setRecipients(feedBoxs);
 			feedService.addEntity(feed);
 			return LIST;
 		}
@@ -222,11 +223,13 @@ public class GroupAction extends BaseAction{
 			Feed feed = new Feed();
 			feed.setType(22);
 			feed.setNews(groupApply.getGroup().getName() + " 小组组长: " + student.getRealName() + " 同意您 " + groupApply.getStudent().getRealName() + " 加入小组 ");
-			feed.setHasRead(0);
 			feed.setTime(new Date());
-			Set<People> recipients = new HashSet<People>();
-			recipients.add(groupApply.getStudent());
-			feed.setRecipients(recipients);
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(groupApply.getStudent());
+			feedBoxs.add(feedBox);
+			feed.setRecipients(feedBoxs);
 			feedService.addEntity(feed);
 			return "audit";
 		}
@@ -258,11 +261,13 @@ public class GroupAction extends BaseAction{
 			Feed feed = new Feed();
 			feed.setType(22);
 			feed.setNews(groupApply.getGroup().getName() + " 小组组长: " + student.getRealName() + " 拒绝您 " + groupApply.getStudent().getRealName() + " 加入小组 ");
-			feed.setHasRead(0);
 			feed.setTime(new Date());
-			Set<People> recipients = new HashSet<People>();
-			recipients.add(groupApply.getStudent());
-			feed.setRecipients(recipients);
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(groupApply.getStudent());
+			feedBoxs.add(feedBox);
+			feed.setRecipients(feedBoxs);
 			feedService.addEntity(feed);
 			return "audit";
 		}

@@ -11,12 +11,12 @@
 	<div class="post">
 		<h2 class="mainhead">消息内容</h2>
 		<h1>
-			<span>${my:checkFeedType(feed)}</span>
+			<span>${my:checkFeedType(feedBox.feed)}</span>
 		</h1>
 		<div class="content">
-			${feed.news }
+			${feedBox.feed.news }
 			<br/><br/>
-			${feed.time }
+			${feedBox.feed.time }
 		</div>
 	</div>
 	</div>

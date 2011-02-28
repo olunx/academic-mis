@@ -21,10 +21,10 @@
 		  	<br/>
 			<h2>系统消息<a href="<%=path %>/feed/listMeFeed">[更多]</a></h2><hr class="title" />
 			<ul class="notice">	
-			<c:forEach items="${feeds}" var="feed">
+			<c:forEach items="${feedBoxs}" var="feedBox">
 		  		<div>
-		  			<a href="<%=path %>/feed/viewFeed?id=${feed.id}">[${feed.hasRead == 0 ? '<font color="red">新消息</font>' : '已读'}][<font color="blue">${my:checkFeedType(feed)}</font>]${feed.news } </a><br/>
-		  			${feed.time }<a href="<%=path %>/feed/readFeed?id=${feed.id}">知道了</a> | <a href="<%=path %>/feed/deleteFeed?id=${feed.id}">删除</a>
+		  			<a href="<%=path %>/feed/viewFeed?id=${feedBox.id}">[${feedBox.hasRead == 0 ? '<font color="red">新消息</font>' : '已读'}][<font color="blue">${my:checkFeedType(feedBox.feed)}</font>]${feedBox.feed.news } </a><br/>
+		  			${feedBox.feed.time }<a href="<%=path %>/feed/readFeed?id=${feedBox.id}">知道了</a> | <a href="<%=path %>/feed/deleteFeed?id=${feedBox.id}">删除</a>
 		  		</div>
 		  	</c:forEach>
 		  	</ul>

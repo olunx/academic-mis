@@ -18,17 +18,20 @@
 		</c:when>
 		<c:otherwise>
 			<ul id="excerpt">
-			<c:forEach items="${pageBean.list}" var="feed">
+			<c:forEach items="${pageBean.list}" var="feedBox">
 		        <li>
 				<div class="p_coleft fleft">
-					<p class="date_s"><fmt:formatDate value="${feed.time}" pattern="yyyy-MM-dd"/></p>
+					<p class="date_s">
+						${my:checkFeedType(feedBox.feed) }<br/>
+						[${feedBox.hasRead == 0 ? '<font color="red">新消息</font>' : '<font color="blue">已读</font>'}]
+					</p>
 					<span class="comment_s">
-						${my:checkFeedType(feed) }
+						<fmt:formatDate value="${feedBox.feed.time}" pattern="yyyy-MM-dd"/>
                     </span>
 				</div>
 				<div class="p_coright fright">
-					<h1 class="prevtitle"><a href="<%=path%>/feed/viewFeed?id=${feed.id }">${feed.news}</a></h1>
-                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/feed/deleteFeed?id=${feed.id }">删除</a>
+					<h1 class="prevtitle"><a href="<%=path%>/feed/viewFeed?id=${feedBox.id }">${feedBox.feed.news}</a></h1>
+                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/feed/deleteFeed?id=${feedBox.id }">删除</a>
 				</div>
 				<br class="clear" />
 		        </li>
