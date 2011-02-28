@@ -1,5 +1,6 @@
 package cn.gdpu.action;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
+import cn.gdpu.vo.Image;
 import cn.gdpu.vo.Institute;
 import cn.gdpu.vo.Student;
 
@@ -36,6 +38,7 @@ public class StudentAction extends BaseAction implements Preparable {
 	private ActivityApplyService<ActivityApply, Integer> activityApplyService;
 	private StudentDto stuDto;
 	private Student student;
+	private Image image;
 	private PageBean pageBean;
 	private int page;
 	private int id;
@@ -118,6 +121,7 @@ public class StudentAction extends BaseAction implements Preparable {
 				student.setAvatar(student.getAvatar());
 				student.setRemark(stuDto.getRemark());
 				student.setClasses(classes);
+				student.setRegtime(new Date());
 				studentService.addEntity(student);
 				getSession().put("user", student);
 				Log.init(getClass()).info("添加学生用户成功: " + student);
@@ -222,6 +226,21 @@ public class StudentAction extends BaseAction implements Preparable {
 		}
 		return ERROR;
 	}
+	
+	public String addAvatar() {
+		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
+		if(student != null ){
+			Student stu = studentService.getEntity(Student.class, stuDto.getId());
+			if(stu.getId() != student.getId()) return "goModify";  //当前用户没有权限修改该账号
+			if(image.getOriFileName().equals("") || image.getOriFileName() == null) 
+				return "goModify";//没有更新头像
+			stu.setAvatar(image);
+			studentService.updateEntity(stu);
+			Log.init(getClass()).info("修改学生头像成功: " + student);
+			return "modify";
+		}
+		return ERROR;
+	}
 
 	@Override
 	public String view() {
@@ -289,6 +308,14 @@ public class StudentAction extends BaseAction implements Preparable {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public PageBean getPageBean() {

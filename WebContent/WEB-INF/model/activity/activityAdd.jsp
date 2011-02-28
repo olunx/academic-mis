@@ -6,6 +6,18 @@
 <jsp:include page="/top.jsp"></jsp:include>
 <!-- JQuery库 -->
 <script type="text/javascript" src="<%=path %>/content/js/calendar/WdatePicker.js"></script> 
+<script type="text/javascript">
+	function applyTypeChange(msg)
+	{
+	 	if(msg.value == 1){
+	 		$("#applytype input").val(1);
+	 		$("#applytype").slideUp("slow"); 
+		}else{
+			$("#applytype input").val(2);
+			$("#applytype").slideDown("slow");
+		}
+	}
+</script>
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
 		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="#">添加学术活动</a> </div>
@@ -25,20 +37,20 @@
 				<select name="acDto.activityType" class="reg">
 					<c:forEach items="${ats}" var="atype" ><option value="${atype.id}">${atype.name}</option></c:forEach>
 				</select>
-				<select class="reg" name="a"><option value="1" >个人参赛</option><option value="2">团队参赛</option></select>
+				<select class="reg" onchange="applyTypeChange(this)"><option value="1" >个人参赛</option><option value="2">团队参赛</option></select>
 				<select class="reg" name="acDto.opusNeed"><option value="1" >要求作品</option><option value="0">不要求作品</option></select>
 			</p>
-			<p>
-				<input type="text" title="团队限制人数" name="acDto.applyCount" class="text" />
+			<p id="applytype" style="display: none">
+				<input type="text" title="团队限制人数" name="acDto.applyCount" value="1" class="text" />
 			</p>
 			<p>
 				<textarea name="acDto.intro" title="活动简介..." id="comment" cols="100%" rows="10" ></textarea>
 			</p>
 			<p>
-			<input type="text" class="Wdate text" title="报名开始时间" name="acDto.airtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
+			<input type="text" class="Wdate" title="报名开始时间(点击输入日期)" name="acDto.airtime" value="报名开始时间(点击输入日期)" onfocus="WdatePicker({startDate:'%y-%M-%d %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
 			</p>
 			<p>
-			<input type="text" class="Wdate text" title="报名截止时间" name="acDto.deadtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
+			<input type="text" class="Wdate" title="报名截止时间(点击输入日期)" name="acDto.deadtime" value="报名截止时间(点击输入日期)" onfocus="WdatePicker({startDate:'%y-%M-%d %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
 			</p>
 			<div class="clear"></div>
 			<p>

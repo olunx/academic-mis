@@ -1,4 +1,6 @@
-﻿$(document).ready(function(){
+﻿
+
+$(document).ready(function(){
     $("#content").ajaxError(function(event, request, settings){
         $(this).append("<li>服务器繁忙！请刷新一下试试:" + settings.url + "</li>");
     });

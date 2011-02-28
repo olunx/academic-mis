@@ -9,6 +9,7 @@
 	        <property name="name"/>
 	        <property name="intro"/>
 	        <property name="selected"/>
+	        <property name="color"/>
 	        <many-to-one name="image" column="imageId" class="Image" lazy="false" cascade="all" unique="true" />
 	</class>
 </hibernate-mapping>

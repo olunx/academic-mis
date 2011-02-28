@@ -5,6 +5,38 @@
 %>
 <jsp:include page="/top.jsp"></jsp:include>
 <!-- JQuery库 -->
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<!-- JQ验证插件 -->
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.form.js" ></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validate.pack.js" ></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/messages_cn.js" ></script>
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
+
+<!-- highslide -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/highslide-init.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.easydrag.js"></script>
+<!--[if IE]> 
+		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
+<![endif]-->
+<script type="text/JavaScript">
+$(document).ready(function(){
+	
+	$('#inputform').validate({
+		submitHandler: function() {
+			post($('#inputform'));
+		}
+	});
+	
+       
+	initHighslide("<%=path%>", "840", "640");
+});
+</script>
+
 <script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
 <script type="text/JavaScript">
 	 $(document).ready(function(){
@@ -85,6 +117,31 @@
 			<div class="clear"></div>
 			<p>
 				<input name="submit" type="submit" class="submit" tabindex="5" value="完善介绍" />
+			</p>
+        <div class="clear"></div>
+        </form>
+        <h1>上传学生头像</h1><hr>
+        <form action="<%=path %>/student/addAvatarStudent" method="post" >
+        		<input type="hidden" name="stuDto.id" value="${student.id}" readonly="readonly">
+       		<c:if test="${student.avatar != null}">
+       			当前头像：<br/>
+       			<img src="<%=path%>${student.avatar.minFileUrl}"></img>
+       			<br/>
+       		</c:if>
+				上传头像：<br/>
+				<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage?cutWidth=60&cutHeight=60">上传图片</a>
+				<!-- 上传成功后，图片将插到这里。 -->
+				<div id="pic">
+					<img src="#"></img>
+					<input id="oriFileName" type="hidden" name="image.oriFileName" value=""/>
+					<input id="bigFileName" type="hidden" name="image.bigFileName" value=""/>
+					<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value=""/>
+					<input id="minFileName" type="hidden" name="image.minFileName" value=""/>
+					<input id="minFileUrl" type="hidden" name="image.minFileUrl" value=""/>
+				</div>
+			<div class="clear"></div>
+			<p>
+				<input name="submit" type="submit" class="submit" tabindex="5" value="确认提交" />
 			</p>
         <div class="clear"></div>
         </form>

@@ -36,9 +36,8 @@ public class BannerAction extends BaseAction {
 			banner = new Banner();
 			banner.setName(banDto.getName());
 			banner.setIntro(banDto.getIntro());
-			System.out.println("Dtoselected = " + banDto.getSelected());
 			banner.setSelected(banDto.getSelected());
-			System.out.println("selected = " + banner.getSelected());
+			banner.setColor(banDto.getColor());
 			banner.setImage(image);
 			bannerService.addEntity(banner);
 			Log.init(getClass()).info(manager.getRealName() + " 添加了新横幅主题 " + banner.getName());
@@ -137,6 +136,7 @@ public class BannerAction extends BaseAction {
 			Map<String, String> map = new HashMap<String, String>();  
 	        map.put("name", banner.getName());  
 	        map.put("intro",banner.getIntro());  
+	        map.put("color",banner.getColor());  
 	        map.put("background", banner.getImage().getBigFileUrl());
 	        JSONObject obj = JSONObject.fromObject(map);  
 	        result = obj.toString();

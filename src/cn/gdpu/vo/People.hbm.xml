@@ -9,19 +9,22 @@
 		<property name="username" not-null="true"/>
 		<property name="password" not-null="true"/>
 		<property name="realName" not-null="true"/>
-		<property name="avatar" />
+		<many-to-one name="avatar" column="imageId" class="Image" lazy="false" cascade="all" unique="true" />
 		<property name="sex" />
 		<property name="age" />
 		<property name="remark" />
+		<property name="regtime" />
+		<property name="lastLogin" />
+		<property name="logintime" />
 		<set name="posts" cascade="all" lazy="true" order-by="id asc">
 			<key column="peopleId" />
 			<one-to-many class="Post" />
 		</set>
-		<set name="feedBoxs" cascade="all" lazy="false">
+		<set name="feedBoxs" cascade="all" lazy="true">
 				<key column="peopleId" />
 				<one-to-many class="FeedBox"/>
 		</set>
-		<set name="feeds" cascade="all" lazy="false">
+		<set name="feeds" cascade="all" lazy="true">
 				<key column="peopleId" />
 				<one-to-many class="Feed"/>
 		</set>

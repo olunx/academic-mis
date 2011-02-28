@@ -8,6 +8,7 @@ public class Banner {
 	 * 非0为true 0为false
 	 */
 	private int selected;
+	private String color;
 	private Image image;
 	
 	public int getId() {
@@ -33,6 +34,12 @@ public class Banner {
 	}
 	public void setSelected(int selected) {
 		this.selected = selected;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 	public Image getImage() {
 		return image;

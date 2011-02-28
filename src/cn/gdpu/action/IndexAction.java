@@ -1,5 +1,6 @@
 package cn.gdpu.action;
 
+import java.util.Date;
 import java.util.List;
 
 import cn.gdpu.dto.LoginDto;
@@ -87,6 +88,10 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Student student = studentService.getStudentByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(student != null){
+					//登陆信息记录
+					student.setLastLogin((student.getLogintime() == null ? new Date() : student.getLogintime()));
+					student.setLogintime(new Date());
+					studentService.updateEntity(student);
 					getSession().put("user", student);
 					Log.init(getClass()).info("学生用户登陆成功：" + student.getRealName());
 					return "login";
@@ -103,6 +108,10 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Teacher teacher = teacherService.getTeacherByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(teacher!= null){
+					//登陆信息记录
+					teacher.setLastLogin((teacher.getLogintime() == null ? new Date() : teacher.getLogintime()));
+					teacher.setLogintime(new Date());
+					teacherService.updateEntity(teacher);
 					getSession().put("user", teacher);
 					Log.init(getClass()).info("教师登陆成功：" + teacher.getRealName());
 					return "login";
@@ -118,6 +127,10 @@ public class IndexAction extends BaseAction {
 					&& loginDto.getPassword() != null && !loginDto.getPassword().equals("")){
 				Assistant assistant = assistantService.getAssistantByUsernameAndPassword(loginDto.getUsername(), Md5.getMD5(loginDto.getPassword().getBytes()));
 				if(assistant != null){
+					//登陆信息记录
+					assistant.setLastLogin((assistant.getLogintime() == null ? new Date() : assistant.getLogintime()));
+					assistant.setLogintime(new Date());
+					assistantService.updateEntity(assistant);
 					getSession().put("user", assistant);
 					Log.init(getClass()).info("管理员助理登陆成功：" + assistant.getRealName());
 					return "login";

@@ -9,7 +9,7 @@
 		<property name="name" unique="true"/>
 		<property name="intro"/>
 		<property name="level"/>
-		<set name="activitys" cascade="all" lazy="false" order-by="id asc">
+		<set name="activitys" cascade="all" lazy="true">
 			<key column="atId" />
 			<one-to-many class="Activity" />
 		</set>

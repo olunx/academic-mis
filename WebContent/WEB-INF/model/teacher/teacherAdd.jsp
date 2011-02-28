@@ -29,7 +29,7 @@
 				<input type="text" title="真实姓名" name="teaDto.realName" class="text"/>
 			</p>
 			<p>
-				<input type="text" title="年龄" name="teaDto.age"/>
+				<input type="text" title="年龄" name="teaDto.age" class="text"/>
 			</p>
 			<p>
 				<select name="teaDto.institute" class="reg" >

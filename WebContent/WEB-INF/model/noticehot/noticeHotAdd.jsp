@@ -51,7 +51,7 @@ $(document).ready(function(){
 				<input type="hidden" name="id" value="${notice.id }"/>
 				设置显示序号：<input type="text" name="nhDto.rank" />（1-6）<br/>
 				<label>上传头像：</label>
-				<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage?cutWidth=70&cutHeight=40">上传图片</a>
+				<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage?cutWidth=60&cutHeight=40">上传图片</a>
 				<!-- 上传成功后，图片将插到这里。 -->
 				<div id="pic">
 					<img src="#"></img>

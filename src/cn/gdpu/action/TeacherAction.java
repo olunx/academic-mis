@@ -1,6 +1,7 @@
 package cn.gdpu.action;
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -76,6 +77,7 @@ public class TeacherAction extends BaseAction implements Preparable {
 				teacher.setAvatar(teacher.getAvatar());
 				teacher.setRemark(teaDto.getRemark());
 				teacher.setInstitute(institute);
+				teacher.setRegtime(new Date());
 				teacherService.addEntity(teacher);
 				getSession().put("user", teacher);
 				Log.init(getClass()).info("添加教师用户成功: " + teacher.getRealName());
