@@ -42,7 +42,7 @@ public abstract class BaseServiceImpl<T, ID extends Serializable, GeneralDAO ext
 
 	@Override
 	public PageBean queryForPage(Class<T> entityClass, int pageSize, int currentPage) {
-		final String hql = "from " + entityClass.getName() + ""; // 查询语句
+		final String hql = "from " + entityClass.getName() + " thisclass order by thisclass.id desc"; // 查询语句
 		
 		return this.queryForPage(hql, pageSize, currentPage);
 	}

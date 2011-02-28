@@ -24,12 +24,12 @@ blockquote									{ padding: 0 10px; margin-left: 20px; border-left: 20px solid
 .stripViewer .panelContainer .panel			{ float: left; height: 100%; position: relative; width: 385px; }
 .stripNavL, .stripNavR, .stripNav			{ display: none; }
 .nav-thumb 									{ border: 1px solid black; margin-right: 5px; }
-#movers-row									{ margin: -43px 0 0 75px; }
-#movers-row div								{ width: 25%; float: left;}
+#movers-row									{ margin: -43px 0 0 62px; }
+#movers-row div								{ width: 20%; float: left;}
 .photo-meta-data							{ background: url(slider/transpBlack.png); position: absolute; top: 213px; left: 0px;
 											  width: 355px; padding: 10px; height: 22px; z-index: 9999; color: white; }
 .photo-meta-data span 						{ font-size: 15px;}
-.cross-link									{ display: block; width: 75px; height: 40px; margin-top: -12px; 
+.cross-link									{ display: block; width: 60px; height: 40px; margin-top: -12px; 
 											  position: relative; padding-top: 15px; z-index: 9999; }
 .active-thumb 								{ background: transparent url(slider/icon-uparrowsmallwhite.png) top center no-repeat; }
 

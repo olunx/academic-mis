@@ -56,7 +56,11 @@ $(document).ready(function(){
 				<p>
 					<select class="reg" name="banDto.selected"><option value="1">设为当前主题</option><option value="0" selected="selected">不设为当前主题</option></select>
 				</p>
-				<label>上传横幅图片：推荐(1484*313)的图片来当横幅</label>
+				<p>
+					<input type="text" title="横幅色调(按下面表输入如:红色#FF0000)" name="banDto.color" class="text"/>
+				</p>
+				<a href="http://www.114la.com/other/rgb.htm" target="http://www.114la.com/other/rgb.htm"><font color="blue">颜色代码查看</font></a><br/><br/>
+				上传横幅图片：推荐(1484*313)的图片来当横幅<br/>
 				<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage?cutWidth=1484&cutHeight=313">上传图片</a>
 				<!-- 上传成功后，图片将插到这里。 -->
 				<div id="pic">

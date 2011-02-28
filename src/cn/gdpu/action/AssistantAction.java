@@ -2,6 +2,8 @@ package cn.gdpu.action;
 
 
 
+import java.util.Date;
+
 import cn.gdpu.dto.AssistantDto;
 import cn.gdpu.service.AssistantService;
 import cn.gdpu.util.Md5;
@@ -38,6 +40,7 @@ public class AssistantAction extends BaseAction{
 						ass.setPassword(Md5.getMD5(asDto.getPassword().getBytes()));
 						ass.setRealName(asDto.getRealName());
 						ass.setRemark("管理员助理");
+						ass.setRegtime(new Date());
 						assistantService.addEntity(ass);
 						return super.add();
 					}

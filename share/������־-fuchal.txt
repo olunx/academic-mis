@@ -32,5 +32,5 @@
 2011-02-22 :  如share/bugging.txt所示，重构了页面，可能会出现意想不到的BUG，请大伙测试反馈 2011-2-22 14：29 加入教师信息查看和修改
 2011-02-23 :  为管理员加入设置Banner主题，完成主题的添加删除和设定，未应用到页面中去
 2011-02-27 :  用jquery的ajax实现了Banner主题的切换,完善首页的数据,加入消息模块，未完善！
-2011-02-28 :  完善了Feed的设计，现在的已经完成了站内消息模块，其它一些BUG修改
+2011-02-28 :  完善了Feed的设计，现在的已经完成了站内消息模块，其它一些BUG修改,修改了BaseServiceImpl的queryForPage(Class<T> entityClass, int pageSize, int currentPage)方法，把查询的结果按id降序排行，开始对系统进行性能优化
 

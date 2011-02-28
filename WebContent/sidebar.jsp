@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 %>
 	<!--侧边栏 开始 -->
 	<div id="sidebar" class="sidecontainer fright">
 		<div class="widgets">
-		
+			<c:if test="${user != null}">
+				<h2 class="mainhead">用户信息</h2>
+				<div class="userinfor">
+					<img alt="${user.realName }" src="<%=path %>${user.avatar.minFileUrl }" width="60" height="60">
+					用户名：${user.username }
+					姓     名：${user.realName }
+					性别： ${user.sex == 1 ? '男' : '女' }
+					注册日期：<fmt:formatDate value="${user.regtime}" pattern="yyyy-MM-dd HH:mm"/>
+					上次访问：<fmt:formatDate value="${user.lastLogin}" pattern="yyyy-MM-dd HH:mm"/>
+					
+				</div>
+			</c:if>
+			
 			<c:if test="${my:userTypeCompare(user) == 3}">
 				<h2 class="mainhead">参赛小组</h2>
 				<ul>

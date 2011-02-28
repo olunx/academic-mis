@@ -1,5 +1,6 @@
 package cn.gdpu.vo;
 
+import java.util.Date;
 import java.util.Set;
 
 public abstract class People {
@@ -7,13 +8,16 @@ public abstract class People {
 	private String username;
 	private String password;
 	private String realName;
-	private String avatar;
+	private Image avatar;
 	private int sex;
 	private int age;
 	private String remark;
 	private Set<Post> posts;
 	private Set<FeedBox> feedBoxs;
 	private Set<Feed> feeds;
+	private Date regtime;
+	private Date lastLogin;
+	private Date logintime;
 	
 	public int getId() {
 		return id;
@@ -39,10 +43,10 @@ public abstract class People {
 	public void setRealName(String realName) {
 		this.realName = realName;
 	}
-	public String getAvatar() {
+	public Image getAvatar() {
 		return avatar;
 	}
-	public void setAvatar(String avatar) {
+	public void setAvatar(Image avatar) {
 		this.avatar = avatar;
 	}
 	public int getSex() {
@@ -80,5 +84,23 @@ public abstract class People {
 	}
 	public void setFeeds(Set<Feed> feeds) {
 		this.feeds = feeds;
+	}
+	public Date getRegtime() {
+		return regtime;
+	}
+	public void setRegtime(Date regtime) {
+		this.regtime = regtime;
+	}
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+	public Date getLogintime() {
+		return logintime;
+	}
+	public void setLogintime(Date logintime) {
+		this.logintime = logintime;
 	}
 }

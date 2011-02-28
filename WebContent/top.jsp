@@ -23,7 +23,8 @@
 		    }
 	        else{
 		        var banner = eval("("+data+")");//  
-		        $("#header").css({"background-color":"#68C3D8", "background-image": "url(" + '<%=path%>' + banner.background +")", "background-repeat" : "repeat", "background-position" : "top"});  
+		        $("#header").css({"background-color":banner.color, "background-image": "url(" + '<%=path%>' + banner.background +")", "background-repeat" : "repeat", "background-position" : "top"});  
+		        $("#nav").css({"border-color":banner.color});  
 	            $("#bannerName").text(banner.name);  
 	            $("#bannerIntro").text(banner.intro); 
         	}

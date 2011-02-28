@@ -7,7 +7,7 @@
 
 	<!--内容区 开始 -->
 	<div id="content" class="subcontainer fleft">
-		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="<%=path %>/notice/ListNotice">所有通知</a> &raquo; <a href="#">管理热门通知</a> </div>
+		<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="<%=path %>/notice/listNotice">所有通知</a> &raquo; <a href="#">管理热门通知</a> </div>
 	    <!--评论列表 开始-->
 	    <div id="comments">
 	       <!--发表评论 开始-->
