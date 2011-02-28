@@ -31,5 +31,6 @@
 		<mapping resource="cn/gdpu/vo/SubjectApply.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/Banner.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/Feed.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/FeedBox.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

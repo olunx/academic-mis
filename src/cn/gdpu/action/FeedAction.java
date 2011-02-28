@@ -5,18 +5,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 import cn.gdpu.dto.FeedDto;
+import cn.gdpu.service.FeedBoxService;
 import cn.gdpu.service.FeedService;
 import cn.gdpu.service.PeopleService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Feed;
+import cn.gdpu.vo.FeedBox;
 import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.People;
 
 public class FeedAction extends BaseAction {
 	private FeedService<Feed, Integer> feedService;
+	private FeedBoxService<FeedBox, Integer> feedBoxService;
 	private PeopleService<People, Integer> peopleService;
 	private Feed feed;
+	private FeedBox feedBox;
 	private FeedDto feDto;
 	private PageBean pageBean;
 	private int page;
@@ -27,22 +31,25 @@ public class FeedAction extends BaseAction {
 		Manager manager = getSession().get("user") instanceof Manager ? (Manager)getSession().get("user") : null;
 		if(manager != null){
 			feed = new Feed();
-			feed.setHasRead(0);
 			feed.setNews(feDto.getNews());
-			Set<People> recipients = new HashSet<People>();
+			feed.setTime(new Date());
+			feed.setType(feDto.getType());
+			feed.setAbsender(manager);
+			Set<FeedBox> recipients = new HashSet<FeedBox>();
 			String usernames[] = feDto.getRecipients().split(",");
 			for (String username : usernames) {
 				if(username == null || username.trim().equals("")) continue;
 				People people = (People) peopleService.getPeopleByUsername(username);
 				if(people != null){
-					recipients.add(people);
+					FeedBox feedBox = new FeedBox();
+					feedBox.setHasRead(0);
+					feedBox.setPeople(people);
+					recipients.add(feedBox);
 				}else{
 					continue;
 				}
 			}
 			feed.setRecipients(recipients);
-			feed.setTime(new Date());
-			feed.setType(feDto.getType());
 			feedService.addEntity(feed);
 			Log.init(getClass()).info(manager.getRealName() + "添加了系统消息：" + feed.getNews());
 			return super.add();
@@ -52,8 +59,16 @@ public class FeedAction extends BaseAction {
 	}
 	@Override
 	public String delete() {
-		// TODO Auto-generated method stub
-		return super.delete();
+		People people = getSession().get("user") instanceof People ? (People)getSession().get("user") : null;
+		if(people != null){
+			if(id <= 0) return ERROR;
+			feedBox = feedBoxService.getEntity(FeedBox.class, id);
+			if(feedBox == null) return ERROR;
+			if(feedBox.getPeople().getId() != people.getId()) return ERROR;//该账号没有权限删除Feed
+			feedBoxService.deleteEntity(FeedBox.class, feedBox.getId());
+			return "list_me";
+		}
+		return ERROR;
 	}
 	@Override
 	public String goAdd() {
@@ -83,7 +98,7 @@ public class FeedAction extends BaseAction {
 	public String listMe() {
 		People people = getSession().get("user") instanceof People ? (People)getSession().get("user") : null;
 		if(people != null){
-			this.pageBean = feedService.queryForPage("from Feed f where '" + people.getId() + "' = some elements(f.recipients) ", 10, page);
+			this.pageBean = feedBoxService.queryForPage("from FeedBox fb where '" + people.getId() + "' = fb.people.id ", 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 			return "listPage_me";
@@ -99,18 +114,18 @@ public class FeedAction extends BaseAction {
 	@Override
 	public String view() {
 		if(id <= 0) return ERROR;
-		feed = feedService.getEntity(Feed.class, id);
-		if(feed == null) return ERROR;
-		feed.setHasRead(1);
-		feedService.updateEntity(feed);
+		feedBox = feedBoxService.getEntity(FeedBox.class, id);
+		if(feedBox == null) return ERROR;
+		feedBox.setHasRead(1);
+		feedBoxService.updateEntity(feedBox);
 		return super.view();
 	}
 	public String read(){
 		if(id <= 0) return ERROR;
-		feed = feedService.getEntity(Feed.class, id);
-		if(feed == null) return ERROR;
-		feed.setHasRead(1);
-		feedService.updateEntity(feed);
+		feedBox = feedBoxService.getEntity(FeedBox.class, id);
+		if(feedBox == null) return ERROR;
+		feedBox.setHasRead(1);
+		feedBoxService.updateEntity(feedBox);
 		return "read";
 	}
 	
@@ -126,6 +141,15 @@ public class FeedAction extends BaseAction {
 	}
 	public void setPeopleService(PeopleService<People, Integer> peopleService) {
 		this.peopleService = peopleService;
+	}
+	public FeedBox getFeedBox() {
+		return feedBox;
+	}
+	public void setFeedBox(FeedBox feedBox) {
+		this.feedBox = feedBox;
+	}
+	public void setFeedBoxService(FeedBoxService<FeedBox, Integer> feedBoxService) {
+		this.feedBoxService = feedBoxService;
 	}
 	public void setFeDto(FeedDto feDto) {
 		this.feDto = feDto;

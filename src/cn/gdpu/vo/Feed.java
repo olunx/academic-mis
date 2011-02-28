@@ -15,9 +15,10 @@ public class Feed {
 	 */
 	private int type;
 	private String news;
-	private Set<People> recipients;
+	private People absender;
+	private Set<FeedBox> recipients;
 	private Date time;
-	private int hasRead;
+	
 	public int getId() {
 		return id;
 	}
@@ -36,10 +37,16 @@ public class Feed {
 	public void setNews(String news) {
 		this.news = news;
 	}
-	public Set<People> getRecipients() {
+	public People getAbsender() {
+		return absender;
+	}
+	public void setAbsender(People absender) {
+		this.absender = absender;
+	}
+	public Set<FeedBox> getRecipients() {
 		return recipients;
 	}
-	public void setRecipients(Set<People> recipients) {
+	public void setRecipients(Set<FeedBox> recipients) {
 		this.recipients = recipients;
 	}
 	public Date getTime() {
@@ -47,11 +54,5 @@ public class Feed {
 	}
 	public void setTime(Date time) {
 		this.time = time;
-	}
-	public int getHasRead() {
-		return hasRead;
-	}
-	public void setHasRead(int hasRead) {
-		this.hasRead = hasRead;
 	}
 }

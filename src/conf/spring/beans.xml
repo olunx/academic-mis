@@ -207,4 +207,12 @@
 	<bean name="feedService" class="cn.gdpu.service.impl.FeedServiceImpl" scope="prototype">
 		<property name="baseDao" ref="feedDaoImpl" />
 	</bean>
+	
+	<!-- feedBox bean -->
+	<bean name="feedBoxDaoImpl" class="cn.gdpu.dao.impl.FeedBoxDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="feedBoxService" class="cn.gdpu.service.impl.FeedBoxServiceImpl" scope="prototype">
+		<property name="baseDao" ref="feedBoxDaoImpl" />
+	</bean>
 </beans>

@@ -12,6 +12,7 @@ public abstract class People {
 	private int age;
 	private String remark;
 	private Set<Post> posts;
+	private Set<FeedBox> feedBoxs;
 	private Set<Feed> feeds;
 	
 	public int getId() {
@@ -67,6 +68,12 @@ public abstract class People {
 	}
 	public void setPosts(Set<Post> posts) {
 		this.posts = posts;
+	}
+	public Set<FeedBox> getFeedBoxs() {
+		return feedBoxs;
+	}
+	public void setFeedBoxs(Set<FeedBox> feedBoxs) {
+		this.feedBoxs = feedBoxs;
 	}
 	public Set<Feed> getFeeds() {
 		return feeds;

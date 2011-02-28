@@ -17,11 +17,14 @@
 			<key column="peopleId" />
 			<one-to-many class="Post" />
 		</set>
-		<set name="feeds" cascade="all" table="t_feed_people" lazy="false">
+		<set name="feedBoxs" cascade="all" lazy="false">
 				<key column="peopleId" />
-				<many-to-many class="Feed" column="feedId" />
-			</set>
-		
+				<one-to-many class="FeedBox"/>
+		</set>
+		<set name="feeds" cascade="all" lazy="false">
+				<key column="peopleId" />
+				<one-to-many class="Feed"/>
+		</set>
 		
 		<!-- Manager -->
 		<joined-subclass name="Manager" table="t_manager">

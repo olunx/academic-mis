@@ -5,6 +5,7 @@ import java.util.List;
 import cn.gdpu.dto.LoginDto;
 import cn.gdpu.service.ActivityService;
 import cn.gdpu.service.AssistantService;
+import cn.gdpu.service.FeedBoxService;
 import cn.gdpu.service.FeedService;
 import cn.gdpu.service.NoticeHotService;
 import cn.gdpu.service.NoticeService;
@@ -17,6 +18,7 @@ import cn.gdpu.util.Md5;
 import cn.gdpu.vo.Activity;
 import cn.gdpu.vo.Assistant;
 import cn.gdpu.vo.Feed;
+import cn.gdpu.vo.FeedBox;
 import cn.gdpu.vo.Notice;
 import cn.gdpu.vo.NoticeHot;
 import cn.gdpu.vo.Opus;
@@ -35,6 +37,7 @@ public class IndexAction extends BaseAction {
 	private ActivityService<Activity, Integer> activityService;
 	private OpusService<Opus, Integer> opusService;
 	private FeedService<Feed, Integer> feedService;
+	private FeedBoxService<FeedBox, Integer> feedBoxService;
 	private LoginDto loginDto;
 	
 	public String index(){//首页信息，未完成
@@ -143,10 +146,10 @@ public class IndexAction extends BaseAction {
 				notices = null;
 			getRequest().put("notices", notices);
 			//Feed消息
-			List<Feed> feeds = feedService.queryForLimit("from Feed f where '" + people.getId() + "' = some elements(f.recipients) order by f.hasRead asc, f.id desc", 0, 10);
-			if(feeds.isEmpty() || feeds.size() == 0)
-				feeds = null;
-			getRequest().put("feeds", feeds);
+			List<FeedBox> feedBoxs = feedBoxService.queryForLimit("from FeedBox fb where '" + people.getId() + "' = fb.people.id order by fb.hasRead asc, fb.id desc", 0, 10);
+			if(feedBoxs.isEmpty() || feedBoxs.size() == 0)
+				feedBoxs = null;
+			getRequest().put("feedBoxs", feedBoxs);
 			
 			int go = 0;
 			go = people instanceof Student ? 1 : (people instanceof Teacher ? 2 : (people instanceof Assistant ? 3 : 0));
@@ -237,6 +240,14 @@ public class IndexAction extends BaseAction {
 
 	public void setFeedService(FeedService<Feed, Integer> feedService) {
 		this.feedService = feedService;
+	}
+
+	public FeedBoxService<FeedBox, Integer> getFeedBoxService() {
+		return feedBoxService;
+	}
+
+	public void setFeedBoxService(FeedBoxService<FeedBox, Integer> feedBoxService) {
+		this.feedBoxService = feedBoxService;
 	}
 
 	public LoginDto getLoginDto() {

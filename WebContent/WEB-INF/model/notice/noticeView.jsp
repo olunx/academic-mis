@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -36,16 +37,21 @@
 					<br/><br/>
 					<c:choose>
 						<c:when test="${notice.comments != null}">
+							<h2 class="mainhead">用户评论</h2>
 							<c:forEach items="${notice.comments}" var="post" varStatus="i">
 							<div class="post">
 								<div class="post_info">
-		                        <a class="btn_del float_right"  href="<%=path %>/post/deletePost?id=${notice.id }&pid=${post.id }">删除</a>
-		                        <a class="btn_edit float_right" href="<%=path %>/post/goModifyPost?id=${notice.id }&pid=${post.id }">编辑</a>
+								<c:if test="${user.id == post.author.id || my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2}">
+			                        <a class="btn_del float_right"  href="<%=path %>/post/deletePost?id=${notice.id }&pid=${post.id }">删除</a>
+			                        <a class="btn_edit float_right" href="<%=path %>/post/goModifyPost?id=${notice.id }&pid=${post.id }">编辑</a>
+		                        </c:if>
 		                        ${i.count}.${post.author.realName} <fmt:formatDate value="${post.time}" pattern="yyyy-MM-dd HH:mm"/>
 								</div>
 								<div class="post_content">
 								${post.content}
+								<hr/>
 								</div>
+								
 							</div>
 							</c:forEach>
 						</c:when>
