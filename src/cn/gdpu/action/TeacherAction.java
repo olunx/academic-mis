@@ -134,6 +134,18 @@ public class TeacherAction extends BaseAction implements Preparable {
 		}
 		return ERROR;
 	}
+	
+	public String listAdmin() {
+		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
+		if(admin != null){
+			this.pageBean = this.teacherService.queryForPage(Teacher.class, 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
+
+			return "admin_list";
+		}
+		return ERROR;
+	}
 
 	@Override
 	public String modify() {

@@ -1,12 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 %>
 <link href="<%=path %>/content/images/admin/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script type="text/javascript" src="<%=path %>/content/xheditor/xheditor-zh-cn.min.js?v=1.1.2"></script>
+    <script type="text/javascript">
+    $(pageInit);
+    function pageInit()
+    {
+        $('#comment').xheditor({tools:'mfull',upLinkUrl:"<%=path %>/xheditor/editorUpload.action",upLinkExt:"zip,rar,txt",upImgUrl:"<%=path %>/xheditor/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",onUpload:insertUpload,shortcuts:{'ctrl+enter':submitForm}});
+    }
+    function insertUpload(arrMsg)
+    {
+        var i,msg;
+        for(i=0;i<arrMsg.length;i++)
+        {
+            msg=arrMsg[i];
+            $("#uploadList").append('<option value="'+msg.url+'">'+msg.url+'</option>');
+        }
+    }
+    function submitForm(){$('#form').submit();}
+    </script>
 <style type="text/css">
 	body {
 		margin:0px;
@@ -20,7 +36,7 @@
     <td width="17" valign="top" background="<%=path %>/content/images/admin/mail_leftbg.gif"><img src="<%=path %>/content/images/admin/left-top-right.gif" width="17" height="29" /></td>
     <td valign="top" background="<%=path %>/content/images/admin/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
       <tr>
-        <td height="31"><div class="titlebt">教师管理</div></td>
+        <td height="31"><div class="titlebt">修改通知</div></td>
       </tr>
     </table></td>
     <td width="16" valign="top" background="<%=path %>/content/images/admin/mail_rightbg.gif"><img src="<%=path %>/content/images/admin/nav-right-bg.gif" width="16" height="29" /></td>
@@ -37,58 +53,27 @@
         <td width="7%">&nbsp;</td>
         <td width="100%" valign="top">
         	<div class="context">
-      			<c:choose>
-					<c:when test="${pageBean.list == null}">
-									没有数据！
-							</c:when>
-					<c:otherwise>
-						<form method="post" onSubmit="post(this);return false;" action="<%=path%>/teacher/deleteManyTeacher">
-						<table class="table">
-							<tr>
-								<th><a rel="checkall">全选</a></th>
-								<th>用户名</th>
-								<th>姓名</th>
-								<th>删除</th>
-							</tr>
-							<c:forEach items="${pageBean.list}" var="teacher">
-								<tr>
-									<td><input type="checkbox" name="id" value="${teacher.id}" /></td>
-									<td>${teacher.username}</td>
-									<td>${teacher.realName}</td>
-									<td><a href="<%=path%>/teacher/deleteTeacher?id=${teacher.id }&page=${page}" class="btn_del">删除</a></td>
-								</tr>
-							</c:forEach>
-						</table>
-				
-						<div id="pagecount">
-						<p>共 ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
-						<c:choose>
-							<c:when test="${pageBean.currentPage == 1}">
-								<a><span>首页</span></a>
-								<a><span>上一页</span></a>
-							</c:when>
-							<c:otherwise>
-								<a target="content" href="<%=path%>/teacher/listTeacher?page=1"><span>首页</span></a>
-								<a target="content" href="<%=path%>/teacher/listTeacher?page=${pageBean.currentPage-1}"><span>上一页</span></a>
-							</c:otherwise>
-						</c:choose> <c:choose>
-							<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-								<a target="content" href="<%=path%>/teacher/listTeacher?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-								<a target="content" href="<%=path%>/teacher/listTeacher?page=${pageBean.totalPage}"><span>尾页</span></a>
-							</c:when>
-							<c:otherwise>
-								<a><span>下一页</span></a>
-								<a><span>尾页</span></a>
-							</c:otherwise>
-						</c:choose></div>
-				
-						<select name="cmd">
-							<option value="0" selected="selected">批量操作，请选择</option>
-							<option value="1">删除</option>
-						</select> <input type="submit" value="确定" /></form>
-					</c:otherwise>
-				</c:choose>
-
+      		<form action="<%=path %>/notice/modifyNotice" method="post" id="commentform">
+        		<input type="hidden" name="id" value="${notice.id }"/>
+				<input type="text" title="通知标题" name="noticeDto.title" value="${notice.title }"/>
+	            <c:choose>
+	                <c:when test="${nts != null}">
+	                    <select name="noticeDto.type">
+	                            <c:forEach items="${nts}" var="type" ><option value="${type.id}" <c:if test="${type.id == notice.type.id }">selected="selected"</c:if> >${type.name}</option></c:forEach>
+	                    </select>
+	                </c:when>
+	                <c:otherwise>
+	                 	   没有类型，<a href="<%=path %>/noticetype/goAddNoticeType">新建类型</a>
+	                </c:otherwise>
+	            </c:choose>
+	            <select name="noticeDto.isCmsAllow">
+					<option value="1" <c:if test="${notice.isCmsAllow == 1 }">selected="selected"</c:if>>允许评论</option>
+	                <option value="0" <c:if test="${notice.isCmsAllow != 1 }">selected="selected"</c:if>>不允许评论</option>
+	            </select>
+				<textarea name="noticeDto.content" id="comment" cols="100%" rows="10" >${notice.content}</textarea>
+				已上传的图片列表：<select id="uploadList"></select>
+				<input name="submit" type="submit" value="提交修改" />
+	        </form>
       		</div>
         </td>
       </tr>
@@ -117,4 +102,3 @@
   </tr>
 </table>
 </body>
-

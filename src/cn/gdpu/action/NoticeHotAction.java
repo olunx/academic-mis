@@ -11,6 +11,7 @@ import cn.gdpu.dto.NoticeHotDto;
 import cn.gdpu.service.NoticeHotService;
 import cn.gdpu.service.NoticeService;
 import cn.gdpu.util.Log;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Image;
 import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Notice;
@@ -78,7 +79,12 @@ public class NoticeHotAction extends BaseAction {
 				noticeHotService.addEntity(noticeHot);
 			}
 			Log.init(getClass()).info(manager.getRealName() + " 添加了热门通知 " + noticeHot.getNotice().getTitle());
-			return super.add();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_list";
+			else
+				return super.add();
 		}
 		return ERROR;
 	}
@@ -120,7 +126,12 @@ public class NoticeHotAction extends BaseAction {
 			if(noticeHot == null) return ERROR;
 			noticeHotService.deleteEntity(NoticeHot.class, id);
 			Log.init(getClass()).info(manager.getRealName() + " 删除了热门通知 " + noticeHot.getNotice().getTitle());
-			return super.delete();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_list";
+			else
+				return super.delete();
 		}
 		return ERROR;
 	}
@@ -143,7 +154,12 @@ public class NoticeHotAction extends BaseAction {
 			if(nhs.isEmpty() || nhs.size() == 0)
 				nhs = null;
 			getRequest().put("nhs", nhs);
-			return super.goAdd();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_addPage";
+			else
+				return super.goAdd();
 		}
 		return ERROR;
 	}
@@ -163,7 +179,12 @@ public class NoticeHotAction extends BaseAction {
 			if(nhs.isEmpty() || nhs.size() == 0)
 				nhs = null;
 			getRequest().put("nhs", nhs);
-			return super.list();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_listPage";
+			else
+				return super.list();
 		}
 		return ERROR;
 	}

@@ -20,7 +20,7 @@
     <td width="17" valign="top" background="<%=path %>/content/images/admin/mail_leftbg.gif"><img src="<%=path %>/content/images/admin/left-top-right.gif" width="17" height="29" /></td>
     <td valign="top" background="<%=path %>/content/images/admin/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
       <tr>
-        <td height="31"><div class="titlebt">教师管理</div></td>
+        <td height="31"><div class="titlebt">学生管理</div></td>
       </tr>
     </table></td>
     <td width="16" valign="top" background="<%=path %>/content/images/admin/mail_rightbg.gif"><img src="<%=path %>/content/images/admin/nav-right-bg.gif" width="16" height="29" /></td>
@@ -37,12 +37,15 @@
         <td width="7%">&nbsp;</td>
         <td width="100%" valign="top">
         	<div class="context">
+        		<div>
+        		当前位置：学生主页
+        		</div>
       			<c:choose>
 					<c:when test="${pageBean.list == null}">
 									没有数据！
 							</c:when>
 					<c:otherwise>
-						<form method="post" onSubmit="post(this);return false;" action="<%=path%>/teacher/deleteManyTeacher">
+						<form method="post" onSubmit="post(this);return false;" action="<%=path%>/student/deleteManyStudent">
 						<table class="table">
 							<tr>
 								<th><a rel="checkall">全选</a></th>
@@ -50,12 +53,12 @@
 								<th>姓名</th>
 								<th>删除</th>
 							</tr>
-							<c:forEach items="${pageBean.list}" var="teacher">
+							<c:forEach items="${pageBean.list}" var="student">
 								<tr>
-									<td><input type="checkbox" name="id" value="${teacher.id}" /></td>
-									<td>${teacher.username}</td>
-									<td>${teacher.realName}</td>
-									<td><a href="<%=path%>/teacher/deleteTeacher?id=${teacher.id }&page=${page}" class="btn_del">删除</a></td>
+									<td><input type="checkbox" name="id" value="${student.id}" /></td>
+									<td><a href="<%=path%>/student/viewStudent?id=${student.id }&page=${page}" class="btn_edit">${student.username}</a></td>
+									<td>${student.realName}</td>
+									<td><a href="<%=path%>/student/deleteStudent?id=${student.id }&page=${page}" class="btn_del">删除</a></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -68,13 +71,13 @@
 								<a><span>上一页</span></a>
 							</c:when>
 							<c:otherwise>
-								<a target="content" href="<%=path%>/teacher/listTeacher?page=1"><span>首页</span></a>
-								<a target="content" href="<%=path%>/teacher/listTeacher?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+								<a href="<%=path%>/student/listAdminStudent?page=1"><span>首页</span></a>
+								<a href="<%=path%>/student/listAdminStudent?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 							</c:otherwise>
 						</c:choose> <c:choose>
 							<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-								<a target="content" href="<%=path%>/teacher/listTeacher?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-								<a target="content" href="<%=path%>/teacher/listTeacher?page=${pageBean.totalPage}"><span>尾页</span></a>
+								<a href="<%=path%>/student/listAdminStudent?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+								<a href="<%=path%>/student/listAdminStudent?page=${pageBean.totalPage}"><span>尾页</span></a>
 							</c:when>
 							<c:otherwise>
 								<a><span>下一页</span></a>

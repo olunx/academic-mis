@@ -25,3 +25,4 @@ my:userTypeCompare(user) == 1=admin 2=ssistant 3= student 4=teacher
 
 
 7* 对类中的各个set关系加入了lazy=true，明显提高了系统的反应时间，但可能会出现数据的丢失，请测试时出现问题，留意！！！
+8* 把前台和后台页面区分开来，后台统一加上_Admin后缀,但还没有做具体的测试，可能出现问题！
