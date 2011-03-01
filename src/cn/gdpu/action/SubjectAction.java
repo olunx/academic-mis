@@ -7,10 +7,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import cn.gdpu.dto.SubjectDto;
+import cn.gdpu.service.FeedService;
 import cn.gdpu.service.SubjectApplyService;
 import cn.gdpu.service.SubjectService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.Feed;
+import cn.gdpu.vo.FeedBox;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Subject;
 import cn.gdpu.vo.SubjectApply;
@@ -19,6 +22,7 @@ import cn.gdpu.vo.Teacher;
 public class SubjectAction extends BaseAction {
 	private SubjectService<Subject, Integer> subjectService;
 	private SubjectApplyService<SubjectApply, Integer> subjectApplyService;
+	private FeedService<Feed, Integer> feedService;
 	private Subject subject;
 	private SubjectApply subjectApply;
 	private SubjectDto sjDto;
@@ -57,6 +61,19 @@ public class SubjectAction extends BaseAction {
 			subject.setPublisher(teacher);
 			subjectService.addEntity(subject);
 			Log.init(getClass()).info("教师：" + teacher.getRealName() + " 添加学术活动  " + subject.getName() +  " 成功!");
+			
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			feed.setNews("您 " + teacher.getRealName() + " 发布课题招聘  " + subject.getName() +  " 成功!");
+			feed.setTime(new Date());
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(teacher);
+			feedBoxs.add(feedBox);
+			feed.setRecipients(feedBoxs);
+			feedService.addEntity(feed);
 			return "list_me";
 		}
 		return ERROR;
@@ -71,6 +88,19 @@ public class SubjectAction extends BaseAction {
 			if(subject == null) return ERROR;
 			subjectService.deleteEntity(Subject.class, subject.getId());
 			Log.init(getClass()).info("教师：" + teacher.getRealName() + " 删除学术活动  id = " + subject.getId() + " name = " + subject.getName() +  " 成功!");
+			
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			feed.setNews("您 " + teacher.getRealName() + " 删除课题招聘  " + subject.getName() +  " 成功!");
+			feed.setTime(new Date());
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(teacher);
+			feedBoxs.add(feedBox);
+			feed.setRecipients(feedBoxs);
+			feedService.addEntity(feed);
 			return "list_me";
 		}
 		return ERROR;
@@ -108,7 +138,7 @@ public class SubjectAction extends BaseAction {
 	public String listMe() {
 		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
 		if(teacher != null){
-			this.pageBean = this.subjectService.queryForPage("from Subject s where s.publisher.id ='" + teacher.getId() + "'", 10, page);
+			this.pageBean = this.subjectService.queryForPage("from Subject s where s.publisher.id ='" + teacher.getId() + "' order by s.id desc", 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 			return "listPage_me";
@@ -218,6 +248,19 @@ public class SubjectAction extends BaseAction {
 			subjectApplyService.updateEntity(subjectApply);
 			subjectService.updateEntity(subject);
 			Log.init(getClass()).info(sdf.format(new Date()) + " : " + teacher.getRealName() + "同意 " + subjectApply.getStudent().getRealName() + " 的课题申请 " + subjectApply.getSubject().getName());
+			
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			feed.setNews("教师 " + teacher.getRealName() + " 通过了您 " + subjectApply.getStudent().getRealName() + " 的课题招聘  " + subject.getName() +  " 申请!");
+			feed.setTime(new Date());
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(subjectApply.getStudent());
+			feedBoxs.add(feedBox);
+			feed.setRecipients(feedBoxs);
+			feedService.addEntity(feed);
 			return "audit";
 		}
 		return ERROR;
@@ -241,6 +284,19 @@ public class SubjectAction extends BaseAction {
 			subjectApply.setRecord(subjectApply.getRecord() + "; " + sdf.format(new Date()) + " : " + teacher.getRealName() + "拒绝你的课题申请 " + subjectApply.getSubject().getName());
 			subjectApplyService.updateEntity(subjectApply);
 			subjectService.updateEntity(subject);
+			
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			feed.setNews("教师 " + teacher.getRealName() + " 拒绝了您 " + subjectApply.getStudent().getRealName() + " 的课题招聘  " + subject.getName() +  " 申请!");
+			feed.setTime(new Date());
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(subjectApply.getStudent());
+			feedBoxs.add(feedBox);
+			feed.setRecipients(feedBoxs);
+			feedService.addEntity(feed);
 			return "audit";
 		}
 		return ERROR;
@@ -271,6 +327,14 @@ public class SubjectAction extends BaseAction {
 	public void setSubjectApplyService(
 			SubjectApplyService<SubjectApply, Integer> subjectApplyService) {
 		this.subjectApplyService = subjectApplyService;
+	}
+
+	public FeedService<Feed, Integer> getFeedService() {
+		return feedService;
+	}
+
+	public void setFeedService(FeedService<Feed, Integer> feedService) {
+		this.feedService = feedService;
 	}
 
 	public Subject getSubject() {

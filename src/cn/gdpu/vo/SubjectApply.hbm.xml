@@ -7,7 +7,7 @@
 			<generator class="native" />
 		</id>
 		<many-to-one name="subject" column="subjectId" />
-		<many-to-one name="student" column="studentId" lazy="false"/>
+		<many-to-one name="student" column="studentId"/>
 		<property name="applytime" />
 		<property name="endtime" />
 		<property name="record" />

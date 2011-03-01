@@ -12,7 +12,7 @@
 		<property name="deadtime" />
 		<property name="time" />
 		<many-to-one name="publisher" column="publisherId" />
-		<set name="subjectApplys" cascade="all" lazy="false" order-by="id asc">
+		<set name="subjectApplys" cascade="all" lazy="true" order-by="id asc">
 			<key column="subjectId" />
 			<one-to-many class="SubjectApply" />
 		</set>

@@ -222,7 +222,7 @@ div.projects ul li a img{ width:117px;height:90px;margin-bottom:0px;padding-bott
 .widgets{background:#F5FDFE;margin: 0 0 20px;float: left;width: 300px;}
 	.widgets ul{padding: 0 0 0 20px;}
 	.widgets li{padding: 4px 0;list-style-image: url(../images/bulle.jpg);}
-	.widgets img{border: 8px solid #eee; margin: 0 0 10px;}
+	.widgets img{border: 4px solid #eee; margin: 0 0 10px;}
 	p.feed{font-size: 16px;margin: 15px 10px 0 0;background: url(../images/rssfeed.jpg) no-repeat left;padding: 7px 0 7px 55px;}
 	p.feed span{font-size: 11px;}
 	#ksearchform{ margin: 20px 0;}

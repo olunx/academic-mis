@@ -12,7 +12,7 @@
 <!--内容区 开始 -->
 		
 <div id="content" class="subcontainer fleft">
-	<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="<%=path %>/subject/viewSubject">查看科研课题招募</a> </div>
+	<div class="breadcrumb"> <a href="<%=path%>/index">首页</a> &raquo; <a href="<%=path %>/subject/listSubject">查看所有课题</a> &raquo; <a href="<%=path %>/subject/viewSubject">查看科研课题招募</a> </div>
     <div class="post-552 post type-post hentry category-android tag-37"	id="post-552">
         <div class="posthead">
             <div class="maindate fleft">${subject.publisher.realName}<br />
