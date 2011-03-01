@@ -31,10 +31,10 @@ function submitForm(){$('#form').submit();}
 				<textarea name="sjDto.intro" class="xheditor-simple" id="comment" cols="100%" rows="10" ></textarea>
 			</p>
 			<p>
-			<input type="text" class="Wdate" title="报名开始时间" name="sjDto.airtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
+			<input type="text" class="Wdate" title="报名开始时间（点击输入）" name="sjDto.airtime" value="报名开始时间（点击输入）" onfocus="WdatePicker({startDate:'%y-%M-%d %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
 			</p>
 			<p>
-			<input type="text" class="Wdate" title="报名截止时间" name="sjDto.deadtime" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
+			<input type="text" class="Wdate" title="报名截止时间（点击输入）" name="sjDto.deadtime" value="报名截止时间（点击输入）" onfocus="WdatePicker({startDate:'%y-%M-{%d+1} %H:%m:00',minDate:'%y-%M-%d %H:%m:00'})"/>
 			</p>
 			<div class="clear"></div>
 			<p>

@@ -126,7 +126,7 @@
         	<h2 class="title">最新公告<a href="<%=path %>/notice/listNotice">[更多]</a></h2><hr class="title"/>
             <ul class="notice">
             	<c:forEach items="${notices}" var="notice">
-            		<li><a href="<%=path %>/notice/viewNotice?id=${notice.id }">[${notice.type.name}]${notice.title }</a></li>
+            		<li>[<a href="<%=path %>/notice/listTypeNotice?id=${notice.type.id}">${notice.type.name}</a>]<a href="<%=path %>/notice/viewNotice?id=${notice.id }">${notice.title }</a></li>
             	</c:forEach>
             </ul>
         </div><!-- end of notice-->
@@ -150,7 +150,7 @@
             </ul>
         </div>
         <div class="third">
-        	<h2 class="title">外包课题</h2><hr class="title" />
+        	<h2 class="title">外包课题<a href="<%=path %>/notice/listTypeNotice?id=${noticetype}">[更多]</a></h2><hr class="title" />
             <ul class="notice">
             	<c:forEach items="${pns}" var="notice">
             		<li><a href="<%=path %>/notice/viewNotice?id=${notice.id }">[${notice.type.name}]${notice.title }</a></li>
@@ -158,7 +158,7 @@
             </ul>
         </div>
         <div class="third">
-       		<h2 class="title">比赛项目</h2><hr class="title" />
+       		<h2 class="title">比赛项目<a href="<%=path %>/activity/listActivity">[更多]</a></h2><hr class="title" />
             <ul class="notice">
             	<c:forEach items="${activitys}" var="activity">
             		<li><a href="<%=path %>/activity/viewActivity?id=${activity.id }">${activity.name }</a></li>

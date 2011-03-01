@@ -115,6 +115,15 @@ public class NoticeAction extends BaseAction {
 			pageBean.setList(null);
 		return super.list();
 	}
+	
+	public String listType() {
+		if(id <= 0) return "list";
+		this.pageBean = this.noticeService.queryForPage("from Notice n where n.type.id = '" + id + "' order by n.id desc", 10, page);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
+		getRequest().put("noticetype", id);
+		return "listType";
+	}
 
 	@Override
 	public String modify() {

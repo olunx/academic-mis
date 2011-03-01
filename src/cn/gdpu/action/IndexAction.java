@@ -67,6 +67,9 @@ public class IndexAction extends BaseAction {
 		List<Notice> pns = noticeService.queryForLimit("from Notice n where n.type.name = '外包课题' order by n.id desc", 0, 8);
 		if(pns.isEmpty() || pns.size() == 0)
 			pns = null;
+		else{
+			getRequest().put("noticetype", pns.get(0).getType().getId());
+		}
 		getRequest().put("pns", pns);
 		//学术活动
 		List<Activity> activitys = activityService.queryForLimit("from Activity a order by a.id desc", 0, 8);

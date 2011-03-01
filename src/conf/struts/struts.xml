@@ -260,6 +260,7 @@
 		<global-results>
 			<result name="list" type="redirect">listNotice?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/notice/noticeList.jsp</result>
+			<result name="listType">/WEB-INF/model/notice/noticeList_Type.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/notice/noticeModify.jsp</result>
 			<result name="viewPage">/WEB-INF/model/notice/noticeView.jsp</result>
 			<result name="addPage">/WEB-INF/model/notice/noticeAdd.jsp</result>
