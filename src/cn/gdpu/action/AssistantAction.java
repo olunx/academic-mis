@@ -102,11 +102,11 @@ public class AssistantAction extends BaseAction{
 	public String modify() {
 		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
 		if(admin != null){
+			assistant = assistantService.getEntity(Assistant.class, asDto.getId());
+			if(assistant == null) return ERROR;
 			if(asDto.getPassword() != null && !asDto.getPassword().trim().equals("") 
 					&& asDto.getRpassword() != null && !asDto.getRpassword().trim().equals("") && asDto.getRealName() != null && !asDto.getRealName().trim().equals("")){
 				if(asDto.getPassword().trim().equals(asDto.getRpassword().trim())){
-					assistant = assistantService.getEntity(Assistant.class, asDto.getId());
-					if(assistant == null) return ERROR;
 					assistant.setPassword(Md5.getMD5(asDto.getPassword().getBytes()));
 					assistant.setRealName(asDto.getRealName());
 					assistantService.updateEntity(assistant);

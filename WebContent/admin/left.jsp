@@ -52,8 +52,8 @@
           </tr>
         </table>
         <ul class="MM">
-          <li><a href="<%=path %>/student/listStudent" target="main">学生管理</a></li>
-          <li><a href="<%=path %>/teacher/listTeacher" target="main">教师管理</a></li>
+          <li><a href="<%=path %>/student/listAdminStudent" target="main">学生管理</a></li>
+          <li><a href="<%=path %>/teacher/listAdminTeacher" target="main">教师管理</a></li>
         </ul>
       </div>
        <h1 class="type"><a href="javascript:void(0)">学习小组管理</a></h1>

@@ -13,6 +13,7 @@ import cn.gdpu.service.NoticeService;
 import cn.gdpu.service.NoticeTypeService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Notice;
 import cn.gdpu.vo.NoticeType;
@@ -60,7 +61,12 @@ public class NoticeAction extends BaseAction {
 			notice.setRemark(sdf.format(new Date()) + " : " + manager.getRealName() + "发表通知 " + notice.getTitle() + " 成功;");
 			noticeService.addEntity(notice);
 			Log.init(getClass()).info(manager.getRealName() + "发表通知 " + notice.getTitle() + " 成功.");
-			return super.add();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_list";
+			else
+				return super.add();
 		}
 		return ERROR;
 	}
@@ -74,7 +80,13 @@ public class NoticeAction extends BaseAction {
 			if(notice == null) return ERROR;
 			noticeService.deleteEntity(Notice.class, id);
 			Log.init(getClass()).info(manager.getRealName() + " 删除了通知 " + notice.getTitle());
-			return super.delete();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_list";
+			else
+				return super.delete();
+			
 		}
 		return ERROR;
 	}
@@ -90,7 +102,12 @@ public class NoticeAction extends BaseAction {
 		if(manager != null){
 			List<NoticeType> nts = noticeTypeService.getAllEntity(NoticeType.class);
 			getRequest().put("nts", nts);
-			return super.goAdd();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_addPage";
+			else
+				return super.goAdd();
 		}
 		return ERROR;
 	}
@@ -103,7 +120,12 @@ public class NoticeAction extends BaseAction {
 			notice = noticeService.getEntity(Notice.class, id);
 			List<NoticeType> nts = noticeTypeService.getAllEntity(NoticeType.class);
 			getRequest().put("nts", nts);
-			return super.goModify();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_modifyPage";
+			else
+				return super.goModify();
 		}
 		return ERROR;
 	}
@@ -113,7 +135,13 @@ public class NoticeAction extends BaseAction {
 		this.pageBean = this.noticeService.queryForPage(Notice.class, 10, page);
 		if (pageBean.getList().isEmpty())
 			pageBean.setList(null);
-		return super.list();
+		
+		Manager manager = (Manager) getSession().get("user");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null)
+			return "admin_listPage";
+		else
+			return super.list();
 	}
 	
 	public String listType() {
@@ -122,7 +150,13 @@ public class NoticeAction extends BaseAction {
 		if (pageBean.getList().isEmpty())
 			pageBean.setList(null);
 		getRequest().put("noticetype", id);
-		return "listType";
+		
+		Manager manager = (Manager) getSession().get("user");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null)
+			return "admin_listType";
+		else
+			return "listType";
 	}
 
 	@Override
@@ -141,7 +175,12 @@ public class NoticeAction extends BaseAction {
 			notice.setRemark(notice.getRemark() + sdf.format(new Date()) + " : " + manager.getRealName() + "修改通知 " + notice.getTitle() + " 成功;");
 			noticeService.updateEntity(notice);
 			Log.init(getClass()).info(manager.getRealName() + "修改通知 " + notice.getTitle() + " 成功.");
-			return super.modify();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_list";
+			else
+				return super.modify();
 		}
 		return ERROR;
 	}
@@ -150,7 +189,13 @@ public class NoticeAction extends BaseAction {
 	public String view() {
 		if(id <= 0) return ERROR;
 		notice = noticeService.getEntity(Notice.class, id);
-		return super.view();
+		
+		Manager manager = (Manager) getSession().get("user");
+		Admin admin = manager instanceof Admin ? (Admin)manager : null;
+		if(admin != null)
+			return "admin_viewPage";
+		else
+			return super.view();
 	}
 
 	

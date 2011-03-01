@@ -184,7 +184,7 @@ public class ActivityAction extends BaseAction {
 		if (pageBean.getList().isEmpty())
 			pageBean.setList(null);
 		
-		Manager manager = (Manager) getSession().get("manager");
+		Manager manager = (Manager) getSession().get("user");
 		Admin admin = manager instanceof Admin ? (Admin)manager : null;
 		if(admin != null)
 			return "admin_listPage";

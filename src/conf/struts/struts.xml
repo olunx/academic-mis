@@ -73,6 +73,7 @@
 			<result name="logout">index.jsp</result>
 			<result name="list" type="redirect">listStudentType?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/student/studentList.jsp</result>
+			<result name="admin_list">/WEB-INF/model/student/studentList_Admin.jsp</result>
 			<result name="indexPage">/WEB-INF/model/student/studentIndex.jsp</result>
 			<result name="viewPage">/WEB-INF/model/student/studentView.jsp</result>
 			<result name="admin_viewPage">/WEB-INF/model/student/studentView_Admin.jsp</result>
@@ -93,8 +94,9 @@
 		<global-results>
 			<result name="gologin">/index.jsp</result>
 			<result name="logout">index.jsp</result>
-			<result name="list" type="redirect">listTeacherType?page=${page}</result>
+			<result name="list" type="redirect">listTeacher?page=${page}</result>
 			<result name="listPage">/WEB-INF/model/teacher/teacherList.jsp</result>
+			<result name="admin_list">/WEB-INF/model/teacher/teacherList_Admin.jsp</result>
 			<result name="indexPage">/WEB-INF/model/teacher/teacherIndex.jsp</result>
 			<result name="viewPage">/WEB-INF/model/teacher/teacherView.jsp</result>
 			<result name="modify" type="redirect">viewTeacher?id=${teaDto.id}</result>
@@ -135,15 +137,15 @@
 		<default-action-ref name="goLoginAssistant" />
 		<global-results>
 			<result name="list" type="redirect">listAssistant?page=${page}</result>
-			<result name="listPage">/WEB-INF/model/assistant/assistantList.jsp
+			<result name="listPage">/WEB-INF/model/assistant/assistantList_Admin.jsp
 			</result>
 			<result name="gologin">/index.jsp</result>
 			<result name="logout">/goods/listGoods</result>
 			<result name="viewPage">/WEB-INF/model/assistant/assistantIndex.jsp
 			</result>
-			<result name="modifyPage">/WEB-INF/model/assistant/assistantModify.jsp
+			<result name="modifyPage">/WEB-INF/model/assistant/assistantModify_Admin.jsp
 			</result>
-			<result name="addPage">/WEB-INF/model/assistant/assistantAdd.jsp
+			<result name="addPage">/WEB-INF/model/assistant/assistantAdd_Admin.jsp
 			</result>
 		</global-results>
 		<action name="goLoginAssistant" class="cn.gdpu.action.AssistantAction" method="goLogin">
@@ -249,6 +251,14 @@
 			</result>
 			<result name="addPage">/WEB-INF/model/noticetype/noticeTypeAdd.jsp
 			</result>
+			<!-- admin -->
+			<result name="admin_list" type="redirect">listNoticeType?page=${page}</result>
+			<result name="admin_listPage">/WEB-INF/model/noticetype/noticeTypeList_Admin.jsp
+			</result>
+			<result name="admin_modifyPage">/WEB-INF/model/noticetype/noticeTypeModify_Admin.jsp
+			</result>
+			<result name="admin_addPage">/WEB-INF/model/noticetype/noticeTypeAdd_Admin.jsp
+			</result>
 		</global-results>
 		<action name="*NoticeType" class="cn.gdpu.action.NoticeTypeAction" method="{1}">
 		</action>
@@ -264,6 +274,13 @@
 			<result name="modifyPage">/WEB-INF/model/notice/noticeModify.jsp</result>
 			<result name="viewPage">/WEB-INF/model/notice/noticeView.jsp</result>
 			<result name="addPage">/WEB-INF/model/notice/noticeAdd.jsp</result>
+			<!-- admin -->
+			<result name="admin_list" type="redirect">listAdminNotice?page=${page}</result>
+			<result name="admin_listPage">/WEB-INF/model/notice/noticeList_Admin.jsp</result>
+			<result name="admin_listType">/WEB-INF/model/notice/noticeList_Type_Admin.jsp</result>
+			<result name="admin_modifyPage">/WEB-INF/model/notice/noticeModify_Admin.jsp</result>
+			<result name="admin_viewPage">/WEB-INF/model/notice/noticeView_Admin.jsp</result>
+			<result name="admin_addPage">/WEB-INF/model/notice/noticeAdd_Admin.jsp</result>
 		</global-results>
 		<action name="*Notice" class="cn.gdpu.action.NoticeAction" method="{1}">
 		</action>
@@ -281,6 +298,16 @@
 			<result name="viewPage">/WEB-INF/model/noticehot/noticeHotView.jsp
 			</result>
 			<result name="addPage">/WEB-INF/model/noticehot/noticeHotAdd.jsp
+			</result>
+			<!-- admin -->
+			<result name="admin_list" type="redirect">listAdminNoticeHot?page=${page}</result>
+			<result name="admin_listPage">/WEB-INF/model/noticehot/noticeHotList_Admin.jsp
+			</result>
+			<result name="admin_modifyPage">/WEB-INF/model/noticehot/noticeHotModify_Admin.jsp
+			</result>
+			<result name="admin_viewPage">/WEB-INF/model/noticehot/noticeHotView_Admin.jsp
+			</result>
+			<result name="admin_addPage">/WEB-INF/model/noticehot/noticeHotAdd_Admin.jsp
 			</result>
 		</global-results>
 		<action name="*NoticeHot" class="cn.gdpu.action.NoticeHotAction" method="{1}">
