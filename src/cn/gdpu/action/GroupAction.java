@@ -89,7 +89,7 @@ public class GroupAction extends BaseAction{
 	public String list() {
 		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
-			this.pageBean = this.groupService.queryForPage("from Group g where '" + student.getId() + "' = some elements(g.members)", 10, page);
+			this.pageBean = this.groupService.queryForPage("from Group g where '" + student.getId() + "' = some elements(g.members) order by g.id desc", 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 			getRequest().put("listType", "list");
@@ -102,7 +102,7 @@ public class GroupAction extends BaseAction{
 	 * 查看该全部的小组
 	 */
 	public String listAll() {
-		this.pageBean = this.groupService.queryForPage("from Group ", 10, page);
+		this.pageBean = this.groupService.queryForPage(Group.class, 10, page);
 		if (pageBean.getList().isEmpty())
 			pageBean.setList(null);
 		getRequest().put("listType", "listall");
@@ -120,7 +120,7 @@ public class GroupAction extends BaseAction{
 	public String listMe() {
 		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
-			this.pageBean = this.groupService.queryForPage("from Group g where g.captain.id = '" + student.getId() + "'", 10, page);
+			this.pageBean = this.groupService.queryForPage("from Group g where g.captain.id = '" + student.getId() + "' order by g.id desc", 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 			getRequest().put("listType", "listme");
@@ -135,7 +135,7 @@ public class GroupAction extends BaseAction{
 	public String listApply() {
 		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
-			this.pageBean = this.groupApplyService.queryForPage("from GroupApply ga where ga.student.id = '" + student.getId() + "'", 10, page);
+			this.pageBean = this.groupApplyService.queryForPage("from GroupApply ga where ga.student.id = '" + student.getId() + "' order by ga.id desc", 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 			getRequest().put("listType", "listme");
@@ -222,13 +222,17 @@ public class GroupAction extends BaseAction{
 			//addFeed
 			Feed feed = new Feed();
 			feed.setType(22);
-			feed.setNews(groupApply.getGroup().getName() + " 小组组长: " + student.getRealName() + " 同意您 " + groupApply.getStudent().getRealName() + " 加入小组 ");
+			feed.setNews(groupApply.getGroup().getName() + " 小组组长: " + student.getRealName() + " 同意  " + groupApply.getStudent().getRealName() + " 加入小组 ");
 			feed.setTime(new Date());
 			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
 			FeedBox feedBox = new FeedBox();
 			feedBox.setHasRead(0);
 			feedBox.setPeople(groupApply.getStudent());
 			feedBoxs.add(feedBox);
+			FeedBox feedBox2 = new FeedBox();
+			feedBox2.setHasRead(0);
+			feedBox2.setPeople(captain);
+			feedBoxs.add(feedBox2);
 			feed.setRecipients(feedBoxs);
 			feedService.addEntity(feed);
 			return "audit";
@@ -260,13 +264,17 @@ public class GroupAction extends BaseAction{
 			//addFeed
 			Feed feed = new Feed();
 			feed.setType(22);
-			feed.setNews(groupApply.getGroup().getName() + " 小组组长: " + student.getRealName() + " 拒绝您 " + groupApply.getStudent().getRealName() + " 加入小组 ");
+			feed.setNews(groupApply.getGroup().getName() + " 小组组长: " + student.getRealName() + " 拒绝  " + groupApply.getStudent().getRealName() + " 加入小组 ");
 			feed.setTime(new Date());
 			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
 			FeedBox feedBox = new FeedBox();
 			feedBox.setHasRead(0);
 			feedBox.setPeople(groupApply.getStudent());
 			feedBoxs.add(feedBox);
+			FeedBox feedBox2 = new FeedBox();
+			feedBox2.setHasRead(0);
+			feedBox2.setPeople(captain);
+			feedBoxs.add(feedBox2);
 			feed.setRecipients(feedBoxs);
 			feedService.addEntity(feed);
 			return "audit";

@@ -24,6 +24,7 @@
 	    <span class="category">活动类型：<a href="#" rel="category">${activity.activityType.name}</a></span>
 	    <span class="comment">报名方式：<a href="#">${activity.applyCount == 1 ? '个人报名参赛' : '团队报名参赛'}</a></span>
 	    <span class="category">
+	    <!-- 学生申请报名 -->
 		    <c:choose>
 			 	<c:when test="${my:userTypeCompare(user) == 3}">
 			 		<c:choose>
@@ -58,7 +59,7 @@
     
     </div><!--end of post-->
 
-<!--加入活动 开始-->
+<!--查看审查状态-->
 <div id="comments">
 <c:choose>
 	<c:when test="${my:activityApplyDoneCount(activity) != 0 && activity.applyCount == 1}">
@@ -67,18 +68,27 @@
 				<c:if test="${activityApply.status == 2}">
 					<li class="comment even thread-even depth-1" id="li-comment-204">
 					<div id="comment-204">
-		                <div class="comment-author fleft"><img src='<%=path%>/style/images/nobody.png' class='avatar avatar-60 photo' height='60' width='60' /></div>
+		                <div class="comment-author fleft">
+			                <c:choose>
+			                	<c:when test="${user.avatar != null}">
+			                		<img src='<%=path%>${user.avatar.minFileUrl}' class='avatar avatar-60 photo' height='60' width='60' />
+			                	</c:when>
+			                	<c:otherwise>
+			                		<img src='<%=path%>/style/images/nobody.png' class='avatar avatar-60 photo' height='60' width='60' />
+			                	</c:otherwise>
+			                </c:choose>
+		                </div>
 		                <div class="comment-info fright">
-		                    <div class="c_info">申请人：<a href="<%=path %>/student/viewStudent?id=${activityApply.student.id}">${activityApply.student.realName}</a></div>
+		                    <div class="c_info">申请人：<a href="<%=path %>/student/viewStudent?id=${activityApply.applicant.id}">${activityApply.applicant.realName}</a></div>
 		                    <p>审核状态：${activityApply.record }</p>
 		                    <div class="reply fleft">
 		                        <c:if test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2 }">
 		                        <c:choose>
 		                            <c:when test="${activityApply.activityResult == null}">
-		                                <a class='comment-reply-link' href="<%=path %>/activityResult/goAddActivityResult?id=${activityApply.id}">添加结果</a>
+		                                <a class='comment-reply-link' href="<%=path %>/activityresult/goAddActivityResult?id=${activityApply.id}">添加结果</a>
 		                                </c:when>	
 		                                <c:otherwise>
-		                                <a class='comment-reply-link' href="<%=path %>/activityResult/goModifyActivityResult?id=${activityApply.activityResult.id}">查看结果</a>
+		                                <a class='comment-reply-link' href="<%=path %>/activityresult/goModifyActivityResult?id=${activityApply.activityResult.id}">查看结果</a>
 		                            </c:otherwise>
 		                        </c:choose>
 		                        </c:if>
@@ -92,7 +102,6 @@
 		</ol>
 	</c:when>
 </c:choose>
-
 <c:choose>
 	<c:when test="${my:activityApplyDoneCount(activity) != 0 && activity.applyCount != 1}">
 		<h2 class="mainhead">已经有${my:activityApplyDoneCount(activity)}小组成功报名参加该活动</h2>
@@ -115,12 +124,12 @@
 								<c:choose>
 								<c:when test="${activityApply.activityResult == null}">
 									<div class="reply fleft">
-									<a class='comment-reply-link' href="<%=path %>/activityResult/goAddActivityResult?id=${activityApply.id}">添加结果</a>
+									<a class='comment-reply-link' href="<%=path %>/activityresult/goAddActivityResult?id=${activityApply.id}">添加结果</a>
 									</div>
 								</c:when>	
 								<c:otherwise>
 									<div class="reply fleft">
-									<a class='comment-reply-link' href="<%=path %>/activityResult/goModifyActivityResult?id=${activityApply.activityResult.id}">查看结果</a>
+									<a class='comment-reply-link' href="<%=path %>/activityresult/goModifyActivityResult?id=${activityApply.activityResult.id}">查看结果</a>
 									</div>
 								</c:otherwise>
 								</c:choose>
@@ -133,14 +142,11 @@
 			</c:forEach>
 		</ol>
 	</c:when>
-	<c:otherwise>
-		<h2 class="mainhead">该活动暂时没有报名</h2>
-	</c:otherwise>
 </c:choose>
 		
-<!-- 管理员可见 -->
+<!-- 管理员可见，管理审核报名 -->
 <c:choose>
-	<c:when test="${manager != null }">
+	<c:when test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2 }">
 		<c:choose>
 			<c:when test="${my:activityApplyCount(activity) != 0 && activity.applyCount == 1}">
 			<h2 class="mainhead">有${my:activityApplyCount(activity)}个人申请报名该活动</h2>
@@ -151,7 +157,7 @@
 						<div id="comment-204">
 							<div class="comment-author fleft"><img src='<%=path%>/style/images/nobody.png' class='avatar avatar-60 photo' height='60' width='60' /></div>
 								<div class="comment-info fright">
-								<div class="c_info">申请人：<a href="<%=path %>/student/viewStudent?id=${activityApply.student.id}">${activityApply.student.realName}</a></div>
+								<div class="c_info">申请人：<a href="<%=path %>/student/viewStudent?id=${activityApply.applicant.id}">${activityApply.applicant.realName}</a></div>
 								<p>审核状态：${activityApply.record }</p>
 									<div class="reply fleft">
 										<a class='comment-reply-link' href="<%=path %>/activity/passApplyActivity?id=${activityApply.id}">通过</a> | 

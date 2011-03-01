@@ -20,6 +20,7 @@ import cn.gdpu.dto.ApplyDto;
 import cn.gdpu.service.ActivityApplyService;
 import cn.gdpu.service.ActivityService;
 import cn.gdpu.service.ActivityTypeService;
+import cn.gdpu.service.FeedService;
 import cn.gdpu.service.GroupService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
@@ -28,6 +29,8 @@ import cn.gdpu.vo.Activity;
 import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.ActivityType;
 import cn.gdpu.vo.Admin;
+import cn.gdpu.vo.Feed;
+import cn.gdpu.vo.FeedBox;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.SingleApply;
@@ -41,6 +44,7 @@ public class ActivityAction extends BaseAction {
 	private ActivityApplyService<ActivityApply, Integer> activityApplyService;
 	private StudentService<Student, Integer> studentService;
 	private GroupService<Group, Integer> groupService;
+	private FeedService<Feed, Integer> feedService;
 	private Activity activity;
 	private ActivityApply activityApply;
 	private ActivityDto acDto;
@@ -116,6 +120,19 @@ public class ActivityAction extends BaseAction {
 			activity.setPublisher(manager);
 			activityService.addEntity(activity);
 			Log.init(getClass()).info(manager.getRealName() + " 添加学术活动  " + activity.getName() +  " 成功!");
+			
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			feed.setNews("您 " + manager.getRealName() + " 添加学术活动  " + activity.getName() +  " 成功!");
+			feed.setTime(new Date());
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(manager);
+			feedBoxs.add(feedBox);
+			feed.setRecipients(feedBoxs);
+			feedService.addEntity(feed);
 			return super.add();
 		}
 		return ERROR;
@@ -231,11 +248,11 @@ public class ActivityAction extends BaseAction {
 				if(activityApplys == null ) activityApplys = new HashSet<ActivityApply>();
 				for (ActivityApply aa : activityApplys) {
 					SingleApply singleApply = (SingleApply) aa;
-					if(singleApply.getStudent().getId() == student.getId()) return ERROR;      //已经存在申请
+					if(singleApply.getApplicant().getId() == student.getId()) return ERROR;      //已经存在申请
 				}
  				SingleApply sa = new SingleApply();
 				sa.setActivity(activity);
-				sa.setStudent(student);
+				sa.setApplicant(student);
 				sa.setStatus(1);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				sa.setApplytime(toDay);
@@ -259,6 +276,7 @@ public class ActivityAction extends BaseAction {
 				}
 				TeamApply ta = new TeamApply();
 				ta.setActivity(activity);
+				ta.setApplicant(student);
 				ta.setGroup(group);
 				Set<Student> applicants = new HashSet<Student>();
 				for (int id : apDto.getApplicants()) {
@@ -286,7 +304,7 @@ public class ActivityAction extends BaseAction {
 	public String listApply() {
 		Student student = getSession().get("user") instanceof Student ? (Student)getSession().get("user") : null;
 		if(student != null){
-			this.pageBean = this.activityApplyService.queryForPage("from ActivityApply aa where (aa.student.id = '" + student.getId() + "') or ('" + student.getId() + "' = some elements(aa.applicants))", 10, page);
+			this.pageBean = this.activityApplyService.queryForPage("from ActivityApply aa where (aa.applicant.id = '" + student.getId() + "') or ('" + student.getId() + "' = some elements(aa.applicants)) order by aa.id desc", 10, page);
 			
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
@@ -311,6 +329,26 @@ public class ActivityAction extends BaseAction {
 			activityApply.setRecord(activityApply.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
 			activityApplyService.updateEntity(activityApply);
 			Log.init(getClass()).info(sdf.format(new Date()) + " : " + manager.getRealName() + "通过该报名");
+			
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			if(activityApply.getActivity().getApplyCount() == 1){
+				feed.setNews("管理员 " + manager.getRealName() + " 同意  " + activityApply.getApplicant().getRealName() + " 通过活动 " + activityApply.getActivity().getName() + "报名.");
+			}else{
+				feed.setNews("管理员 " + manager.getRealName() + " 同意  " + activityApply.getApplicant().getRealName() + " 的团队通过活动 " + activityApply.getActivity().getName() + "报名.");
+			}
+			feed.setTime(new Date());
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(activityApply.getApplicant());
+			feedBoxs.add(feedBox);
+			FeedBox feedBox2 = new FeedBox();
+			feedBox2.setHasRead(0);
+			feedBox2.setPeople(manager);
+			feedBoxs.add(feedBox2);
+			feed.setRecipients(feedBoxs);
 			return "audit";
 		}
 		return ERROR;
@@ -322,23 +360,40 @@ public class ActivityAction extends BaseAction {
 	public String refuseApply(){
 		Manager manager = getSession().get("user") instanceof Manager ? (Manager) getSession().get("user") : null;
 		if(manager != null){
-			ActivityApply aa = activityApplyService.getEntity(ActivityApply.class, id);
-			if(aa == null) return ERROR;
-			aa.setStatus(3);	//1==申请 2==通过 3==拒绝
-			aa.setOperator(manager);
-			aa.setEndtime(new Date());
+			activityApply = activityApplyService.getEntity(ActivityApply.class, id);
+			if(activityApply == null) return ERROR;
+			activityApply.setStatus(3);	//1==申请 2==通过 3==拒绝
+			activityApply.setOperator(manager);
+			activityApply.setEndtime(new Date());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			aa.setRecord(aa.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
-			getRequest().put("activityId", aa.getActivity().getId());
-			activityApplyService.updateEntity(aa);
+			activityApply.setRecord(activityApply.getRecord() + "; " + sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
+			activityApplyService.updateEntity(activityApply);
 			Log.init(getClass()).info(sdf.format(new Date()) + " : " + manager.getRealName() + "拒绝该报名");
+			
+			//addFeed
+			Feed feed = new Feed();
+			feed.setType(22);
+			if(activityApply.getActivity().getApplyCount() == 1){
+				feed.setNews("管理员 " + manager.getRealName() + " 拒绝  " + activityApply.getApplicant().getRealName() + " 通过活动 " + activityApply.getActivity().getName() + "报名.");
+			}else{
+				feed.setNews("管理员 " + manager.getRealName() + " 拒绝  " + activityApply.getApplicant().getRealName() + " 的团队通过活动 " + activityApply.getActivity().getName() + "报名.");
+			}
+			feed.setTime(new Date());
+			Set<FeedBox> feedBoxs = new HashSet<FeedBox>();
+			FeedBox feedBox = new FeedBox();
+			feedBox.setHasRead(0);
+			feedBox.setPeople(activityApply.getApplicant());
+			feedBoxs.add(feedBox);
+			FeedBox feedBox2 = new FeedBox();
+			feedBox2.setHasRead(0);
+			feedBox2.setPeople(manager);
+			feedBoxs.add(feedBox2);
+			feed.setRecipients(feedBoxs);
 			return "audit";
 		}
 		return ERROR;
 	}
 	
-	
-
 	
 	//getter and setter
 
@@ -383,6 +438,14 @@ public class ActivityAction extends BaseAction {
 
 	public void setGroupService(GroupService<Group, Integer> groupService) {
 		this.groupService = groupService;
+	}
+
+	public FeedService<Feed, Integer> getFeedService() {
+		return feedService;
+	}
+
+	public void setFeedService(FeedService<Feed, Integer> feedService) {
+		this.feedService = feedService;
 	}
 
 	public Activity getActivity() {

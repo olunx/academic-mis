@@ -18,6 +18,7 @@ import cn.gdpu.util.Log;
 import cn.gdpu.util.Md5;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Admin;
+import cn.gdpu.vo.Image;
 import cn.gdpu.vo.Institute;
 import cn.gdpu.vo.Manager;
 import cn.gdpu.vo.Student;
@@ -28,6 +29,7 @@ public class TeacherAction extends BaseAction implements Preparable {
 	private TeacherService<Teacher, Integer> teacherService;
 	private Teacher teacher;
 	private TeacherDto teaDto;
+	private Image image;
 	private PageBean pageBean;
 	private int page;
 	private int id;
@@ -183,6 +185,21 @@ public class TeacherAction extends BaseAction implements Preparable {
 		return ERROR;
 	}
 	
+	public String addAvatar() {
+		Teacher teacher = getSession().get("user") instanceof Teacher ? (Teacher)getSession().get("user") : null;
+		if(teacher != null ){
+			Teacher tea = teacherService.getEntity(Teacher.class, teaDto.getId());
+			if(tea.getId() != teacher.getId()) return "goModify";  //当前用户没有权限修改该账号
+			if(image.getOriFileName().equals("") || image.getOriFileName() == null) 
+				return "goModify";//没有更新头像
+			tea.setAvatar(image);
+			teacherService.updateEntity(tea);
+			Log.init(getClass()).info("修改学生头像成功: " + teacher);
+			return "modify";
+		}
+		return ERROR;
+	}
+	
 	@Override
 	public String view() {
 		if(id <= 0) return ERROR;
@@ -223,6 +240,14 @@ public class TeacherAction extends BaseAction implements Preparable {
 
 	public void setTeaDto(TeacherDto teaDto) {
 		this.teaDto = teaDto;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public PageBean getPageBean() {

@@ -33,4 +33,4 @@
 2011-02-23 :  为管理员加入设置Banner主题，完成主题的添加删除和设定，未应用到页面中去
 2011-02-27 :  用jquery的ajax实现了Banner主题的切换,完善首页的数据,加入消息模块，未完善！
 2011-02-28 :  完善了Feed的设计，现在的已经完成了站内消息模块，其它一些BUG修改,修改了BaseServiceImpl的queryForPage(Class<T> entityClass, int pageSize, int currentPage)方法，把查询的结果按id降序排行，开始对系统进行性能优化
-
+2011-03-01 :  对类中的各个set关系加入了lazy=true，明显提高了系统的反应时间，但可能会出现数据的丢失，请测试时出现问题，留意！！！另测试时对页面修修补补

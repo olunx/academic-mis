@@ -47,7 +47,7 @@ public class ActivityFunctions {
 				for (ActivityApply aa : activity.getActivityApplys()) {
 					if(aa.getStatus() != 2) continue;
 					SingleApply sa = (SingleApply) aa;
-					if(sa.getStudent().getId() == student.getId()) return 1;
+					if(sa.getApplicant().getId() == student.getId()) return 1;
 				}
 			}else{
 				for (ActivityApply aa : activity.getActivityApplys()) {
@@ -75,7 +75,7 @@ public class ActivityFunctions {
 				if(activity.getApplyCount() == 1){
 					for (ActivityApply aa : activity.getActivityApplys()) {
 						SingleApply sa = (SingleApply) aa;
-						if(sa.getStudent().getId() == student.getId()) return true;
+						if(sa.getApplicant().getId() == student.getId()) return true;
 					}
 				}
 		}

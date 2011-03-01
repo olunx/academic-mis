@@ -14,13 +14,13 @@
 		<property name="status" />
 		<one-to-one name="opus" class="Opus" property-ref="activityApply" />
 		<one-to-one name="activityResult" class="ActivityResult" property-ref="awarder" />
-	    
+	    <many-to-one name="applicant" column="studentId"/>
 		
 		<!-- TeamApply -->
 		<joined-subclass name="TeamApply" table="t_team_apply">
 			<key column="id" />
 			<many-to-one name="group" column="groupId" />
-			<set name="applicants" table="t_teamapply_student" lazy="false" order-by="taId asc" cascade="save-update">
+			<set name="applicants" table="t_teamapply_student" order-by="taId asc" cascade="save-update">
 				<key column="taId" />
 				<many-to-many class="Student" column="stuId"/>
 			</set>
@@ -29,7 +29,6 @@
 		<!-- SingleApply -->
 		<joined-subclass name="SingleApply" table="t_single_apply">
 			<key column="id" />
-			<many-to-one name="student" column="studentId" lazy="false"/>
 		</joined-subclass>
 	</class>
 </hibernate-mapping>

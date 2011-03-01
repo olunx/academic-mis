@@ -13,7 +13,8 @@
     <div id="comments">
        <!--发表评论 开始-->
       <div id="respond">
-        <form action="<%=path %>/activityResult/modifyActivityResult" method="post" >
+      	<h2 class="mainhead">查看活动成绩和修改</h2>
+        <form action="<%=path %>/activityresult/modifyActivityResult" method="post" >
         	<input type="hidden" name="id" value="${activityResult.id}"/><br/>
 			<p>
 				<input type="text" title="获奖等级" name="arDto.prize" value="${activityResult.prize }" class="text" />
