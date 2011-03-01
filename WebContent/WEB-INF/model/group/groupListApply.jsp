@@ -19,16 +19,16 @@
 		</c:when>
 		<c:otherwise>
 			<ul id="excerpt">
-			<c:forEach items="${pageBean.list}" var="group">
+			<c:forEach items="${pageBean.list}" var="groupApply">
 		        <li>
 				<div class="p_coleft fleft">
-					<p class="date_s">队长：${group.captain.realName}</p>
-					<span class="comment_s"><a href="#">共${fn:length(group.members)}名成员 </a></span>
+					<p class="date_s">队长：${groupApply.group.captain.realName}</p>
+					<span class="comment_s"><a href="#">共${fn:length(groupApply.group.members)}名成员 </a></span>
 				</div>
 				<div class="p_coright fright">
-					<h1 class="prevtitle">组名： <a href="<%=path%>/group/viewGroup?id=${group.id }">${group.name}</a> (${groupApply.status == 2 ? '通过' : groupApply.status == 3 ? '拒绝' : '审核中' })</h1>
+					<h1 class="prevtitle">组名： <a href="<%=path%>/group/viewGroup?id=${groupApply.group.id }">${groupApply.group.name}</a> (${groupApply.status == 2 ? '通过' : groupApply.status == 3 ? '拒绝' : '审核中' })</h1>
 					记录：${groupApply.record}
-					小组简介:${fn:substring(fn:replace(group.intro,"<","&lt;"),0,100)}
+					小组简介:${fn:substring(fn:replace(groupApply.group.intro,"<","&lt;"),0,100)}
 				 </div>
 				<br class="clear" />
 		        </li>

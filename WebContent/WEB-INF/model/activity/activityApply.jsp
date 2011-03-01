@@ -36,17 +36,18 @@
 						-- <a href="<%=path %>/activity/listActivity">否</a>
 						<br/>
 					</c:when>
-					<c:when test="${activity.applyCount != 1 && fn:length(student.myGroups) != 0}">
+					<c:when test="${activity.applyCount != 1 && fn:length(user.myGroups) != 0}">
 						${activity.name } 该活动的参赛方式为团队参赛，报名人数为${activity.applyCount },需要小组的创建人才能进行活动报名，请根据报名要求选择你的小组报名成员<br/>
+						<h2 class="mainhead"><font color="red">该活动报名人数为${activity.applyCount },按住CTRL键来选择正确的人数！</font></h2>
 						<form action="<%=path %>/activity/applyActivity" method="post">
 							<input type="hidden" name="apDto.activity" value="${activity.id}"/>
 							<div id="select">
-								<label>选择小组：</label>
-								<select id="first" name="apDto.group" size="1"><option value="">--</option></select><br/>
-								<label>选择报名成员：</label><br/>
-								<select id="second" name="apDto.applicants" multiple="multiple" ><option value="">--</option></select>
+								选择小组：<br/>
+								<select id="first" name="apDto.group" size="1" style="width: 150px; height: 30px"><option value="">--</option></select><br/>
+								选择报名成员：<br/>
+								<select id="second" name="apDto.applicants" multiple="multiple" style="width: 150px; height: 150px"><option value="">--</option></select>
 							</div>
-							<input type="submit" value="报名">
+							<input name="submit" type="submit" class="submit2"  value="报名">
 						</form>
 					</c:when>
 					<c:otherwise>

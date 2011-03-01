@@ -16,7 +16,7 @@
 		<property name="deadtime" />
 		<property name="time" />
 		<many-to-one name="publisher" column="publisherId" />
-		<set name="activityApplys" cascade="all" lazy="false" order-by="id asc">
+		<set name="activityApplys" cascade="all" lazy="true" order-by="id asc">
 			<key column="activityId" />
 			<one-to-many class="ActivityApply" />
 		</set>

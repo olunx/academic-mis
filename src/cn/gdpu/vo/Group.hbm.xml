@@ -9,11 +9,11 @@
 		<property name="name" />
 		<property name="intro" />
 		<many-to-one name="captain" column="creatorId" />
-		<set name="members" table="t_group_student" lazy="false">
+		<set name="members" table="t_group_student" lazy="true">
 			<key column="groupId" />
 			<many-to-many class="Student" column="stuId"/>
 		</set>
-		<set name="groupApplys" cascade="save-update" lazy="false" order-by="id asc">
+		<set name="groupApplys" cascade="save-update" lazy="true" order-by="id asc">
 			<key column="groupId" />
 			<one-to-many class="GroupApply" />
 		</set>

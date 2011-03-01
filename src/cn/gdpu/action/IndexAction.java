@@ -69,10 +69,10 @@ public class IndexAction extends BaseAction {
 			pns = null;
 		getRequest().put("pns", pns);
 		//学术活动
-		/*List<Activity> activitys = activityService.queryForLimit("from Activity a order by a.id desc", 0, 8);
+		List<Activity> activitys = activityService.queryForLimit("from Activity a order by a.id desc", 0, 8);
 		if(activitys.isEmpty() || activitys.size() == 0)
 			activitys = null;
-		getRequest().put("activitys", activitys);*/
+		getRequest().put("activitys", activitys);
 		//作品展示
 		List<Opus> opuses= opusService.queryForLimit("from Opus o order by o.id desc", 0, 10);
 		if(opuses.isEmpty() || opuses.size() == 0)

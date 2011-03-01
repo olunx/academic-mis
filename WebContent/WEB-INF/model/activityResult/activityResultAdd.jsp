@@ -13,10 +13,12 @@
     <div id="comments">
        <!--发表评论 开始-->
       <div id="respond">
-        <form action="<%=path %>/activityResult/addActivityResult" method="post" >
+      	<h2 class="mainhead">添加活动成绩</h2>
+        <form action="<%=path %>/activityresult/addActivityResult" method="post" >
         	<input type="hidden" name="id" value="${id}"/><br />
+        	<font color="red">获奖等级：(一名或一等奖 : 1，二名或二等奖 : 2，三名或三等奖 : 3，其它 : 4)</font><br/>
 			<p>
-				<input type="text" title="获奖等级" name="arDto.prize" class="text" />
+				<input type="text" title="获奖等级(一名或一等奖 : 1，二名或二等奖 : 2，三名或三等奖 : 3，其它 : 4)" name="arDto.prize" class="text" />
 			</p>
 			<p>
 				<input type="text" title="获奖名称" name="arDto.name" class="text" />

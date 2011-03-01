@@ -15,7 +15,7 @@ public class ActivityApply {
 	private int status;
 	private Opus opus;
 	private ActivityResult activityResult;
-
+	private Student applicant;
 	
 	public int getId() {
 		return id;
@@ -70,5 +70,11 @@ public class ActivityApply {
 	}
 	public void setActivityResult(ActivityResult activityResult) {
 		this.activityResult = activityResult;
+	}
+	public Student getApplicant() {
+		return applicant;
+	}
+	public void setApplicant(Student applicant) {
+		this.applicant = applicant;
 	}
 }

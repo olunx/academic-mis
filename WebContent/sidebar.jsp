@@ -10,13 +10,26 @@
 		<div class="widgets">
 			<c:if test="${user != null}">
 				<h2 class="mainhead">用户信息</h2>
-				<div class="userinfor">
-					<img alt="${user.realName }" src="<%=path %>${user.avatar.minFileUrl }" width="60" height="60">
-					用户名：${user.username }
-					姓     名：${user.realName }
-					性别： ${user.sex == 1 ? '男' : '女' }
-					注册日期：<fmt:formatDate value="${user.regtime}" pattern="yyyy-MM-dd HH:mm"/>
-					上次访问：<fmt:formatDate value="${user.lastLogin}" pattern="yyyy-MM-dd HH:mm"/>
+				<div class="userinfor" style="padding-left: 10px">
+					<div class="fleft" style="padding-left: 0">
+					<c:choose>
+	                	<c:when test="${user.avatar != null}">
+	                		<img alt="${user.realName }" src='<%=path%>${user.avatar.minFileUrl}' class='avatar avatar-60 photo' height='60' width='60' />
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img alt="${user.realName }" src='<%=path%>/style/images/nobody.png' class='avatar avatar-60 photo' height='60' width='60' />
+	                	</c:otherwise>
+	                </c:choose>
+	                </div>
+                 	<div class="fleft" style="padding-left: 10px">
+					用户名：${user.username }<br>
+					姓     名：${user.realName }<br>
+					性别： ${user.sex == 1 ? '男' : '女' }<br>
+					
+					</div>
+					<br class="clear">
+					注册日期：<fmt:formatDate value="${user.regtime}" pattern="yyyy-MM-dd HH:mm"/><br/>
+					上次访问：<fmt:formatDate value="${user.lastLogin}" pattern="yyyy-MM-dd HH:mm"/><br/><br/>
 					
 				</div>
 			</c:if>

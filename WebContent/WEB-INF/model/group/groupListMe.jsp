@@ -23,7 +23,12 @@
 		        <li>
 				<div class="p_coleft fleft">
 					<p class="date_s">队长：${group.captain.realName}</p>
-					<span class="comment_s"><a href="#">共${fn:length(group.members)}名成员 </a></span>
+					<span class="comment_s">
+						共${fn:length(group.members)}名成员 
+						<c:if test="${my:groupApplyCount(group) != 0}">
+							<br/><font color="red">有${my:groupApplyCount(group)}个申请</font>
+						</c:if>
+					</span>
 				</div>
 				<div class="p_coright fright">
 					<h1 class="prevtitle">组名： <a href="<%=path%>/group/viewGroup?id=${group.id }">${group.name}</a></h1>

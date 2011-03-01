@@ -58,7 +58,7 @@
 				<c:choose>
 					<c:when test="${pageBean.currentPage != pageBean.totalPage}">
 						<a class="page" href="<%=path%>/activity/listApplyActivity?page=${pageBean.currentPage+1}">下一页</a>
-						<a class="last" href="<%=path%>/activity/listApplyActivitypage=${pageBean.totalPage}">尾页</a>
+						<a class="last" href="<%=path%>/activity/listApplyActivity?page=${pageBean.totalPage}">尾页</a>
 					</c:when>
 					<c:otherwise>
 						<a class="page">下一页</a>

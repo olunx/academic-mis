@@ -185,7 +185,7 @@
 			</result>
 			<result name="listPage">/WEB-INF/model/activitytype/activityTypeList.jsp
 			</result>
-			<result name="viewPage">/activitytype/activityTypeIndex.jsp</result>
+			<result name="viewPage">/WEB-INF/model/activitytype/activityTypeIndex.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/activitytype/activityTypeModify.jsp
 			</result>
 			<result name="addPage">/WEB-INF/model/activitytype/activityTypeAdd.jsp

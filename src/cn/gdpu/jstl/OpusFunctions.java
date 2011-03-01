@@ -1,9 +1,7 @@
 package cn.gdpu.jstl;
 
-import java.util.Iterator;
 import java.util.Set;
 
-import cn.gdpu.vo.Activity;
 import cn.gdpu.vo.ActivityApply;
 import cn.gdpu.vo.Comment;
 import cn.gdpu.vo.Opus;
@@ -24,7 +22,7 @@ public class OpusFunctions {
 		if(aa == null && student == null) return false;
 		if(aa.getActivity().getApplyCount() == 1){
 			SingleApply sa = (SingleApply) aa;
-			if(sa.getStudent().getId() == student.getId()) return true;
+			if(sa.getApplicant().getId() == student.getId()) return true;
 		}else{
 			TeamApply ta = (TeamApply) aa;
 			if(ta.getGroup().getCaptain().getId() == student.getId()) return true;

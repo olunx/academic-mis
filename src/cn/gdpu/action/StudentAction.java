@@ -247,7 +247,7 @@ public class StudentAction extends BaseAction implements Preparable {
 		if(id <= 0) return ERROR;
 		student = studentService.getEntity(Student.class, id);
 		if(student == null) return ERROR;
-		List<ActivityApply> aa = activityApplyService.getEntity(ActivityApply.class, "from ActivityApply aa where (aa.student.id = '" + student.getId() + "') or ('" + student.getId() + "' = some elements(aa.applicants))");
+		List<ActivityApply> aa = activityApplyService.getEntity(ActivityApply.class, "from ActivityApply aa where (aa.applicant.id = '" + student.getId() + "') or ('" + student.getId() + "' = some elements(aa.applicants))");
 		if(aa.isEmpty() || aa.size() == 0)
 			aa = null;
 		getRequest().put("aa", aa);

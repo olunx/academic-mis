@@ -119,7 +119,7 @@ public class ActivityServiceTest{
 				for(int j = 0; j < students.size(); j += (int) Math.floor((Math.random() * 5 ) + 5)){
 					SingleApply sa = new SingleApply();
 					sa.setActivity(activity);
-					sa.setStudent(students.get(j));
+					sa.setApplicant(students.get(j));
 					sa.setApplytime(new Date());
 					sa.setEndtime(new Date());
 					sa.setOperator(ass);
@@ -192,7 +192,7 @@ public class ActivityServiceTest{
 					ar.setRecord("获得" + name);
 					ar.setAwarder(sa);
 					activityResultService.addEntity(ar);
-					Student student = sa.getStudent();
+					Student student = sa.getApplicant();
 					System.out.println(sa.getId());
 					student.setCredit(student.getCredit() + ar.getCredit());
 					studentService.updateEntity(student);

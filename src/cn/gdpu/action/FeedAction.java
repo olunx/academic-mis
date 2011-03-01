@@ -87,7 +87,7 @@ public class FeedAction extends BaseAction {
 	public String list() {
 		Manager manager = getSession().get("user") instanceof Manager ? (Manager)getSession().get("user") : null;
 		if(manager != null){
-			this.pageBean = feedService.queryForPage("from Feed f where f.type >= 0 and f.type < 10", 10, page);
+			this.pageBean = feedService.queryForPage("from Feed f where f.type >= 0 and f.type < 10 order by fb.hasRead asc, fb.id desc", 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 			return super.list();
@@ -98,7 +98,7 @@ public class FeedAction extends BaseAction {
 	public String listMe() {
 		People people = getSession().get("user") instanceof People ? (People)getSession().get("user") : null;
 		if(people != null){
-			this.pageBean = feedBoxService.queryForPage("from FeedBox fb where '" + people.getId() + "' = fb.people.id ", 10, page);
+			this.pageBean = feedBoxService.queryForPage("from FeedBox fb where '" + people.getId() + "' = fb.people.id order by fb.hasRead asc, fb.id desc", 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 			return "listPage_me";

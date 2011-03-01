@@ -25,6 +25,10 @@
 	<c:when test="${my:isMyGroup(group,user)}">
 		<span class="comment"><a href="<%=path%>/group/quitGroup?id=${group.id}">退出</a></span>
 	</c:when>
+	<c:when test="${my:isMyApplyGroup(group,user)}">
+		<span class="comment">已申请</span>
+	</c:when>
+	
 	<c:otherwise><span class="comment"><a href="<%=path%>/group/applyGroup?id=${group.id}">申请加入</a></span></c:otherwise>
 </c:choose> <br />
 </p>
