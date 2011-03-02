@@ -5,8 +5,9 @@
 %>
 <link href="<%=path %>/content/images/admin/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="<%=path %>/content/xheditor/xheditor-zh-cn.min.js?v=1.1.2"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
     $(pageInit);
     function pageInit()
     {
@@ -22,7 +23,7 @@
         }
     }
     function submitForm(){$('#form').submit();}
-    </script>
+</script>
 <style type="text/css">
 	body {
 		margin:0px;
@@ -53,7 +54,7 @@
         <td width="7%">&nbsp;</td>
         <td width="100%" valign="top">
         	<div class="context">
-      		<form action="<%=path %>/notice/addNotice" method="post" >
+      		<form id="form" action="<%=path %>/notice/addNotice" method="post" >
 				通知标题:<input type="text" title="通知标题" name="noticeDto.title" /><br/>
             	通知类型:
 	            <c:choose>
@@ -76,8 +77,8 @@
 	            </select>
 	            <br/>
 	           	 通知内容：<br/>
-					<textarea name="noticeDto.content" cols="100%" rows="10" ></textarea><br/>
-					已上传的图片列表：<select id="uploadList"></select>
+				<textarea id="comment" name="noticeDto.content" cols="100%" rows="10" ></textarea><br/>
+				已上传的图片列表：<select id="uploadList"></select>
 				<br/>
 				<input name="submit" type="submit" value="添加" />
 	        </form>

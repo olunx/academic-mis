@@ -70,6 +70,22 @@
 			<param-name>kaptcha.textproducer.font.color</param-name>
 			<param-value>blue</param-value>
 		</init-param>
+		<init-param>  
+            <param-name>kaptcha.image.width</param-name>  
+            <param-value>140</param-value>  
+        </init-param> 
+		<init-param>  
+            <param-name>kaptcha.image.height</param-name>  
+            <param-value>60</param-value>  
+        </init-param>  
+        <init-param>    
+            <param-name>kaptcha.textproducer.font.size</param-name>    
+            <param-value>55</param-value>    
+        </init-param>    
+        <init-param>    
+            <param-name>kaptcha.textproducer.font.names</param-name>    
+            <param-value>微软雅黑,宋体,楷体</param-value>    
+        </init-param> 
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Kaptcha</servlet-name>

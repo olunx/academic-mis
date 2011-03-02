@@ -1,12 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String path = request.getContextPath();
 %>
 <link href="<%=path %>/content/images/admin/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<style type="text/css">
+	body {
+		margin:0px;
+		width: 100%;
+		background-color: #EEF2FB;
+	}
+</style>
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=path %>/content/xheditor/xheditor-zh-cn.min.js?v=1.1.2"></script>
+<script type="text/javascript">
+    $(pageInit);
+    function pageInit()
+    {
+        $('#comment').xheditor({tools:'mfull',upLinkUrl:"<%=path %>/xheditor/editorUpload.action",upLinkExt:"zip,rar,txt",upImgUrl:"<%=path %>/xheditor/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",onUpload:insertUpload,shortcuts:{'ctrl+enter':submitForm}});
+    }
+    function insertUpload(arrMsg)
+    {
+        var i,msg;
+        for(i=0;i<arrMsg.length;i++)
+        {
+            msg=arrMsg[i];
+            $("#uploadList").append('<option value="'+msg.url+'">'+msg.url+'</option>');
+        }
+    }
+    function submitForm(){$('#form').submit();}
+</script>
 <style type="text/css">
 	body {
 		margin:0px;
@@ -20,7 +43,7 @@
     <td width="17" valign="top" background="<%=path %>/content/images/admin/mail_leftbg.gif"><img src="<%=path %>/content/images/admin/left-top-right.gif" width="17" height="29" /></td>
     <td valign="top" background="<%=path %>/content/images/admin/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
       <tr>
-        <td height="31"><div class="titlebt">欢迎界面</div></td>
+        <td height="31"><div class="titlebt">添加活动类型</div></td>
       </tr>
     </table></td>
     <td width="16" valign="top" background="<%=path %>/content/images/admin/mail_rightbg.gif"><img src="<%=path %>/content/images/admin/nav-right-bg.gif" width="16" height="29" /></td>
@@ -37,60 +60,20 @@
         <td width="7%">&nbsp;</td>
         <td width="100%" valign="top">
         	<div class="context">
-      			<c:choose>
-					<c:when test="${pageBean.list == null}">
-									没有数据！
-							</c:when>
-					<c:otherwise>
-						<form method="post" onSubmit="post(this);return false;" action="<%=path%>/admin/deleteManyAdmin">
-						<table class="table">
-							<tr>
-								<th><a rel="checkall">全选</a></th>
-								<th>用户名</th>
-								<th>姓名</th>
-								<th>编辑</th>
-								<th>删除</th>
-							</tr>
-							<c:forEach items="${pageBean.list}" var="admin">
-								<tr>
-									<td><input type="checkbox" name="id" value="${admin.id}" /></td>
-									<td>${admin.username}</td>
-									<td>${admin.realName}</td>
-									<td><a href="<%=path%>/admin/goModifyAdmin?id=${admin.id }&page=${page}" class="btn_edit">编辑</a></td>
-									<td><a href="<%=path%>/admin/deleteAdmin?id=${admin.id }&page=${page}" class="btn_del">删除</a></td>
-								</tr>
-							</c:forEach>
-						</table>
-				
-						<div id="pagecount">
-						<p>共 ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
-						<c:choose>
-							<c:when test="${pageBean.currentPage == 1}">
-								<a><span>首页</span></a>
-								<a><span>上一页</span></a>
-							</c:when>
-							<c:otherwise>
-								<a href="<%=path%>/admin/listAdmin?page=1"><span>首页</span></a>
-								<a href="<%=path%>/admin/listAdmin?page=${pageBean.currentPage-1}"><span>上一页</span></a>
-							</c:otherwise>
-						</c:choose> <c:choose>
-							<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-								<a href="<%=path%>/admin/listAdmin?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-								<a href="<%=path%>/admin/listAdmin?page=${pageBean.totalPage}"><span>尾页</span></a>
-							</c:when>
-							<c:otherwise>
-								<a><span>下一页</span></a>
-								<a><span>尾页</span></a>
-							</c:otherwise>
-						</c:choose></div>
-				
-						<select name="cmd">
-							<option value="0" selected="selected">批量操作，请选择</option>
-							<option value="1">删除</option>
-						</select> <input type="submit" value="确定" /></form>
-					</c:otherwise>
-				</c:choose>
-
+      		<form action="<%=path %>/activitytype/addActivityType" method="post">
+				学术活动名称：<input type="text" name="atDto.name" /><br/>
+				学术活动级别：<select name="atDto.level" size="1">
+								<option value="1" selected="selected">院级</option>
+								<option value="2">校级</option>
+								<option value="3">省级</option>
+								<option value="4">国家级</option>
+								<option value="5">国际级</option>
+							</select><br />
+				学术活动简介：<br/>
+				<textarea id="comment" name="atDto.intro" cols="100%" rows="10" ></textarea><br/>
+				已上传的图片列表：<select id="uploadList"></select><br/>
+				<input type="submit" value="创建">
+			</form>
       		</div>
         </td>
       </tr>

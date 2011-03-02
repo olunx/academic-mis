@@ -5,24 +5,25 @@
 %>
 <link href="<%=path %>/content/images/admin/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="<%=path %>/content/xheditor/xheditor-zh-cn.min.js?v=1.1.2"></script>
-    <script type="text/javascript">
-    $(pageInit);
-    function pageInit()
-    {
-        $('#comment').xheditor({tools:'mfull',upLinkUrl:"<%=path %>/xheditor/editorUpload.action",upLinkExt:"zip,rar,txt",upImgUrl:"<%=path %>/xheditor/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",onUpload:insertUpload,shortcuts:{'ctrl+enter':submitForm}});
-    }
-    function insertUpload(arrMsg)
-    {
-        var i,msg;
-        for(i=0;i<arrMsg.length;i++)
-        {
-            msg=arrMsg[i];
-            $("#uploadList").append('<option value="'+msg.url+'">'+msg.url+'</option>');
-        }
-    }
-    function submitForm(){$('#form').submit();}
-    </script>
+<script type="text/javascript">
+	$(pageInit);
+	function pageInit()
+	{
+	    $('#comment').xheditor({tools:'mfull',upLinkUrl:"<%=path %>/xheditor/editorUpload.action",upLinkExt:"zip,rar,txt",upImgUrl:"<%=path %>/xheditor/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",onUpload:insertUpload,shortcuts:{'ctrl+enter':submitForm}});
+	}
+	function insertUpload(arrMsg)
+	{
+	    var i,msg;
+	    for(i=0;i<arrMsg.length;i++)
+	    {
+	        msg=arrMsg[i];
+	        $("#uploadList").append('<option value="'+msg.url+'">'+msg.url+'</option>');
+	    }
+	}
+	function submitForm(){$('#form').submit();}
+</script>
 <style type="text/css">
 	body {
 		margin:0px;
@@ -53,7 +54,7 @@
         <td width="7%">&nbsp;</td>
         <td width="100%" valign="top">
         	<div class="context">
-      		<form action="<%=path %>/notice/modifyNotice" method="post" id="commentform">
+      		<form id="form" action="<%=path %>/notice/modifyNotice" method="post" id="commentform">
         		<input type="hidden" name="id" value="${notice.id }"/>
 				<input type="text" title="通知标题" name="noticeDto.title" value="${notice.title }"/>
 	            <c:choose>

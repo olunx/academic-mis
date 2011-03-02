@@ -123,7 +123,7 @@
 			</div>
         </div><!-- end of hot-->
         <div id="notice">
-        	<h2 class="title">最新公告<a href="<%=path %>/notice/listNotice">[更多]</a></h2><hr class="title"/>
+        	<h2 class="title">最新公告<a href="<%=path %>/notice/listNotice">more</a></h2><hr class="title"/>
             <ul class="notice">
             	<c:forEach items="${notices}" var="notice">
             		<li>[<a href="<%=path %>/notice/listTypeNotice?id=${notice.type.id}">${notice.type.name}</a>]<a href="<%=path %>/notice/viewNotice?id=${notice.id }">${notice.title }</a></li>
@@ -142,7 +142,7 @@
     
     <div id="camp">
     	<div class="third">
-        	<h2 class="title">名师课题<a href="<%=path %>/subject/listSubject">[更多]</a></h2><hr class="title" />
+        	<h2 class="title">名师课题<a href="<%=path %>/subject/listSubject">more</a></h2><hr class="title" />
             <ul class="notice">
             	<c:forEach items="${subjects}" var="subject">
             		<li><a href="<%=path %>/subject/viewSubject?id=${subject.id }">${subject.name }</a></li>
@@ -150,7 +150,7 @@
             </ul>
         </div>
         <div class="third">
-        	<h2 class="title">外包课题<a href="<%=path %>/notice/listTypeNotice?id=${noticetype}">[更多]</a></h2><hr class="title" />
+        	<h2 class="title">外包课题<a href="<%=path %>/notice/listTypeNotice?id=${noticetype}">more</a></h2><hr class="title" />
             <ul class="notice">
             	<c:forEach items="${pns}" var="notice">
             		<li><a href="<%=path %>/notice/viewNotice?id=${notice.id }">[${notice.type.name}]${notice.title }</a></li>
@@ -158,7 +158,7 @@
             </ul>
         </div>
         <div class="third">
-       		<h2 class="title">比赛项目<a href="<%=path %>/activity/listActivity">[更多]</a></h2><hr class="title" />
+       		<h2 class="title">比赛项目<a href="<%=path %>/activity/listActivity">more</a></h2><hr class="title" />
             <ul class="notice">
             	<c:forEach items="${activitys}" var="activity">
             		<li><a href="<%=path %>/activity/viewActivity?id=${activity.id }">${activity.name }</a></li>
@@ -181,7 +181,7 @@
 		});
 	</script>
 	<div id="works">
-    	<h2 class="title">作品展示<a href="<%=path %>/opus/listOpus">[更多]</a></h2><hr class="title"/>
+    	<h2 class="title">作品展示<a href="<%=path %>/opus/listOpus">more</a></h2><hr class="title"/>
         <div class="projects" >
             <ul>
             	<c:forEach items="${opuses}" var="opus">

@@ -32,7 +32,7 @@ public class NoticeTypeAction extends BaseAction {
 			if(admin != null)
 				return "admin_list";
 			else
-				return super.goAdd();
+				return super.add();
 		}
 		return ERROR;
 		
@@ -84,7 +84,7 @@ public class NoticeTypeAction extends BaseAction {
 			
 			Admin admin = manager instanceof Admin ? (Admin)manager : null;
 			if(admin != null)
-				return "admin_nodifyPage";
+				return "admin_modifyPage";
 			else
 				return super.goModify();
 		}

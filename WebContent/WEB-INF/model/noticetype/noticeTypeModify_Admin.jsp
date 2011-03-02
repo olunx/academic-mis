@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -38,7 +37,7 @@
         	<div class="context">
       		<form action="<%=path %>/noticetype/modifyNoticeType" method="post">
 	        	<input type="hidden" name="id" value="${noticeType.id} "/>
-				类型名称:<input type="text" class="text"  title="类型名称" name="ntDto.name" value="${noticeType.name} " /><br/>
+				类型名称:<input type="text" class="text"  title="类型名称" name="ntDto.name" value="${noticeType.name}" /><br/>
 				<input name="submit" type="submit" value="修改" />
     	    </form>
       		</div>
