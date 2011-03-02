@@ -5,11 +5,39 @@
 <title>网站管理员登陆</title>
 <!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
-<script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
-
+<script language="JavaScript">
+	$(document).ready(function(){
+	    var arVersion = navigator.appVersion.split("MSIE");
+	    var version = parseFloat(arVersion[1]);
+	    if ((version >= 5.5) && (document.body.filters)) 
+	    {
+	       for(var j=0; j<document.images.length; j++)
+	       {
+	          var img = document.images[j];
+	          var imgName = img.src.toUpperCase();
+	          if (imgName.substring(imgName.length-3, imgName.length) == "PNG")
+	          {
+	             var imgID = (img.id) ? "id='" + img.id + "' " : "";
+	             var imgClass = (img.className) ? "class='" + img.className + "' " : "";
+	             var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' ";
+	             var imgStyle = "display:inline-block;" + img.style.cssText ;
+	             if (img.align == "left") imgStyle = "float:left;" + imgStyle;
+	             if (img.align == "right") imgStyle = "float:right;" + imgStyle;
+	             if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle;
+	             var strNewHTML = "<span " + imgID + imgClass + imgTitle
+	             + " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";"
+	             + "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"
+	             + "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>" ;
+	             img.outerHTML = strNewHTML;
+	             j = j-1;
+	          }
+	       }
+  		}
+	});
+	function refresh(obj){
+		$(obj).hide().attr('src','<%=path %>/kaptcha.jpg?' + Math.floor(Math.random() * 100)).fadeIn();
+	}
+</script>
 <style type="text/css">
 <!--
 body {
@@ -21,51 +49,6 @@ body {
 }
 -->
 </style>
-
-<script language="JavaScript">
-	
-function correctPNG()
-{
-    var arVersion = navigator.appVersion.split("MSIE");
-    var version = parseFloat(arVersion[1]);
-    if ((version >= 5.5) && (document.body.filters)) 
-    {
-       for(var j=0; j<document.images.length; j++)
-       {
-          var img = document.images[j];
-          var imgName = img.src.toUpperCase();
-          if (imgName.substring(imgName.length-3, imgName.length) == "PNG")
-          {
-             var imgID = (img.id) ? "id='" + img.id + "' " : "";
-             var imgClass = (img.className) ? "class='" + img.className + "' " : "";
-             var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' ";
-             var imgStyle = "display:inline-block;" + img.style.cssText ;
-             if (img.align == "left") imgStyle = "float:left;" + imgStyle;
-             if (img.align == "right") imgStyle = "float:right;" + imgStyle;
-             if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle;
-             var strNewHTML = "<span " + imgID + imgClass + imgTitle
-             + " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";"
-             + "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"
-             + "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>" ;
-             img.outerHTML = strNewHTML;
-             j = j-1;
-          }
-       }
-    }    
-}
-window.attachEvent("onload", correctPNG);
-
-$(document).ready(function(){
-	
-	$('#kaptchaImage').click(
-			function() {
-				$(this).hide().attr('src',
-						'<%=path %>/kaptcha.jpg?' + Math.floor(Math.random() * 100))
-						.fadeIn();
-	});  
-});
-</script>
-
 <link href="<%=path %>/content/images/admin/skin.css" rel="stylesheet" type="text/css">
 <body>
 <table width="100%" height="166" border="0" cellpadding="0" cellspacing="0">
@@ -85,29 +68,29 @@ $(document).ready(function(){
             <tr>
               <td height="138" valign="top"><table width="89%" height="427" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td height="149">&nbsp;</td>
+                  <td height="130">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td height="80" align="right" valign="top"><img src="<%=path %>/content/images/admin/logo.png" width="279" height="68"></td>
+                  <td height="80" align="right" valign="top"><img id="logo" src="<%=path %>/content/images/admin/logo.gif" width="320" height="68"></td>
                 </tr>
                 <tr>
                   <td height="198" align="right" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td width="35%">&nbsp;</td>
-                      <td height="25" colspan="2" class="left_txt"><p>1- 地区商家信息网门户站建立的首选方案...</p></td>
+                      <td height="25" colspan="2" class="left_txt"><p class="main">广东药学院-课外学术科研活动管理系统后台</p></td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
-                      <td height="25" colspan="2" class="left_txt"><p>2- 一站通式的整合方式，方便用户使用...</p></td>
+                      <td height="25" colspan="2" class="left_txt"><p> * 一站通式的整合方式，方便用户使用...</p></td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
-                      <td height="25" colspan="2" class="left_txt"><p>3- 强大的后台系统，管理内容易如反掌...</p></td>
+                      <td height="25" colspan="2" class="left_txt"><p> * 强大的后台系统，管理内容易如反掌...</p></td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
-                      <td width="30%" height="40"><img src="<%=path %>/content/images/admin/icon-demo.gif" width="16" height="16"><a href="http://www.865171.cn" target="_blank" class="left_txt3"> 使用说明</a> </td>
-                      <td width="35%"><img src="<%=path %>/content/images/admin/icon-login-seaver.gif" width="16" height="16"><a href="http://www.865171.cn" class="left_txt3"> 在线客服</a></td>
+                      <td width="30%" height="40"><img src="<%=path %>/content/images/admin/icon-demo.gif" width="16" height="16"><a href="#" class="left_txt3"> 使用说明</a> </td>
+                      <td width="35%"><img src="<%=path %>/content/images/admin/icon-login-seaver.gif" width="16" height="16"><a href="#" class="left_txt3"> 在线客服</a></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -119,7 +102,7 @@ $(document).ready(function(){
         <td width="50%" valign="bottom"><table width="100%" height="59" border="0" align="center" cellpadding="0" cellspacing="0">
             <tr>
               <td width="4%">&nbsp;</td>
-              <td width="96%" height="38"><span class="login_txt_bt">登陆信息网后台管理</span></td>
+              <td width="96%" height="38"><span class="login_txt_bt">登陆学术活动系统后台管理</span></td>
             </tr>
             <tr>
               <td>&nbsp;</td>
@@ -139,13 +122,13 @@ $(document).ready(function(){
                           <tr>
                             <td width="13%" height="35" ><span class="login_txt">验证码：</span></td>
                             <td height="35" colspan="2" class="top_hui_text"><input class=wenbenkuang name="kaptcha" type=text value="" maxLength=4 size=10>
-                           		<img src="<%=path %>/kaptcha.jpg" height="25" width="80" id="kaptchaImage"/><small><font color="red">点击图片刷新</font></small>
+                           		<img src="<%=path %>/kaptcha.jpg" height="25" width="80" id="kaptchaImage" onclick="refresh(this)" /><small><font color="#333333">点击图片刷新</font></small>
 							</td>
                           </tr>
                           <tr>
                             <td height="35" >&nbsp;</td>
                             <td width="20%" height="35" ><input name="Submit" type="submit" class="button" id="Submit" value="登 陆"> </td>
-                            <td width="67%" class="top_hui_text"><input name="cs" type="button" class="button" id="cs" value="取 消" onClick="showConfirmMsg1()"></td>
+                            <td width="67%" class="top_hui_text"><input name="cs" type="button" class="button" id="cs" value="取 消"></td>
                           </tr>
                         </table>
                         <br>
@@ -165,7 +148,7 @@ $(document).ready(function(){
   <tr>
     <td height="20"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="login-buttom-bg">
       <tr>
-        <td align="center"><span class="login-buttom-txt">Copyright &copy; 2009-2010 www.865171.cn</span></td>
+        <td align="center"><span class="login-buttom-txt">Copyright &copy; 2009-2010 3C.GDPU</span></td>
       </tr>
     </table></td>
   </tr>

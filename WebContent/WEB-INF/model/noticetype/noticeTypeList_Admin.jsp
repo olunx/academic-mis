@@ -40,46 +40,46 @@
 								没有数据！
 				</c:when>
 				<c:otherwise>
-					<ul id="excerpt">
-					<c:forEach items="${pageBean.list}" var="noticeType">
-				        <li>
-						<div class="p_coleft fleft">
-							<p class="date_s"><a href="<%=path%>/noticetype/goModifyNoticeType?id=${noticeType.id }">-----编辑-----</a></p>
-							<span class="comment_s"><a href="<%=path%>/noticetype/deleteNoticeType?id=${noticeType.id }">删除</a></span>
-						</div>
-						<div class="p_coright fright">
-							<h1 class="prevtitle">类型名称：<a href="<%=path%>/noticetype/viewNoticeType?id=${noticeType.id }">${noticeType.name}</a></h1>
-						 </div>
-						<br class="clear" />
-				        </li>
-			        </c:forEach>
-			        </ul>
+					<table class="table">
+						<tr>
+							<th><a rel="checkall">全选</a></th>
+							<th>类型名称</th>
+							<th>编辑</th>
+							<th>删除</th>
+						</tr>
+						<c:forEach items="${pageBean.list}" var="noticeType">
+					        <tr>
+								<td><input type="checkbox" name="id" value="${teacher.id}" /></td>
+								<td><a href="<%=path%>/notice/listTypeNotice?id=${noticeType.id }">${noticeType.name}</a></td>
+								<td><a href="<%=path%>/noticetype/goModifyNoticeType?id=${noticeType.id }">-----编辑-----</a></td>
+								<td><a href="<%=path%>/noticetype/deleteNoticeType?id=${noticeType.id }">删除</a></td>
+							</tr>
+			        	</c:forEach>
+		        	</table>
 					
-					<br class="clear">
-					<div class="wp-pagenavi">
-						<span class="pages">共 ${pageBean.allRow} 条记录  页码 ${pageBean.currentPage}/${pageBean.totalPage}</span>
-						<c:choose>
-							<c:when test="${pageBean.currentPage == 1}">
-								<a class="page">首页</a>
-								<a class="page">上一页</a>
-							</c:when>
-							<c:otherwise>
-								<a class="page" href="<%=path%>/noticetype/listNoticeType?page=1">首页</a>
-								<a class="page" href="<%=path%>/noticetype/listNoticeType?page=${pageBean.currentPage-1}">上一页</a>
-							</c:otherwise>
-						</c:choose>
-						<c:choose>
-							<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-								<a class="page" href="<%=path%>/noticetype/listNoticeType?page=${pageBean.currentPage+1}">下一页</a>
-								<a class="last" href="<%=path%>/noticetype/listNoticeType?page=${pageBean.totalPage}">尾页</a>
-							</c:when>
-							<c:otherwise>
-								<a class="page">下一页</a>
-								<a class="last">尾页</a>
-							</c:otherwise>
-						</c:choose>
-					</div>
-					</c:otherwise>
+					<div id="pagecount">
+					<p>共 ${pageBean.allRow} 条记录  页码 ${pageBean.currentPage}/${pageBean.totalPage}</p>
+					<c:choose>
+						<c:when test="${pageBean.currentPage == 1}">
+							<a class="page">首页</a>
+							<a class="page">上一页</a>
+						</c:when>
+						<c:otherwise>
+							<a class="page" href="<%=path%>/noticetype/listNoticeType?page=1">首页</a>
+							<a class="page" href="<%=path%>/noticetype/listNoticeType?page=${pageBean.currentPage-1}">上一页</a>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${pageBean.currentPage != pageBean.totalPage}">
+							<a class="page" href="<%=path%>/noticetype/listNoticeType?page=${pageBean.currentPage+1}">下一页</a>
+							<a class="last" href="<%=path%>/noticetype/listNoticeType?page=${pageBean.totalPage}">尾页</a>
+						</c:when>
+						<c:otherwise>
+							<a class="page">下一页</a>
+							<a class="last">尾页</a>
+						</c:otherwise>
+					</c:choose></div>
+				</c:otherwise>
 			</c:choose>
       		</div>
         </td>

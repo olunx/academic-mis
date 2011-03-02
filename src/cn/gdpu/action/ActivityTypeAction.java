@@ -1,9 +1,11 @@
 package cn.gdpu.action;
 
 import cn.gdpu.service.ActivityTypeService;
+import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.ActivityType;
 import cn.gdpu.vo.Admin;
+import cn.gdpu.vo.Manager;
 
 public class ActivityTypeAction extends BaseAction {
 	
@@ -12,11 +14,12 @@ public class ActivityTypeAction extends BaseAction {
 	private ActivityType atDto;
 	private PageBean pageBean;
 	private int page;
+	private int id;
 	
 	@Override
 	public String add() {
-		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
-		if(admin != null){
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager)getSession().get("user") : null;
+		if(manager != null){
 			if(atDto.getName() == null) return ERROR;
 			activityType = activityTypeService.getActivityTypeByName(atDto.getName());
 			if(activityType != null) return ERROR;
@@ -24,16 +27,34 @@ public class ActivityTypeAction extends BaseAction {
 			at.setName(atDto.getName());
 			at.setLevel(atDto.getLevel());
 			at.setIntro(atDto.getIntro());
+			Log.init(getClass()).info(manager.getRealName() + " 添加了学术活动类型 " + at.getName());
 			activityTypeService.addEntity(at);
-			return super.add();
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_list";
+			else
+				return super.add();
 		}
 		return ERROR;
 	}
 
 	@Override
 	public String delete() {
-		// TODO Auto-generated method stub
-		return super.delete();
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager)getSession().get("user") : null;
+		if(manager != null){
+			activityType = activityTypeService.getEntity(ActivityType.class, id);
+			if(activityType == null) return ERROR;
+			activityTypeService.deleteEntity(ActivityType.class, activityType.getId());
+			Log.init(getClass()).info(manager.getRealName() + " 删除了学术活动类型 " + activityType.getName());
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_list";
+			else
+				return super.delete();
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -44,37 +65,64 @@ public class ActivityTypeAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
-		if(admin != null){
-			return super.goAdd();
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager)getSession().get("user") : null;
+		if(manager != null){
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_addPage";
+			else
+				return super.goAdd();
 		}
 		return ERROR;
 	}
 
 	@Override
 	public String goModify() {
-		// TODO Auto-generated method stub
-		return super.goModify();
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager)getSession().get("user") : null;
+		if(manager != null){
+			activityType = activityTypeService.getEntity(ActivityType.class, id);
+			if(activityType == null) return "admin_list";
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_modifyPage";
+			else
+				return super.goModify();
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String list() {
-		Admin admin = getSession().get("user") instanceof Admin ? (Admin)getSession().get("user") : null;
-		if(admin != null){
-			this.pageBean = this.activityTypeService.queryForPage(ActivityType.class, 10, page);
-			if (pageBean.getList().isEmpty())
-				pageBean.setList(null);
-
-			return super.list();
-		}
-		return ERROR;
+		this.pageBean = this.activityTypeService.queryForPage(ActivityType.class, 10, page);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
 		
+		if(getSession().get("user") instanceof Admin)
+			return "admin_listPage";
+		else
+			return super.list();
 	}
 
 	@Override
 	public String modify() {
-		// TODO Auto-generated method stub
-		return super.modify();
+		Manager manager = getSession().get("user") instanceof Manager ? (Manager)getSession().get("user") : null;
+		if(manager != null){
+			activityType = activityTypeService.getEntity(ActivityType.class, atDto.getId());
+			if(activityType == null) return ERROR;
+			activityType.setName(atDto.getName());
+			activityType.setLevel(atDto.getLevel());
+			activityType.setIntro(atDto.getIntro());
+			Log.init(getClass()).info(manager.getRealName() + " 修改了学术活动类型 " + activityType.getName());
+			activityTypeService.updateEntity(activityType);
+			
+			Admin admin = manager instanceof Admin ? (Admin)manager : null;
+			if(admin != null)
+				return "admin_list";
+			else
+				return super.modify();
+		}
+		return ERROR;
+		
 	}
 
 	@Override
@@ -124,6 +172,14 @@ public class ActivityTypeAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

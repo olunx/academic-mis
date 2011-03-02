@@ -59,8 +59,7 @@ public class AdminAction extends BaseAction implements ServletRequestAware{
 			getSession().remove("user");
 			return "logout";
 		}
-		
-		return VIEW_PAGE;
+		return "gologin";
 	}
 
 	@Override

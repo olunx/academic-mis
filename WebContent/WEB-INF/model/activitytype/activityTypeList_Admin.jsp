@@ -20,7 +20,7 @@
     <td width="17" valign="top" background="<%=path %>/content/images/admin/mail_leftbg.gif"><img src="<%=path %>/content/images/admin/left-top-right.gif" width="17" height="29" /></td>
     <td valign="top" background="<%=path %>/content/images/admin/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
       <tr>
-        <td height="31"><div class="titlebt">欢迎界面</div></td>
+        <td height="31"><div class="titlebt">查看学术活动类型</div></td>
       </tr>
     </table></td>
     <td width="16" valign="top" background="<%=path %>/content/images/admin/mail_rightbg.gif"><img src="<%=path %>/content/images/admin/nav-right-bg.gif" width="16" height="29" /></td>
@@ -42,22 +42,24 @@
 									没有数据！
 							</c:when>
 					<c:otherwise>
-						<form method="post" onSubmit="post(this);return false;" action="<%=path%>/admin/deleteManyAdmin">
+						<form method="post" onSubmit="post(this);return false;" action="<%=path%>/activityType/deleteManyActivityType">
 						<table class="table">
 							<tr>
 								<th><a rel="checkall">全选</a></th>
-								<th>用户名</th>
-								<th>姓名</th>
+								<th>活动名称</th>
+								<th>级别</th>
+								<th>简介</th>
 								<th>编辑</th>
 								<th>删除</th>
 							</tr>
-							<c:forEach items="${pageBean.list}" var="admin">
+							<c:forEach items="${pageBean.list}" var="activityType">
 								<tr>
-									<td><input type="checkbox" name="id" value="${admin.id}" /></td>
-									<td>${admin.username}</td>
-									<td>${admin.realName}</td>
-									<td><a href="<%=path%>/admin/goModifyAdmin?id=${admin.id }&page=${page}" class="btn_edit">编辑</a></td>
-									<td><a href="<%=path%>/admin/deleteAdmin?id=${admin.id }&page=${page}" class="btn_del">删除</a></td>
+									<td><input type="checkbox" name="id" value="${activityType.id}" /></td>
+									<td>${activityType.name}</td>
+									<td>${activityType.level}</td>
+									<td>${fn:substring(fn:replace(activityType.intro,"<","&lt;"),0,20)}...</td>
+									<td><a href="<%=path%>/activitytype/goModifyActivityType?id=${activityType.id }&page=${page}" class="btn_edit">编辑</a></td>
+									<td><a href="<%=path%>/activitytype/deleteActivityType?id=${activityType.id }&page=${page}" class="btn_del">删除</a></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -70,13 +72,13 @@
 								<a><span>上一页</span></a>
 							</c:when>
 							<c:otherwise>
-								<a href="<%=path%>/admin/listAdmin?page=1"><span>首页</span></a>
-								<a href="<%=path%>/admin/listAdmin?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+								<a href="<%=path%>/activitytype/listActivityType?page=1"><span>首页</span></a>
+								<a  href="<%=path%>/activitytype/listActivityType?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 							</c:otherwise>
 						</c:choose> <c:choose>
 							<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-								<a href="<%=path%>/admin/listAdmin?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-								<a href="<%=path%>/admin/listAdmin?page=${pageBean.totalPage}"><span>尾页</span></a>
+								<a href="<%=path%>/activitytype/listActivityType?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+								<a href="<%=path%>/activitytype/listActivityType?page=${pageBean.totalPage}"><span>尾页</span></a>
 							</c:when>
 							<c:otherwise>
 								<a><span>下一页</span></a>

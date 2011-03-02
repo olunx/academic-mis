@@ -44,7 +44,7 @@
 <div id="nav">
   <div class="container">
     <div class="subcontainer">
-    <c:if test="${user == null}">
+    <c:if test="${my:userTypeCompare(user) != 2 && my:userTypeCompare(user) != 3 && my:userTypeCompare(user) != 4}">
     <form action="<%=path%>/login"  method="post">
     账号：<input type="text" name="loginDto.username"/>
     密码：<input type="password" name="loginDto.password"/>
@@ -129,7 +129,7 @@
         </ul>
       </li>
       <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">图书馆</a></li>
-      <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">学术活动简介</a></li>
+      <li class="cat-item"><a href="<%=path %>/activitytype/listActivityType">学术活动简介</a></li>
       <li class="cat-item"><a href="<%=path %>/opus/listOpus">作品展示</a></li>
       <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">名师风采</a></li>
     </ul>

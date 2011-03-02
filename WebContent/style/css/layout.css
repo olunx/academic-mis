@@ -66,15 +66,15 @@ h1#blogtitle a{color: #000;text-decoration: none;}
 /*navigation categories*/
 #navcat{height:35px;background: #E3ECEE;border-top:1px solid #fff;border-bottom: 1px solid #D6DDDF; }
 #navcat ul{float: left;border-left: 1px solid #D6DDDF;}
-#navcat li{float: left;}
-#navcat  li a{color: #666;font-weight: bold;text-decoration: none;background: #E3ECEE;padding: 8px 20px;display: block;border-right: 1px solid #D6DDDF;}
+#navcat li{float: left;width: 120px;}
+#navcat  li a{color: #666;font-weight: bold;text-align:center; text-decoration: none;background: #E3ECEE;padding: 8px 20px;display: block;border-right: 1px solid #D6DDDF;}
 #navcat li.current_page_item  a{background: #fff;}
 #navcat li ul {position: absolute;width: 150px;left: -999em;z-index: 9999;}
 #navcat li:hover ul,#navcat li.sfhover ul {left: auto;}
 #navcat li ul li {line-height: 18px;font-size: 11px;color: #fff;}
 #navcat li ul li a:hover {background: #D6DDDF;}
 #navcat li ul li.current_page_item {background: #181818;color:#fff;}
-#navcat li ul li a {width:150px; line-height:18px; }
+#navcat li ul li a {text-align:left;width:150px; line-height:18px; }
 #navcat li ul ul {margin: -34px 0 0 190px;}
 #navcat li:hover ul ul, 
 #navcat li.sfhover ul ul {left: -999em;}
@@ -88,7 +88,7 @@ left: auto;
 /*===========================================*/
 /*== Wrapper */
 /*===========================================*/
-#wrapper{margin: 40px auto 0;}
+#wrapper{margin: 40px auto 0; border-top: 2px solid #EEEEEE; border-left: 1px solid #EEEEEE; border-right: 1px solid #EEEEEE; }
 #wrapper a{	color: #0D9BC1;text-decoration: none;}
 h2.mainhead{font-family: "Helvetica Neue", Helvetica,  Verdana, Arial ;font-size: 22px;border-bottom: 1px solid #EAEAEA;border-top: 1px solid #ABABAB;padding: 15px 0 15px 5px;margin: 0 0 12px 0;text-transform: uppercase;font-weight: lighter;}
 .breadcrumb{padding: 10px 0;border-top: 1px solid #ABABAB;}
@@ -180,22 +180,23 @@ ul#excerpt li{margin: 0 0px 30px 0;}
 /*===========================================*/
 /*== ��ҳ */
 /*===========================================*/
-h2.title{font-weight:bold; font-size:14px; color:#666;}
+h2.title{position: relative; font-weight:bold; font-size:14px; color:#666;}
+h2.title a{position: absolute; right: 5px;}
 hr.title{margin:2px 0 5px 0;}
 
 ul.notice li{white-space:nowrap; overflow:hidden; text-overflow: ellipsis; -o-text-overflow:ellipsis; border-bottom:dotted #CCC 1px; margin:6px; cursor:pointer;}
-ul.notice a{ font-size:14px;}
+#wrapper ul.notice a{ font-size:14px;color: #0997F7;}
 ul.notice li:hover{ background:#ECFDFF; border-bottom:dotted #CCC 1px; margin:6px;}
 
 /** ������Ϣ **/
 #news{width:950px;height:320px;overflow:hidden;}
 #hot{width:385px; height:310px; float:left; }
-#notice{width:400px; height:320px; margin-left:10px;float:left; }
-.activestu{width:140px; height:315px; margin-left:10px;float:left; border:1px solid #DDDDDD;}
+#notice{width:400px; height:310px; margin-left:10px;float:left; border:1px solid #eeeeee;}
+.activestu{width:140px; height:310px; margin-left:10px;float:left; border:1px solid #eeeeee;}
 
 /** ������Ϣ **/
 #camp{width:950px;height:232px;overflow:hidden; margin-top:25px;}
-.third{width:305px; height:230px; float:left; margin-right:10px;}
+.third{width:308px; height:230px; float:right; margin-right:5px;border:1px solid #eeeeee;}
 
 
 /** ��Ʒչʾ **/

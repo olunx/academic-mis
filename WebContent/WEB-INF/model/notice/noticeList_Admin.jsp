@@ -43,13 +43,24 @@
 								没有数据！
 				</c:when>
 				<c:otherwise>
-					<ul id="excerpt">
-					<c:forEach items="${pageBean.list}" var="notice">
-				        <li>
-						<div class="p_coleft fleft">
-							<p class="date_s"><fmt:formatDate value="${notice.time}" pattern="yyyy-MM-dd"/></p>
-							<span class="comment_s">
-		                        <c:choose>
+					<table class="table">
+						<tr>
+							<th><a rel="checkall">全选</a></th>
+							<th>类型名称</th>
+							<th>发布人</th>
+							<th>日期</th>
+							<th>评论</th>
+							<th>编辑</th>
+							<th>删除</th>
+						</tr>
+						<c:forEach items="${pageBean.list}" var="notice">
+					        <tr>
+								<td><input type="checkbox" name="id" value="${notice.id}" /></td>
+								<td>[${notice.type.name}]<a href="<%=path%>/notice/viewNotice?id=${notice.id }">${notice.title}</a></td>
+								<td>${notice.author.realName }</td>
+								<td><fmt:formatDate value="${notice.time}" pattern="yyyy-MM-dd"/></td>
+								<td>
+									<c:choose>
 		                            <c:when test="${notice.isCmsAllow == 1}">
 		                                <c:choose>
 		                                    <c:when test="${fn:length(notice.comments) == 0}">
@@ -63,33 +74,26 @@
 		                            <c:otherwise>
 										禁止评论
 		                            </c:otherwise>
-		                        </c:choose>
-		                    </span>
-						</div>
-						<div class="p_coright fright">
-							<h1 class="prevtitle">(${notice.type.name})<a href="<%=path%>/notice/viewNotice?id=${notice.id }">${notice.title}</a></h1>
-								发表人：${notice.author.realName }<br />
-								<c:if test="${my:userTypeCompare(user) == 1 || my:userTypeCompare(user) == 2}">
-			                        <c:choose>
+		                       		</c:choose>
+								</td>
+								<td>
+									<c:choose>
 			                            <c:when test="${notice.noticeHot == null}">
 											<a href="<%=path%>/noticehot/goAddNoticeHot?id=${notice.id }">设为热门</a>
 			                            </c:when>
 			                            <c:otherwise>
-											Hot-<a href="<%=path%>/noticehot/deleteNoticeHot?id=${notice.id }">取消</a>
+											Hot-<a href="<%=path%>/noticehot/deleteNoticeHot?id=${notice.noticeHot.id }">取消</a>
 			                            </c:otherwise>
 			                        </c:choose>
-			                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/notice/goModifyNotice?id=${notice.id }">编辑</a>
-			                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/notice/deleteNotice?id=${notice.id }">删除</a>
-		                        </c:if>
-						</div>
-						<br class="clear" />
-				        </li>
-			        </c:forEach>
-			        </ul>
+								</td>
+								<td><a href="<%=path%>/notice/goModifyNotice?id=${notice.id }">编辑</a></td>
+								<td><a href="<%=path%>/notice/deleteNotice?id=${notice.id }">删除</a></td>
+							</tr>
+			        	</c:forEach>
+		        	</table>
 					
-					<br class="clear">
-					<div class="wp-pagenavi">
-						<span class="pages">共 ${pageBean.allRow} 条记录  页码 ${pageBean.currentPage}/${pageBean.totalPage}</span>
+						<div id="pagecount">
+						<p>共 ${pageBean.allRow} 条记录  页码 ${pageBean.currentPage}/${pageBean.totalPage}</p>
 						<c:choose>
 							<c:when test="${pageBean.currentPage == 1}">
 								<a class="page">首页</a>

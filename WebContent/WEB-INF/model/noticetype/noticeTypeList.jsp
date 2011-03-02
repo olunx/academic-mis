@@ -22,7 +22,7 @@
 					<span class="comment_s"><a href="<%=path%>/noticetype/deleteNoticeType?id=${noticeType.id }">删除</a></span>
 				</div>
 				<div class="p_coright fright">
-					<h1 class="prevtitle">类型名称：<a href="<%=path%>/noticetype/viewNoticeType?id=${noticeType.id }">${noticeType.name}</a></h1>
+					<h1 class="prevtitle">类型名称：<a href="<%=path%>/notice/listTypeNotice?id=${noticeType.id }">${noticeType.name}</a></h1>
 				 </div>
 				<br class="clear" />
 		        </li>

@@ -22,7 +22,7 @@
 作品介绍: ${opus.intro }<br />
 作者:<c:choose>
 	<c:when test="${activityApply.activity.applyCount == 1}">
-		<a href="<%=path %>/student/viewStudent?id=${activityApply.student.id }">${activityApply.student.realName }</a>
+		<a href="<%=path %>/student/viewStudent?id=${activityApply.applicant.id }">${activityApply.applicant.realName }</a>
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${activityApply.applicants}" var="student"  >

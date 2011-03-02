@@ -17,7 +17,7 @@
         <form action="<%=path %>/noticetype/modifyNoticeType" method="post">
         	<input type="hidden" name="id" value="${noticeType.id} "/>
 			<p>
-				<input type="text" class="text"  title="类型名称" name="ntDto.name" value="${noticeType.name} " />
+				<input type="text" class="text"  title="类型名称" name="ntDto.name" value="${noticeType.name}" />
 			</p>
 			<div class="clear"></div>
 			<p>

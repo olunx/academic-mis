@@ -49,7 +49,7 @@
 									<a href="<%=path%>/noticehot/goAddNoticeHot?id=${notice.id }">设为热门</a>
 	                            </c:when>
 	                            <c:otherwise>
-									Hot-<a href="<%=path%>/noticehot/deleteNoticeHot?id=${notice.id }">取消</a>
+									Hot-<a href="<%=path%>/noticehot/deleteNoticeHot?id=${notice.noticeHot.id }">取消</a>
 	                            </c:otherwise>
 	                        </c:choose>
 	                        &nbsp;&nbsp;&nbsp;<a href="<%=path%>/notice/goModifyNotice?id=${notice.id }">编辑</a>

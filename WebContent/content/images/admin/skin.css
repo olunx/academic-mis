@@ -57,7 +57,7 @@
 }
 .login_txt_bt {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
+	font-size: 18px;
 	line-height: 25px;
 	color: #666666;
 	font-weight: bold;
@@ -116,8 +116,15 @@
 .left_txt {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
+	padding-left: 20px;
 	line-height: 25px;
 	color: #666666;
+}
+.left_txt .main{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	line-height: 30px;
+	color: #333333;
 }
 .left_txt2 {
 	font-family: Arial, Helvetica, sans-serif;
@@ -227,4 +234,14 @@ a:visited {
 #context {
 	font-size: 10px;
 	color: #000000;
+}
+
+#logo {
+	position:relative; 
+	left : -50px;
+}
+#kaptchaImage {
+	position:relative; 
+	top: 5px;
+	width: 60px;
 }
