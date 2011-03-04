@@ -66,13 +66,14 @@ h1#blogtitle a{color: #000;text-decoration: none;}
 /*navigation categories*/
 #navcat{height:35px;background: #E3ECEE;border-top:1px solid #fff;border-bottom: 1px solid #D6DDDF; }
 #navcat ul{float: left;border-left: 1px solid #D6DDDF;}
-#navcat li{float: left;width: 120px;}
-#navcat  li a{color: #666;font-weight: bold;text-align:center; text-decoration: none;background: #E3ECEE;padding: 8px 20px;display: block;border-right: 1px solid #D6DDDF;}
+#navcat li{float: left;width: 135px;}
+#navcat li a{color: #666;font-weight: bold;text-align:left; text-decoration: none;background: #E3ECEE;padding: 8px 20px;display: block;border-right: 1px solid #D6DDDF;}
+#navcat li a:hover {color:#0D9BC1; background: #D6DDDF;}
 #navcat li.current_page_item  a{background: #fff;}
 #navcat li ul {position: absolute;width: 150px;left: -999em;z-index: 9999;}
-#navcat li:hover ul,#navcat li.sfhover ul {left: auto;}
+#navcat li :hover ul,#navcat li.sfhover ul {left: auto;}
 #navcat li ul li {line-height: 18px;font-size: 11px;color: #fff;}
-#navcat li ul li a:hover {background: #D6DDDF;}
+#navcat li ul li a:hover {color:#0D9BC1; background: #D6DDDF;}
 #navcat li ul li.current_page_item {background: #181818;color:#fff;}
 #navcat li ul li a {text-align:left;width:150px; line-height:18px; }
 #navcat li ul ul {margin: -34px 0 0 190px;}
@@ -249,9 +250,6 @@ div.projects ul li a img{ width:117px;height:90px;margin-bottom:0px;padding-bott
 
  h2.lifestream_date {font-size: 16px;}
 .lifestream_credits {margin-bottom:10px !important; visibility:hidden;}
-
-
-
 
 /*===========================================*/
 /*== Single */

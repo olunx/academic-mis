@@ -30,6 +30,16 @@
         	}
 	    });
 	});
+	$(document).ready(function(){  
+		$("#navcat .cat-item").hover(
+			function() {  
+			 $(this).children("ul").css("left","auto");  
+			},function(){  
+			 $(this).children("ul").css("left","-999em");  
+			}
+		);
+	});
+
 </script>
 <style type="text/css">
 .recentcomments a {
@@ -80,7 +90,7 @@
   <div class="container">
     <!--菜单栏 开始-->
     <ul>
-	<li class="cat-item"><a href="<%=path %>/index">首页</a></li>
+	<li class="cat-item"><a href="<%=path %>/index">本站首页</a></li>
 	
 	<c:if test="${my:userTypeCompare(user) == 3}">
 	<li class="cat-item"><a href="#">我的菜单</a>
@@ -124,14 +134,16 @@
 	
       <li class="cat-item"><a href="#">院校导航</a>
         <ul class="children">
+          <li class="cat-item"><a href="http://www.gdpu.edu.cn">广东药学院官网</a></li>
           <li class="cat-item"><a href="http://branch.gdpu.edu.cn/kxyj/">科学研究</a></li>
+          <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">图书馆</a></li>
           <li class="cat-item"><a href="#">管理系统</a></li>
         </ul>
       </li>
-      <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">图书馆</a></li>
-      <li class="cat-item"><a href="<%=path %>/activitytype/listActivityType">学术活动简介</a></li>
+      <li class="cat-item"><a href="<%=path %>/activitytype/listActivityType">学术简介</a></li>
       <li class="cat-item"><a href="<%=path %>/opus/listOpus">作品展示</a></li>
-      <li class="cat-item"><a href="http://www.lib.gdpu.edu.cn/">名师风采</a></li>
+      <li class="cat-item"><a href="<%=path %>/teacher/listTeacher">名师风采</a></li>
+      <li class="cat-item"><a href="<%=path %>/student/listStudent">优秀学生</a></li>
     </ul>
     <!--菜单栏 结束-->
   </div>
