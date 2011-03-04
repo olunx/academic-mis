@@ -12,18 +12,18 @@
 		<div class="post">
 			<hr class="title" />
 			<h2>欢迎您${user.username} ,进入学生管理中心</h2><br/>
-			<h2>系统通知<a href="<%=path %>/subject/listSubject">[更多]</a></h2><hr class="title" />
+			<h2 class="title">系统通知<a href="<%=path %>/subject/listSubject">more</a></h2><hr class="title" />
 			<ul class="notice">	
 			<c:forEach items="${notices}" var="notice">
-		  		<li><a href="<%=path %>/notice/viewNotice?id=${notice.id }">[${notice.type.name}]${notice.title }</a></li>
+		  		<li><a class="contentlink" href="<%=path %>/notice/viewNotice?id=${notice.id }">[${notice.type.name}]${notice.title }</a></li>
 		  	</c:forEach>
 		  	</ul>
 		  	<br/>
-			<h2>系统消息<a href="<%=path %>/feed/listMeFeed">[更多]</a></h2><hr class="title" />
+			<h2 class="title">系统消息<a href="<%=path %>/feed/listMeFeed">more</a></h2><hr class="title" />
 			<ul class="notice">	
 			<c:forEach items="${feedBoxs}" var="feedBox">
 		  		<div>
-		  			<a href="<%=path %>/feed/viewFeed?id=${feedBox.id}">[${feedBox.hasRead == 0 ? '<font color="red">新消息</font>' : '已读'}][<font color="blue">${my:checkFeedType(feedBox.feed)}</font>]${feedBox.feed.news } </a><br/>
+		  			<a class="contentlink" href="<%=path %>/feed/viewFeed?id=${feedBox.id}">[${feedBox.hasRead == 0 ? '<font color="red">新消息</font>' : '已读'}][<font color="blue">${my:checkFeedType(feedBox.feed)}</font>]${feedBox.feed.news } </a><br/>
 		  			${feedBox.feed.time }<a href="<%=path %>/feed/readFeed?id=${feedBox.id}">知道了</a> | <a href="<%=path %>/feed/deleteFeed?id=${feedBox.id}">删除</a>
 		  		</div>
 		  	</c:forEach>
